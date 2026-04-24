@@ -542,20 +542,39 @@
 
   /* Mobile */
   @media (max-width: 900px) {
-    .app { grid-template-columns: 1fr; }
+    html, body {
+      height: auto;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .app {
+      grid-template-columns: 1fr;
+      height: auto;
+      min-height: 100vh;
+    }
     .practice-panel {
-      padding: 24px;
-      max-height: 200px;
-      overflow: hidden;
+      padding: 20px 24px;
+      max-height: none;
     }
     .practice-panel .promise-card,
     .practice-panel .practice-info,
     .practice-panel .powered-by { display: none; }
     .practice-name { font-size: 22px; }
     .practice-doctor { font-size: 14px; margin-bottom: 0; }
-    .messages { padding: 20px; }
+    .chat-panel {
+      min-height: 80vh;
+    }
+    .messages {
+      padding: 20px;
+      overflow-y: visible;
+      flex: none;
+    }
     .msg { max-width: 88%; }
-    .input-area { padding: 16px 20px 20px; }
+    .input-area {
+      padding: 16px 20px 20px;
+      position: sticky;
+      bottom: 0;
+    }
     .demo-banner { top: 8px; right: 8px; padding: 8px 12px; font-size: 10px; }
   }
 </style>
