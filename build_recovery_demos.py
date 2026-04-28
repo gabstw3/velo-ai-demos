@@ -1044,6 +1044,213 @@ NAMI_SUBS = [
 ]
 NAMI_CLEANUP = [("kadenceorlando.com", "namilakenona.com")]
 
+# ============================================================================
+# BATCH 2 v2 — DEEP customization with real prospect data
+# (replaces the substitution-heavy v1 demos with research-backed unique ones)
+# ============================================================================
+
+# ---- NAMI v2 — Real data: Chefs Freddy Money + Jason Beliveau, 10-seat omakase counter
+# at Lake Nona Wave Hotel, 18-bite tasting menu, $225pp, signature: lobster donuts with
+# matcha, Nami Nuggets, tuna pizza, 67-seat dining room, Michelin-recognized
+# ----
+NAMI_V2_SUBS = [
+    # Identity overrides (replace what was substituted in v1)
+    ("Lake Nona, Orlando · Michelin-Recognized Omakase",
+     "Lake Nona Wave Hotel · Michelin-Recognized"),
+    ('<p class="practice-doctor">The Nami Team</p>',
+     '<p class="practice-doctor">Chefs Freddy Money &amp; Jason Beliveau</p>'),
+    ("Nami runs an intimate omakase service where the chefs can't pause for the phone — but reservation requests, waitlist inquiries, and dietary considerations get captured around the clock.",
+     "Nami's 10-seat omakase counter is wrapped around the chef pass — Chefs Freddy and Jason can't step away mid-progression to take the phone. That's where reservation requests and dietary planning sit until morning, unless I catch them first."),
+    ("Welcome to Nami. Service is intimate and the chefs can't pause to answer the phone — but I'm here to take reservation requests, manage the waitlist, walk through dietary considerations, and route anything special to the team.",
+     "Welcome to Nami at Lake Nona Wave Hotel. The 67-seat dining room and the 10-seat omakase counter are mid-service — Chefs Freddy and Jason are at the pass and can't pick up. I'm here to take reservation requests, manage the waitlist, walk through dietary planning for the 18-bite tasting, and route anything special to the team."),
+    ("Of course — Nami regularly has last-minute openings due to cancellations. I can add you to tonight's or this week's waitlist with priority based on flexibility. Tell me your party size and which night(s) work, and I'll text you the moment a seat opens up.",
+     "Of course — both the omakase counter and the dining room have day-of cancellations regularly, especially weeknights. I can add you to tonight's or this week's waitlist with priority based on flexibility. Tell me your party size, which format you'd prefer (counter vs. dining room), and which nights work — I'll text the moment a seat opens up."),
+    ("Buyouts at Nami are unique — the entire counter for your party, custom omakase progression. The chefs love planning these. What's the occasion?",
+     "Buyouts at Nami are unique — Chef Freddy and Jason will craft a custom 18-bite progression for the occasion, with optional sake and wine pairings. Past buyouts have included engagement dinners, milestone birthdays, and corporate retreats from the Wave Hotel. What's the occasion?"),
+    ("Of course — Nami is a multi-course omakase, so dietary accommodations need to be planned in advance. The team handles most allergens (shellfish, gluten, sesame) and can craft a fully vegan or pescatarian progression with 48hrs notice. What's the consideration?",
+     "Of course — the 18-bite tasting weaves through European-influenced Japanese flavors (think the lobster donuts with matcha, the tuna pizza), so dietary planning matters. The team handles most allergens (shellfish, gluten, sesame, dairy) and can craft a fully vegan or pescatarian progression with 48 hours notice. What's the consideration?"),
+    # Pricing reality
+    ("Buyouts run $300-$500 per seat depending on the omakase progression and beverage pairing. The team does a planning call to understand occasion and dietary needs before quoting — that way the menu becomes part of the experience.",
+     "The standard tasting is $225 per person with optional wine pairing at $155. Full counter buyouts are quoted on the planning call — the chefs want to understand occasion, dietary needs, and beverage program before pricing the experience."),
+]
+NAMI_V2_CLEANUP = []
+
+# ---- CORO v2 — CORRECTION: NOT Spanish tapas. Chef-driven seasonal small plates.
+# Open kitchen, "ever-evolving menu of bold seasonal dishes for sharing", 3022 Corrine Dr,
+# phone is TEXT ONLY at 407-629-5005 (huge angle for AI concierge!), Tues-Thurs 5-9:30
+# ----
+CORO_V2_SUBS = [
+    ("Coro — Reservations & Tapas Concierge | Powered by Velo AI",
+     "Coro — Reservations Concierge | Powered by Velo AI"),
+    ("Audubon Park, Orlando · Michelin Spanish Tapas",
+     "Audubon Park, Orlando · Chef-Driven Seasonal Small Plates"),
+    ('<p class="practice-doctor">The Coro Team</p>',
+     '<p class="practice-doctor">The Coro Kitchen</p>'),
+    ("Coro runs a refined Spanish tapas service where the team can't always pause to answer the phone — but reservations, dietary inquiries, and private events get captured around the clock.",
+     "Coro is text-only at the host stand — that's a deliberate choice for an open-kitchen concept where the team is at the pass, not the phone. But text doesn't scale to dietary questions, large parties, or buyout inquiries. That's where I come in."),
+    ("3201 Corrine Dr, Suite 100<br>Orlando, FL 32803",
+     "3022 Corrine Drive<br>Orlando, FL 32803"),
+    ("Welcome to Coro. The dining room is mid-service and the team can't always pick up — but I'm here. I can take reservations, scope private events, walk you through the tapas menu and dietary options, and route anything time-sensitive to the team.",
+     "Welcome to Coro. The kitchen is open and the team is mid-service — by design, we don't take phone calls during service, just texts. That works for simple reservation confirmations but not for the bigger questions. I'm here to handle reservation requests, scope private events, walk through the seasonal menu and any dietary needs, and route anything time-sensitive to the team."),
+    ("Private dining at Coro accommodates intimate dinners up to full restaurant buyouts. What kind of event are you considering?",
+     "Coro does buyouts and large-party reservations, with the kitchen building a custom seasonal small-plates progression for your group. What's the event?"),
+    ("Private dining at Coro starts at parties of 8 with a curated tapas progression, and scales to full restaurant buyouts. Pricing is typically $85-145 per person depending on the menu and beverage program. The team does a planning call before quoting so the menu actually fits the event.",
+     "Buyouts and large-party menus at Coro start with a planning conversation — the kitchen wants to understand the occasion, the group's appetite for adventurous flavors, and any dietary considerations before designing the menu. Pricing typically lands $85-145 per person depending on the progression and beverage program."),
+    ("Of course — type your question. Hours, the tapas menu, dietary stuff (the kitchen handles vegetarian and gluten-free with notice), or anything specific to a dish — I can usually answer right now.",
+     "Of course — type your question. The menu rotates seasonally so I'll have current info on what's running. Dietary stuff (the kitchen handles vegetarian and gluten-free with reasonable notice), open-kitchen-specific questions, or anything about an event — I can usually answer right now."),
+]
+CORO_V2_CLEANUP = []
+
+# ---- THE LOOK v2 — Real data: 17+ named stylists, REZO Certified (Solice), Hattori Hanzo
+# trained, NovaLash certified, 90+ services across hair/spa/skincare, 4.9-star 1,100+
+# reviews, brand partnerships (Wella, Brazilian Blowout, Moroccan Oil, Redken), 3635 Aloma
+# Ave #1025 Oviedo, Mon 9-5/Tue-Thu 9-9/Wed-Fri 9-7/Sat 9-6
+# ----
+THELOOK_V2_SUBS = [
+    ("Oviedo, Florida · Hair & Spa", "Oviedo, Florida · Hair, Spa &amp; Skincare"),
+    ('<p class="practice-doctor">The Look Team</p>',
+     '<p class="practice-doctor">17 Stylists · Award-Winning Team</p>'),
+    ("The Look's full-service team handles hair, spa, and skincare under one roof — from the first booking inquiry at 11pm to the final treatment. The booking line never sleeps.",
+     "Seventeen stylists, 90+ services, and 4.9 stars across 1,100+ Google reviews. The Look handles hair (Hattori Hanzo trained, REZO Certified for curls), spa, skincare, and lashes (NovaLash certified) under one roof. The booking line never sleeps."),
+    ("151 Geneva Dr, Suite 1006<br>Oviedo, FL 32765",
+     "3635 Aloma Ave, Suite 1025<br>Oviedo, FL 32765"),
+    ("Tue–Sat · By Appointment", "Mon-Sat · See Hours"),
+    ("Welcome to The Look. The salon and spa are wrapped for the night, but I'm here — I can quote services across hair, color, skincare, and spa, hold appointments, and answer most questions before you go to sleep.",
+     "Welcome to The Look. The salon is wrapped for the night, but I can hold appointments across all 17 stylists, quote services (we do 90+, from precision Hattori Hanzo cuts to REZO Certified curl work to NovaLash extensions), and answer most questions before you go to sleep."),
+    # The Look is a salon/spa hybrid — chip flow needs adjustment
+    ("{ label: '💇 Cut or style', value: 'emergency' },\n        { label: '🎨 Color, balayage, or highlights', value: 'high-value' },\n        { label: '✨ Extensions or treatments', value: 'new-patient' },\n        { label: '❓ A pricing question', value: 'question' }",
+     "{ label: '💇 Hair (cut/color/extensions)', value: 'emergency' },\n        { label: '✨ Lashes / brows / waxing', value: 'high-value' },\n        { label: '🌿 Spa / skincare / facials', value: 'new-patient' },\n        { label: '❓ A pricing question', value: 'question' }"),
+    ("'emergency': 'I want a cut or style',\n      'high-value': \"I want color, balayage, or highlights\",\n      'new-patient': \"I want extensions or a treatment\"",
+     "'emergency': 'I want a hair service (cut/color/extensions)',\n      'high-value': \"I want lashes, brows, or waxing\",\n      'new-patient': \"I want a spa or skincare service\""),
+    # Smarter dialogue for hair branch (CURL specialty + REZO is unique)
+    ("`Quick question so I know how to prioritize — when do you need it by?`,\n        1100,\n        [\n          { label: '🔴 This week — special event', value: 'severe' },\n          { label: '🟡 Within 2 weeks', value: 'moderate' },\n          { label: '🟢 Whenever there\\'s availability', value: 'mild' }\n        ]",
+     "`Quick question so I match you with the right stylist — what kind of hair are you working with?`,\n        1100,\n        [\n          { label: '🌀 Curly / textured', value: 'severe' },\n          { label: '✨ Color / extensions', value: 'moderate' },\n          { label: '✂️ Cut / blowout', value: 'mild' }\n        ]"),
+    # Severe → curl path (REZO specialist Solice)
+    ("Got it — special event urgency. The team usually has a couple priority slots reserved each week for events. Let me get you on the calendar.<br><br>Can I get your first name and best phone number? Whatever the event is, we'll make sure you walk in feeling like the moment matters.",
+     "Curls are a specialty — Solice Del Mazo is REZO Certified and books out fastest. The other curl-friendly stylists at The Look are also trained on the dry-cutting REZO method, so we can get you in either way.<br><br>Can I get your first name and best phone number? I'll have Solice or her team confirm in the morning."),
+    ("Perfect timeline. Goldie's stylists keep mid-week slots open for new clients — Tuesday or Thursday work best.<br><br>What's your first name? I'll have someone pre-confirm with you by tomorrow morning.",
+     "Color and extensions are core specialties at The Look — the salon partners with Wella, Brazilian Blowout, Moroccan Oil, and Redken, so most modern color work is in-house. Tuesday or Thursday have the most flexibility for new color clients.<br><br>What's your first name? I'll have someone pre-confirm with you by tomorrow morning."),
+    # Color path → broader hair menu
+    ("Smart move to reach out before you book — Goldie's colorists specialize in luxury color and would much rather hear what you're going for before you arrive than try to fix something rushed.<br><br>What kind of color are you thinking?",
+     "Smart move to reach out before booking — most rushed lash and brow appointments end with regret. Tell me what you're after and I'll match you with the right specialist (the lash team is NovaLash certified, brows are done across multiple stylists, and waxing is full-service).<br><br>Which service are you thinking?"),
+    # Cap services map for new chip flow
+    ("'implants': 'balayage',\n      'invisalign': 'highlights',\n      'both': 'a color correction'",
+     "'implants': 'classic lashes',\n      'invisalign': 'volume lashes',\n      'both': 'a brow service'"),
+    ("Most clients asking about ${txt} have one of two questions: <em>\"Will it look natural on me?\"</em> and <em>\"What will it actually cost?\"</em><br><br>Both are best answered in a 15-minute consultation — your colorist looks at your hair, walks through what's realistic, and gives you a real quote before you commit to anything. Color appointments at Marcia's are typically 3-4 hours and run $250-$450 depending on length and complexity.<br><br>Want me to hold a consult slot this week?",
+     "Most clients booking ${txt} are wondering: <em>\"Will it look natural?\"</em> and <em>\"How long does it last?\"</em><br><br>Both are best answered in a 15-minute consultation — the lash artist looks at your natural lashes, walks through what's realistic for your eye shape and lifestyle, and gives you a real quote and timing before you commit. Want me to hold a slot this week?"),
+    # Extensions → spa / skincare
+    ("Extensions are one of Goldie's specialties — the team is certified in hand-tied, tape-in, and luxury fusion methods. Most clients are deciding between three things: length, fullness, and how much maintenance they want to commit to.<br><br>The best way to figure out the right method is a 30-minute consultation where the team walks you through samples and color-matches in person. What's your first name?",
+     "The Look's spa side handles facials (rejuvenating, anti-wrinkle), microblading, eyebrow tinting, full body waxing, and skincare consultations. The estheticians do continuing education quarterly so the techniques stay current. What's your first name? I'll have the right specialist follow up tomorrow morning."),
+]
+THELOOK_V2_CLEANUP = [("(321) 363-1233", "(407) 977-8481"), ("Goldie", "The Look")]
+
+# ---- LATHAM LUNA v2 — World-Class Counsel / Small-Town Service tagline,
+# 11 practice areas, Daniel = Bankruptcy Partner + Aviation Chair, est. 1996,
+# Super Lawyers + Best Lawyers recognitions
+# ----
+LATHAMLUNA_V2_SUBS = [
+    ("Orlando, Florida · Business Law", "Downtown Orlando · Est. 1996"),
+    ("<h4>Business Law With Real Bandwidth</h4>",
+     "<h4>World-Class Counsel · Small-Town Service</h4>"),
+    ("Business matters rarely surface during business hours — vendor disputes hit Friday at 6pm, foreclosure deadlines fall on weekends, lien questions come in at midnight. Daniel is committed to being available when business actually moves.",
+     "Latham Luna is a downtown Orlando boutique with eleven practice areas — bankruptcy, construction, commercial litigation, hospitality, aviation. The firm's positioning is &quot;World-Class Counsel, Small-Town Service.&quot; Daniel is committed to being available when business actually moves, not just when the office is open."),
+    ("Good evening — you've reached the after-hours line for Latham Luna. Daniel handles business law, bankruptcy, and construction matters — vendor disputes, contract enforcement, foreclosure defense, mechanic's liens. He's wrapped for the day, but I can take down what's going on and get him back to you fast.",
+     "Good evening — you've reached the after-hours line for Latham Luna in downtown Orlando. The firm covers eleven practice areas; Daniel chairs the Aviation Department and is a Bankruptcy Partner. He's wrapped for the day, but I can take down what's going on and route it to him or another attorney depending on the matter."),
+    ("Daniel handles business law, bankruptcy, and construction matters every week",
+     "Daniel and the Latham Luna team handle business, bankruptcy, and construction matters every week"),
+    ("Business disputes are exactly what Daniel handles every week — non-payment, breach of contract, vendor disputes, partner disagreements. The two things that help him move fast: what's the dispute, and whether there's a deadline (court date, contract clause, payment deadline) anywhere in the next two weeks.",
+     "Business disputes are core territory for Latham Luna — the firm's been doing this since 1996, with five attorneys in Florida Super Lawyers and six in Best Lawyers in America. Daniel handles bankruptcy specifically, and other partners cover commercial litigation, employment, and corporate matters. The two things that help the team move fast: what's the dispute, and whether there's a deadline anywhere in the next two weeks."),
+    ("Construction matters move on tight statutory deadlines — mechanic's liens, notice to owner timing, payment bond claims. Daniel handles construction law specifically and the first thing he checks is whether you're inside the deadline window.",
+     "Construction matters move on tight statutory deadlines — Florida lien notices, payment bond claims, contractor disputes. Latham Luna has a dedicated construction practice and the first thing the team checks is whether you're inside the statutory window."),
+    ("Bankruptcy and foreclosure timing matters — there are filing windows, automatic stays, and hearing dates that can't slip. Daniel handles both consumer and small-business bankruptcy plus foreclosure defense. The first thing he wants to know is the urgency.",
+     "Bankruptcy and foreclosure are Daniel's specialty — he's a Bankruptcy Partner at the firm. Filing windows, automatic stays, 341 meetings, and the difference between Chapter 7 vs Chapter 11 vs Chapter 13 are all conversations he has every week. The first thing he wants to know is your timeline urgency."),
+]
+LATHAMLUNA_V2_CLEANUP = []
+
+# ---- MURPHY & BERGLUND v2 — Real data: VA-accredited, Cryptocurrency Law (Michelle's
+# specialty — modern angle!), founded by Jodi + Michelle, 1101 Douglas Ave (xlsx wrong),
+# (407) 865-9553 (xlsx wrong), 141 Birdeye reviews
+# ----
+MURPHYBERGLUND_V2_SUBS = [
+    ("Altamonte Springs, Florida · Estate &amp; Elder Law",
+     "Altamonte Springs, Florida · VA-Accredited · Estate &amp; Elder Law"),
+    ("961 N Hunt Club Rd<br>Altamonte Springs, FL 32714",
+     "1101 Douglas Ave<br>Altamonte Springs, FL 32714"),
+    ("(407) 539-4040", "(407) 865-9553"),
+    ("Estate planning, elder law, and family matters all surface during life's hardest transitions — declining health, the death of a parent, a Medicaid crisis. Michelle and Jodi are committed to being there during those moments. You're never alone.",
+     "Estate planning, elder law, and family matters surface at life's hardest transitions — declining health, the death of a parent, a Medicaid eligibility crisis, a Veterans benefits question. Murphy &amp; Berglund is VA-accredited and handles both Medicaid planning and VA aid &amp; attendance. Jodi and Michelle are committed to being there during those moments."),
+    ("Good evening — you've reached the after-hours line for Murphy & Berglund. The firm handles estate planning, elder law, family law, and probate. Both attorneys are wrapped for the day, but everything you share is confidential. I'll take down what's on your mind and get the right attorney to reach back out.",
+     "Good evening — you've reached the after-hours line for Murphy & Berglund. The firm is VA-accredited and handles estate planning, probate, elder law, Medicaid &amp; VA planning, family law, and probate. Both attorneys are wrapped for the day, but everything you share is confidential. I'll route what's on your mind to whichever attorney fits — Jodi or Michelle — and have them reach back out."),
+    ("I'm sorry — these calls are usually placed at one of the hardest moments. Jodi handles probate at the firm, including the post-loss paperwork most families don't know how to navigate. The two things that help her move quickly: who passed, and whether they had any documents in place.",
+     "I'm sorry — these calls usually come at one of the hardest moments. Jodi handles probate and trust administration directly. She and Michelle have walked over a hundred families through the post-loss paperwork — the will or trust contest, asset retitling, creditor claims, the steps that nobody explains. The two things that help her move quickly: who passed, and whether they had documents in place."),
+    ("Elder law calls usually surface around two specific events: a parent's care needs are escalating, or a Medicaid eligibility question just got real. Michelle handles elder law specifically — long-term care planning, asset protection, Medicaid qualification, guardianship.",
+     "Elder law calls usually surface at one of three moments: parent's care needs escalating, a Medicaid eligibility question just got real, or a Veteran is being denied aid &amp; attendance benefits. Murphy &amp; Berglund is VA-accredited (rare for an estate firm) and handles all three — long-term care planning, Medicaid spend-down, asset protection trusts, VA benefits applications, guardianship."),
+    ("Smart to think about this before you need it — most people put off estate planning until a crisis forces the conversation, which is exactly the wrong time. Jodi puts together wills, trusts, powers of attorney, and healthcare surrogates as a coordinated package.",
+     "Smart to think about this before you need it. Michelle handles wills, trusts, powers of attorney, and healthcare surrogates as a coordinated package — and notably, she's one of the few estate attorneys in Central FL with a Cryptocurrency Law practice, which matters more every year as people hold digital assets without thinking about how they pass."),
+    ("'estate': 'Probate Consultation',\n          'planning': 'Estate Planning Consultation',\n          'elder': 'Elder Law / Medicaid Consultation',\n          'question': 'General Consultation'",
+     "'estate': 'Probate / Trust Admin Consultation',\n          'planning': 'Estate Planning + Crypto Asset Consult',\n          'elder': 'Elder Law / Medicaid / VA Benefits Consult',\n          'question': 'General Consultation'"),
+]
+MURPHYBERGLUND_V2_CLEANUP = []
+
+# ---- FUNK COLLECTION v2 — 25+ years experience, 5x Real Trends Best Team,
+# 8x ICON Agent, #2 internationally with eXp, 500+ 5-star reviews, Disney vacation
+# homes niche, 130 agents under Jeff (luxury branch leader), 422 Main St Suite 1
+# ----
+FUNK_V2_SUBS = [
+    ("Windermere, Florida · Luxury Estates",
+     "Windermere, Florida · #2 Team Globally · eXp"),
+    ("The luxury estate buyer doesn't browse Zillow at 9pm — they research specific properties on private golf communities and waterfront lots, and expect a considered conversation. The Funks' commitment is to respond with the kind of conversation Windermere luxury actually demands.",
+     "Twenty-five years selling Windermere luxury, ranked #2 internationally with eXp Realty, 8x ICON Agent, 5x Real Trends Best Team. Buyers and sellers don't reach The Funk Collection casually — they reach out because they've done their research. Jeffrey and Renee are committed to responding with the kind of conversation that level of inquiry deserves."),
+    ("11550 Bridge House Rd, Suite 200<br>Windermere, FL 34786",
+     "422 Main Street, Suite 1<br>Windermere, FL 34786"),
+    ("(407) 438-4028", "(407) 584-5463"),
+    ("Welcome to The Funk Collection. I'm the after-hours concierge for Jeffrey and Renee — I can answer most questions, walk you through specific properties, and qualify what you're looking for. The Funks specialize in luxury estates in Windermere, Isleworth, and the gated communities around Lake Butler.",
+     "Welcome to The Funk Collection. I'm the after-hours concierge for Jeffrey and Renee Funk. The team specializes in three Central Florida segments: luxury estates in Windermere/Isleworth/Dr Phillips, vacation homes near Walt Disney World, and investment properties throughout Orange and Lake counties. With 500+ 5-star reviews and Jeffrey leading eXp's downtown Windermere luxury branch (130 agents under him), the team's depth is the differentiator."),
+    ("Great — the Funks' specialty is luxury estates in Windermere, Isleworth, and the surrounding gated communities. Inventory is thinner at this level and moves on different timing than the broader market, so the more I understand tonight, the more targeted they can be tomorrow.",
+     "Great — the Funks specialize in three distinct buyer profiles: Windermere/Isleworth luxury, vacation/short-term-rental investment near Disney, and traditional residential. Each segment moves on completely different timing and inventory dynamics. The more I understand tonight, the more targeted Jeffrey or Renee can be tomorrow."),
+    # Buyer financing path
+    ("Perfect — the Funks work with several private lenders who specialize in luxury buyers and jumbo financing. They handle non-conforming loans, foreign buyers, and complex income situations that retail lenders fumble. Most luxury buyers save weeks doing it this way.",
+     "Perfect — the Funks have a network of private lenders specifically for luxury, foreign-national, and investment-property buyers. Jumbo financing, asset-based lending, foreign buyer LLC structures, and DSCR loans for vacation rentals are all in-network. Most buyers at this level save weeks vs. retail banking."),
+    ("`No pressure at all — luxury buyers often spend a year quietly looking before they engage an agent. Jeffrey and Renee are great people to talk to early because they don't push — it's a 30-minute meeting to walk through Windermere / Isleworth inventory, price ranges, and what pre-approval looks like when you're ready.<br><br>Want to lock that in this week or next?`",
+     "`No pressure at all — luxury buyers often spend 12-18 months quietly looking before engaging an agent. Jeffrey and Renee are great early conversations because they don't push: it's a 30-minute meeting to walk through Windermere/Isleworth/Disney-area inventory, true price ranges (vs. Zillow estimates), and what financing looks like when you're ready.<br><br>Want to lock that in this week or next?`"),
+    # First-time buyer luxury
+    ("First-time luxury buyers face a different challenge — usually it's financing structure (jumbo, foreign income, asset-based) and understanding what differentiates luxury inventory from over-priced traditional homes. The Funks walk first-time luxury buyers through this personally.",
+     "First-time luxury buyers face a different challenge than first-time traditional buyers. The financing structure is more complex (jumbo loans, asset-based lending, foreign income), and understanding what differentiates real luxury inventory from over-priced traditional listings is the harder skill. Jeffrey and Renee walk first-time luxury buyers through this directly — they've done it for 25+ years."),
+    # Selling angle
+    ("Selling luxury is its own discipline — most agents under-price Windermere homes because they don't have real comps for estates that rarely trade. The Funks focus on luxury specifically. The two questions every luxury seller asks first: <em>\"What's the right number?\"</em> and <em>\"Who's the right buyer?\"</em><br><br>Both get answered in a 60-minute listing consultation at your home — Jeffrey or Renee walks the property, pulls real luxury comps, and gives you a real strategy. Free, no obligation. What's your timeline?",
+     "Selling Windermere luxury is its own discipline. Most agents under-price these homes because they don't have real comps — properties at this level rarely trade publicly, and the buyer pool is global. The Funks rank #2 globally at eXp specifically because they've built that buyer network. The two questions every luxury seller asks first: <em>\"What's the right number?\"</em> and <em>\"Who's the right buyer?\"</em><br><br>Both get answered in a 60-minute listing consultation at your home. What's your timeline?"),
+]
+FUNK_V2_CLEANUP = []
+
+# ---- LAKE NONA DENTAL GROUP v2 — 6 dentists by name, 2 locations (Moss Park + Jack
+# Brack), bilingual EN/ES, sedation dentistry + sleep apnea specialty, membership plan
+# ----
+NONADENTAL_V2_SUBS = [
+    ("Lake Nona, Florida · Family Dentistry",
+     "Lake Nona, Florida · Two Locations · Bilingual"),
+    ('<p class="practice-doctor">The Lake Nona Dental Team</p>',
+     '<p class="practice-doctor">Drs. Oslund · Yantorni · Montijo · Coughlin · Van · Van de Water</p>'),
+    ("The Lake Nona Dental Group team is committed to responding to patient needs as quickly as possible. As a patient of the practice, you're never alone.",
+     "Six dentists, two Lake Nona locations (Moss Park Rd and Jack Brack Rd), bilingual English/Spanish, sedation and sleep-apnea oral appliance specialties. The team is committed to responding to patient needs as quickly as possible — across both locations and after hours."),
+    ("9145 Narcoossee Rd, Suite A100<br>Orlando, FL 32827",
+     "Two Lake Nona Locations<br>Moss Park Rd · Jack Brack Rd"),
+    ("(407) 890-8003", "(407) 277-1779"),
+    ("Good evening — you've reached the after-hours line for Lake Nona Dental Group. The team is wrapped for the day, but I can help with most things and reach the on-call doctor directly if it's urgent.",
+     "Good evening — you've reached the after-hours line for Lake Nona Dental Group. We have two Lake Nona locations and six dentists, plus Spanish-speaking staff. The on-call doctor rotates nightly. I can help with most things — and if it's urgent, I can reach whoever's on call directly."),
+    ("Lake Nona Dental Group has been performing both for years, so you're in capable hands.",
+     "Lake Nona Dental Group has handled both since the practice opened. Dr. Yantorni (FICOI — that's the implant credential) leads implant work, and the team includes orthodontic Invisalign providers. Either way, you're in capable hands."),
+    ("Lake Nona Dental Group has been welcoming new patients to Lake Nona for years",
+     "Lake Nona Dental Group has been welcoming new patients across both Moss Park Rd and Jack Brack Rd locations for years"),
+    ("texting the on-call doctor now — they'll call you back",
+     "texting the on-call doctor (rotation between the six DDS/DMDs on staff) now — they'll call you back"),
+    ("'implants': 'Dental Implant Consultation',\n          'invisalign': 'Invisalign Consultation',\n          'both': 'Implant & Invisalign Consultation',\n          'emergency': 'Emergency Visit'",
+     "'implants': 'Dental Implant Consultation (Dr. Yantorni)',\n          'invisalign': 'Invisalign Consultation',\n          'both': 'Implant & Invisalign Consultation',\n          'emergency': 'Emergency Visit (sedation available)'"),
+    # Sedation specialty mention
+    ("Of course — go ahead and type your question and I'll do my best. If it's something the doctor needs to weigh in on personally, I'll route it to her and she'll get back to you in the morning.",
+     "Of course — type your question. We have specifics on sedation dentistry, sleep apnea oral appliances, our membership plan for uninsured patients, and which insurances we're in-network with. If it's something a doctor needs to weigh in on personally, I'll route it for morning follow-up."),
+]
+NONADENTAL_V2_CLEANUP = []
+
 # ---- CORO — Spanish tapas Michelin, Audubon Park (uses bacan.html base) ----
 CORO_SUBS = [
     ("BACÁN — Reservations & Private Dining Concierge | Powered by Velo AI",
@@ -1389,13 +1596,14 @@ JOBS = [
     ("cullen", "klausmanlaw.html", CULLEN_SUBS, CULLEN_CLEANUP),
     ("palmano", "sunbright.html", PALMANO_SUBS, PALMANO_CLEANUP),
     # ---- BATCH 2 ----
-    ("nami", "kadence.html", NAMI_SUBS, NAMI_CLEANUP),
-    ("coro", "bacan.html", CORO_SUBS, CORO_CLEANUP),
-    ("thelook", "goldie.html", THELOOK_SUBS, THELOOK_CLEANUP),
-    ("lathamluna", "ragland.html", LATHAMLUNA_SUBS, LATHAMLUNA_CLEANUP),
-    ("murphyberglund", "velizkatz.html", MURPHYBERGLUND_SUBS, MURPHYBERGLUND_CLEANUP),
-    ("funkcollection", "palmano.html", FUNK_SUBS, FUNK_CLEANUP),
-    ("lakenonadental", "wayside.html", NONADENTAL_SUBS, NONADENTAL_CLEANUP),
+    # ---- v2 deeper-research-backed builds (run after v1 baseline subs) ----
+    ("nami", "kadence.html", NAMI_SUBS + NAMI_V2_SUBS, NAMI_CLEANUP + NAMI_V2_CLEANUP),
+    ("coro", "bacan.html", CORO_SUBS + CORO_V2_SUBS, CORO_CLEANUP + CORO_V2_CLEANUP),
+    ("thelook", "goldie.html", THELOOK_SUBS + THELOOK_V2_SUBS, THELOOK_CLEANUP + THELOOK_V2_CLEANUP),
+    ("lathamluna", "ragland.html", LATHAMLUNA_SUBS + LATHAMLUNA_V2_SUBS, LATHAMLUNA_CLEANUP + LATHAMLUNA_V2_CLEANUP),
+    ("murphyberglund", "velizkatz.html", MURPHYBERGLUND_SUBS + MURPHYBERGLUND_V2_SUBS, MURPHYBERGLUND_CLEANUP + MURPHYBERGLUND_V2_CLEANUP),
+    ("funkcollection", "palmano.html", FUNK_SUBS + FUNK_V2_SUBS, FUNK_CLEANUP + FUNK_V2_CLEANUP),
+    ("lakenonadental", "wayside.html", NONADENTAL_SUBS + NONADENTAL_V2_SUBS, NONADENTAL_CLEANUP + NONADENTAL_V2_CLEANUP),
 ]
 
 

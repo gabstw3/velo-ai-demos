@@ -585,13 +585,13 @@
   <!-- LEFT: Practice Brand Panel -->
   <aside class="practice-panel">
     <div class="practice-content">
-      <div class="practice-mark">Orlando, Florida · Business Law</div>
+      <div class="practice-mark">Downtown Orlando · Est. 1996</div>
       <h1 class="practice-name">Latham Luna</h1>
       <p class="practice-doctor">Daniel Velasquez, Esq.</p>
 
       <div class="promise-card">
-        <h4>Business Law With Real Bandwidth</h4>
-        <p>Business matters rarely surface during business hours — vendor disputes hit Friday at 6pm, foreclosure deadlines fall on weekends, lien questions come in at midnight. Daniel is committed to being available when business actually moves.</p>
+        <h4>World-Class Counsel · Small-Town Service</h4>
+        <p>Latham Luna is a downtown Orlando boutique with eleven practice areas — bankruptcy, construction, commercial litigation, hospitality, aviation. The firm's positioning is &quot;World-Class Counsel, Small-Town Service.&quot; Daniel is committed to being available when business actually moves, not just when the office is open.</p>
       </div>
     </div>
 
@@ -764,7 +764,7 @@
 
   async function startConversation() {
     await addBotMessage(
-      `Good evening — you've reached the after-hours line for Latham Luna. Daniel handles business law, bankruptcy, and construction matters — vendor disputes, contract enforcement, foreclosure defense, mechanic's liens. He's wrapped for the day, but I can take down what's going on and get him back to you fast.<br><br>What brings you here tonight?`,
+      `Good evening — you've reached the after-hours line for Latham Luna in downtown Orlando. The firm covers eleven practice areas; Daniel chairs the Aviation Department and is a Bankruptcy Partner. He's wrapped for the day, but I can take down what's going on and route it to him or another attorney depending on the matter.<br><br>What brings you here tonight?`,
       400,
       [
         { label: '💼 Business / contract dispute', value: 'probate' },
@@ -805,7 +805,7 @@
     if (value === 'probate') {
       memory.matter = 'business';
       await addBotMessage(
-        `Business disputes are exactly what Daniel handles every week — non-payment, breach of contract, vendor disputes, partner disagreements. The two things that help him move fast: what's the dispute, and whether there's a deadline (court date, contract clause, payment deadline) anywhere in the next two weeks.`,
+        `Business disputes are core territory for Latham Luna — the firm's been doing this since 1996, with five attorneys in Florida Super Lawyers and six in Best Lawyers in America. Daniel handles bankruptcy specifically, and other partners cover commercial litigation, employment, and corporate matters. The two things that help the team move fast: what's the dispute, and whether there's a deadline anywhere in the next two weeks.`,
         1200
       );
       await addBotMessage(
@@ -872,7 +872,7 @@
     if (value === 'planning') {
       memory.matter = 'construction';
       await addBotMessage(
-        `Construction matters move on tight statutory deadlines — mechanic's liens, notice to owner timing, payment bond claims. Daniel handles construction law specifically and the first thing he checks is whether you're inside the deadline window.<br><br>Most callers are weighing two things: <em>"Did I miss the lien deadline?"</em> and <em>"Is the dispute worth the legal cost?"</em><br><br>Both get answered in a 30-minute consult. Want me to hold a slot this week or next?`,
+        `Construction matters move on tight statutory deadlines — Florida lien notices, payment bond claims, contractor disputes. Latham Luna has a dedicated construction practice and the first thing the team checks is whether you're inside the statutory window.<br><br>Most callers are weighing two things: <em>"Did I miss the lien deadline?"</em> and <em>"Is the dispute worth the legal cost?"</em><br><br>Both get answered in a 30-minute consult. Want me to hold a slot this week or next?`,
         1400,
         [
           { label: '📅 This week', value: 'this-week' },
@@ -903,7 +903,7 @@
     if (value === 'poa') {
       memory.matter = 'bankruptcy';
       await addBotMessage(
-        `Bankruptcy and foreclosure timing matters — there are filing windows, automatic stays, and hearing dates that can't slip. Daniel handles both consumer and small-business bankruptcy plus foreclosure defense. The first thing he wants to know is the urgency.<br><br>Where are you on the timeline?`,
+        `Bankruptcy and foreclosure are Daniel's specialty — he's a Bankruptcy Partner at the firm. Filing windows, automatic stays, 341 meetings, and the difference between Chapter 7 vs Chapter 11 vs Chapter 13 are all conversations he has every week. The first thing he wants to know is your timeline urgency.<br><br>Where are you on the timeline?`,
         1200,
         [
           { label: '🔴 Foreclosure / lawsuit served', value: 'urgent-frozen' },

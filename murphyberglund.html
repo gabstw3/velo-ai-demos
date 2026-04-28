@@ -585,24 +585,24 @@
   <!-- LEFT: Practice Brand Panel -->
   <aside class="practice-panel">
     <div class="practice-content">
-      <div class="practice-mark">Altamonte Springs, Florida · Estate &amp; Elder Law</div>
+      <div class="practice-mark">Altamonte Springs, Florida · VA-Accredited · Estate &amp; Elder Law</div>
       <h1 class="practice-name">Murphy &amp; Berglund</h1>
       <p class="practice-doctor">Michelle Berglund-Harper &amp; Jodi Murphy, Esq.</p>
 
       <div class="promise-card">
         <h4>Two Practices, One Team</h4>
-        <p>Estate planning, elder law, and family matters all surface during life's hardest transitions — declining health, the death of a parent, a Medicaid crisis. Michelle and Jodi are committed to being there during those moments. You're never alone.</p>
+        <p>Estate planning, elder law, and family matters surface at life's hardest transitions — declining health, the death of a parent, a Medicaid eligibility crisis, a Veterans benefits question. Murphy &amp; Berglund is VA-accredited and handles both Medicaid planning and VA aid &amp; attendance. Jodi and Michelle are committed to being there during those moments.</p>
       </div>
     </div>
 
     <div class="practice-info">
       <div class="row">
         <div class="label">Address</div>
-        <div>961 N Hunt Club Rd<br>Altamonte Springs, FL 32714</div>
+        <div>1101 Douglas Ave<br>Altamonte Springs, FL 32714</div>
       </div>
       <div class="row">
         <div class="label">Phone</div>
-        <div>(407) 539-4040</div>
+        <div>(407) 865-9553</div>
       </div>
       <div class="row">
         <div class="label">Hours</div>
@@ -764,7 +764,7 @@
 
   async function startConversation() {
     await addBotMessage(
-      `Good evening — you've reached the after-hours line for Murphy & Berglund. The firm handles estate planning, elder law, family law, and probate. Both attorneys are wrapped for the day, but everything you share is confidential. I'll take down what's on your mind and get the right attorney to reach back out.<br><br>What brings you here tonight?`,
+      `Good evening — you've reached the after-hours line for Murphy & Berglund. The firm is VA-accredited and handles estate planning, probate, elder law, Medicaid &amp; VA planning, family law, and probate. Both attorneys are wrapped for the day, but everything you share is confidential. I'll route what's on your mind to whichever attorney fits — Jodi or Michelle — and have them reach back out.<br><br>What brings you here tonight?`,
       400,
       [
         { label: '🕯️ Estate / probate matter', value: 'probate' },
@@ -805,7 +805,7 @@
     if (value === 'probate') {
       memory.matter = 'estate';
       await addBotMessage(
-        `I'm sorry — these calls are usually placed at one of the hardest moments. Jodi handles probate at the firm, including the post-loss paperwork most families don't know how to navigate. The two things that help her move quickly: who passed, and whether they had any documents in place.`,
+        `I'm sorry — these calls usually come at one of the hardest moments. Jodi handles probate and trust administration directly. She and Michelle have walked over a hundred families through the post-loss paperwork — the will or trust contest, asset retitling, creditor claims, the steps that nobody explains. The two things that help her move quickly: who passed, and whether they had documents in place.`,
         1200
       );
       await addBotMessage(
@@ -872,7 +872,7 @@
     if (value === 'planning') {
       memory.matter = 'elder';
       await addBotMessage(
-        `Elder law calls usually surface around two specific events: a parent's care needs are escalating, or a Medicaid eligibility question just got real. Michelle handles elder law specifically — long-term care planning, asset protection, Medicaid qualification, guardianship.<br><br>What's driving the call?`,
+        `Elder law calls usually surface at one of three moments: parent's care needs escalating, a Medicaid eligibility question just got real, or a Veteran is being denied aid &amp; attendance benefits. Murphy &amp; Berglund is VA-accredited (rare for an estate firm) and handles all three — long-term care planning, Medicaid spend-down, asset protection trusts, VA benefits applications, guardianship.<br><br>What's driving the call?`,
         1400,
         [
           { label: '📅 This week', value: 'this-week' },
@@ -903,7 +903,7 @@
     if (value === 'poa') {
       memory.matter = 'planning';
       await addBotMessage(
-        `Smart to think about this before you need it — most people put off estate planning until a crisis forces the conversation, which is exactly the wrong time. Jodi puts together wills, trusts, powers of attorney, and healthcare surrogates as a coordinated package.<br><br>Just so I route the right urgency: is this for planning ahead, or is something immediate driving the timing?`,
+        `Smart to think about this before you need it. Michelle handles wills, trusts, powers of attorney, and healthcare surrogates as a coordinated package — and notably, she's one of the few estate attorneys in Central FL with a Cryptocurrency Law practice, which matters more every year as people hold digital assets without thinking about how they pass.<br><br>Just so I route the right urgency: is this for planning ahead, or is something immediate driving the timing?`,
         1200,
         [
           { label: '🔴 Health change in family', value: 'urgent-frozen' },
@@ -956,9 +956,9 @@
 
       if (memory.proposedTime) {
         const matterMap = {
-          'estate': 'Probate Consultation',
-          'planning': 'Estate Planning Consultation',
-          'elder': 'Elder Law / Medicaid Consultation',
+          'estate': 'Probate / Trust Admin Consultation',
+          'planning': 'Estate Planning + Crypto Asset Consult',
+          'elder': 'Elder Law / Medicaid / VA Benefits Consult',
           'question': 'General Consultation'
         };
         const matter = matterMap[memory.matter] || 'New Client Consultation';
@@ -970,7 +970,7 @@
         setTimeout(() => showBookingCard(matter, memory.proposedTime), 1200);
       } else if (memory.urgency === 'severe') {
         await addBotMessage(
-          `Thank you, ${memory.name}. I've flagged this as priority for the firm. Expect a call from <strong>(407) 539-4040</strong> first thing in the morning.<br><br>If anything materially changes overnight — a deadline shifts, a family situation evolves — feel free to text this number and the team will see it before his first appointment. You're going to be alright.`,
+          `Thank you, ${memory.name}. I've flagged this as priority for the firm. Expect a call from <strong>(407) 865-9553</strong> first thing in the morning.<br><br>If anything materially changes overnight — a deadline shifts, a family situation evolves — feel free to text this number and the team will see it before his first appointment. You're going to be alright.`,
           1100
         );
       } else {
@@ -1022,7 +1022,7 @@
     }
     setTimeout(async () => {
       await addBotMessage(
-        `You're set, ${memory.name}. Michelle and Jodi has been notified, and you'll receive a confirmation text from <strong>(407) 539-4040</strong> tomorrow morning.<br><br>Take care tonight — we'll see you soon.`,
+        `You're set, ${memory.name}. Michelle and Jodi has been notified, and you'll receive a confirmation text from <strong>(407) 865-9553</strong> tomorrow morning.<br><br>Take care tonight — we'll see you soon.`,
         700
       );
     }, 400);

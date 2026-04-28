@@ -590,24 +590,24 @@
   <!-- LEFT: Practice Brand Panel -->
   <aside class="practice-panel">
     <div class="practice-content">
-      <div class="practice-mark">Lake Nona, Florida · Family Dentistry</div>
+      <div class="practice-mark">Lake Nona, Florida · Two Locations · Bilingual</div>
       <h1 class="practice-name">Lake Nona Dental Group</h1>
-      <p class="practice-doctor">The Lake Nona Dental Team</p>
+      <p class="practice-doctor">Drs. Oslund · Yantorni · Montijo · Coughlin · Van · Van de Water</p>
 
       <div class="promise-card">
         <h4>The 24/7 Promise</h4>
-        <p>The Lake Nona Dental Group team is committed to responding to patient needs as quickly as possible. As a patient of the practice, you're never alone.</p>
+        <p>Six dentists, two Lake Nona locations (Moss Park Rd and Jack Brack Rd), bilingual English/Spanish, sedation and sleep-apnea oral appliance specialties. The team is committed to responding to patient needs as quickly as possible — across both locations and after hours.</p>
       </div>
     </div>
 
     <div class="practice-info">
       <div class="row">
         <div class="label">Address</div>
-        <div>9145 Narcoossee Rd, Suite A100<br>Orlando, FL 32827</div>
+        <div>Two Lake Nona Locations<br>Moss Park Rd · Jack Brack Rd</div>
       </div>
       <div class="row">
         <div class="label">Phone</div>
-        <div>(407) 890-8003</div>
+        <div>(407) 277-1779</div>
       </div>
       <div class="row">
         <div class="label">Hours</div>
@@ -773,7 +773,7 @@
 
   async function startConversation() {
     await addBotMessage(
-      `Good evening — you've reached the after-hours line for Lake Nona Dental Group. The team is wrapped for the day, but I can help with most things and reach the on-call doctor directly if it's urgent.<br><br>What brings you here tonight?`,
+      `Good evening — you've reached the after-hours line for Lake Nona Dental Group. We have two Lake Nona locations and six dentists, plus Spanish-speaking staff. The on-call doctor rotates nightly. I can help with most things — and if it's urgent, I can reach whoever's on call directly.<br><br>What brings you here tonight?`,
       400,
       [
         { label: '🦷 Tooth pain or emergency', value: 'emergency' },
@@ -833,7 +833,7 @@
     if (value === 'severe') {
       memory.urgency = 'severe';
       await addBotMessage(
-        `Understood. I'm flagging this as urgent and texting the on-call doctor now — they'll call you back within 15 minutes.<br><br>While we wait, can I get your first name and best callback number? If swelling spreads to your eye, jaw, or neck, please go to the ER immediately — that's the one thing that can't wait.`,
+        `Understood. I'm flagging this as urgent and texting the on-call doctor (rotation between the six DDS/DMDs on staff) now — they'll call you back within 15 minutes.<br><br>While we wait, can I get your first name and best callback number? If swelling spreads to your eye, jaw, or neck, please go to the ER immediately — that's the one thing that can't wait.`,
         1200
       );
       memory.collecting = 'name-phone';
@@ -855,7 +855,7 @@
       memory.concern = 'high-value';
       // Step 1+2: Acknowledge & validate
       await addBotMessage(
-        `Great choice to reach out — both implants and Invisalign are major decisions and Lake Nona Dental Group has been performing both for years, so you're in capable hands.<br><br>Which one were you curious about?`,
+        `Great choice to reach out — both implants and Invisalign are major decisions and Lake Nona Dental Group has handled both since the practice opened. Dr. Yantorni (FICOI — that's the implant credential) leads implant work, and the team includes orthodontic Invisalign providers. Either way, you're in capable hands.<br><br>Which one were you curious about?`,
         900,
         [
           { label: '🦷 Dental implants', value: 'implants' },
@@ -905,7 +905,7 @@
     if (value === 'new-patient') {
       memory.concern = 'new-patient';
       await addBotMessage(
-        `Welcome — Lake Nona Dental Group has been welcoming new patients to Lake Nona for years, and most of our patients come from referrals, so it's nice when someone finds us directly.<br><br>What's your first name?`,
+        `Welcome — Lake Nona Dental Group has been welcoming new patients across both Moss Park Rd and Jack Brack Rd locations for years, and most of our patients come from referrals, so it's nice when someone finds us directly.<br><br>What's your first name?`,
         900
       );
       memory.collecting = 'name-new-patient';
@@ -964,10 +964,10 @@
       // Show booking card or confirmation based on flow
       if (memory.proposedTime) {
         const treatmentMap = {
-          'implants': 'Dental Implant Consultation',
+          'implants': 'Dental Implant Consultation (Dr. Yantorni)',
           'invisalign': 'Invisalign Consultation',
           'both': 'Implant & Invisalign Consultation',
-          'emergency': 'Emergency Visit'
+          'emergency': 'Emergency Visit (sedation available)'
         };
         const treatment = treatmentMap[memory.treatmentInterest] || treatmentMap[memory.urgency] || 'New Patient Visit';
 
@@ -978,7 +978,7 @@
         setTimeout(() => showBookingCard(treatment, memory.proposedTime), 1200);
       } else if (memory.urgency === 'severe') {
         await addBotMessage(
-          `Got it, ${memory.name} — I just paged the team. Expect a call from <strong>(407) 890-8003</strong> within 15 minutes.<br><br>Stay calm, sit upright if possible, and avoid hot or cold liquids until they call. You're going to be okay.`,
+          `Got it, ${memory.name} — I just paged the team. Expect a call from <strong>(407) 277-1779</strong> within 15 minutes.<br><br>Stay calm, sit upright if possible, and avoid hot or cold liquids until they call. You're going to be okay.`,
           1100
         );
       } else {
@@ -1047,7 +1047,7 @@
     }
     setTimeout(async () => {
       await addBotMessage(
-        `You're all set, ${memory.name}. The team has been notified, and you'll get a confirmation text from <strong>(407) 890-8003</strong> within the hour.<br><br>Have a good night — and thank you for choosing Lake Nona Dental.`,
+        `You're all set, ${memory.name}. The team has been notified, and you'll get a confirmation text from <strong>(407) 277-1779</strong> within the hour.<br><br>Have a good night — and thank you for choosing Lake Nona Dental.`,
         700
       );
     }, 400);

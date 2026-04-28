@@ -590,20 +590,20 @@
   <!-- LEFT: Practice Brand Panel -->
   <aside class="practice-panel">
     <div class="practice-content">
-      <div class="practice-mark">Oviedo, Florida · Hair & Spa</div>
+      <div class="practice-mark">Oviedo, Florida · Hair, Spa &amp; Skincare</div>
       <h1 class="practice-name">The Look Salon &amp; Spa</h1>
-      <p class="practice-doctor">The Look Team</p>
+      <p class="practice-doctor">17 Stylists · Award-Winning Team</p>
 
       <div class="promise-card">
         <h4>Always Open for Bookings</h4>
-        <p>The Look's full-service team handles hair, spa, and skincare under one roof — from the first booking inquiry at 11pm to the final treatment. The booking line never sleeps.</p>
+        <p>Seventeen stylists, 90+ services, and 4.9 stars across 1,100+ Google reviews. The Look handles hair (Hattori Hanzo trained, REZO Certified for curls), spa, skincare, and lashes (NovaLash certified) under one roof. The booking line never sleeps.</p>
       </div>
     </div>
 
     <div class="practice-info">
       <div class="row">
         <div class="label">Address</div>
-        <div>151 Geneva Dr, Suite 1006<br>Oviedo, FL 32765</div>
+        <div>3635 Aloma Ave, Suite 1025<br>Oviedo, FL 32765</div>
       </div>
       <div class="row">
         <div class="label">Phone</div>
@@ -611,7 +611,7 @@
       </div>
       <div class="row">
         <div class="label">Hours</div>
-        <div>Tue–Sat · By Appointment</div>
+        <div>Mon-Sat · See Hours</div>
       </div>
     </div>
 
@@ -773,12 +773,12 @@
 
   async function startConversation() {
     await addBotMessage(
-      `Welcome to The Look. The salon and spa are wrapped for the night, but I'm here — I can quote services across hair, color, skincare, and spa, hold appointments, and answer most questions before you go to sleep.<br><br>What brings you here tonight?`,
+      `Welcome to The Look. The salon is wrapped for the night, but I can hold appointments across all 17 stylists, quote services (we do 90+, from precision Hattori Hanzo cuts to REZO Certified curl work to NovaLash extensions), and answer most questions before you go to sleep.<br><br>What brings you here tonight?`,
       400,
       [
-        { label: '💇 Cut or style', value: 'emergency' },
-        { label: '🎨 Color, balayage, or highlights', value: 'high-value' },
-        { label: '✨ Extensions or treatments', value: 'new-patient' },
+        { label: '💇 Hair (cut/color/extensions)', value: 'emergency' },
+        { label: '✨ Lashes / brows / waxing', value: 'high-value' },
+        { label: '🌿 Spa / skincare / facials', value: 'new-patient' },
         { label: '❓ A pricing question', value: 'question' }
       ]
     );
@@ -787,9 +787,9 @@
   async function handleChipClick(value, btn) {
     disableChips(btn);
     const labelMap = {
-      'emergency': 'I want a cut or style',
-      'high-value': "I want color, balayage, or highlights",
-      'new-patient': "I want extensions or a treatment",
+      'emergency': 'I want a hair service (cut/color/extensions)',
+      'high-value': "I want lashes, brows, or waxing",
+      'new-patient': "I want a spa or skincare service",
       'question': 'I have a pricing question',
       'yes-existing': "Yes, I'm a regular",
       'no-new': "No, I'd be new to The Look",
@@ -817,12 +817,12 @@
         900
       );
       await addBotMessage(
-        `Quick question so I know how to prioritize — when do you need it by?`,
+        `Quick question so I match you with the right stylist — what kind of hair are you working with?`,
         1100,
         [
-          { label: '🔴 This week — special event', value: 'severe' },
-          { label: '🟡 Within 2 weeks', value: 'moderate' },
-          { label: '🟢 Whenever there\'s availability', value: 'mild' }
+          { label: '🌀 Curly / textured', value: 'severe' },
+          { label: '✨ Color / extensions', value: 'moderate' },
+          { label: '✂️ Cut / blowout', value: 'mild' }
         ]
       );
       return;
@@ -831,7 +831,7 @@
     if (value === 'severe') {
       memory.urgency = 'severe';
       await addBotMessage(
-        `Got it — special event urgency. The team usually has a couple priority slots reserved each week for events. Let me get you on the calendar.<br><br>Can I get your first name and best phone number? Whatever the event is, we'll make sure you walk in feeling like the moment matters.`,
+        `Curls are a specialty — Solice Del Mazo is REZO Certified and books out fastest. The other curl-friendly stylists at The Look are also trained on the dry-cutting REZO method, so we can get you in either way.<br><br>Can I get your first name and best phone number? I'll have Solice or her team confirm in the morning.`,
         1200
       );
       memory.collecting = 'name-phone';

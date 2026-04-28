@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Coro — Reservations & Tapas Concierge | Powered by Velo AI</title>
+<title>Coro — Reservations Concierge | Powered by Velo AI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -590,20 +590,20 @@
   <!-- LEFT: Practice Brand Panel -->
   <aside class="practice-panel">
     <div class="practice-content">
-      <div class="practice-mark">Audubon Park, Orlando · Michelin Spanish Tapas</div>
+      <div class="practice-mark">Audubon Park, Orlando · Chef-Driven Seasonal Small Plates</div>
       <h1 class="practice-name">Coro</h1>
-      <p class="practice-doctor">The Coro Team</p>
+      <p class="practice-doctor">The Coro Kitchen</p>
 
       <div class="promise-card">
         <h4>Always Open for Bookings</h4>
-        <p>Coro runs a refined Spanish tapas service where the team can't always pause to answer the phone — but reservations, dietary inquiries, and private events get captured around the clock.</p>
+        <p>Coro is text-only at the host stand — that's a deliberate choice for an open-kitchen concept where the team is at the pass, not the phone. But text doesn't scale to dietary questions, large parties, or buyout inquiries. That's where I come in.</p>
       </div>
     </div>
 
     <div class="practice-info">
       <div class="row">
         <div class="label">Address</div>
-        <div>3201 Corrine Dr, Suite 100<br>Orlando, FL 32803</div>
+        <div>3022 Corrine Drive<br>Orlando, FL 32803</div>
       </div>
       <div class="row">
         <div class="label">Phone</div>
@@ -773,7 +773,7 @@
 
   async function startConversation() {
     await addBotMessage(
-      `Welcome to Coro. The dining room is mid-service and the team can't always pick up — but I'm here. I can take reservations, scope private events, walk you through the tapas menu and dietary options, and route anything time-sensitive to the team.<br><br>What brings you here tonight?`,
+      `Welcome to Coro. The kitchen is open and the team is mid-service — by design, we don't take phone calls during service, just texts. That works for simple reservation confirmations but not for the bigger questions. I'm here to handle reservation requests, scope private events, walk through the seasonal menu and any dietary needs, and route anything time-sensitive to the team.<br><br>What brings you here tonight?`,
       400,
       [
         { label: '🍽️ Reservation', value: 'emergency' },
@@ -852,7 +852,7 @@
     if (value === 'high-value') {
       memory.concern = 'catering';
       await addBotMessage(
-        `Private dining at Coro accommodates intimate dinners up to full restaurant buyouts. What kind of event are you considering?`,
+        `Coro does buyouts and large-party reservations, with the kitchen building a custom seasonal small-plates progression for your group. What's the event?`,
         900,
         [
           { label: '💼 Corporate / office', value: 'implants' },
@@ -870,7 +870,7 @@
       // Step 3: Surface (the real concern most patients have)
       // Step 4: Propose concrete next step
       await addBotMessage(
-        `Most clients asking about ${txt} are wondering: <em>"How many people can you feed?"</em> and <em>"What's it going to cost?"</em><br><br>Private dining at Coro starts at parties of 8 with a curated tapas progression, and scales to full restaurant buyouts. Pricing is typically $85-145 per person depending on the menu and beverage program. The team does a planning call before quoting so the menu actually fits the event.<br><br>Want me to hold a slot this week?`,
+        `Most clients asking about ${txt} are wondering: <em>"How many people can you feed?"</em> and <em>"What's it going to cost?"</em><br><br>Buyouts and large-party menus at Coro start with a planning conversation — the kitchen wants to understand the occasion, the group's appetite for adventurous flavors, and any dietary considerations before designing the menu. Pricing typically lands $85-145 per person depending on the progression and beverage program.<br><br>Want me to hold a slot this week?`,
         1300,
         [
           { label: '📅 Tomorrow morning', value: 'tomorrow-am' },
@@ -913,7 +913,7 @@
     if (value === 'question') {
       memory.concern = 'hotel';
       await addBotMessage(
-        `Of course — type your question. Hours, the tapas menu, dietary stuff (the kitchen handles vegetarian and gluten-free with notice), or anything specific to a dish — I can usually answer right now.`,
+        `Of course — type your question. The menu rotates seasonally so I'll have current info on what's running. Dietary stuff (the kitchen handles vegetarian and gluten-free with reasonable notice), open-kitchen-specific questions, or anything about an event — I can usually answer right now.`,
         1100
       );
       memory.collecting = 'free-question';
