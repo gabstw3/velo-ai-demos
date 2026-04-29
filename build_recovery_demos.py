@@ -1715,6 +1715,373 @@ VPDENTAL_CLEANUP = [
     ("Onyski", "Rampi"),
 ]
 
+# ============================================================================
+# ROUND 4 — 7 more prospects with deep research data
+# ============================================================================
+
+# ---- FORWARD LAW FIRM — Business law / IP / M&A, Orlando (base: lathamluna.html) ----
+# Real data: Philip K. Calandrino (founder/CEO, AV-Preeminent, 20+ yrs) + Jared A. Mangum,
+# 10 practice areas, "preventative approach" philosophy, 1615 Woodward St
+FORWARD_SUBS = [
+    ("Latham Luna — After-Hours Intake | Powered by Velo AI",
+     "Forward Law Firm — After-Hours Intake | Powered by Velo AI"),
+    ("This is a live demo built by Velo AI for Latham Luna",
+     "This is a live demo built by Velo AI for Forward Law Firm"),
+    ("Downtown Orlando · Est. 1996",
+     "Orlando, Florida · AV-Preeminent · 20+ Years"),
+    ('<h1 class="practice-name">Latham Luna</h1>',
+     '<h1 class="practice-name">Forward Law Firm</h1>'),
+    ('<p class="practice-doctor">Daniel Velasquez, Esq.</p>',
+     '<p class="practice-doctor">Philip K. Calandrino &amp; Jared A. Mangum, Esq.</p>'),
+    ("<h4>World-Class Counsel · Small-Town Service</h4>",
+     "<h4>Preventative Counsel, Not Reactive</h4>"),
+    ("Latham Luna is a downtown Orlando boutique with eleven practice areas — bankruptcy, construction, commercial litigation, hospitality, aviation. The firm's positioning is &quot;World-Class Counsel, Small-Town Service.&quot; Daniel is committed to being available when business actually moves, not just when the office is open.",
+     "Forward Law Firm is built on a specific philosophy: business law attorneys should prevent fires, not just put them out. The firm covers ten practice areas — business formation, M&amp;A, IP, franchising, employment, commercial litigation, contracts. Phil is committed to being available when business actually moves."),
+    ("Good evening — you've reached the after-hours line for Latham Luna in downtown Orlando. The firm covers eleven practice areas; Daniel chairs the Aviation Department and is a Bankruptcy Partner. He's wrapped for the day, but I can take down what's going on and route it to him or another attorney depending on the matter.",
+     "Good evening — you've reached the after-hours line for Forward Law Firm. The firm is AV-Preeminent rated and covers ten business law practice areas — business formation, contracts, M&amp;A, IP, franchising, employment, and commercial real estate. Phil and Jared are wrapped for the day, but I can take down what's going on and route it to whichever attorney fits."),
+    ("Daniel and the Latham Luna team handle business, bankruptcy, and construction matters every week",
+     "Phil, Jared, and the Forward team handle business matters every week"),
+    ("Business disputes are core territory for Latham Luna — the firm's been doing this since 1996, with five attorneys in Florida Super Lawyers and six in Best Lawyers in America. Daniel handles bankruptcy specifically, and other partners cover commercial litigation, employment, and corporate matters. The two things that help the team move fast: what's the dispute, and whether there's a deadline anywhere in the next two weeks.",
+     "Business disputes are core territory for Forward — but Phil's preference, by philosophy, is to catch them before they're disputes. Many of the after-hours calls the firm receives are pre-dispute moments: a contract about to be signed that has a problem, a partner conversation that's getting tense, a vendor situation that's heading toward litigation. The two things that help the team move fast: what's happening, and whether there's a deadline or signature window in the next two weeks."),
+    ("Construction matters move on tight statutory deadlines — Florida lien notices, payment bond claims, contractor disputes. Latham Luna has a dedicated construction practice and the first thing the team checks is whether you're inside the statutory window.",
+     "Real estate transactions, contracts, and franchising matters often move on tight windows — closing dates, contract signature deadlines, franchise disclosure timelines. Forward handles these regularly, and the first thing the team checks is whether you're inside the window."),
+    ("Bankruptcy and foreclosure are Daniel's specialty — he's a Bankruptcy Partner at the firm. Filing windows, automatic stays, 341 meetings, and the difference between Chapter 7 vs Chapter 11 vs Chapter 13 are all conversations he has every week. The first thing he wants to know is your timeline urgency.",
+     "Employment law, commercial real estate, and securities matters all surface unpredictably. Forward's preventative philosophy means the team would rather hear about it early — even if it feels too small to call about — than after the dispute has escalated. The first thing the team wants to know is your timeline."),
+    # Address/contact
+    ("111 N Magnolia Ave, Suite 1400<br>Orlando, FL 32801",
+     "1615 Woodward Street<br>Orlando, FL 32803"),
+    ("(407) 481-5800", "(407) 621-4200"),
+    ('<span class="value">Daniel Velasquez, Esq.</span>',
+     '<span class="value">Philip Calandrino or Jared Mangum, Esq.</span>'),
+    ('<span class="value">111 N Magnolia Ave, Orlando</span>',
+     '<span class="value">1615 Woodward Street, Orlando</span>'),
+    # Matter map
+    ("'business': 'Business Dispute Consultation',\n          'construction': 'Construction Law Consultation',\n          'bankruptcy': 'Bankruptcy / Foreclosure Consultation',\n          'question': 'General Consultation'",
+     "'business': 'Business Matter Consultation',\n          'construction': 'Real Estate / Contract Consult',\n          'bankruptcy': 'Employment / Securities Consult',\n          'question': 'General Consultation'"),
+    ("Daniel ", "Phil "),
+    ("Daniel.", "Phil."),
+    ("Daniel,", "Phil,"),
+    ("Daniel's", "Phil's"),
+    ("Latham Luna", "Forward Law Firm"),
+]
+FORWARD_CLEANUP = [
+    ("Daniel", "the Forward team"),
+    ("Latham", "Forward"),
+]
+
+# ---- KANE AND KOLTUN — Estate/tax/corporate, Maitland (base: ragland.html) ----
+# Real data: Founded 1997, Steven H. Kane (Board Certified Wills/Trusts/Estates +
+# UF JD with honors '80 + LLM Taxation Miami '83 + CPA — rare combo!) + Jeffrey Koltun,
+# AV-rated, 28+ years
+KANE_SUBS = [
+    ("Lance A. Ragland, P.A. — After-Hours Intake | Powered by Velo AI",
+     "Kane &amp; Koltun — After-Hours Intake | Powered by Velo AI"),
+    ("This is a live demo built by Velo AI for Lance A. Ragland, P.A.",
+     "This is a live demo built by Velo AI for Kane &amp; Koltun"),
+    ("Winter Springs, Florida · Est. 2015",
+     "Maitland, Florida · Est. 1997 · Board Certified · CPA"),
+    ('<h1 class="practice-name">Lance A. Ragland, P.A.</h1>',
+     '<h1 class="practice-name">Kane &amp; Koltun</h1>'),
+    ('<p class="practice-doctor">Lance A. Ragland, Esq.</p>',
+     '<p class="practice-doctor">Steven H. Kane &amp; Jeffrey M. Koltun, Esq.</p>'),
+    ("<h4>Available When You Need Him</h4>",
+     "<h4>The Rare Lawyer-CPA Combination</h4>"),
+    ("Estate matters rarely surface during business hours. Lance is committed to being there for clients during life's most difficult transitions. You're never alone.",
+     "Most estate planning attorneys recommend you talk to your CPA. Steven Kane IS a CPA — alongside being Board Certified by the Florida Bar in Wills, Trusts, and Estates and holding an LLM in Taxation. That combination shows up in how the firm handles complex estate, tax, and corporate matters. You're never alone."),
+    ("5750 Canton Cove<br>Winter Springs, FL 32708",
+     "150 Spartan Drive<br>Maitland, FL 32751"),
+    ("(407) 960-6069", "(407) 661-1177"),
+    ("By Appointment · Mon–Fri 9a–5p", "Mon–Fri 9a–5p · 28+ Years"),
+    ("<strong>Ragland Intake</strong> · Available 24/7",
+     "<strong>Kane &amp; Koltun Intake</strong> · Available 24/7"),
+    ("A current client of Lance's? He'll be notified directly for urgent matters.",
+     "A current client? Steven or Jeffrey will be notified directly for urgent matters."),
+    ("Good evening — you've reached the after-hours line for the Law Offices of Lance A. Ragland. Lance focuses entirely on estate planning, probate, and trust matters. He's unavailable right now, but I can take down what's on your mind and get him to reach back out.",
+     "Good evening — you've reached the after-hours line for Kane &amp; Koltun in Maitland. The firm has been practicing since 1997. Steven Kane is Board Certified by the Florida Bar in Wills, Trusts &amp; Estates, holds an LLM in Taxation, and is also a CPA — that combination matters when estate planning involves tax complexity. Jeff Koltun and Steven are wrapped for the day, but I can take down what's on your mind."),
+    # Same chip set works (estate/probate/poa/question) but reframe
+    ("if (value === 'probate') {\n      memory.matter = 'probate';\n      await addBotMessage(\n        `I'm so sorry for your loss. Please take whatever time you need.<br><br>Lance has guided families through probate for nearly thirty years, and most of what feels overwhelming right now has a clear path forward. The two things that help him move quickly when he calls you back: who passed, and whether they had a will.`,",
+     "if (value === 'probate') {\n      memory.matter = 'probate';\n      await addBotMessage(\n        `I'm so sorry for your loss. Please take whatever time you need.<br><br>Steven has guided families through probate for 28+ years — and because he's also a CPA, he handles the tax side (estate tax returns, basis adjustments, IRA rollovers) without bouncing you to a separate accountant. The two things that help him move quickly: who passed, and whether they had any documents in place.`,"),
+    ("if (value === 'planning') {\n      memory.matter = 'planning';\n      await addBotMessage(\n        `Smart of you to think about this — most people put off estate planning for years and regret the procrastination. Lance has been doing wills, trusts, and estate plans exclusively since 2015, so this is exactly his bread and butter.<br><br>Most clients in your shoes are weighing one of two things: <em>\"Do I just need a will, or do I need a trust?\"</em> and <em>\"What's this going to cost me?\"</em><br><br>Both are answered properly in a one-hour consult — Lance reviews your situation, walks you through the difference, and gives you a flat-fee quote before you commit to anything. Want me to hold a slot this week or next?`,",
+     "if (value === 'planning') {\n      memory.matter = 'planning';\n      await addBotMessage(\n        `Smart of you to think about this — and Steven's lawyer-CPA-Board-Certified background means estate planning at Kane &amp; Koltun isn't just &quot;will or trust?&quot; It's also tax-efficient asset protection, deferred compensation structuring, and corporate-and-personal coordination if you own a business.<br><br>Most clients are weighing two things: <em>\"What structure actually fits my situation?\"</em> and <em>\"What's this going to cost?\"</em><br><br>Both are answered in a one-hour consult. Want me to hold a slot this week or next?`,"),
+    ("if (value === 'poa') {\n      memory.matter = 'poa';\n      await addBotMessage(\n        `These conversations are hard — usually they come up because someone in the family is going through a health change. Lance can put together a power of attorney and healthcare surrogate quickly, often within a few days if needed.<br><br>Just so I get the right urgency to him: is this for an immediate situation, or planning ahead?`,",
+     "if (value === 'poa') {\n      memory.matter = 'poa';\n      await addBotMessage(\n        `These conversations are hard — usually they come up because someone in the family is going through a health change. Steven and Jeff can put together a power of attorney and healthcare surrogate quickly, often within a few days if needed.<br><br>Just so I get the right urgency to them: is this for an immediate situation, or planning ahead?`,"),
+    ('<div class="booking-icon">L</div>', '<div class="booking-icon">K</div>'),
+    ('<span class="value">Lance A. Ragland, Esq.</span>',
+     '<span class="value">Steven Kane or Jeffrey Koltun, Esq.</span>'),
+    ('<span class="value">5750 Canton Cove, Winter Springs</span>',
+     '<span class="value">150 Spartan Drive, Maitland</span>'),
+    ("(407) 960-6069", "(407) 661-1177"),
+    ("Lance has been notified", "The firm has been notified"),
+    ("Lance will reach out", "Steven or Jeffrey will reach out"),
+    ("Lance ", "the team "),
+    ("Lance's", "the team's"),
+    ("Lance.", "the team."),
+    ("Lance,", "the team,"),
+    ("his office (Debbie)", "the firm's paralegal"),
+]
+KANE_CLEANUP = [
+    ("Lance", "the team"),
+    ("Ragland", "Kane & Koltun"),
+]
+
+# ---- ESTATE PLANNING & LEGACY LAW CENTER — Altamonte (base: murphyberglund.html) ----
+# Real data: Charles D. Wilder (founder, AV Preeminent, 35+ yrs) + Melissa Moses Parker
+# + Nicholas Rubino + Debra Mulligan (admin), proprietary EPLLC Client Portal + iOS app,
+# Gun Trusts (unusual!), 13 services, English+Spanish, founded 2003
+EPLLC_SUBS = [
+    ("Murphy & Berglund — After-Hours Intake | Powered by Velo AI",
+     "Estate Planning &amp; Legacy Law Center — After-Hours Intake | Powered by Velo AI"),
+    ("This is a live demo built by Velo AI for Murphy & Berglund",
+     "This is a live demo built by Velo AI for Estate Planning &amp; Legacy Law Center"),
+    ("Altamonte Springs, Florida · VA-Accredited · Estate &amp; Elder Law",
+     "Altamonte Springs · Est. 2003 · 4-Attorney Team · EN/ES"),
+    ('<h1 class="practice-name">Murphy &amp; Berglund</h1>',
+     '<h1 class="practice-name">Estate Planning &amp; Legacy Law Center</h1>'),
+    ('<p class="practice-doctor">Michelle Berglund-Harper &amp; Jodi Murphy, Esq.</p>',
+     '<p class="practice-doctor">Charles D. Wilder · Melissa Moses Parker · Nicholas Rubino, Esq.</p>'),
+    ("Estate planning, elder law, and family matters surface at life's hardest transitions — declining health, the death of a parent, a Medicaid eligibility crisis, a Veterans benefits question. Murphy &amp; Berglund is VA-accredited and handles both Medicaid planning and VA aid &amp; attendance. Jodi and Michelle are committed to being there during those moments.",
+     "Estate planning, elder law, and Medicaid crisis matters surface at life's hardest transitions. EPLLC has been doing this since 2003 — founder Charles Wilder is AV Preeminent rated with 35+ years of experience, and the firm covers everything from basic wills to Gun Trusts (unusual specialty), Special Needs Planning, and Medicaid Crisis. Bilingual (English/Spanish) staff."),
+    ("1101 Douglas Ave<br>Altamonte Springs, FL 32714",
+     "711 Ballard Street<br>Altamonte Springs, FL 32701"),
+    ("(407) 865-9553", "(407) 647-7526"),
+    ("<strong>Murphy &amp; Berglund Intake</strong> · Available 24/7",
+     "<strong>EPLLC Intake</strong> · Available 24/7"),
+    ("A current client? Michelle or Jodi will be notified directly for urgent matters.",
+     "A current client? The right attorney (Charles, Melissa, or Nicholas) will be notified directly."),
+    ("Good evening — you've reached the after-hours line for Murphy & Berglund. The firm is VA-accredited and handles estate planning, probate, elder law, Medicaid &amp; VA planning, family law, and probate. Both attorneys are wrapped for the day, but everything you share is confidential. I'll route what's on your mind to whichever attorney fits — Jodi or Michelle — and have them reach back out.",
+     "Good evening — you've reached the after-hours line for Estate Planning &amp; Legacy Law Center. The firm has been doing comprehensive legacy planning since 2003. Charles Wilder (founder, AV Preeminent, 35+ years) leads the firm, with Melissa Moses Parker and Nicholas Rubino on the team. Bilingual English/Spanish staff. The team is wrapped for the day, but everything you share is confidential."),
+    # Chip cleanup — same set
+    # Estate/probate path
+    ("I'm sorry — these calls usually come at one of the hardest moments. Jodi handles probate and trust administration directly. She and Michelle have walked over a hundred families through the post-loss paperwork — the will or trust contest, asset retitling, creditor claims, the steps that nobody explains. The two things that help her move quickly: who passed, and whether they had documents in place.",
+     "I'm sorry — these calls come at one of the hardest moments. EPLLC handles probate and trust administration with experienced attorneys (Charles personally, often Nicholas for complex matters). The firm uses a proprietary EPLLC Client Portal and iOS app to give families secure document access during what's already a chaotic time. The two things that help the team move quickly: who passed, and whether they had documents in place."),
+    # Elder/Medicaid path
+    ("Elder law calls usually surface at one of three moments: parent's care needs escalating, a Medicaid eligibility question just got real, or a Veteran is being denied aid &amp; attendance benefits. Murphy &amp; Berglund is VA-accredited (rare for an estate firm) and handles all three — long-term care planning, Medicaid spend-down, asset protection trusts, VA benefits applications, guardianship.",
+     "Elder law calls usually surface at two specific events: a parent's care needs are escalating, or a Medicaid eligibility question just got real (often when an asset transfer's already happened or a nursing home admission is days away). EPLLC's Medicaid Crisis Planning practice exists for exactly that scenario — when the standard 5-year lookback rules already apply and the family needs immediate intervention."),
+    # Wills/trusts path
+    ("Smart to think about this before you need it. Michelle handles wills, trusts, powers of attorney, and healthcare surrogates as a coordinated package — and notably, she's one of the few estate attorneys in Central FL with a Cryptocurrency Law practice, which matters more every year as people hold digital assets without thinking about how they pass.",
+     "Smart to think about this before you need it. EPLLC's planning practice covers wills, trusts, powers of attorney, healthcare surrogates, AND specialty trusts most firms don't handle — Gun Trusts (NFA-compliant trusts for firearms), Special Needs Planning (for disabled beneficiaries), and Asset Protection Planning. The firm's iOS app lets you access documents from anywhere once they're done."),
+    # Booking
+    ("'estate': 'Probate / Trust Admin Consultation',\n          'planning': 'Estate Planning + Crypto Asset Consult',\n          'elder': 'Elder Law / Medicaid / VA Benefits Consult',\n          'question': 'General Consultation'",
+     "'estate': 'Probate / Trust Admin Consultation',\n          'planning': 'Estate Planning Consult (Wills / Trusts / Gun Trusts / SN)',\n          'elder': 'Elder Law / Medicaid Crisis Consult',\n          'question': 'General Consultation'"),
+    ('<div class="booking-icon">M</div>', '<div class="booking-icon">E</div>'),
+    ('<span class="value">Michelle Berglund-Harper or Jodi Murphy, Esq.</span>',
+     '<span class="value">Charles Wilder · Melissa Moses Parker · Nicholas Rubino, Esq.</span>'),
+    ('<span class="value">1101 Douglas Ave, Altamonte Springs</span>',
+     '<span class="value">711 Ballard Street, Altamonte Springs</span>'),
+    ("Michelle and Jodi", "the EPLLC team"),
+    ("Jodi", "Charles or Nicholas"),
+    ("Michelle", "Charles or Melissa"),
+]
+EPLLC_CLEANUP = [
+    ("Murphy &amp; Berglund", "EPLLC"),
+    ("Murphy & Berglund", "EPLLC"),
+    ("murphyberglund.com", "epllc-plc.com"),
+]
+
+# ---- BÁNH MÌ BOY — Vietnamese, Mills 50 (base: pigfloyds.html) ----
+# Real data: Chef Hung Huynh (Top Chef WINNER!), since 1988 (37+ years), Michelin Bib
+# Gourmand 2025, Netflix Somebody Feed Phil S7, pho French dip banh mi, fresh bread daily,
+# Vietnamese coffee + sugarcane juice, 1110 East Colonial Drive (inside Mills Market)
+BANHMI_SUBS = [
+    ("Pig Floyd's Urban Barbakoa — Reservations & Catering Concierge | Powered by Velo AI",
+     "Bánh Mì Boy — Reservations Concierge | Powered by Velo AI"),
+    ("This is a live demo built by Velo AI for Pig Floyd's Urban Barbakoa.",
+     "This is a live demo built by Velo AI for Bánh Mì Boy"),
+    ("Mills 50, Orlando · Slow-Smoked",
+     "Mills 50 · Michelin Bib Gourmand · Top Chef"),
+    ("<h1 class=\"practice-name\">Pig Floyd's Urban Barbakoa</h1>",
+     '<h1 class="practice-name">Bánh Mì Boy</h1>'),
+    ('<p class="practice-doctor">Thomas, Owner</p>',
+     '<p class="practice-doctor">Chef Hung Huynh · Top Chef Winner</p>'),
+    ("Pig Floyd's runs hot during dinner service and the team can't always pause to answer calls — but reservations, takeout, and catering inquiries get captured around the clock.",
+     "Bánh Mì Boy has been part of Mills 50 since 1988. With Top Chef winner Hung Huynh leading the kitchen, Michelin Bib Gourmand recognition (2025), and a Netflix &quot;Somebody Feed Phil&quot; feature (Season 7), the calls and texts that hit the line aren't just neighborhood — they're national. The team can't pause to answer the phone mid-service. The concierge captures reservations, catering inquiries, and questions any time of day."),
+    ("1326 N Mills Ave<br>Orlando, FL 32803",
+     "1110 East Colonial Drive<br>Orlando, FL 32803"),
+    ("(407) 203-0866", "(407) 422-0067"),
+    ("Tue–Sun · Lunch & Dinner Service",
+     "Mon–Thu 10:30a–9p · Fri–Sun 10a–9:30p"),
+    ("<strong>Pig Floyd's Concierge</strong> · Available 24/7",
+     "<strong>Bánh Mì Boy Concierge</strong> · Available 24/7"),
+    ("Catering or large party? Thomas will be notified directly for time-sensitive bookings.",
+     "Catering, media inquiry, or large party? Chef Hung's team is notified directly."),
+    ("Welcome to Pig Floyd's. The dining room is loud and the smokers are working — the team can't always pick up. I'm the after-hours line: I can take reservations, quote catering, and answer most menu questions before service tomorrow.",
+     "Welcome to Bánh Mì Boy. We've been part of Mills 50 since 1988. The kitchen runs hot — fresh bread baked daily in-house, house-made pâté, Vietnamese coffee and sugarcane juice — so the team can't always pause for the phone. I'm the after-hours line: I can take large-party reservations, quote catering, walk you through the menu (including the pho French dip bánh mì or build-your-own summer rolls), and route media or partnership inquiries to the team."),
+    ("// CATERING PATH ----------\n    if (value === 'high-value') {\n      memory.concern = 'catering';\n      await addBotMessage(\n        `Catering is one of Pig Floyd's strengths — the smoker doesn't sleep, so we can scale up for almost any event. What kind of event?`,",
+     "// CATERING PATH ----------\n    if (value === 'high-value') {\n      memory.concern = 'catering';\n      await addBotMessage(\n        `Bánh Mì Boy catering is its own thing — the bread is baked fresh daily so we plan ahead with the kitchen. What kind of event?`,"),
+    ("'implants': 'corporate catering',\n      'invisalign': 'wedding catering',\n      'both': 'family-style catering'",
+     "'implants': 'office or corporate catering',\n      'invisalign': 'event catering',\n      'both': 'large-party platter (Saigon street style)'"),
+    ("Pig Floyd's catering ranges from BBQ trays for 10 people up to full-service events for 200+. Pricing usually lands $18-32 per person depending on protein mix and service style. Thomas does a free 15-minute call to scope events before quoting — that way the quote is real, not generic.",
+     "Bánh Mì Boy catering ranges from bánh mì platters for 10 people up to full Vietnamese spreads for 100+ (pho stations, summer roll bars, Saigon street wings). Pricing usually lands $14-22 per person depending on the menu mix. The team does a quick scoping call before quoting so the quote actually fits your event."),
+    ("'implants': 'Corporate Catering Consult',\n          'invisalign': 'Event Catering Consult',\n          'both': 'Family Catering Consult',\n          'emergency': 'Reservation'",
+     "'implants': 'Office Catering Consult',\n          'invisalign': 'Event Catering Consult',\n          'both': 'Large-Party Saigon Street Consult',\n          'emergency': 'Reservation'"),
+    ("Pickup orders go through our online system — fastest way is to order at pigfloyds.com/order or call (407) 203-0866 during service. If you want me to text you the link or hold a name in the system for tomorrow, what's your first name?",
+     "Pickup orders are easiest by calling (407) 422-0067 during service or ordering through the website. If you want me to text the menu link to your phone or hold a name in the system for tomorrow, what's your first name?"),
+    ("Of course — type your question. Hours, menu items, dietary stuff (we have vegan smoke options), or anything specific to a dish — I can usually answer right now.",
+     "Of course — type your question. Hours, the menu (bánh mì varieties, pho, summer rolls, Saigon street wings, sugarcane juice, Vietnamese coffee), dietary stuff (we have vegetarian and tofu options), or media/partnership inquiries — I can usually answer right now."),
+    ('<div class="booking-icon">P</div>', '<div class="booking-icon">B</div>'),
+    ("<span class=\"value\">Pig Floyd's Team</span>",
+     '<span class="value">Bánh Mì Boy Team</span>'),
+    ('<span class="value">1326 N Mills Ave, Orlando</span>',
+     '<span class="value">1110 East Colonial Drive (Mills Market)</span>'),
+    ("(407) 203-0866", "(407) 422-0067"),
+    ("Pig Floyd's", "Bánh Mì Boy"),
+    ("Thomas", "Chef Hung"),
+    ("the smoker doesn't sleep", "the bread is baked fresh daily"),
+    ("see you at the smoker", "see you at the cafe"),
+]
+BANHMI_CLEANUP = [
+    ("pigfloyds.com", "banhmiboycafe.com"),
+]
+
+# ---- GIOVANNI'S PIZZERIA — Italian family, Lake Mary (base: adriatico.html) ----
+# Real data: Family-owned, Central Italian, Calabrian Honey wings, signature cocktails
+# (Amalfi Coast, Calabrón, Soprano, Espress Yourself), 5 locations, complimentary bread,
+# 24-hour wing marinade
+GIOVANNIS_SUBS = [
+    ("Adriatico Trattoria Italiana — Reservations Concierge | Powered by Velo AI",
+     "Giovanni's Pizzeria &amp; Kitchen — Reservations Concierge | Powered by Velo AI"),
+    ("This is a live demo built by Velo AI for Adriatico Trattoria Italiana",
+     "This is a live demo built by Velo AI for Giovanni's Pizzeria &amp; Kitchen"),
+    ("College Park, Orlando · Old-World Italian",
+     "Lake Mary · 5 Locations · Family-Owned"),
+    ('<h1 class="practice-name">Adriatico Trattoria</h1>',
+     "<h1 class=\"practice-name\">Giovanni's Pizzeria</h1>"),
+    ('<p class="practice-doctor">Chef Marco &amp; Rosetta Cudazzo</p>',
+     '<p class="practice-doctor">Family-Owned · Central Italian Tradition</p>'),
+    ("Adriatico is a true trattoria — Marco at the pass running fresh pasta, Rosetta in the dining room making sure every guest is taken care of. The phone gets in the way of both jobs. The concierge captures reservations, dietary planning, and private events around the clock.",
+     "Giovanni's runs five Central Florida locations — Lake Mary, Davenport, Lake Nona (two), Oviedo. Each one needs to handle reservations, takeout orders, catering inquiries, and large-party bookings during dinner rush. The team can't pause service to answer the phone. The concierge captures it all and routes by location."),
+    ("2417 Edgewater Drive<br>Orlando, FL 32804",
+     "Lake Mary · Davenport · Lake Nona · Oviedo<br>5 Florida Locations"),
+    ("(407) 428-0044", "(407) 330-4350"),
+    ("Mon–Sat 5p · Last Seating 8:30p",
+     "Lunch &amp; Dinner Daily · 5 Locations"),
+    ("<strong>Adriatico Concierge</strong> · Available 24/7",
+     "<strong>Giovanni's Concierge</strong> · Available 24/7"),
+    ("Special occasion or private dinner? Marco and Rosetta will be notified directly.",
+     "Special occasion, large party, or catering? The right location's team will be notified directly."),
+    ("Welcome to Adriatico. Marco's at the pass — fresh pasta is made-to-order, so he can't step away mid-service to take the phone. Rosetta's running the room. I'm here in their place: I can take reservations, walk through the menu and any dietary considerations, scope private events, and have anything time-sensitive in front of them before tomorrow's dinner service.",
+     "Welcome to Giovanni's. Five Florida locations — Lake Mary, Davenport, two in Lake Nona, and Oviedo — all running dinner service simultaneously. The team can't always pause to answer. I'm here to take reservations, route by location, walk you through the menu (Central Italian, hand-tossed pizza, signature cocktails like Amalfi Coast and Calabrón), scope catering, and handle large-party bookings."),
+    ("Private events at Adriatico are intimate by nature — the trattoria is meant for tables of friends, not banquet rooms. Most private events are 8-20 guests with a curated multi-course Italian dinner Marco builds for the occasion. What kind of event are you considering?",
+     "Giovanni's hosts private events and large parties regularly across all five locations — birthdays, corporate dinners, retirement parties, sports celebrations. Each location can accommodate different sizes (Lake Mary and Lake Nona Town Center handle 40+, Davenport and Oviedo work better at 15-30). What kind of event are you considering?"),
+    ("Private events at Adriatico start at 8 guests with a four-to-six course Italian progression. Pricing typically lands $75-125 per person depending on the menu and wine pairings. Marco does a planning call before quoting so the menu actually reflects what you and your guests will love (and what's freshest that week).",
+     "Giovanni's events start with a planning call to understand the size, the location that fits, and the menu mix (pizza station, family-style pasta, full multi-course). Pricing typically runs $25-55 per person depending on what's served and which location. The team does the quote after they understand the event."),
+    ("Adriatico's menu features hand-made fresh pasta and old-world Italian cooking inspired by the Adriatic coast. I can walk through the regions represented, the wine program (Italy-focused), dietary accommodations Marco can prepare with notice, or specific dishes. What would help?",
+     "Giovanni's menu is Central Italian — hand-tossed pizzas (Margherita, Giovanni's Primo, The Don), pastas (Rigatoni alla Roma, Pasta Bella, Lasagna, Fettuccine Alfredo), the famous Calabrian Honey wings (24-hour marinade), and signature cocktails (Amalfi Coast, Calabrón, Soprano, Espress Yourself). Complimentary house-baked bread comes with every table. What can I help with?"),
+    ("(407) 428-0044", "(407) 330-4350"),
+    ('<div class="booking-icon">A</div>', '<div class="booking-icon">G</div>'),
+    ('<span class="value">Marco &amp; Rosetta</span>',
+     "<span class=\"value\">Giovanni's Team</span>"),
+    ('<span class="value">2417 Edgewater Drive, Orlando</span>',
+     '<span class="value">Lake Mary · Davenport · Lake Nona · Oviedo</span>'),
+    ("Marco", "Giovanni's chef team"),
+    ("Adriatico", "Giovanni's"),
+]
+GIOVANNIS_CLEANUP = [
+    ("adriatico-trattoria.com", "giovannisrestaurant.com"),
+]
+
+# ---- STUDIO 312 SALON — Oviedo full-service (base: thelook.html) ----
+# Real data: Rachel (owner) + 11 stylists named, 4 Brazilian Blowout options,
+# K-18 / L'Oreal / Matrix / Mizani / Redken / Brazilian Blowout, curly hair specialty,
+# education-focused, 1755 W Broadway St Oviedo
+STUDIO312_SUBS = [
+    ("The Look Salon &amp; Spa — Booking Concierge | Powered by Velo AI",
+     "Studio 312 Salon — Booking Concierge | Powered by Velo AI"),
+    ("This is a live demo built by Velo AI for The Look Salon & Spa.",
+     "This is a live demo built by Velo AI for Studio 312 Salon"),
+    ("Oviedo, Florida · Hair, Spa &amp; Skincare",
+     "Oviedo, Florida · Owner-Operated · 12 Stylists"),
+    ('<h1 class="practice-name">The Look Salon &amp; Spa</h1>',
+     '<h1 class="practice-name">Studio 312 Salon</h1>'),
+    ('<p class="practice-doctor">17 Stylists · Award-Winning Team</p>',
+     '<p class="practice-doctor">Owner Rachel · 12-Stylist Team</p>'),
+    ("Seventeen stylists, 90+ services, and 4.9 stars across 1,100+ Google reviews. The Look handles hair (Hattori Hanzo trained, REZO Certified for curls), spa, skincare, and lashes (NovaLash certified) under one roof. The booking line never sleeps.",
+     "Studio 312 is owner-operated by Rachel with 11 additional stylists. Specialties include curly cuts, four different Brazilian Blowout options, K-18, and color work across L'Oréal, Matrix, Mizani, and Redken lines. The salon's positioning is education-focused: clients leave knowing how to maintain their look at home."),
+    ("3635 Aloma Ave, Suite 1025<br>Oviedo, FL 32765",
+     "1755 W Broadway Street, Suite 3<br>Oviedo, FL 32765"),
+    ("Mon-Sat · See Hours", "Daily 8a-9p · By Stylist Schedule"),
+    ("<strong>The Look Concierge</strong> · Available 24/7",
+     "<strong>Studio 312 Concierge</strong> · Available 24/7"),
+    ("A regular at The Look? Your stylist will be notified directly for time-sensitive bookings.",
+     "A regular at Studio 312? Your stylist (Rachel, Emerald, Rini, Brittany, Josie, Melinda, Peyton, Brooke, Nikia, Liberty, Soledad, or Marli) will be notified directly."),
+    ("Welcome to The Look. The salon is wrapped for the night, but I can hold appointments across all 17 stylists, quote services (we do 90+, from precision Hattori Hanzo cuts to REZO Certified curl work to NovaLash extensions), and answer most questions before you go to sleep.",
+     "Welcome to Studio 312. The salon is wrapped for the night, but I can hold appointments with Rachel or any of the 11 stylists, quote services (cuts, all-over color, gray coverage, balayage, blonding, curly cuts, four Brazilian Blowout options, K-18 treatments, makeup, waxing), and answer questions about products and home care before you go to sleep."),
+    # Curl path is still relevant — Studio 312 also does curly
+    ("Curls are a specialty — Solice Del Mazo is REZO Certified and books out fastest. The other curl-friendly stylists at The Look are also trained on the dry-cutting REZO method, so we can get you in either way.<br><br>Can I get your first name and best phone number? I'll have Solice or her team confirm in the morning.",
+     "Curly cuts are a specialty at Studio 312 — the team is trained to cut curls dry rather than wet, which makes a real difference for textured hair. Several stylists handle curls so you have options.<br><br>Can I get your first name and best phone number? I'll have a curl-specialist stylist confirm in the morning."),
+    ("Color and extensions are core specialties at The Look — the salon partners with Wella, Brazilian Blowout, Moroccan Oil, and Redken, so most modern color work is in-house. Tuesday or Thursday have the most flexibility for new color clients.<br><br>What's your first name? I'll have someone pre-confirm with you by tomorrow morning.",
+     "Color is a core focus at Studio 312 — the team works across L'Oréal, Matrix, Mizani, and Redken color lines for different needs (gray coverage, balayage, blonding all use different products and techniques). Tuesday or Thursday have the most flexibility for new color clients.<br><br>What's your first name? I'll have someone pre-confirm with you by tomorrow morning."),
+    # Spa path → Studio 312 has makeup + waxing (no spa)
+    ("The Look's spa side handles facials (rejuvenating, anti-wrinkle), microblading, eyebrow tinting, full body waxing, and skincare consultations. The estheticians do continuing education quarterly so the techniques stay current. What's your first name? I'll have the right specialist follow up tomorrow morning.",
+     "Studio 312's deep-conditioning, K-18, keratin, and Brazilian Blowout treatments are popular for clients dealing with damage or wanting to extend a smooth blowout. The salon also does makeup application (great for events) and waxing. What's your first name? I'll have the right stylist follow up tomorrow morning."),
+    ('<div class="booking-icon">L</div>', '<div class="booking-icon">3</div>'),
+    ('<span class="value">The Look Stylist</span>',
+     '<span class="value">Studio 312 Stylist</span>'),
+    ('<span class="value">151 Geneva Dr, Oviedo</span>',
+     '<span class="value">1755 W Broadway St, Oviedo</span>'),
+    ("(407) 977-8481", "(321) 318-6296"),
+    ("The Look", "Studio 312"),
+]
+STUDIO312_CLEANUP = []
+
+# ---- ELITE DENTISTRY — Avalon Park, Orlando (base: wayside.html) ----
+# Real data: Dr. Mark Ashy (owner, FL native, father, family-oriented), America's Best
+# Dentists by National Consumer Advisory Board, 13000 Avalon Lake Drive Suite 201,
+# (407) 658-0103
+ELITEDENTAL_SUBS = [
+    ("Wayside Family Dental — After-Hours Concierge | Powered by Velo AI",
+     "Elite Dentistry — After-Hours Concierge | Powered by Velo AI"),
+    ("This is a live demo built by Velo AI for Wayside Family Dental.",
+     "This is a live demo built by Velo AI for Elite Dentistry"),
+    ("Sanford, Florida · Est. 2012",
+     "Avalon Park, Orlando · Family-Oriented"),
+    ('<h1 class="practice-name">Wayside Family Dental</h1>',
+     '<h1 class="practice-name">Elite Dentistry</h1>'),
+    ('<p class="practice-doctor">Dr. Lyudmila A. Onyski, DDS</p>',
+     '<p class="practice-doctor">Dr. Mark Ashy · Owner</p>'),
+    ("Dr. Onyski is on call to respond to her patients' needs as soon as possible. As a patient of Wayside, you're never alone.",
+     "Dr. Mark Ashy — a Florida native and father — runs Elite Dentistry as the kind of family practice where the entire household can come to one office. He's on call for patient needs after hours. You're never alone."),
+    ("4907 International Pkwy, Suite 1041<br>Sanford, FL 32771",
+     "13000 Avalon Lake Drive, Suite 201<br>Orlando, FL 32828"),
+    ("<div>(407) 732-4570</div>", "<div>(407) 658-0103</div>"),
+    ("Mon–Thu 8a–5p · Fri 8a–1p",
+     "Mon–Thu 8:30a–5p · Fri 8:30a–4p"),
+    ("<strong>Wayside Concierge</strong> · Available 24/7",
+     "<strong>Elite Dentistry Concierge</strong> · Available 24/7"),
+    ("A patient of Wayside? Dr. Onyski will be notified immediately for urgent matters.",
+     "A patient of Elite Dentistry? Dr. Ashy will be notified immediately for urgent matters."),
+    ("Good evening — you've reached the after-hours line for Wayside Family Dental. Dr. Onyski is unavailable right now, but I can help with most things and reach her directly if it's urgent.",
+     "Good evening — you've reached the after-hours line for Elite Dentistry in Avalon Park. Dr. Mark Ashy has been recognized as one of America's Best Dentists by the National Consumer Advisory Board, and runs the practice as the family dentist for Avalon Park, Stoneybrook, Eastwood, and surrounding areas. He's wrapped for the day, but I can help with most things and reach him directly if it's urgent."),
+    ("Dr. Onyski has been doing both since 2010, so you're in capable hands.",
+     "Elite Dentistry has been performing both for years — Dr. Ashy handles general, cosmetic, restorative, and pediatric dentistry under one roof, plus implant restorations and emergency care. You're in capable hands."),
+    ("Dr. Onyski has been welcoming new patients to Wayside since 2012",
+     "Elite Dentistry has been welcoming new families to Avalon Park"),
+    ("texting Dr. Onyski now — she'll call you back",
+     "texting Dr. Ashy now — he'll call you back"),
+    ("Dr. Onyski will want to see you first thing — she keeps emergency slots",
+     "Dr. Ashy will want to see you first thing — he keeps same-day or next-day emergency slots"),
+    ("Dr. Onyski's office", "the office"),
+    ("Dr. Onyski has been notified", "Dr. Ashy has been notified"),
+    ("Dr. Onyski opens new-patient slots", "Dr. Ashy opens new-patient slots"),
+    ("Dr. Onyski has openings", "Dr. Ashy has openings"),
+    ("Dr. Onyski needs to weigh in", "Dr. Ashy needs to weigh in"),
+    ("she'll call", "he'll call"),
+    ("she keeps emergency slots", "he keeps emergency slots"),
+    ("she calls", "he calls"),
+    ('<div class="booking-icon">W</div>', '<div class="booking-icon">E</div>'),
+    ('<span class="value">Dr. Lyudmila A. Onyski</span>',
+     '<span class="value">Dr. Mark Ashy</span>'),
+    ('<span class="value">4907 International Pkwy, Suite 1041</span>',
+     '<span class="value">13000 Avalon Lake Drive, Orlando</span>'),
+    ("(407) 732-4570", "(407) 658-0103"),
+    ("Dr. Onyski", "Dr. Ashy"),
+    ("Wayside", "Elite Dentistry"),
+]
+ELITEDENTAL_CLEANUP = [
+    ("Wayside", "Elite Dentistry"),
+    ("Onyski", "Ashy"),
+]
+
 # ---- CORO — Spanish tapas Michelin, Audubon Park (uses bacan.html base) ----
 CORO_SUBS = [
     ("BACÁN — Reservations & Private Dining Concierge | Powered by Velo AI",
@@ -2076,6 +2443,14 @@ JOBS = [
     ("susanas", "pigfloyds.html", SUSANAS_SUBS, SUSANAS_CLEANUP),
     ("lushlash", "goldie.html", LUSHLASH_SUBS, LUSHLASH_CLEANUP),
     ("vpdental", "wayside.html", VPDENTAL_SUBS, VPDENTAL_CLEANUP),
+    # ---- ROUND 4 ----
+    ("forwardlaw", "lathamluna.html", FORWARD_SUBS, FORWARD_CLEANUP),
+    ("kanekoltun", "ragland.html", KANE_SUBS, KANE_CLEANUP),
+    ("epllc", "murphyberglund.html", EPLLC_SUBS, EPLLC_CLEANUP),
+    ("banhmiboy", "pigfloyds.html", BANHMI_SUBS, BANHMI_CLEANUP),
+    ("giovannis", "adriatico.html", GIOVANNIS_SUBS, GIOVANNIS_CLEANUP),
+    ("studio312", "thelook.html", STUDIO312_SUBS, STUDIO312_CLEANUP),
+    ("elitedental", "wayside.html", ELITEDENTAL_SUBS, ELITEDENTAL_CLEANUP),
 ]
 
 
