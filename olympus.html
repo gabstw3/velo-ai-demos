@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Olympus Group — After-Hours Lead Concierge | Powered by Velo AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Real estate palette: warm cream + terra clay + slate blue.
+       Confident, modern, not luxury-snobby. Approachable boutique vibe. */
+    --bg: #f5f0e8;
+    --bg-deep: #e8dfd0;
+    --ink: #1d2434;
+    --ink-soft: #4a5066;
+    --ink-faint: #8a8f9e;
+    --accent: #2e4d7a;       /* slate blue — the broker primary */
+    --accent-warm: #c97852;  /* warm terra clay accent */
+    --accent-glow: #f3d8b7;
+    --line: #d4ccb8;
+    --bot-msg: #ffffff;
+    --user-msg: #2e4d7a;
+    --user-msg-text: #ffffff;
+    --shadow-sm: 0 1px 3px rgba(29, 36, 52, 0.06);
+    --shadow-md: 0 4px 16px rgba(29, 36, 52, 0.08);
+    --shadow-lg: 0 12px 40px rgba(29, 36, 52, 0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body { height: 100%; }
+
+  body {
+    font-family: 'Geist', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.5;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(201, 120, 82, 0.05) 0%, transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(46, 77, 122, 0.04) 0%, transparent 40%);
+  }
+
+  .app {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    min-height: 100vh;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .practice-panel {
+    background: linear-gradient(180deg, #1f2f4d 0%, #131c2f 100%);
+    color: #e8e0d0;
+    padding: 40px 32px;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .practice-panel::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(201, 120, 82, 0.10) 0%, transparent 50%);
+    animation: drift 22s ease-in-out infinite;
+  }
+
+  @keyframes drift {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(20%, 10%); }
+  }
+
+  .practice-content { position: relative; z-index: 1; }
+
+  .practice-mark {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    margin-bottom: 12px;
+    opacity: 0.9;
+  }
+
+  .practice-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+  }
+
+  .practice-doctor {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--accent-glow);
+    margin-bottom: 32px;
+  }
+
+  .promise-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(243, 216, 183, 0.15);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+    backdrop-filter: blur(10px);
+  }
+
+  .promise-card h4 {
+    font-family: 'Geist', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    margin-bottom: 8px;
+  }
+
+  .promise-card p {
+    font-size: 14px;
+    line-height: 1.55;
+    color: #d4cdb8;
+  }
+
+  .practice-info {
+    margin-top: auto;
+    padding-top: 24px;
+    border-top: 1px solid rgba(243, 216, 183, 0.1);
+    font-size: 13px;
+    line-height: 1.7;
+    color: #b8b0a0;
+  }
+
+  .practice-info .row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 8px;
+  }
+
+  .practice-info .label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    width: 56px;
+    padding-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .powered-by {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(243, 216, 183, 0.1);
+    font-size: 11px;
+    color: #8a8275;
+    letter-spacing: 0.05em;
+  }
+
+  .powered-by strong {
+    color: var(--accent-glow);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+  }
+
+  .chat-panel {
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .chat-header {
+    padding: 20px 32px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(245, 240, 232, 0.85);
+    backdrop-filter: blur(12px);
+    z-index: 10;
+  }
+
+  .chat-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .status-dot {
+    width: 8px; height: 8px;
+    background: #4ade80;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.15);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.15); }
+    50% { box-shadow: 0 0 0 8px rgba(74, 222, 128, 0.05); }
+  }
+
+  .status-text {
+    font-size: 13px;
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+
+  .status-text strong { color: var(--ink); font-weight: 600; }
+
+  .chat-time {
+    font-family: 'Fraunces', serif;
+    font-size: 12px;
+    color: var(--ink-faint);
+    font-style: italic;
+  }
+
+  .messages {
+    flex: 1;
+    padding: 32px;
+    scroll-behavior: smooth;
+  }
+
+  .msg-group {
+    margin-bottom: 20px;
+    animation: msgIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  @keyframes msgIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .msg {
+    max-width: 78%;
+    padding: 14px 18px;
+    border-radius: 18px;
+    font-size: 15px;
+    line-height: 1.55;
+    word-wrap: break-word;
+  }
+
+  .msg-bot {
+    background: var(--bot-msg);
+    color: var(--ink);
+    border-bottom-left-radius: 4px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(212, 204, 184, 0.4);
+  }
+
+  .msg-user {
+    background: var(--user-msg);
+    color: var(--user-msg-text);
+    border-bottom-right-radius: 4px;
+    margin-left: auto;
+  }
+
+  .msg-meta {
+    font-size: 10px;
+    color: var(--ink-faint);
+    margin-top: 6px;
+    padding: 0 8px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .msg-meta.user { text-align: right; }
+
+  .typing {
+    display: flex;
+    gap: 4px;
+    padding: 16px 20px;
+    background: var(--bot-msg);
+    border-radius: 18px;
+    border-bottom-left-radius: 4px;
+    width: fit-content;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(212, 204, 184, 0.4);
+  }
+
+  .typing span {
+    width: 7px; height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: typing 1.4s ease-in-out infinite;
+  }
+
+  .typing span:nth-child(2) { animation-delay: 0.2s; }
+  .typing span:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes typing {
+    0%, 100% { transform: translateY(0); opacity: 0.4; }
+    50% { transform: translateY(-4px); opacity: 1; }
+  }
+
+  .quick-replies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+    animation: msgIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s both;
+  }
+
+  .chip {
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 9px 16px;
+    border-radius: 100px;
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .chip:hover {
+    background: var(--accent);
+    color: var(--bg);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .chip:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .booking-card {
+    background: linear-gradient(135deg, #ffffff 0%, #faf3e6 100%);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 24px;
+    margin-top: 12px;
+    box-shadow: var(--shadow-md);
+    animation: msgIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    max-width: 78%;
+  }
+
+  .booking-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .booking-icon {
+    width: 32px; height: 32px;
+    background: var(--accent);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .booking-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--ink);
+  }
+
+  .booking-detail {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 12px;
+    padding: 8px 0;
+    font-size: 14px;
+  }
+
+  .booking-detail .label {
+    color: var(--ink-faint);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding-top: 2px;
+  }
+
+  .booking-detail .value {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .booking-confirm {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    gap: 8px;
+  }
+
+  .btn-primary {
+    flex: 1;
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: #1f2f4d;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--ink-soft);
+    border: 1px solid var(--line);
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover {
+    background: var(--bg-deep);
+  }
+
+  .input-area {
+    padding: 20px 32px 24px;
+    border-top: 1px solid var(--line);
+    background: rgba(245, 240, 232, 0.85);
+    backdrop-filter: blur(12px);
+  }
+
+  .input-wrap {
+    display: flex;
+    gap: 10px;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 6px 6px 6px 18px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .input-wrap:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(46, 77, 122, 0.08);
+  }
+
+  .input-wrap input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-family: 'Geist', sans-serif;
+    font-size: 15px;
+    color: var(--ink);
+    padding: 10px 0;
+    background: transparent;
+  }
+
+  .input-wrap input::placeholder { color: var(--ink-faint); }
+
+  .send-btn {
+    background: var(--accent);
+    color: white;
+    border: none;
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+
+  .send-btn:hover { background: #1f2f4d; transform: scale(1.05); }
+  .send-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+  .input-hint {
+    font-size: 11px;
+    color: var(--ink-faint);
+    margin-top: 10px;
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
+
+  .demo-banner {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 10px 16px;
+    border-radius: 100px;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    z-index: 100;
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .demo-banner:hover { transform: scale(1.03); }
+  .demo-banner .pulse-dot {
+    width: 6px; height: 6px;
+    background: var(--accent-warm);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @media (max-width: 900px) {
+    html, body {
+      height: auto;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .app {
+      grid-template-columns: 1fr;
+      height: auto;
+      min-height: 100vh;
+    }
+    .practice-panel {
+      padding: 20px 24px;
+      position: static;
+      height: auto;
+      max-height: none;
+    }
+    .practice-panel .promise-card,
+    .practice-panel .practice-info,
+    .practice-panel .powered-by { display: none; }
+    .practice-name { font-size: 22px; }
+    .practice-doctor { font-size: 14px; margin-bottom: 0; }
+    .chat-panel {
+      min-height: 80vh;
+    }
+    .messages {
+      padding: 20px;
+      overflow-y: visible;
+      flex: none;
+    }
+    .msg { max-width: 88%; }
+    .input-area {
+      padding: 16px 20px 20px;
+      position: sticky;
+      bottom: 0;
+    }
+    .demo-banner { top: 8px; right: 8px; padding: 8px 12px; font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner" onclick="alert('This is a live demo built by Velo AI for Olympus Executive Realty.\n\nFor deployment information, contact:\nGabe Herrera — Velo AI\nWinter Springs, FL')">
+  <span class="pulse-dot"></span>
+  <span>Velo AI Demo</span>
+</div>
+
+<div class="app">
+
+  <!-- LEFT: Brand Panel -->
+  <aside class="practice-panel">
+    <div class="practice-content">
+      <div class="practice-mark">Montverde · Florida's Premier 100% Commission Brokerage</div>
+      <h1 class="practice-name">Olympus Executive Realty</h1>
+      <p class="practice-doctor">the Olympus team Olympus · Broker / Owner</p>
+
+      <div class="promise-card">
+        <h4>Catch The Lead Before It Cools</h4>
+        <p>Real estate moves at the speed of attention. the Olympus team is committed to making sure no buyer or seller hits a dead end on this site, no matter the hour.</p>
+      </div>
+    </div>
+
+    <div class="practice-info">
+      <div class="row">
+        <div class="label">Address</div>
+        <div>16903 Lakeside Drive, Suite 6<br>Montverde, FL 34756</div>
+      </div>
+      <div class="row">
+        <div class="label">Phone</div>
+        <div>(407) 469-2000</div>
+      </div>
+      <div class="row">
+        <div class="label">Hours</div>
+        <div>Mon–Thu 8:30a–5:30p · Fri 8:30a–4p</div>
+      </div>
+      <div class="row">
+        <div class="label">Service</div>
+        <div>Winter Park · Winter Springs · Oviedo · Deltona</div>
+      </div>
+    </div>
+
+    <div class="powered-by">
+      Lead concierge powered by <strong>VELO AI</strong>
+    </div>
+  </aside>
+
+  <!-- RIGHT: Chat Interface -->
+  <main class="chat-panel">
+    <header class="chat-header">
+      <div class="chat-status">
+        <span class="status-dot"></span>
+        <span class="status-text"><strong>Olympus Concierge</strong> · 24/7 Lead Capture</span>
+      </div>
+      <span class="chat-time" id="chat-time">After hours · 9:43 PM</span>
+    </header>
+
+    <div class="messages" id="messages"></div>
+
+    <div class="input-area">
+      <div class="input-wrap">
+        <input
+          type="text"
+          id="user-input"
+          placeholder="Type your message..."
+          autocomplete="off"
+        />
+        <button class="send-btn" id="send-btn" onclick="handleUserSend()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+        </button>
+      </div>
+      <div class="input-hint">Already working with Olympus? the Olympus team is notified directly for time-sensitive matters.</div>
+    </div>
+  </main>
+</div>
+
+<script>
+  // ============================================================
+  // VELO AI — Real Estate Lead Qualifier
+  // Buyer/seller intent → DPA/financing fit → consult booking
+  // ============================================================
+
+  const messagesEl = document.getElementById('messages');
+  const inputEl = document.getElementById('user-input');
+  const sendBtn = document.getElementById('send-btn');
+
+  const memory = {
+    name: null,
+    intent: null,           // buying, selling, both, info
+    timeline: null,
+    budget: null,
+    financing: null,
+    propertyType: null,
+    history: []
+  };
+
+  const now = new Date();
+  const hours = now.getHours() < 8 || now.getHours() >= 17 ? '9:43 PM' : '7:18 AM';
+  document.getElementById('chat-time').textContent = `After hours · ${hours}`;
+
+  function addBotMessage(text, delay = 700, withChips = null) {
+    return new Promise(resolve => {
+      const typingId = 't' + Date.now();
+      const typing = document.createElement('div');
+      typing.className = 'msg-group';
+      typing.id = typingId;
+      typing.innerHTML = `<div class="typing"><span></span><span></span><span></span></div>`;
+      messagesEl.appendChild(typing);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+
+      setTimeout(() => {
+        document.getElementById(typingId)?.remove();
+        const msgGroup = document.createElement('div');
+        msgGroup.className = 'msg-group';
+        let html = `<div class="msg msg-bot">${text}</div><div class="msg-meta">Olympus Concierge</div>`;
+
+        if (withChips) {
+          html += `<div class="quick-replies">`;
+          withChips.forEach((chip) => {
+            html += `<button class="chip" onclick="handleChipClick('${chip.value.replace(/'/g, "\\'")}', this)">${chip.label}</button>`;
+          });
+          html += `</div>`;
+        }
+
+        msgGroup.innerHTML = html;
+        messagesEl.appendChild(msgGroup);
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+        resolve();
+      }, delay);
+    });
+  }
+
+  function addUserMessage(text) {
+    const msgGroup = document.createElement('div');
+    msgGroup.className = 'msg-group';
+    msgGroup.innerHTML = `
+      <div class="msg msg-user" style="margin-left:auto;">${text}</div>
+      <div class="msg-meta user">You · just now</div>
+    `;
+    messagesEl.appendChild(msgGroup);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+    memory.history.push({ role: 'user', text });
+  }
+
+  function disableChips(currentBtn) {
+    const chips = currentBtn.parentElement.querySelectorAll('.chip');
+    chips.forEach(c => c.disabled = true);
+    currentBtn.style.background = 'var(--accent)';
+    currentBtn.style.color = 'var(--bg)';
+  }
+
+  function showBookingCard(meetingType, time) {
+    const card = document.createElement('div');
+    card.className = 'msg-group';
+    card.innerHTML = `
+      <div class="booking-card">
+        <div class="booking-header">
+          <div class="booking-icon">O</div>
+          <div class="booking-title">Consult Hold Created</div>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Client</span>
+          <span class="value">${memory.name || 'New lead'}</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">For</span>
+          <span class="value">${meetingType}</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Proposed</span>
+          <span class="value">${time}</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">With</span>
+          <span class="value">the Olympus team Olympus · Broker</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Office</span>
+          <span class="value">Olympus HQ · Montverde, FL</span>
+        </div>
+        <div class="booking-confirm">
+          <button class="btn-primary" onclick="confirmBooking()">Confirm consult</button>
+          <button class="btn-secondary" onclick="proposeAlternative()">Different time</button>
+        </div>
+      </div>
+    `;
+    messagesEl.appendChild(card);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  // ============================================================
+  // Conversation Flow
+  // ============================================================
+
+  async function startConversation() {
+    await addBotMessage(
+      `Hey — you've reached the after-hours line for Olympus Group. the Olympus team's wrapped for the day, but I can get you sorted on what you need and have him follow up directly in the morning.<br><br>What brings you in tonight?`,
+      400,
+      [
+        { label: '🏡 Looking to buy', value: 'buying' },
+        { label: '📋 Thinking about selling', value: 'selling' },
+        { label: '🔄 Both — buying & selling', value: 'both' },
+        { label: '❓ A general question', value: 'info' }
+      ]
+    );
+  }
+
+  async function handleChipClick(value, btn) {
+    disableChips(btn);
+    const labelMap = {
+      'buying': "I'm looking to buy a home",
+      'selling': "I'm thinking about selling",
+      'both': "I need to do both — sell and buy",
+      'info': "I just have a general question",
+      'first-time': "Yes, first-time buyer",
+      'repeat-buyer': "No, I've owned before",
+      'budget-low': "Under $400k",
+      'budget-mid': "$400k–$700k",
+      'budget-high': "$700k+",
+      'financing-cash': "Paying cash",
+      'financing-prequal': "Pre-approved",
+      'financing-need': "Need help with financing",
+      'timeline-now': "Within 30 days",
+      'timeline-soon': "1–3 months",
+      'timeline-later': "Just exploring",
+      'sell-now': "Soon — within 30 days",
+      'sell-3mo': "Within a few months",
+      'sell-explore': "Just exploring",
+      'this-week': "This week",
+      'next-week': "Next week",
+      'flexible': "I'm flexible"
+    };
+    addUserMessage(labelMap[value] || value);
+    memory.history.push({ role: 'user', value });
+    await routeIntent(value);
+  }
+
+  async function routeIntent(value) {
+    // BUYING PATH ----------------------------------
+    if (value === 'buying') {
+      memory.intent = 'buying';
+      await addBotMessage(
+        `Great — the Olympus team and his team work Winter Park, Winter Springs, Oviedo, and the surrounding Seminole-Volusia area pretty much every day, so you're in the right neighborhood for them.<br><br>Quick one to start: are you a first-time buyer, or have you owned before?`,
+        1100,
+        [
+          { label: '🆕 First-time buyer', value: 'first-time' },
+          { label: '🔁 Owned before', value: 'repeat-buyer' }
+        ]
+      );
+      return;
+    }
+
+    if (value === 'first-time') {
+      memory.firstTime = true;
+      await addBotMessage(
+        `That's actually one of the Olympus team's specialties — Olympus runs a Down Payment Assistance program specifically for first-time buyers in Florida, and the Olympus team's licensed on the mortgage side too, so he can walk you through both pieces in one conversation instead of bouncing you between people.<br><br>Where are you on financing?`,
+        1300,
+        [
+          { label: '💰 Paying cash', value: 'financing-cash' },
+          { label: '✅ Pre-approved', value: 'financing-prequal' },
+          { label: '🤔 Need help with that', value: 'financing-need' }
+        ]
+      );
+      return;
+    }
+
+    if (value === 'repeat-buyer') {
+      memory.firstTime = false;
+      await addBotMessage(
+        `Got it — second-and-up buyers usually move faster because they've been through the process. What's your budget range looking like?`,
+        1000,
+        [
+          { label: 'Under $400k', value: 'budget-low' },
+          { label: '$400k–$700k', value: 'budget-mid' },
+          { label: '$700k+', value: 'budget-high' }
+        ]
+      );
+      return;
+    }
+
+    if (['financing-cash', 'financing-prequal', 'financing-need'].includes(value)) {
+      memory.financing = value;
+      const transition = value === 'financing-need'
+        ? `No problem at all — the Olympus team handles loan side too, so he can help you get pre-approved without sending you to a separate lender.<br><br>What's your budget range looking like?`
+        : `Good. What's your budget range looking like?`;
+      await addBotMessage(transition, 1100, [
+        { label: 'Under $400k', value: 'budget-low' },
+        { label: '$400k–$700k', value: 'budget-mid' },
+        { label: '$700k+', value: 'budget-high' }
+      ]);
+      return;
+    }
+
+    if (['budget-low', 'budget-mid', 'budget-high'].includes(value)) {
+      memory.budget = value;
+      await addBotMessage(
+        `Perfect. And how soon are you looking to actually pull the trigger?`,
+        1000,
+        [
+          { label: '🔥 Within 30 days', value: 'timeline-now' },
+          { label: '📅 1–3 months', value: 'timeline-soon' },
+          { label: '👀 Just exploring', value: 'timeline-later' }
+        ]
+      );
+      return;
+    }
+
+    if (['timeline-now', 'timeline-soon', 'timeline-later'].includes(value)) {
+      memory.timeline = value;
+      const message = value === 'timeline-now'
+        ? `Understood — at that pace the Olympus team will want to move fast on a strategy call. He keeps Tuesday and Thursday mornings open for active buyers. Want me to hold a 30-minute consult with him this week?`
+        : value === 'timeline-soon'
+        ? `Got it — that timeline gives you room to be strategic about it. the Olympus team typically does a 30-minute "where to start" consult that maps out your path before you start touring. Want me to hold a slot?`
+        : `That's a smart way to approach it — most of the Olympus team's best clients started by exploring 6+ months out. He'll talk to "just-looking" folks the same as ready-buyers, no pressure. Want me to hold a 20-minute orientation call?`;
+      await addBotMessage(message, 1300, [
+        { label: '📅 This week', value: 'this-week' },
+        { label: '📆 Next week', value: 'next-week' },
+        { label: "🤝 I'm flexible", value: 'flexible' }
+      ]);
+      return;
+    }
+
+    // SELLING PATH ---------------------------------
+    if (value === 'selling') {
+      memory.intent = 'selling';
+      await addBotMessage(
+        `Smart timing to start the conversation — most sellers wait until they're already stressed, but the prep work matters. the Olympus team's team has been the #1 brokerage in West Volusia by sold transactions, so you're talking to someone who knows what's actually moving in this market.<br><br>How soon are you thinking?`,
+        1300,
+        [
+          { label: '🔥 Within 30 days', value: 'sell-now' },
+          { label: '📅 Within a few months', value: 'sell-3mo' },
+          { label: '👀 Just exploring', value: 'sell-explore' }
+        ]
+      );
+      return;
+    }
+
+    if (['sell-now', 'sell-3mo', 'sell-explore'].includes(value)) {
+      memory.timeline = value;
+      const message = value === 'sell-now'
+        ? `Tight timeline — the Olympus team will want to do a quick walk-through and CMA before listing. Tuesday or Thursday this week, can you hold a 45-minute appointment?`
+        : value === 'sell-3mo'
+        ? `Good runway. the Olympus team usually starts with a free home valuation + market position consult, no obligation, gives you a clear number before you commit to anything. Want to hold a slot?`
+        : `Smart — the Olympus team does a 30-minute "should I sell now or hold" call, walks through your home value, market timing, and what you'd net. No pressure to list. Want me to hold a slot?`;
+      await addBotMessage(message, 1300, [
+        { label: '📅 This week', value: 'this-week' },
+        { label: '📆 Next week', value: 'next-week' },
+        { label: "🤝 I'm flexible", value: 'flexible' }
+      ]);
+      return;
+    }
+
+    // BOTH PATH ------------------------------------
+    if (value === 'both') {
+      memory.intent = 'both';
+      await addBotMessage(
+        `Buying and selling at the same time is its own art form — and it's actually where the Olympus team shines because he handles both sides of your transaction without you having to coordinate two different agents. He also handles the mortgage piece, so all three legs sit on one desk.<br><br>How soon are you looking to make the move?`,
+        1400,
+        [
+          { label: '🔥 Within 30 days', value: 'timeline-now' },
+          { label: '📅 1–3 months', value: 'timeline-soon' },
+          { label: '👀 Just exploring', value: 'timeline-later' }
+        ]
+      );
+      return;
+    }
+
+    // BOOKING -------------------------------------
+    if (['this-week', 'next-week', 'flexible'].includes(value)) {
+      const timeMap = {
+        'this-week': 'Thursday at 6:00 PM',
+        'next-week': 'Tuesday at 5:30 PM',
+        'flexible': 'Wednesday at 6:30 PM'
+      };
+      memory.proposedTime = timeMap[value];
+
+      await addBotMessage(
+        `Perfect. Let me hold ${timeMap[value]} for you — the Olympus team takes evening slots on purpose so people don't have to skip work for a real-estate call. What's your first name so I can put it on his calendar?`,
+        1100
+      );
+      memory.collecting = 'name-for-booking';
+      return;
+    }
+
+    // GENERAL QUESTION PATH -----------------------
+    if (value === 'info') {
+      memory.intent = 'info';
+      await addBotMessage(
+        `Of course — go ahead and type your question. If it's something the Olympus team needs to weigh in on personally (pricing, specific neighborhoods, your situation), I'll route it to him and he'll get back to you in the morning.`,
+        900
+      );
+      memory.collecting = 'free-question';
+      return;
+    }
+  }
+
+  // ============================================================
+  // Free-text input handler
+  // ============================================================
+  async function handleUserSend() {
+    const text = inputEl.value.trim();
+    if (!text) return;
+    addUserMessage(text);
+    inputEl.value = '';
+
+    if (memory.collecting === 'name-for-booking') {
+      const name = text.split(/\s+/)[0].replace(/[^a-zA-Z]/g, '');
+      memory.name = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+      await addBotMessage(
+        `Thanks, ${memory.name}. What's the best phone number? the Olympus team's office will text you a confirmation by 9 AM tomorrow.`,
+        800
+      );
+      memory.collecting = 'phone';
+      return;
+    }
+
+    if (memory.collecting === 'phone') {
+      memory.phone = text;
+      memory.collecting = null;
+
+      if (memory.proposedTime) {
+        const meetingMap = {
+          'buying': 'Buyer Strategy Consult',
+          'selling': 'Listing & Valuation Consult',
+          'both': 'Buy & Sell Strategy Consult',
+          'info': 'General Real Estate Consult'
+        };
+        const meeting = meetingMap[memory.intent] || 'New Client Consult';
+
+        await addBotMessage(
+          `Perfect. Here's the hold I'm creating for the Olympus team:`,
+          800
+        );
+        setTimeout(() => showBookingCard(meeting, memory.proposedTime), 1200);
+      } else {
+        await addBotMessage(
+          `All set, ${memory.name}. Your matched producer will reach out to ${text} by mid-morning tomorrow.<br><br>Anything else on your mind tonight?`,
+          1000
+        );
+      }
+      return;
+    }
+
+    if (memory.collecting === 'free-question') {
+      memory.collecting = null;
+      await addBotMessage(
+        `Thanks for sending that over. I've logged your question for the Olympus team to review first thing tomorrow — he'll either reply directly or have his team follow up by 10 AM.<br><br>Want me to also hold a consult slot in case it's easier to discuss live?`,
+        1100,
+        [
+          { label: '✅ Yes, hold a slot', value: 'this-week' },
+          { label: 'No thanks', value: 'no-slot' }
+        ]
+      );
+      return;
+    }
+
+    // Fallback
+    await addBotMessage(
+      `Thanks for sharing. So I can route this to the Olympus team correctly — would you say this is more about buying, selling, or just a general question?`,
+      900,
+      [
+        { label: '🏡 Buying', value: 'buying' },
+        { label: '📋 Selling', value: 'selling' },
+        { label: '❓ General question', value: 'info' }
+      ]
+    );
+  }
+
+  function confirmBooking() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) {
+      card.style.transition = 'all 0.3s ease';
+      card.style.background = 'linear-gradient(135deg, #2e4d7a 0%, #1f2f4d 100%)';
+      card.style.color = 'white';
+      card.querySelector('.booking-title').style.color = 'white';
+      card.querySelector('.booking-icon').style.background = 'white';
+      card.querySelector('.booking-icon').style.color = 'var(--accent)';
+      card.querySelectorAll('.label').forEach(el => el.style.color = 'rgba(255,255,255,0.6)');
+      card.querySelectorAll('.value').forEach(el => el.style.color = 'white');
+      card.querySelector('.booking-confirm').remove();
+    }
+    setTimeout(async () => {
+      await addBotMessage(
+        `You're set, ${memory.name}. The brokerage has notified the right producer, and you'll get a confirmation text from <strong>(407) 469-2000</strong> tomorrow morning.<br><br>Have a good night — and welcome to the Olympus network.`,
+        700
+      );
+    }, 400);
+  }
+
+  function proposeAlternative() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) card.remove();
+    addBotMessage(
+      `No problem. Olympus has openings Tuesday at 5 PM, Thursday at 6:30 PM, or Saturday at 10 AM — which works best?`,
+      600,
+      [
+        { label: '🌅 Tuesday 5 PM', value: 'this-week' },
+        { label: '🌆 Thursday 6:30 PM', value: 'next-week' },
+        { label: '☀️ Saturday 10 AM', value: 'flexible' }
+      ]
+    );
+  }
+
+  inputEl.addEventListener('keydown', e => {
+    if (e.key === 'Enter') handleUserSend();
+  });
+
+  setTimeout(startConversation, 600);
+</script>
+
+</body>
+</html>
