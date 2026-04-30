@@ -2414,6 +2414,131 @@ NONADENTAL_CLEANUP = [
 ]
 
 
+# ---- ROUND 5 — net-new prospects ----
+
+# Root & Branch Bistro and Bar (Clermont) — Jason & Casey Baruch (proprietors), Chef David M Henry
+# Best of South Lake, OpenTable Diner's Choice, 4.7 stars / 1,480 reviews
+# Closed Mon-Tues; Wed/Thu/Sun 3-9pm; Fri/Sat 3-10pm
+# Voice: "dressing up is optional" — upscale-yet-unpretentious bistro
+ROOTBRANCH_SUBS = [
+    ("Pig Floyd's Urban Barbakoa — Reservations & Catering Concierge | Powered by Velo AI",
+     "Root & Branch Bistro and Bar — Reservations & Private Events Concierge | Powered by Velo AI"),
+    ("This is a live demo built by Velo AI for Pig Floyd's Urban Barbakoa.",
+     "This is a live demo built by Velo AI for Root & Branch Bistro and Bar."),
+    ('<h1 class="practice-name">Pig Floyd\'s Urban Barbakoa</h1>',
+     '<h1 class="practice-name">Root & Branch Bistro and Bar</h1>'),
+    ("Pig Floyd's runs hot during dinner service and the team can't always pause to answer calls — but reservations, takeout, and catering inquiries get captured around the clock.",
+     "Root & Branch is dinner-only Wednesday through Sunday — when the kitchen's deep in service, reservation calls and private-event questions get missed. This line catches them around the clock."),
+    ("<strong>Pig Floyd's Concierge</strong> · Available 24/7",
+     "<strong>Root &amp; Branch Concierge</strong> · Available 24/7"),
+    ("Pig Floyd's Concierge",
+     "Root & Branch Concierge"),
+    ('<span class="value">Pig Floyd\'s Team</span>',
+     '<span class="value">Jason &amp; Casey Baruch · Chef David M Henry</span>'),
+    ("Welcome to Pig Floyd's. The dining room is loud and the smokers are working — the team can't always pick up. I'm the after-hours line: I can take reservations, quote catering, and answer most menu questions before service tomorrow.<br><br>What brings you here tonight?",
+     "Welcome to Root & Branch. The kitchen's running and the front-of-house can't always pick up — I'm the after-hours line. I can take reservations, scope private events, and answer most menu questions before tomorrow's service.<br><br>What brings you here tonight?"),
+    ("Catering is one of Pig Floyd's strengths — the smoker doesn't sleep, so we can scale up for almost any event. What kind of event?",
+     "Private events are one of the things Root & Branch does best — Chef Henry has built tasting menus for everything from rehearsal dinners to corporate offsites. What kind of event?"),
+    ("Most clients asking about ${txt} are wondering: <em>\"How many people can you feed?\"</em> and <em>\"What's it going to cost?\"</em><br><br>Pig Floyd's catering ranges from BBQ trays for 10 people up to full-service events for 200+. Pricing usually lands $18-32 per person depending on protein mix and service style. Thomas does a free 15-minute call to scope events before quoting — that way the quote is real, not generic.<br><br>Want me to hold a slot this week?",
+     "Most folks asking about ${txt} want to know: <em>\"What's the format?\"</em> and <em>\"What's it going to run per person?\"</em><br><br>Root & Branch handles parties from 12 (chef's table) up through full buyouts of the dining room. Tasting menus typically land $55-85 per person depending on courses and wine pairing. Jason does a quick scoping call before quoting — that way the number is real, not generic.<br><br>Want me to hold a slot this week?"),
+    ("Pickup orders go through our online system — fastest way is to order at pigfloyds.com/order or call (407) 203-0866 during service.",
+     "Reservations go through OpenTable — fastest way is to book at rootandbranchbistroandbar.com or call (352) 708-4529 during service."),
+    ("Perfect. Here's the hold I'm creating for the Pig Floyd's team:",
+     "Perfect. Here's the hold I'm creating for the Root & Branch team:"),
+    ("No problem. Pig Floyd's has tables available Tuesday at 6 PM, Wednesday at 7:30 PM, or Friday at 8 PM — which works best?",
+     "No problem. Root & Branch has tables Wednesday at 6 PM, Friday at 7:30 PM, or Sunday at 5 PM — which works best?"),
+    ("Tuesday at 6 PM, Wednesday at 7:30 PM, or Friday at 8 PM",
+     "Wednesday at 6 PM, Friday at 7:30 PM, or Sunday at 5 PM"),
+    ("(407) 203-0866", "(352) 708-4529"),
+    ("Thomas", "Jason"),
+    ("Pig Floyd", "Root &amp; Branch"),
+]
+ROOTBRANCH_CLEANUP = [
+    ("Pig Floyd", "Root & Branch"),
+    ("pigfloyds", "rootandbranch"),
+]
+
+
+# Infinity Dental (Apopka) — Dr. Sushil Patel, Beef O'Brady's Plaza
+# 1450 N Rock Springs Rd, Apopka, FL 32712 — (407) 814-4940
+# Patient praise: "didn't push unnecessary procedures" — perfect for honest-care register
+# Services: general, cosmetic, Invisalign, implants, root canals, same-day emergencies
+INFINITY_SUBS = [
+    ("Wayside Family Dental — After-Hours Concierge | Powered by Velo AI",
+     "Infinity Dental — After-Hours Concierge | Powered by Velo AI"),
+    ("This is a live demo built by Velo AI for Wayside Family Dental.",
+     "This is a live demo built by Velo AI for Infinity Dental."),
+    ("Sanford, Florida · Est. 2012", "Apopka, Florida · Skilled, Modern, Compassionate"),
+    ('<h1 class="practice-name">Wayside Family Dental</h1>',
+     '<h1 class="practice-name">Infinity Dental</h1>'),
+    ('<p class="practice-doctor">Dr. Lyudmila A. Onyski, DDS</p>',
+     '<p class="practice-doctor">Dr. Sushil Patel, DDS</p>'),
+    ("Dr. Onyski is on call to respond to her patients' needs as soon as possible. As a patient of Wayside, you're never alone.",
+     "Dr. Patel is committed to responding to patient needs as quickly as possible. As a patient of Infinity, you're never alone — and you'll never be pushed into treatment you don't need."),
+    ("4907 International Pkwy, Suite 1041<br>Sanford, FL 32771",
+     "1450 N Rock Springs Rd<br>Apopka, FL 32712"),
+    ("(407) 732-4570", "(407) 814-4940"),
+    ("<strong>Wayside Concierge</strong> · Available 24/7",
+     "<strong>Infinity Dental Concierge</strong> · Available 24/7"),
+    ("A patient of Wayside? Dr. Onyski will be notified immediately for urgent matters.",
+     "A patient of Infinity? Dr. Patel will be notified immediately for urgent matters."),
+    ("Good evening — you've reached the after-hours line for Wayside Family Dental. Dr. Onyski is unavailable right now, but I can help with most things and reach her directly if it's urgent.",
+     "Good evening — you've reached the after-hours line for Infinity Dental. Dr. Patel is unavailable right now, but I can help with most things and reach him directly if it's urgent."),
+    ("I'm sorry you're dealing with this — dental pain at this hour is genuinely awful, and you did the right thing reaching out. Let me get you to Dr. Onyski as quickly as possible.",
+     "I'm sorry you're dealing with this — dental pain at this hour is genuinely awful, and you did the right thing reaching out. Let me get you to Dr. Patel as quickly as possible."),
+    ("Understood. I'm flagging this as urgent and texting Dr. Onyski now — she'll call you back within 15 minutes.",
+     "Understood. I'm flagging this as urgent and texting Dr. Patel now — he'll call you back within 15 minutes."),
+    ("Got it. Dr. Onyski will want to see you first thing — she keeps emergency slots open every morning at 8 AM specifically for situations like this.",
+     "Got it. Dr. Patel will want to see you first thing — he keeps same-day emergency slots open specifically for situations like this."),
+    ("Great choice to reach out — both implants and Invisalign are major decisions and Dr. Onyski has been doing both since 2010, so you're in capable hands.",
+     "Great choice to reach out — both implants and Invisalign are major decisions, and Dr. Patel has built his practice around honest treatment planning. You'll get a clear answer on whether you're a candidate before anyone talks dollars."),
+    ("Most patients asking about ${txt} have one of two questions on their mind: <em>\"Am I a candidate?\"</em> and <em>\"What will it actually cost?\"</em><br><br>Both are best answered with a 30-minute consult — Dr. Onyski does a digital scan, reviews your options, and gives you a treatment plan with real numbers before you commit to anything. Wayside also accepts CareCredit if financing helps.",
+     "Most patients asking about ${txt} have one of two questions: <em>\"Am I a candidate?\"</em> and <em>\"What will it actually cost?\"</em><br><br>Dr. Patel handles both in a single consult — digital scan, real options, and a treatment plan with actual numbers before you commit. Patients often comment that he doesn't push procedures you don't need. CareCredit available if financing helps."),
+    ("Perfect. Let me hold ${timeMap[value]} for you. What's your first name so I can put it on Dr. Onyski's schedule?",
+     "Perfect. Let me hold ${timeMap[value]} for you. What's your first name so I can put it on Dr. Patel's schedule?"),
+    ("Welcome — Dr. Onyski has been welcoming new patients to Wayside since 2012, and most of our patients come from referrals, so it's nice when someone finds us directly.",
+     "Welcome — Dr. Patel built Infinity Dental around skilled, modern, compassionate care. A lot of patients come from referrals, so it's nice when someone finds us directly."),
+    ("Of course — go ahead and type your question and I'll do my best. If it's something Dr. Onyski needs to weigh in on personally, I'll route it to her and she'll get back to you in the morning.",
+     "Of course — go ahead and type your question and I'll do my best. If it's something Dr. Patel needs to weigh in on personally, I'll route it to him and he'll get back to you in the morning."),
+    ("Thank you, ${memory.name}. What's the best phone number to reach you at? I want to make sure Dr. Onyski has it before tomorrow morning.",
+     "Thank you, ${memory.name}. What's the best phone number to reach you at? I want to make sure Dr. Patel has it before tomorrow morning."),
+    ("Thanks, ${memory.name}. What's the best phone number? Dr. Onyski's office will text you a confirmation within an hour of opening.",
+     "Thanks, ${memory.name}. What's the best phone number? Dr. Patel's office will text you a confirmation within an hour of opening."),
+    ("Thank you, ${memory.name}. What's the best callback number? Dr. Onyski will call you within 15 minutes.",
+     "Thank you, ${memory.name}. What's the best callback number? Dr. Patel will call you within 15 minutes."),
+    ("Perfect. Here's the hold I'm creating for Dr. Onyski:",
+     "Perfect. Here's the hold I'm creating for Dr. Patel:"),
+    ("Got it, ${memory.name} — I just paged Dr. Onyski. Expect a call from <strong>(407) 732-4570</strong> within 15 minutes.<br><br>Stay calm, sit upright if possible, and avoid hot or cold liquids until she calls. You're going to be okay.",
+     "Got it, ${memory.name} — I just paged Dr. Patel. Expect a call from <strong>(407) 814-4940</strong> within 15 minutes.<br><br>Stay calm, sit upright if possible, and avoid hot or cold liquids until he calls. You're going to be okay."),
+    ("All set, ${memory.name}. Dr. Onyski's office will call (${text}) by 7:30 AM to confirm your appointment.",
+     "All set, ${memory.name}. Dr. Patel's office will call (${text}) by 8:30 AM to confirm your appointment."),
+    ("Got it. Dr. Onyski opens new-patient slots Tuesday through Thursday — would tomorrow at 10:30 AM or Wednesday at 2 PM work better for you?",
+     "Got it. Dr. Patel opens new-patient slots Monday through Friday — would tomorrow at 10:30 AM or Wednesday at 2 PM work better for you?"),
+    ("Thanks for sending that over. I've logged your question for Dr. Onyski to review first thing in the morning — she or someone from her team will reach out by 10 AM.",
+     "Thanks for sending that over. I've logged your question for Dr. Patel to review first thing in the morning — he or someone from his team will reach out by 10 AM."),
+    ("You're all set, ${memory.name}. Dr. Onyski has been notified, and you'll get a confirmation text from <strong>(407) 732-4570</strong> within the hour.<br><br>Have a good night — and thank you for choosing Wayside.",
+     "You're all set, ${memory.name}. Dr. Patel has been notified, and you'll get a confirmation text from <strong>(407) 814-4940</strong> within the hour.<br><br>Have a good night — and thank you for choosing Infinity Dental."),
+    ('<span class="value">Dr. Lyudmila A. Onyski</span>',
+     '<span class="value">Dr. Sushil Patel</span>'),
+    ('<span class="value">4907 International Pkwy, Suite 1041</span>',
+     '<span class="value">1450 N Rock Springs Rd, Apopka</span>'),
+    ('<div class="booking-icon">W</div>', '<div class="booking-icon">I</div>'),
+    ("Dr. Onyski", "Dr. Patel"),
+    ("Onyski", "Patel"),
+    ("Wayside", "Infinity Dental"),
+    ("she'll", "he'll"),
+    ("she keeps", "he keeps"),
+    ("she calls", "he calls"),
+    ("she's", "he's"),
+    ("she ", "he "),
+    ("her ", "his "),
+]
+INFINITY_CLEANUP = [
+    ("Wayside", "Infinity Dental"),
+    ("Onyski", "Patel"),
+]
+
+
 JOBS = [
     ("klausmanlaw", "ragland.html", KLAUSMAN_SUBS, KLAUSMAN_CLEANUP),
     ("frankfamilylaw", "ragland.html", FRANK_SUBS, FRANK_CLEANUP),
@@ -2451,6 +2576,9 @@ JOBS = [
     ("giovannis", "adriatico.html", GIOVANNIS_SUBS, GIOVANNIS_CLEANUP),
     ("studio312", "thelook.html", STUDIO312_SUBS, STUDIO312_CLEANUP),
     ("elitedental", "wayside.html", ELITEDENTAL_SUBS, ELITEDENTAL_CLEANUP),
+    # ---- ROUND 5 — net-new prospects ----
+    ("rootandbranch", "pigfloyds.html", ROOTBRANCH_SUBS, ROOTBRANCH_CLEANUP),
+    ("infinitydental", "wayside.html", INFINITY_SUBS, INFINITY_CLEANUP),
 ]
 
 
