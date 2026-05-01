@@ -2539,6 +2539,157 @@ INFINITY_CLEANUP = [
 ]
 
 
+# The Classic Thornton Park — Orlando gastropub, smash burgers + thick milkshakes, brunch on weekends
+# Address area: 805 E Washington St (Thornton Park) — voice: warm, comfort-food, "Food to warm your bellies"
+CLASSICTP_SUBS = [
+    ("Pig Floyd's Urban Barbakoa — Reservations & Catering Concierge | Powered by Velo AI",
+     "The Classic Thornton Park — Reservations & Catering Concierge | Powered by Velo AI"),
+    ("This is a live demo built by Velo AI for Pig Floyd's Urban Barbakoa.",
+     "This is a live demo built by Velo AI for The Classic Thornton Park."),
+    ('<h1 class="practice-name">Pig Floyd\'s Urban Barbakoa</h1>',
+     '<h1 class="practice-name">The Classic Thornton Park</h1>'),
+    ("Pig Floyd's runs hot during dinner service and the team can't always pause to answer calls — but reservations, takeout, and catering inquiries get captured around the clock.",
+     "The Classic runs late on Thornton Park's busiest nights and brunch crowds back up the line on weekends. Reservation calls, catering questions, and takeout inquiries get captured around the clock so the team can focus on the floor."),
+    ("<strong>Pig Floyd's Concierge</strong> · Available 24/7",
+     "<strong>The Classic Concierge</strong> · Available 24/7"),
+    ("Pig Floyd's Concierge", "The Classic Concierge"),
+    ('<span class="value">Pig Floyd\'s Team</span>',
+     '<span class="value">The Classic Thornton Park Team</span>'),
+    ("Welcome to Pig Floyd's. The dining room is loud and the smokers are working — the team can't always pick up. I'm the after-hours line: I can take reservations, quote catering, and answer most menu questions before service tomorrow.<br><br>What brings you here tonight?",
+     "Welcome to The Classic Thornton Park. The dining room's running and the team can't always pick up — I'm the after-hours line. I can take reservations, scope catering for special occasions, and answer most menu questions before tomorrow's service.<br><br>What brings you here tonight?"),
+    ("Catering is one of Pig Floyd's strengths — the smoker doesn't sleep, so we can scale up for almost any event. What kind of event?",
+     "Catering is one of The Classic's strengths — the kitchen scales for everything from office lunches to private celebrations. What kind of event?"),
+    ("Most clients asking about ${txt} are wondering: <em>\"How many people can you feed?\"</em> and <em>\"What's it going to cost?\"</em><br><br>Pig Floyd's catering ranges from BBQ trays for 10 people up to full-service events for 200+. Pricing usually lands $18-32 per person depending on protein mix and service style. Thomas does a free 15-minute call to scope events before quoting — that way the quote is real, not generic.<br><br>Want me to hold a slot this week?",
+     "Most folks asking about ${txt} want to know: <em>\"What's the format?\"</em> and <em>\"What's it going to cost per person?\"</em><br><br>The Classic handles parties from 10 (private brunch) up through full buyouts of the dining room. Catering platters and event packages typically land $22-45 per person depending on selections. The team does a quick scoping call before quoting — that way the number is real.<br><br>Want me to hold a slot this week?"),
+    ("Pickup orders go through our online system — fastest way is to order at pigfloyds.com/order or call (407) 203-0866 during service.",
+     "Takeout orders are easiest by phone — call (407) 730-5646 during service or grab a table on OpenTable for dine-in."),
+    ("Perfect. Here's the hold I'm creating for the Pig Floyd's team:",
+     "Perfect. Here's the hold I'm creating for the Classic team:"),
+    ("No problem. Pig Floyd's has tables available Tuesday at 6 PM, Wednesday at 7:30 PM, or Friday at 8 PM — which works best?",
+     "No problem. The Classic has tables available Wednesday at 6 PM, Friday at 7:30 PM, or Sunday at 11 AM (brunch) — which works best?"),
+    ("Tuesday at 6 PM, Wednesday at 7:30 PM, or Friday at 8 PM",
+     "Wednesday at 6 PM, Friday at 7:30 PM, or Sunday at 11 AM"),
+    ("(407) 203-0866", "(407) 730-5646"),
+    ("Thomas", "the team"),
+    ("Pig Floyd", "The Classic"),
+]
+CLASSICTP_CLEANUP = [
+    ("Pig Floyd", "The Classic"),
+    ("pigfloyds", "classictp"),
+]
+
+
+# Blue Violet Salon & Spa (Lake Mary) — Laurie Owen, Master Stylist + microblading specialist
+# 241 N Country Club Rd, Lake Mary FL — trained with Juan Juan of Beverly Hills
+# Specialties: balayage, color correction, microblading, permanent makeup, hair extensions
+BLUEVIOLET_SUBS = [
+    ("Goldie Salon — Booking & Color Concierge | Powered by Velo AI",
+     "Blue Violet Salon & Spa — Booking & Color Concierge | Powered by Velo AI"),
+    ("This is a live demo built by Velo AI for Goldie Salon.",
+     "This is a live demo built by Velo AI for Blue Violet Salon & Spa."),
+    ("Lake Mary, Florida · Luxury Boutique",
+     "Lake Mary, Florida · Master Stylist & Microblading Specialist"),
+    ('<h1 class="practice-name">Goldie Salon</h1>',
+     '<h1 class="practice-name">Blue Violet Salon &amp; Spa</h1>'),
+    ('<p class="practice-doctor">Valerie Miller, Owner &amp; Master Stylist</p>',
+     '<p class="practice-doctor">Laurie Owen, Owner &amp; Master Stylist</p>'),
+    ("<strong>Goldie Concierge</strong> · Available 24/7",
+     "<strong>Blue Violet Concierge</strong> · Available 24/7"),
+    ("Goldie Concierge", "Blue Violet Concierge"),
+    ('<span class="value">Valerie Miller</span>',
+     '<span class="value">Laurie Owen</span>'),
+    ("Valerie", "Laurie"),
+    ("Goldie", "Blue Violet"),
+]
+BLUEVIOLET_CLEANUP = [
+    ("Goldie", "Blue Violet"),
+    ("Valerie", "Laurie"),
+]
+
+
+# Flame Kabob (Dr. Phillips, Orlando) — family-owned Lebanese/Middle Eastern, all halal
+# 7536 Dr Phillips Blvd Ste 350, Orlando FL 32819 — (407) 248-2280
+# Closed Tuesdays, otherwise 11am-11pm. Voice: family hospitality, halal-certified
+FLAMEKABOB_SUBS = [
+    ("Pig Floyd's Urban Barbakoa — Reservations & Catering Concierge | Powered by Velo AI",
+     "Flame Kabob — Reservations & Catering Concierge | Powered by Velo AI"),
+    ("This is a live demo built by Velo AI for Pig Floyd's Urban Barbakoa.",
+     "This is a live demo built by Velo AI for Flame Kabob."),
+    ('<h1 class="practice-name">Pig Floyd\'s Urban Barbakoa</h1>',
+     '<h1 class="practice-name">Flame Kabob</h1>'),
+    ("Pig Floyd's runs hot during dinner service and the team can't always pause to answer calls — but reservations, takeout, and catering inquiries get captured around the clock.",
+     "Flame Kabob runs busy through lunch and dinner six days a week (closed Tuesdays). When the kitchen's deep in service, takeout calls and catering inquiries get missed. This line catches them around the clock."),
+    ("<strong>Pig Floyd's Concierge</strong> · Available 24/7",
+     "<strong>Flame Kabob Concierge</strong> · Available 24/7"),
+    ("Pig Floyd's Concierge", "Flame Kabob Concierge"),
+    ('<span class="value">Pig Floyd\'s Team</span>',
+     '<span class="value">Flame Kabob Team</span>'),
+    ("Welcome to Pig Floyd's. The dining room is loud and the smokers are working — the team can't always pick up. I'm the after-hours line: I can take reservations, quote catering, and answer most menu questions before service tomorrow.<br><br>What brings you here tonight?",
+     "Welcome to Flame Kabob. The kitchen's running and the team can't always pick up — I'm the after-hours line. I can answer halal-certification questions, scope catering, take takeout orders, and confirm hours before tomorrow's service.<br><br>What brings you here tonight?"),
+    ("Catering is one of Pig Floyd's strengths — the smoker doesn't sleep, so we can scale up for almost any event. What kind of event?",
+     "Catering is one of Flame Kabob's strengths — fully halal, scaled for everything from office lunches to large family gatherings. What kind of event?"),
+    ("Most clients asking about ${txt} are wondering: <em>\"How many people can you feed?\"</em> and <em>\"What's it going to cost?\"</em><br><br>Pig Floyd's catering ranges from BBQ trays for 10 people up to full-service events for 200+. Pricing usually lands $18-32 per person depending on protein mix and service style. Thomas does a free 15-minute call to scope events before quoting — that way the quote is real, not generic.<br><br>Want me to hold a slot this week?",
+     "Most folks asking about ${txt} want to know: <em>\"What's halal?\"</em> (everything) and <em>\"What's it going to cost per person?\"</em><br><br>Flame Kabob handles catering from family trays for 10 up through full-service events. Mixed-grill platters typically land $14-22 per person depending on protein selection and sides. The team does a quick scoping call before quoting — that way the number is real.<br><br>Want me to hold a slot this week?"),
+    ("Pickup orders go through our online system — fastest way is to order at pigfloyds.com/order or call (407) 203-0866 during service.",
+     "Takeout orders are easiest by phone — call (407) 248-2280 during service. The kitchen is closed Tuesdays."),
+    ("Perfect. Here's the hold I'm creating for the Pig Floyd's team:",
+     "Perfect. Here's the hold I'm creating for the Flame Kabob team:"),
+    ("No problem. Pig Floyd's has tables available Tuesday at 6 PM, Wednesday at 7:30 PM, or Friday at 8 PM — which works best?",
+     "No problem. Flame Kabob has tables available Wednesday at 6 PM, Friday at 7:30 PM, or Saturday at 8 PM — which works best? (We're closed Tuesdays.)"),
+    ("Tuesday at 6 PM, Wednesday at 7:30 PM, or Friday at 8 PM",
+     "Wednesday at 6 PM, Friday at 7:30 PM, or Saturday at 8 PM"),
+    ("(407) 203-0866", "(407) 248-2280"),
+    ("Thomas", "the team"),
+    ("Pig Floyd", "Flame Kabob"),
+]
+FLAMEKABOB_CLEANUP = [
+    ("Pig Floyd", "Flame Kabob"),
+    ("pigfloyds", "flamekabob"),
+]
+
+
+# El Cilantrillo (Old Town Kissimmee) — Hiram and Dianne Turull, Puerto Rican family restaurant
+# 5770 W Irlo Bronson Memorial Hwy, Kissimmee — opened 2017, 4 Central FL locations
+# Signature: mofongos with churrasco/pork/seafood, El Afrentao (whole fried snapper + pork chop)
+# Contact: Arlene Flores (407) 483-4739
+ELCILANTRILLO_SUBS = [
+    ("Pig Floyd's Urban Barbakoa — Reservations & Catering Concierge | Powered by Velo AI",
+     "El Cilantrillo — Reservations & Catering Concierge | Powered by Velo AI"),
+    ("This is a live demo built by Velo AI for Pig Floyd's Urban Barbakoa.",
+     "This is a live demo built by Velo AI for El Cilantrillo."),
+    ('<h1 class="practice-name">Pig Floyd\'s Urban Barbakoa</h1>',
+     '<h1 class="practice-name">El Cilantrillo</h1>'),
+    ("Pig Floyd's runs hot during dinner service and the team can't always pause to answer calls — but reservations, takeout, and catering inquiries get captured around the clock.",
+     "El Cilantrillo runs busy across all four Central FL locations — when the kitchen's deep in service, reservation calls, large-party questions, and catering inquiries get missed. This line catches them around the clock."),
+    ("<strong>Pig Floyd's Concierge</strong> · Available 24/7",
+     "<strong>El Cilantrillo Concierge</strong> · Available 24/7"),
+    ("Pig Floyd's Concierge", "El Cilantrillo Concierge"),
+    ('<span class="value">Pig Floyd\'s Team</span>',
+     '<span class="value">Hiram &amp; Dianne Turull · The Cilantrillo Family</span>'),
+    ("Welcome to Pig Floyd's. The dining room is loud and the smokers are working — the team can't always pick up. I'm the after-hours line: I can take reservations, quote catering, and answer most menu questions before service tomorrow.<br><br>What brings you here tonight?",
+     "¡Bienvenido a El Cilantrillo! The dining room is full and the kitchen is going strong — I'm the after-hours line. I can take reservations, scope catering for events, and answer questions about mofongos, El Afrentao, or any of our signature dishes before tomorrow's service.<br><br>What brings you here tonight?"),
+    ("Catering is one of Pig Floyd's strengths — the smoker doesn't sleep, so we can scale up for almost any event. What kind of event?",
+     "Catering is one of El Cilantrillo's strengths — Hiram and Dianne built this around generous family-style portions, and we scale for everything from office lunches to weddings. What kind of event?"),
+    ("Most clients asking about ${txt} are wondering: <em>\"How many people can you feed?\"</em> and <em>\"What's it going to cost?\"</em><br><br>Pig Floyd's catering ranges from BBQ trays for 10 people up to full-service events for 200+. Pricing usually lands $18-32 per person depending on protein mix and service style. Thomas does a free 15-minute call to scope events before quoting — that way the quote is real, not generic.<br><br>Want me to hold a slot this week?",
+     "Most folks asking about ${txt} want to know: <em>\"How many people can you feed?\"</em> and <em>\"What's it going to cost?\"</em><br><br>El Cilantrillo catering runs from family trays for 10 up to full events for 200+. Mofongo bars and churrasco platters typically land $16-28 per person depending on protein mix and service style. Arlene scopes events before quoting — that way the number is real.<br><br>Want me to hold a slot this week?"),
+    ("Pickup orders go through our online system — fastest way is to order at pigfloyds.com/order or call (407) 203-0866 during service.",
+     "Takeout orders are easiest by phone — call (407) 483-4739 or (407) 334-0620 during service."),
+    ("Perfect. Here's the hold I'm creating for the Pig Floyd's team:",
+     "Perfect. Here's the hold I'm creating for the El Cilantrillo team:"),
+    ("No problem. Pig Floyd's has tables available Tuesday at 6 PM, Wednesday at 7:30 PM, or Friday at 8 PM — which works best?",
+     "No problem. El Cilantrillo has tables available Tuesday at 6 PM, Friday at 7:30 PM, or Sunday at 1 PM — which works best?"),
+    ("Tuesday at 6 PM, Wednesday at 7:30 PM, or Friday at 8 PM",
+     "Tuesday at 6 PM, Friday at 7:30 PM, or Sunday at 1 PM"),
+    ("(407) 203-0866", "(407) 483-4739"),
+    ("Thomas", "Arlene"),
+    ("Pig Floyd", "El Cilantrillo"),
+]
+ELCILANTRILLO_CLEANUP = [
+    ("Pig Floyd", "El Cilantrillo"),
+    ("pigfloyds", "elcilantrillo"),
+]
+
+
 JOBS = [
     ("klausmanlaw", "ragland.html", KLAUSMAN_SUBS, KLAUSMAN_CLEANUP),
     ("frankfamilylaw", "ragland.html", FRANK_SUBS, FRANK_CLEANUP),
@@ -2579,6 +2730,10 @@ JOBS = [
     # ---- ROUND 5 — net-new prospects ----
     ("rootandbranch", "pigfloyds.html", ROOTBRANCH_SUBS, ROOTBRANCH_CLEANUP),
     ("infinitydental", "wayside.html", INFINITY_SUBS, INFINITY_CLEANUP),
+    ("classictp", "pigfloyds.html", CLASSICTP_SUBS, CLASSICTP_CLEANUP),
+    ("blueviolet", "goldie.html", BLUEVIOLET_SUBS, BLUEVIOLET_CLEANUP),
+    ("flamekabob", "pigfloyds.html", FLAMEKABOB_SUBS, FLAMEKABOB_CLEANUP),
+    ("elcilantrillo", "pigfloyds.html", ELCILANTRILLO_SUBS, ELCILANTRILLO_CLEANUP),
 ]
 
 
