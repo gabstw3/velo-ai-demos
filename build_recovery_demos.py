@@ -2915,6 +2915,143 @@ HEATHROW_CLEANUP = [
 ]
 
 
+# Shin Jung Korean BBQ — Mills 50, operating since 1993, 4-time Michelin Guide recipient
+# 1638 E Colonial Dr, Orlando 32803. (407) 237-0451. Famous for kalbi and bulgogi.
+# 11:30am-10pm daily. Reservations needed for parties of 5+.
+SHINJUNG_SUBS = [
+    ("Pig Floyd's Urban Barbakoa — Reservations & Catering Concierge | Powered by Velo AI",
+     "Shin Jung Korean BBQ — Reservations & Group Dining Concierge | Powered by Velo AI"),
+    ("This is a live demo built by Velo AI for Pig Floyd's Urban Barbakoa.",
+     "This is a live demo built by Velo AI for Shin Jung Korean BBQ."),
+    ('<h1 class="practice-name">Pig Floyd\'s Urban Barbakoa</h1>',
+     '<h1 class="practice-name">Shin Jung Korean BBQ</h1>'),
+    ("Pig Floyd's runs hot during dinner service and the team can't always pause to answer calls — but reservations, takeout, and catering inquiries get captured around the clock.",
+     "Shin Jung has been serving Mills 50 since 1993, and the table-side grills run nonstop through dinner service. Reservation calls (especially for parties of 5+ that need a confirmed table) get missed. This line catches them around the clock."),
+    ("<strong>Pig Floyd's Concierge</strong> · Available 24/7",
+     "<strong>Shin Jung Concierge</strong> · Available 24/7"),
+    ("Pig Floyd's Concierge", "Shin Jung Concierge"),
+    ('<span class="value">Pig Floyd\'s Team</span>',
+     '<span class="value">The Shin Jung Team</span>'),
+    ("Welcome to Pig Floyd's. The dining room is loud and the smokers are working — the team can't always pick up. I'm the after-hours line: I can take reservations, quote catering, and answer most menu questions before service tomorrow.<br><br>What brings you here tonight?",
+     "Welcome to Shin Jung Korean BBQ. The grills are going and the team is busy with the dining room — I'm the after-hours line. I can take reservations (especially for parties of 5 or more), answer questions about kalbi, bulgogi, or banchan, and confirm group dining options for tomorrow's service.<br><br>What brings you here tonight?"),
+    ("Catering is one of Pig Floyd's strengths — the smoker doesn't sleep, so we can scale up for almost any event. What kind of event?",
+     "Group dining is one of Shin Jung's strengths — the team has hosted everything from small business dinners to large family celebrations across 30+ years. What kind of event?"),
+    ("Most clients asking about ${txt} are wondering: <em>\"How many people can you feed?\"</em> and <em>\"What's it going to cost?\"</em><br><br>Pig Floyd's catering ranges from BBQ trays for 10 people up to full-service events for 200+. Pricing usually lands $18-32 per person depending on protein mix and service style. Thomas does a free 15-minute call to scope events before quoting — that way the quote is real, not generic.<br><br>Want me to hold a slot this week?",
+     "Most folks asking about ${txt} want to know: <em>\"What protein options?\"</em> and <em>\"What does it run per person?\"</em><br><br>Shin Jung's group bookings run kalbi, bulgogi, seafood, and vegetarian combinations. Per-person pricing typically lands $35-55 depending on protein mix and banchan. The team scopes group bookings on a quick call before confirming — that way you know exactly what you're getting.<br><br>Want me to hold a table this week?"),
+    ("Pickup orders go through our online system — fastest way is to order at pigfloyds.com/order or call (407) 203-0866 during service.",
+     "Online orders go through Toast — fastest way is to order at shinjungkoreanbbq.com or call (407) 237-0451 during service."),
+    ("Perfect. Here's the hold I'm creating for the Pig Floyd's team:",
+     "Perfect. Here's the hold I'm creating for the Shin Jung team:"),
+    ("No problem. Pig Floyd's has tables available Tuesday at 6 PM, Wednesday at 7:30 PM, or Friday at 8 PM — which works best?",
+     "No problem. Shin Jung has tables available Tuesday at 6:30 PM, Friday at 7 PM, or Sunday at 5 PM — which works best?"),
+    ("Tuesday at 6 PM, Wednesday at 7:30 PM, or Friday at 8 PM",
+     "Tuesday at 6:30 PM, Friday at 7 PM, or Sunday at 5 PM"),
+    ("(407) 203-0866", "(407) 237-0451"),
+    ("Thomas", "the team"),
+    ("Pig Floyd", "Shin Jung"),
+]
+SHINJUNG_CLEANUP = [
+    ("Pig Floyd", "Shin Jung"),
+    ("pigfloyds", "shinjung"),
+]
+
+
+# Canvas Restaurant & Market — Lake Nona/Laureate Park lakefront, New American casual upscale
+# 13615 Sachs Ave, Orlando 32827. (407) 313-7800. Foxtail Coffee 8am-10pm daily.
+# Restaurant M-Th 11-10, Fri 11-11, Sat 10-11, Sun 10-9. Weekday happy hour 3-6.
+CANVAS_SUBS = [
+    ("Pig Floyd's Urban Barbakoa — Reservations & Catering Concierge | Powered by Velo AI",
+     "Canvas Restaurant & Market — Reservations & Private Events Concierge | Powered by Velo AI"),
+    ("This is a live demo built by Velo AI for Pig Floyd's Urban Barbakoa.",
+     "This is a live demo built by Velo AI for Canvas Restaurant & Market."),
+    ('<h1 class="practice-name">Pig Floyd\'s Urban Barbakoa</h1>',
+     '<h1 class="practice-name">Canvas Restaurant &amp; Market</h1>'),
+    ("Pig Floyd's runs hot during dinner service and the team can't always pause to answer calls — but reservations, takeout, and catering inquiries get captured around the clock.",
+     "Canvas runs lakefront in Laureate Park from breakfast coffee through late-night dinner service. Brunch crowds back up the line on weekends, and happy hour and private event inquiries hit the line during dinner. This catches them around the clock."),
+    ("<strong>Pig Floyd's Concierge</strong> · Available 24/7",
+     "<strong>Canvas Concierge</strong> · Available 24/7"),
+    ("Pig Floyd's Concierge", "Canvas Concierge"),
+    ('<span class="value">Pig Floyd\'s Team</span>',
+     '<span class="value">The Canvas Team</span>'),
+    ("Welcome to Pig Floyd's. The dining room is loud and the smokers are working — the team can't always pick up. I'm the after-hours line: I can take reservations, quote catering, and answer most menu questions before service tomorrow.<br><br>What brings you here tonight?",
+     "Welcome to Canvas. The dining room and patio are running and the team is busy — I'm the after-hours line. I can take reservations across our weekend brunch and dinner service, scope private events, answer questions about happy hour or Foxtail Coffee, and route urgent inquiries to the team.<br><br>What brings you here tonight?"),
+    ("Catering is one of Pig Floyd's strengths — the smoker doesn't sleep, so we can scale up for almost any event. What kind of event?",
+     "Private events are one of Canvas's strengths — the lakefront patio and dining room scale for everything from rehearsal dinners to corporate offsites. What kind of event?"),
+    ("Most clients asking about ${txt} are wondering: <em>\"How many people can you feed?\"</em> and <em>\"What's it going to cost?\"</em><br><br>Pig Floyd's catering ranges from BBQ trays for 10 people up to full-service events for 200+. Pricing usually lands $18-32 per person depending on protein mix and service style. Thomas does a free 15-minute call to scope events before quoting — that way the quote is real, not generic.<br><br>Want me to hold a slot this week?",
+     "Most folks asking about ${txt} want to know: <em>\"What's the format?\"</em> and <em>\"What's it going to run per person?\"</em><br><br>Canvas hosts events from intimate lakefront dinners (12-20) up to full buyouts of the patio. Per-person typically lands $45-75 depending on courses and bar. The team scopes properly on a quick call before quoting — that way the number is real.<br><br>Want me to hold a slot this week?"),
+    ("Pickup orders go through our online system — fastest way is to order at pigfloyds.com/order or call (407) 203-0866 during service.",
+     "Reservations go through OpenTable — fastest way is to book at canvaslakenona.com or call (407) 313-7800 during service."),
+    ("Perfect. Here's the hold I'm creating for the Pig Floyd's team:",
+     "Perfect. Here's the hold I'm creating for the Canvas team:"),
+    ("No problem. Pig Floyd's has tables available Tuesday at 6 PM, Wednesday at 7:30 PM, or Friday at 8 PM — which works best?",
+     "No problem. Canvas has tables available Friday at 6:30 PM, Saturday at 7 PM, or Sunday brunch at 11 AM — which works best?"),
+    ("Tuesday at 6 PM, Wednesday at 7:30 PM, or Friday at 8 PM",
+     "Friday at 6:30 PM, Saturday at 7 PM, or Sunday brunch at 11 AM"),
+    ("(407) 203-0866", "(407) 313-7800"),
+    ("Thomas", "the team"),
+    ("Pig Floyd", "Canvas"),
+]
+CANVAS_CLEANUP = [
+    ("Pig Floyd", "Canvas"),
+    ("pigfloyds", "canvas"),
+]
+
+
+# Healing and Hair Studio — Oviedo private salon studio
+# Stylist Lacey, 5+ year clients, precision cuts + balayage + natural color + Hair Plastic Surgery
+HEALINGHAIR_SUBS = [
+    ("Goldie Salon — Booking & Color Concierge | Powered by Velo AI",
+     "Healing and Hair Studio — Booking & Color Concierge | Powered by Velo AI"),
+    ("This is a live demo built by Velo AI for Goldie Salon.",
+     "This is a live demo built by Velo AI for Healing and Hair Studio."),
+    ("Lake Mary, Florida · Luxury Boutique",
+     "Oviedo, Florida · Private Studio · Precision Cuts &amp; Color"),
+    ('<h1 class="practice-name">Goldie Salon</h1>',
+     '<h1 class="practice-name">Healing and Hair Studio</h1>'),
+    ('<p class="practice-doctor">Valerie Miller, Owner &amp; Master Stylist</p>',
+     '<p class="practice-doctor">Lacey, Owner &amp; Color Specialist</p>'),
+    ("<strong>Goldie Concierge</strong> · Available 24/7",
+     "<strong>Healing and Hair Concierge</strong> · Available 24/7"),
+    ("Goldie Concierge", "Healing and Hair Concierge"),
+    ('<span class="value">Valerie Miller</span>',
+     '<span class="value">Lacey</span>'),
+    ("Valerie", "Lacey"),
+    ("Goldie", "Healing and Hair"),
+]
+HEALINGHAIR_CLEANUP = [
+    ("Goldie", "Healing and Hair"),
+    ("Valerie", "Lacey"),
+]
+
+
+# Scandalous Artistry — Nikki Scandalous, vivid color specialist, downtown Orlando
+# 322 W Colonial Dr, Orlando 32801. (352) 217-9351. Vivid creations, blonding, balayage, color corrections.
+# "Orlando's FUN salon" — Instagram-driven, vibrant atmosphere
+SCANDALOUS_SUBS = [
+    ("Goldie Salon — Booking & Color Concierge | Powered by Velo AI",
+     "Scandalous Artistry — Vivid Color & Booking Concierge | Powered by Velo AI"),
+    ("This is a live demo built by Velo AI for Goldie Salon.",
+     "This is a live demo built by Velo AI for Scandalous Artistry."),
+    ("Lake Mary, Florida · Luxury Boutique",
+     "Downtown Orlando · Vivid Color Specialist"),
+    ('<h1 class="practice-name">Goldie Salon</h1>',
+     '<h1 class="practice-name">Scandalous Artistry</h1>'),
+    ('<p class="practice-doctor">Valerie Miller, Owner &amp; Master Stylist</p>',
+     '<p class="practice-doctor">Nikki Scandalous, Owner &amp; Vivid Color Specialist</p>'),
+    ("<strong>Goldie Concierge</strong> · Available 24/7",
+     "<strong>Scandalous Concierge</strong> · Available 24/7"),
+    ("Goldie Concierge", "Scandalous Concierge"),
+    ('<span class="value">Valerie Miller</span>',
+     '<span class="value">Nikki Scandalous</span>'),
+    ("Valerie", "Nikki"),
+    ("Goldie", "Scandalous Artistry"),
+]
+SCANDALOUS_CLEANUP = [
+    ("Goldie", "Scandalous Artistry"),
+    ("Valerie", "Nikki"),
+]
+
+
 JOBS = [
     ("klausmanlaw", "ragland.html", KLAUSMAN_SUBS, KLAUSMAN_CLEANUP),
     ("frankfamilylaw", "ragland.html", FRANK_SUBS, FRANK_CLEANUP),
@@ -2964,6 +3101,11 @@ JOBS = [
     ("bigjohn", "pigfloyds.html", BIGJOHN_SUBS, BIGJOHN_CLEANUP),
     ("westkennedy", "goldie.html", WESTKENNEDY_SUBS, WESTKENNEDY_CLEANUP),
     ("heathrow", "wayside.html", HEATHROW_SUBS, HEATHROW_CLEANUP),
+    # ---- ROUND 7 — Wave 4 net-new ----
+    ("shinjung", "pigfloyds.html", SHINJUNG_SUBS, SHINJUNG_CLEANUP),
+    ("canvas", "pigfloyds.html", CANVAS_SUBS, CANVAS_CLEANUP),
+    ("healinghair", "goldie.html", HEALINGHAIR_SUBS, HEALINGHAIR_CLEANUP),
+    ("scandalous", "goldie.html", SCANDALOUS_SUBS, SCANDALOUS_CLEANUP),
 ]
 
 
