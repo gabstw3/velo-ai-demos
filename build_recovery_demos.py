@@ -3052,6 +3052,189 @@ SCANDALOUS_CLEANUP = [
 ]
 
 
+# Lake Minneola Dentistry — Dr. Tara Derakhshandeh, DMD (Clermont)
+# 287 Google reviews / 4.9★, 15+ yrs clinical, conservative treatment philosophy
+# TMJ specialization, same-day Zoom whitening, South Lake Chamber 2024
+LAKEMINNEOLA_SUBS = [
+    ("Wayside Family Dental — After-Hours Concierge | Powered by Velo AI",
+     "Lake Minneola Dentistry — After-Hours Concierge | Powered by Velo AI"),
+    ("This is a live demo built by Velo AI for Wayside Family Dental.",
+     "This is a live demo built by Velo AI for Lake Minneola Dentistry."),
+    ("Sanford, Florida · Est. 2012", "Clermont, Florida · Conservative Care · TMJ Specialist"),
+    ('<h1 class="practice-name">Wayside Family Dental</h1>',
+     '<h1 class="practice-name">Lake Minneola Dentistry</h1>'),
+    ('<p class="practice-doctor">Dr. Lyudmila A. Onyski, DDS</p>',
+     '<p class="practice-doctor">Dr. Tara Derakhshandeh, DMD</p>'),
+    ("Dr. Onyski is on call to respond to her patients' needs as soon as possible. As a patient of Wayside, you're never alone.",
+     "Dr. Derakhshandeh built her practice around conservative treatment — she'll never push procedures you don't need. Same-day emergency appointments are available, and TMJ consults are her specialty."),
+    ("(407) 732-4570", "(352) 432-1162"),
+    ("<strong>Wayside Concierge</strong> · Available 24/7",
+     "<strong>Lake Minneola Concierge</strong> · Available 24/7"),
+    ("A patient of Wayside? Dr. Onyski will be notified immediately for urgent matters.",
+     "A patient of Lake Minneola Dentistry? Dr. Derakhshandeh will be notified immediately for urgent matters."),
+    ("Good evening — you've reached the after-hours line for Wayside Family Dental. Dr. Onyski is unavailable right now, but I can help with most things and reach her directly if it's urgent.",
+     "Good evening — you've reached the after-hours line for Lake Minneola Dentistry. Dr. Derakhshandeh is unavailable right now, but I can help with most things and reach her directly if it's urgent."),
+    ("Let me get you to Dr. Onyski as quickly as possible.",
+     "Let me get you to Dr. Derakhshandeh as quickly as possible."),
+    ("Understood. I'm flagging this as urgent and texting Dr. Onyski now — she'll call you back within 15 minutes.",
+     "Understood. I'm flagging this as urgent and texting Dr. Derakhshandeh now — she'll call you back within 15 minutes."),
+    ("Got it. Dr. Onyski will want to see you first thing — she keeps emergency slots open every morning at 8 AM specifically for situations like this.",
+     "Got it. Dr. Derakhshandeh keeps same-day emergency slots open specifically for situations like this."),
+    ("Great choice to reach out — both implants and Invisalign are major decisions and Dr. Onyski has been doing both since 2010, so you're in capable hands.",
+     "Great choice to reach out — Dr. Derakhshandeh has 15+ years of clinical experience, and her conservative philosophy means you'll get an honest answer on whether you actually need the procedure before anyone talks dollars. TMJ and same-day Zoom whitening are her specialties."),
+    ("Most patients asking about ${txt} have one of two questions on their mind: <em>\"Am I a candidate?\"</em> and <em>\"What will it actually cost?\"</em><br><br>Both are best answered with a 30-minute consult — Dr. Onyski does a digital scan, reviews your options, and gives you a treatment plan with real numbers before you commit to anything. Wayside also accepts CareCredit if financing helps.",
+     "Most patients asking about ${txt} have one of two questions: <em>\"Am I a candidate?\"</em> and <em>\"What will it actually cost?\"</em><br><br>Dr. Derakhshandeh handles both in a single consult — exam, real options, and a treatment plan with actual numbers before you commit. Conservative philosophy means you'll never feel pushed. CareCredit and other financing available if helpful."),
+    ("Perfect. Let me hold ${timeMap[value]} for you. What's your first name so I can put it on Dr. Onyski's schedule?",
+     "Perfect. Let me hold ${timeMap[value]} for you. What's your first name so I can put it on Dr. Derakhshandeh's schedule?"),
+    ("Welcome — Dr. Onyski has been welcoming new patients to Wayside since 2012, and most of our patients come from referrals, so it's nice when someone finds us directly.",
+     "Welcome — Lake Minneola Dentistry has built one of the most-reviewed practices in South Lake (4.9★ across 287 reviews), and most patients come from referrals. Nice when someone finds us directly."),
+    ("Of course — go ahead and type your question and I'll do my best. If it's something Dr. Onyski needs to weigh in on personally, I'll route it to her and she'll get back to you in the morning.",
+     "Of course — go ahead and type your question and I'll do my best. If it's something Dr. Derakhshandeh needs to weigh in on personally, I'll route it to her and she'll get back to you in the morning."),
+    ("Thank you, ${memory.name}. What's the best phone number to reach you at? I want to make sure Dr. Onyski has it before tomorrow morning.",
+     "Thank you, ${memory.name}. What's the best phone number to reach you at? I want to make sure Dr. Derakhshandeh has it before tomorrow morning."),
+    ("Thanks, ${memory.name}. What's the best phone number? Dr. Onyski's office will text you a confirmation within an hour of opening.",
+     "Thanks, ${memory.name}. What's the best phone number? Dr. Derakhshandeh's office will text you a confirmation within an hour of opening."),
+    ("Thank you, ${memory.name}. What's the best callback number? Dr. Onyski will call you within 15 minutes.",
+     "Thank you, ${memory.name}. What's the best callback number? Dr. Derakhshandeh will call you within 15 minutes."),
+    ("Perfect. Here's the hold I'm creating for Dr. Onyski:",
+     "Perfect. Here's the hold I'm creating for Dr. Derakhshandeh:"),
+    ("Got it, ${memory.name} — I just paged Dr. Onyski. Expect a call from <strong>(407) 732-4570</strong> within 15 minutes.<br><br>Stay calm, sit upright if possible, and avoid hot or cold liquids until she calls. You're going to be okay.",
+     "Got it, ${memory.name} — I just paged Dr. Derakhshandeh. Expect a call from <strong>(352) 432-1162</strong> within 15 minutes.<br><br>Stay calm, sit upright if possible, and avoid hot or cold liquids until she calls. You're going to be okay."),
+    ("All set, ${memory.name}. Dr. Onyski's office will call (${text}) by 7:30 AM to confirm your appointment.",
+     "All set, ${memory.name}. Dr. Derakhshandeh's office will call (${text}) by 8:30 AM to confirm your appointment."),
+    ("Got it. Dr. Onyski opens new-patient slots Tuesday through Thursday — would tomorrow at 10:30 AM or Wednesday at 2 PM work better for you?",
+     "Got it. Dr. Derakhshandeh opens new-patient slots Monday through Thursday — would tomorrow at 10:30 AM or Wednesday at 2 PM work better for you?"),
+    ("Thanks for sending that over. I've logged your question for Dr. Onyski to review first thing in the morning — she or someone from her team will reach out by 10 AM.",
+     "Thanks for sending that over. I've logged your question for Dr. Derakhshandeh to review first thing in the morning — she or someone from her team will reach out by 10 AM."),
+    ("You're all set, ${memory.name}. Dr. Onyski has been notified, and you'll get a confirmation text from <strong>(407) 732-4570</strong> within the hour.<br><br>Have a good night — and thank you for choosing Wayside.",
+     "You're all set, ${memory.name}. Dr. Derakhshandeh has been notified, and you'll get a confirmation text from <strong>(352) 432-1162</strong> within the hour.<br><br>Have a good night — and thank you for choosing Lake Minneola Dentistry."),
+    ('<span class="value">Dr. Lyudmila A. Onyski</span>',
+     '<span class="value">Dr. Tara Derakhshandeh</span>'),
+    ('<span class="value">4907 International Pkwy, Suite 1041</span>',
+     '<span class="value">Clermont, FL · South Lake</span>'),
+    ('<div class="booking-icon">W</div>', '<div class="booking-icon">L</div>'),
+    ("Dr. Onyski", "Dr. Derakhshandeh"),
+    ("Onyski", "Derakhshandeh"),
+    ("Wayside", "Lake Minneola Dentistry"),
+]
+LAKEMINNEOLA_CLEANUP = [
+    ("Wayside", "Lake Minneola Dentistry"),
+    ("Onyski", "Derakhshandeh"),
+]
+
+
+# Bryant & de Parry, P.A. — Astrid de Parry, Esq. (DeLand)
+# AV Preeminent (Martindale-Hubbell), Avvo Client's Choice for probate
+# Founder since 1993, former DeLand City Attorney 1989-92
+# Probate, estate, elder-law, Medicaid planning. Volusia roots: Deltona/Orange City/DeBary
+BRYANTDEPARRY_SUBS = [
+    ("Lance A. Ragland, P.A. — After-Hours Intake | Powered by Velo AI",
+     "Bryant & de Parry, P.A. — After-Hours Intake | Powered by Velo AI"),
+    ("This is a live demo built by Velo AI for Lance A. Ragland, P.A.",
+     "This is a live demo built by Velo AI for Bryant & de Parry, P.A."),
+    ("Winter Springs, Florida · Est. 2015",
+     "DeLand, Florida · Est. 1993 · AV Preeminent"),
+    ('<h1 class="practice-name">Lance A. Ragland, P.A.</h1>',
+     '<h1 class="practice-name">Bryant &amp; de Parry, P.A.</h1>'),
+    ('<p class="practice-doctor">Lance A. Ragland, Esq.</p>',
+     '<p class="practice-doctor">Astrid de Parry, Esq.</p>'),
+    ("Estate matters rarely surface during business hours. Lance is committed to being there for clients during life's most difficult transitions. You're never alone.",
+     "Estate, probate, and elder-law matters rarely surface during business hours. Astrid has been guiding Volusia families since 1993 — including her years as DeLand City Attorney. You're never alone in this."),
+    ("5750 Canton Cove<br>Winter Springs, FL 32708",
+     "DeLand, FL · Serving Volusia · Deltona, Orange City, DeBary"),
+    ("(407) 960-6069", "(386) 738-9000"),
+    ("<strong>Ragland Intake</strong> · Available 24/7",
+     "<strong>Bryant &amp; de Parry Intake</strong> · Available 24/7"),
+    ("A current client of Lance's? He'll be notified directly for urgent matters.",
+     "A current client of the firm? Astrid will be notified directly for urgent matters."),
+    ("Good evening — you've reached the after-hours line for the Law Offices of Lance A. Ragland. Lance focuses entirely on estate planning, probate, and trust matters. He's unavailable right now, but I can take down what's on your mind and get him to reach back out.",
+     "Good evening — you've reached the after-hours line for Bryant & de Parry. Astrid focuses on probate, estate planning, elder law, and Medicaid planning. She's unavailable right now, but I can take down what's on your mind and get her to reach back out."),
+    ("Lance has guided families through probate for nearly thirty years",
+     "Astrid has guided Volusia families through probate for over 30 years"),
+    ("Lance opens his calendar Tuesday through Thursday for new probate matters and sets aside ninety minutes per consultation so nothing feels rushed.",
+     "Astrid opens her calendar Tuesday through Thursday for new probate matters and sets aside ninety minutes per consultation so nothing feels rushed."),
+    ("Lance has been doing wills, trusts, and estate plans exclusively since 2015, so this is exactly his bread and butter.",
+     "Astrid has been doing wills, trusts, and estate plans for over 30 years — including the elder-law and Medicaid planning side most firms refer out. This is exactly her bread and butter."),
+    ('<div class="booking-icon">L</div>', '<div class="booking-icon">B</div>'),
+    ('<span class="value">Lance A. Ragland, Esq.</span>',
+     '<span class="value">Astrid de Parry, Esq.</span>'),
+    ('<span class="value">5750 Canton Cove, Winter Springs</span>',
+     '<span class="value">DeLand, FL · Serving Volusia</span>'),
+    ("Lance has been notified", "Astrid has been notified"),
+    ("Lance will reach out", "Astrid will reach out"),
+    ("welcome from Lance", "welcome from Astrid"),
+    ("Lance ", "Astrid "),
+    ("Lance's", "Astrid's"),
+    ("Lance.", "Astrid."),
+    ("Lance,", "Astrid,"),
+    ("his office (Debbie)", "her office"),
+    ("his office", "her office"),
+    ("he's", "she's"),
+    ("he'll", "she'll"),
+    ("when he", "when she"),
+]
+BRYANTDEPARRY_CLEANUP = [
+    ("Lance", "Astrid"),
+    ("Ragland", "Bryant & de Parry"),
+    ("ragland", "bryantdeparry"),
+]
+
+
+# Canvas Hair Design Studio (New Smyrna Beach) — Lexi Ciara, Masters of Balayage Educator
+# Eco-conscious, hand-tied extensions, est. 2018, 4.7★ / 152 reviews
+CANVASHAIR_SUBS = [
+    ("Goldie Salon — Booking & Color Concierge | Powered by Velo AI",
+     "Canvas Hair Design Studio — Booking & Color Concierge | Powered by Velo AI"),
+    ("This is a live demo built by Velo AI for Goldie Salon.",
+     "This is a live demo built by Velo AI for Canvas Hair Design Studio."),
+    ("Lake Mary, Florida · Luxury Boutique",
+     "New Smyrna Beach, Florida · Sustainable Balayage &amp; Extensions"),
+    ('<h1 class="practice-name">Goldie Salon</h1>',
+     '<h1 class="practice-name">Canvas Hair Design Studio</h1>'),
+    ('<p class="practice-doctor">Valerie Miller, Owner &amp; Master Stylist</p>',
+     '<p class="practice-doctor">Lexi Ciara, Owner · Masters of Balayage Educator</p>'),
+    ("<strong>Goldie Concierge</strong> · Available 24/7",
+     "<strong>Canvas Hair Concierge</strong> · Available 24/7"),
+    ("Goldie Concierge", "Canvas Hair Concierge"),
+    ('<span class="value">Valerie Miller</span>',
+     '<span class="value">Lexi Ciara</span>'),
+    ("Valerie", "Lexi"),
+    ("Goldie", "Canvas Hair"),
+]
+CANVASHAIR_CLEANUP = [
+    ("Goldie", "Canvas Hair"),
+    ("Valerie", "Lexi"),
+]
+
+
+# The Mix Salon Spa (DeLand) — JeanMarie Funicello-Pereira, Aveda Master
+# Vivid color, blonding, full-service spa (massage/facials/nails)
+# 15+ years owner-op, 4.6★ / 139 reviews, downtown DeLand anchor, West Volusia Beacon press
+THEMIX_SUBS = [
+    ("Goldie Salon — Booking & Color Concierge | Powered by Velo AI",
+     "The Mix Salon Spa — Booking & Aveda Color Concierge | Powered by Velo AI"),
+    ("This is a live demo built by Velo AI for Goldie Salon.",
+     "This is a live demo built by Velo AI for The Mix Salon Spa."),
+    ("Lake Mary, Florida · Luxury Boutique",
+     "Downtown DeLand, Florida · Aveda Master · Salon &amp; Spa"),
+    ('<h1 class="practice-name">Goldie Salon</h1>',
+     '<h1 class="practice-name">The Mix Salon Spa</h1>'),
+    ('<p class="practice-doctor">Valerie Miller, Owner &amp; Master Stylist</p>',
+     '<p class="practice-doctor">JeanMarie Funicello-Pereira, Owner · Aveda Master</p>'),
+    ("<strong>Goldie Concierge</strong> · Available 24/7",
+     "<strong>The Mix Concierge</strong> · Available 24/7"),
+    ("Goldie Concierge", "The Mix Concierge"),
+    ('<span class="value">Valerie Miller</span>',
+     '<span class="value">JeanMarie Funicello-Pereira</span>'),
+    ("Valerie", "JeanMarie"),
+    ("Goldie", "The Mix"),
+]
+THEMIX_CLEANUP = [
+    ("Goldie", "The Mix"),
+    ("Valerie", "JeanMarie"),
+]
+
+
 JOBS = [
     ("klausmanlaw", "ragland.html", KLAUSMAN_SUBS, KLAUSMAN_CLEANUP),
     ("frankfamilylaw", "ragland.html", FRANK_SUBS, FRANK_CLEANUP),
@@ -3106,6 +3289,11 @@ JOBS = [
     ("canvas", "pigfloyds.html", CANVAS_SUBS, CANVAS_CLEANUP),
     ("healinghair", "goldie.html", HEALINGHAIR_SUBS, HEALINGHAIR_CLEANUP),
     ("scandalous", "goldie.html", SCANDALOUS_SUBS, SCANDALOUS_CLEANUP),
+    # ---- ROUND 8 — Wave 5 (fresh Cowork prospects) ----
+    ("lakeminneola", "wayside.html", LAKEMINNEOLA_SUBS, LAKEMINNEOLA_CLEANUP),
+    ("bryantdeparry", "ragland.html", BRYANTDEPARRY_SUBS, BRYANTDEPARRY_CLEANUP),
+    ("canvashair", "goldie.html", CANVASHAIR_SUBS, CANVASHAIR_CLEANUP),
+    ("themixsalon", "goldie.html", THEMIX_SUBS, THEMIX_CLEANUP),
 ]
 
 
