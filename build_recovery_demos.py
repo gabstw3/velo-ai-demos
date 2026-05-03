@@ -3235,6 +3235,120 @@ THEMIX_CLEANUP = [
 ]
 
 
+# Cress Restaurant (DeLand) — Tom Brandt + Chef Hari Pulapaka
+# 4x James Beard Foundation Best Chef South semifinalist
+# Wine Spectator award, 2025 DiRoNA, 15+ yrs Historic Downtown DeLand
+# Farm-to-table fine dining: USDA Prime steaks, Florida fish, escargot
+CRESS_SUBS = [
+    ("BACÁN — Reservations & Private Events Concierge | Powered by Velo AI",
+     "Cress Restaurant — Reservations & Private Events Concierge | Powered by Velo AI"),
+    ("This is a live demo built by Velo AI for BACÁN.",
+     "This is a live demo built by Velo AI for Cress Restaurant."),
+    ('<h1 class="practice-name">BACÁN</h1>',
+     '<h1 class="practice-name">Cress Restaurant</h1>'),
+    ("Lake Nona, Florida · Latin American Fine Dining",
+     "Historic Downtown DeLand, Florida · Farm-to-Table · 4× James Beard Semifinalist"),
+    ("BACÁN", "Cress"),
+    ("BACAN", "Cress"),
+    ("Chef Robin", "Chef Hari"),
+    ("Robin", "Hari"),
+]
+CRESS_CLEANUP = [
+    ("BACÁN", "Cress"),
+    ("Robin", "Hari"),
+    ("bacan", "cress"),
+]
+
+
+# Guru Indian Restaurant (Clermont) — Uday Kadam
+# South Lake Chamber Local Taste Award, Best Indian Central FL
+# 11 years in Clermont, owner from village south of Mumbai, family farming heritage
+# Authentic Northern Indian, vegetarian/vegan/halal, signature Chicken Tikka Masala
+GURU_SUBS = [
+    ("Pig Floyd's Urban Barbakoa — Reservations & Catering Concierge | Powered by Velo AI",
+     "Guru Indian Restaurant — Reservations & Catering Concierge | Powered by Velo AI"),
+    ("This is a live demo built by Velo AI for Pig Floyd's Urban Barbakoa.",
+     "This is a live demo built by Velo AI for Guru Indian Restaurant."),
+    ('<h1 class="practice-name">Pig Floyd\'s Urban Barbakoa</h1>',
+     '<h1 class="practice-name">Guru Indian Restaurant</h1>'),
+    ("Pig Floyd's runs hot during dinner service and the team can't always pause to answer calls — but reservations, takeout, and catering inquiries get captured around the clock.",
+     "Guru runs busy through dinner service in Clermont — when the kitchen's deep in service, takeout calls, dietary questions, and catering inquiries get missed. This line catches them around the clock."),
+    ("<strong>Pig Floyd's Concierge</strong> · Available 24/7",
+     "<strong>Guru Concierge</strong> · Available 24/7"),
+    ("Pig Floyd's Concierge", "Guru Concierge"),
+    ('<span class="value">Pig Floyd\'s Team</span>',
+     '<span class="value">Uday Kadam · The Guru Family</span>'),
+    ("Welcome to Pig Floyd's. The dining room is loud and the smokers are working — the team can't always pick up. I'm the after-hours line: I can take reservations, quote catering, and answer most menu questions before service tomorrow.<br><br>What brings you here tonight?",
+     "Welcome to Guru. Uday and the kitchen are deep in service — I'm the after-hours line. I can take reservations, scope catering, answer dietary questions (vegetarian, vegan, halal — yes to all), and answer most menu questions before tomorrow's service.<br><br>What brings you here tonight?"),
+    ("Catering is one of Pig Floyd's strengths — the smoker doesn't sleep, so we can scale up for almost any event. What kind of event?",
+     "Catering is one of Guru's strengths — full vegetarian, vegan, and halal options scaled for any size. What kind of event?"),
+    ("Most clients asking about ${txt} are wondering: <em>\"How many people can you feed?\"</em> and <em>\"What's it going to cost?\"</em><br><br>Pig Floyd's catering ranges from BBQ trays for 10 people up to full-service events for 200+. Pricing usually lands $18-32 per person depending on protein mix and service style. Thomas does a free 15-minute call to scope events before quoting — that way the quote is real, not generic.<br><br>Want me to hold a slot this week?",
+     "Most folks asking about ${txt} want to know: <em>\"How many people can you feed?\"</em> and <em>\"What's it going to cost per person?\"</em><br><br>Guru catering runs from family trays for 10 up to full events for 200+. Mixed-thali platters typically land $14-22 per person depending on protein selection and curry choices. Uday does a quick scoping call before quoting — that way the number is real.<br><br>Want me to hold a slot this week?"),
+    ("Pickup orders go through our online system — fastest way is to order at pigfloyds.com/order or call (407) 203-0866 during service.",
+     "Takeout orders are easiest by phone — call during service. The kitchen serves authentic Northern Indian — Chicken Tikka Masala is the signature, but the chef's specials change weekly."),
+    ("Perfect. Here's the hold I'm creating for the Pig Floyd's team:",
+     "Perfect. Here's the hold I'm creating for the Guru team:"),
+    ("Thomas", "Uday"),
+    ("Pig Floyd", "Guru"),
+]
+GURU_CLEANUP = [
+    ("Pig Floyd", "Guru"),
+    ("pigfloyds", "guruindian"),
+]
+
+
+# Ron Ziolkowski RTR (RE/MAX Prime Properties) — Winter Garden
+# $750M+ closed sales / 28 years, #1 RE/MAX FL 6 consecutive years
+# Orlando Magazine Best Realtor 2025, Orlando Hot 100 for 19 consecutive years
+# 259 verified Birdeye reviews. Solo — handles 100% of own transactions.
+RONRTR_SUBS = [
+    ("Palmano Group — Lead Concierge | Powered by Velo AI",
+     "Ron Ziolkowski / RTR — Lead Concierge | Powered by Velo AI"),
+    ("This is a live demo built by Velo AI for Palmano Group.",
+     "This is a live demo built by Velo AI for Ron Ziolkowski / RTR."),
+    ("Winter Park, Florida · Family-Owned Boutique",
+     "Winter Garden, Florida · #1 RE/MAX FL · $750M+ Closed"),
+    ('<h1 class="practice-name">Palmano Group</h1>',
+     '<h1 class="practice-name">Ron Ziolkowski</h1>'),
+    ('<p class="practice-doctor">Richard Palmano, Founder</p>',
+     '<p class="practice-doctor">Ron Ziolkowski · RE/MAX Prime Properties</p>'),
+    ("Richard Palmano", "Ron Ziolkowski"),
+    ("Richard", "Ron"),
+    ("Palmano", "Ron"),
+    ("Palmano Group", "Ron Ziolkowski"),
+]
+RONRTR_CLEANUP = [
+    ("Palmano", "Ron Ziolkowski"),
+    ("Richard", "Ron"),
+]
+
+
+# The Florida Property Shop (Clermont) — Sarah Gholami, husband-wife 2-person boutique
+# Waterfront specialist, 20+ years combined, international buyers/sellers
+# Personalized service model vs mega-brokerages
+FLPROPSHOP_SUBS = [
+    ("Sunbright Realty — Lead Concierge | Powered by Velo AI",
+     "The Florida Property Shop — Lead Concierge | Powered by Velo AI"),
+    ("This is a live demo built by Velo AI for Sunbright Realty.",
+     "This is a live demo built by Velo AI for The Florida Property Shop."),
+    ("Clermont, Florida · Boutique Brokerage",
+     "Clermont, Florida · Boutique Waterfront Specialists"),
+    ('<h1 class="practice-name">Sunbright Realty</h1>',
+     '<h1 class="practice-name">The Florida Property Shop</h1>'),
+    ('<p class="practice-doctor">Lou Salvemini Jr., Owner & Broker</p>',
+     '<p class="practice-doctor">Sarah Gholami · Boutique Waterfront Specialist</p>'),
+    ("Lou Salvemini Jr.", "Sarah Gholami"),
+    ("Lou", "Sarah"),
+    ("Sunbright", "The Florida Property Shop"),
+    ("Salvemini", "Gholami"),
+]
+FLPROPSHOP_CLEANUP = [
+    ("Sunbright", "The Florida Property Shop"),
+    ("Lou", "Sarah"),
+    ("Salvemini", "Gholami"),
+]
+
+
 JOBS = [
     ("klausmanlaw", "ragland.html", KLAUSMAN_SUBS, KLAUSMAN_CLEANUP),
     ("frankfamilylaw", "ragland.html", FRANK_SUBS, FRANK_CLEANUP),
@@ -3294,6 +3408,11 @@ JOBS = [
     ("bryantdeparry", "ragland.html", BRYANTDEPARRY_SUBS, BRYANTDEPARRY_CLEANUP),
     ("canvashair", "goldie.html", CANVASHAIR_SUBS, CANVASHAIR_CLEANUP),
     ("themixsalon", "goldie.html", THEMIX_SUBS, THEMIX_CLEANUP),
+    # ---- ROUND 9 — Wave 6 (Cowork retry batch) ----
+    ("cress", "bacan.html", CRESS_SUBS, CRESS_CLEANUP),
+    ("guruindian", "pigfloyds.html", GURU_SUBS, GURU_CLEANUP),
+    ("ronrtr", "palmano.html", RONRTR_SUBS, RONRTR_CLEANUP),
+    ("flpropertyshop", "sunbright.html", FLPROPSHOP_SUBS, FLPROPSHOP_CLEANUP),
 ]
 
 
