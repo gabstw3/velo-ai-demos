@@ -3349,6 +3349,133 @@ FLPROPSHOP_CLEANUP = [
 ]
 
 
+# ============ ROUND 10 — Wave 7 (Kortix dental batch, 12 prospects) ============
+# Helper macros for streamlined dental SUBS — wayside.html base
+def _dental_subs(practice_name, doctor_full, doctor_short, doctor_first, city_state,
+                 tagline_suffix, pronoun_subj="he", pronoun_obj="him", pronoun_poss="his"):
+    """Generate a streamlined dental SUBS list from per-prospect parameters."""
+    she_to = pronoun_subj
+    her_to = pronoun_poss
+    return [
+        ("Wayside Family Dental — After-Hours Concierge | Powered by Velo AI",
+         f"{practice_name} — After-Hours Concierge | Powered by Velo AI"),
+        ("This is a live demo built by Velo AI for Wayside Family Dental.",
+         f"This is a live demo built by Velo AI for {practice_name}."),
+        ("Sanford, Florida · Est. 2012", f"{city_state} · {tagline_suffix}"),
+        ('<h1 class="practice-name">Wayside Family Dental</h1>',
+         f'<h1 class="practice-name">{practice_name}</h1>'),
+        ('<p class="practice-doctor">Dr. Lyudmila A. Onyski, DDS</p>',
+         f'<p class="practice-doctor">{doctor_full}</p>'),
+        ("Dr. Onyski is on call to respond to her patients' needs as soon as possible. As a patient of Wayside, you're never alone.",
+         f"{doctor_short} is on call to respond to {pronoun_poss} patients' needs as soon as possible. As a patient of {practice_name}, you're never alone."),
+        ("<strong>Wayside Concierge</strong> · Available 24/7",
+         f"<strong>{practice_name} Concierge</strong> · Available 24/7"),
+        ("A patient of Wayside? Dr. Onyski will be notified immediately for urgent matters.",
+         f"A patient of {practice_name}? {doctor_short} will be notified immediately for urgent matters."),
+        ("Good evening — you've reached the after-hours line for Wayside Family Dental. Dr. Onyski is unavailable right now, but I can help with most things and reach her directly if it's urgent.",
+         f"Good evening — you've reached the after-hours line for {practice_name}. {doctor_short} is unavailable right now, but I can help with most things and reach {pronoun_obj} directly if it's urgent."),
+        ("Let me get you to Dr. Onyski as quickly as possible.",
+         f"Let me get you to {doctor_short} as quickly as possible."),
+        ("Understood. I'm flagging this as urgent and texting Dr. Onyski now — she'll call you back within 15 minutes.",
+         f"Understood. I'm flagging this as urgent and texting {doctor_short} now — {pronoun_subj}'ll call you back within 15 minutes."),
+        ("Got it. Dr. Onyski will want to see you first thing — she keeps emergency slots open every morning at 8 AM specifically for situations like this.",
+         f"Got it. {doctor_short} keeps same-day emergency slots open specifically for situations like this."),
+        ("Great choice to reach out — both implants and Invisalign are major decisions and Dr. Onyski has been doing both since 2010, so you're in capable hands.",
+         f"Great choice to reach out — both implants and Invisalign are major decisions, and {doctor_short} has built {pronoun_poss} practice around honest treatment planning. You'll get a clear answer on whether you're a candidate before anyone talks dollars."),
+        ("Most patients asking about ${txt} have one of two questions on their mind: <em>\"Am I a candidate?\"</em> and <em>\"What will it actually cost?\"</em><br><br>Both are best answered with a 30-minute consult — Dr. Onyski does a digital scan, reviews your options, and gives you a treatment plan with real numbers before you commit to anything. Wayside also accepts CareCredit if financing helps.",
+         f"Most patients asking about ${{txt}} have one of two questions: <em>\"Am I a candidate?\"</em> and <em>\"What will it actually cost?\"</em><br><br>{doctor_short} handles both in a single consult — exam, real options, and a treatment plan with actual numbers before you commit. CareCredit and other financing available if helpful."),
+        ("Perfect. Let me hold ${timeMap[value]} for you. What's your first name so I can put it on Dr. Onyski's schedule?",
+         f"Perfect. Let me hold ${{timeMap[value]}} for you. What's your first name so I can put it on {doctor_short}'s schedule?"),
+        ("Welcome — Dr. Onyski has been welcoming new patients to Wayside since 2012, and most of our patients come from referrals, so it's nice when someone finds us directly.",
+         f"Welcome — {practice_name} has built its practice on referrals from existing patients. It's nice when someone finds us directly."),
+        ("Of course — go ahead and type your question and I'll do my best. If it's something Dr. Onyski needs to weigh in on personally, I'll route it to her and she'll get back to you in the morning.",
+         f"Of course — go ahead and type your question and I'll do my best. If it's something {doctor_short} needs to weigh in on personally, I'll route it to {pronoun_obj} and {pronoun_subj}'ll get back to you in the morning."),
+        ("Thank you, ${memory.name}. What's the best phone number to reach you at? I want to make sure Dr. Onyski has it before tomorrow morning.",
+         f"Thank you, ${{memory.name}}. What's the best phone number to reach you at? I want to make sure {doctor_short} has it before tomorrow morning."),
+        ("Thanks, ${memory.name}. What's the best phone number? Dr. Onyski's office will text you a confirmation within an hour of opening.",
+         f"Thanks, ${{memory.name}}. What's the best phone number? {doctor_short}'s office will text you a confirmation within an hour of opening."),
+        ("Thank you, ${memory.name}. What's the best callback number? Dr. Onyski will call you within 15 minutes.",
+         f"Thank you, ${{memory.name}}. What's the best callback number? {doctor_short} will call you within 15 minutes."),
+        ("Perfect. Here's the hold I'm creating for Dr. Onyski:",
+         f"Perfect. Here's the hold I'm creating for {doctor_short}:"),
+        ("Got it. Dr. Onyski opens new-patient slots Tuesday through Thursday — would tomorrow at 10:30 AM or Wednesday at 2 PM work better for you?",
+         f"Got it. {doctor_short} opens new-patient slots Monday through Thursday — would tomorrow at 10:30 AM or Wednesday at 2 PM work better for you?"),
+        ("Thanks for sending that over. I've logged your question for Dr. Onyski to review first thing in the morning — she or someone from her team will reach out by 10 AM.",
+         f"Thanks for sending that over. I've logged your question for {doctor_short} to review first thing in the morning — {pronoun_subj} or someone from {pronoun_poss} team will reach out by 10 AM."),
+        ('<span class="value">Dr. Lyudmila A. Onyski</span>',
+         f'<span class="value">{doctor_full.split(",")[0].strip()}</span>'),
+        ("Dr. Onyski", doctor_short),
+        ("Onyski", doctor_short.replace("Dr. ", "")),
+        ("Wayside", practice_name),
+    ]
+
+
+def _dental_cleanup(practice_name, doctor_short):
+    return [
+        ("Wayside", practice_name),
+        ("Onyski", doctor_short.replace("Dr. ", "")),
+    ]
+
+
+# Wave 7 prospect configs (Kortix dental batch — all wayside.html base)
+LAKEMARYLD_SUBS = _dental_subs("Dentist of Lake Mary", "Dr. Nimish, DDS", "Dr. Nimish", "Nimish",
+                                "Lake Mary, Florida", "15 Years · Same-Day Care")
+LAKEMARYLD_CLEANUP = _dental_cleanup("Dentist of Lake Mary", "Dr. Nimish")
+
+LMDENTAL_SUBS = _dental_subs("Lake Mary Dental", "Dr. Ravi, DDS", "Dr. Ravi", "Ravi",
+                              "Lake Mary, Florida", "Invisalign · Lumineers · Implants")
+LMDENTAL_CLEANUP = _dental_cleanup("Lake Mary Dental", "Dr. Ravi")
+
+MORGANMD_SUBS = _dental_subs("J. Thaddeus Morgan, DMD", "Dr. J. Thaddeus Morgan, DMD",
+                              "Dr. Morgan", "Thaddeus", "Lake Mary, Florida",
+                              "20+ Years · Private Practice")
+MORGANMD_CLEANUP = _dental_cleanup("J. Thaddeus Morgan, DMD", "Dr. Morgan")
+
+ENCLAVE_SUBS = _dental_subs("Enclave Dental", "Dr. Shachi Shah, DDS", "Dr. Shah", "Shachi",
+                             "Lake Mary, Florida", "No-Wait Policy · Same-Day Care",
+                             pronoun_subj="she", pronoun_obj="her", pronoun_poss="her")
+ENCLAVE_CLEANUP = _dental_cleanup("Enclave Dental", "Dr. Shah")
+
+MAITLANDSMILE_SUBS = _dental_subs("Maitland Ave Smile Co", "Drs. Williams, Solberg & Miller",
+                                   "the team", "Kirk", "Altamonte Springs, Florida",
+                                   "50+ Combined Years · 7am-5pm",
+                                   pronoun_subj="they", pronoun_obj="them", pronoun_poss="their")
+MAITLANDSMILE_CLEANUP = _dental_cleanup("Maitland Ave Smile Co", "the team")
+
+ALTAMONTEDENTAL_SUBS = _dental_subs("Altamonte Dental Care", "Dr. Plaza, DDS", "Dr. Plaza", "Efrain",
+                                     "Altamonte Springs, Florida", "600+ Five-Star Reviews")
+ALTAMONTEDENTAL_CLEANUP = _dental_cleanup("Altamonte Dental Care", "Dr. Plaza")
+
+DISTINCTIVE_SUBS = _dental_subs("Distinctive Dentistry on Maitland", "Dr. Timothy, DMD",
+                                 "Dr. Timothy", "Timothy", "Altamonte Springs, Florida",
+                                 "50+ Years · Cosmetic & Implant")
+DISTINCTIVE_CLEANUP = _dental_cleanup("Distinctive Dentistry on Maitland", "Dr. Timothy")
+
+BIGTREE_SUBS = _dental_subs("Altamonte Big Tree Dental", "Dr. Patrick DelFlore, DDS",
+                             "Dr. DelFlore", "Patrick", "Altamonte Springs, Florida",
+                             "35+ Years · Family-Focused Care")
+BIGTREE_CLEANUP = _dental_cleanup("Altamonte Big Tree Dental", "Dr. DelFlore")
+
+DENTALWORLD_SUBS = _dental_subs("Dental World", "Dr. Mark, DDS", "Dr. Mark", "Mark",
+                                 "Longwood, Florida", "30+ Years · Remodeled 2024")
+DENTALWORLD_CLEANUP = _dental_cleanup("Dental World", "Dr. Mark")
+
+NONAIMPLANTS_SUBS = _dental_subs("Lake Nona Dental Implants & Periodontics",
+                                  "Dr. Carlos Pires, DDS, MS", "Dr. Pires", "Carlos",
+                                  "Lake Nona, Florida", "Periodontology · Oral Implantology")
+NONAIMPLANTS_CLEANUP = _dental_cleanup("Lake Nona Dental Implants & Periodontics", "Dr. Pires")
+
+ESTEEM_SUBS = _dental_subs("Esteem Dental", "Dr. Jordan Jones, DMD", "Dr. Jones", "Jordan",
+                            "Lake Nona, Florida", "One-Stop · Dentistry + Orthodontics")
+ESTEEM_CLEANUP = _dental_cleanup("Esteem Dental", "Dr. Jones")
+
+PACHABIJAN_SUBS = _dental_subs("Pacha & Bijan Dental", "Dr. Pacha & Dr. Bijan",
+                                "the doctors", "Danielle", "Maitland, Florida",
+                                "Implant Specialists · Academy of Osseointegration",
+                                pronoun_subj="they", pronoun_obj="them", pronoun_poss="their")
+PACHABIJAN_CLEANUP = _dental_cleanup("Pacha & Bijan Dental", "the doctors")
+
+
 JOBS = [
     ("klausmanlaw", "ragland.html", KLAUSMAN_SUBS, KLAUSMAN_CLEANUP),
     ("frankfamilylaw", "ragland.html", FRANK_SUBS, FRANK_CLEANUP),
@@ -3413,6 +3540,19 @@ JOBS = [
     ("guruindian", "pigfloyds.html", GURU_SUBS, GURU_CLEANUP),
     ("ronrtr", "palmano.html", RONRTR_SUBS, RONRTR_CLEANUP),
     ("flpropertyshop", "sunbright.html", FLPROPSHOP_SUBS, FLPROPSHOP_CLEANUP),
+    # ---- ROUND 10 — Wave 7 (Kortix dental batch, 12 prospects) ----
+    ("lakemaryld", "wayside.html", LAKEMARYLD_SUBS, LAKEMARYLD_CLEANUP),
+    ("lmdental", "wayside.html", LMDENTAL_SUBS, LMDENTAL_CLEANUP),
+    ("morganmd", "wayside.html", MORGANMD_SUBS, MORGANMD_CLEANUP),
+    ("enclave", "wayside.html", ENCLAVE_SUBS, ENCLAVE_CLEANUP),
+    ("maitlandsmile", "wayside.html", MAITLANDSMILE_SUBS, MAITLANDSMILE_CLEANUP),
+    ("altamontedental", "wayside.html", ALTAMONTEDENTAL_SUBS, ALTAMONTEDENTAL_CLEANUP),
+    ("distinctive", "wayside.html", DISTINCTIVE_SUBS, DISTINCTIVE_CLEANUP),
+    ("bigtree", "wayside.html", BIGTREE_SUBS, BIGTREE_CLEANUP),
+    ("dentalworld", "wayside.html", DENTALWORLD_SUBS, DENTALWORLD_CLEANUP),
+    ("nonaimplants", "wayside.html", NONAIMPLANTS_SUBS, NONAIMPLANTS_CLEANUP),
+    ("esteem", "wayside.html", ESTEEM_SUBS, ESTEEM_CLEANUP),
+    ("pachabijan", "wayside.html", PACHABIJAN_SUBS, PACHABIJAN_CLEANUP),
 ]
 
 
