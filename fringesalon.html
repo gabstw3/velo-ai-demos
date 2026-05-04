@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Fringe Salon — Booking Concierge | Powered by Velo AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f3ed;
+    --bg-deep: #ece6d8;
+    --ink: #1a1f1c;
+    --ink-soft: #4a544c;
+    --ink-faint: #8a8f86;
+    --accent: #2d5a3f;
+    --accent-warm: #c9926b;
+    --accent-glow: #e8d9b8;
+    --line: #d4ccba;
+    --user-msg: #2d5a3f;
+    --user-msg-text: #f6f3ed;
+    --bot-msg: #ffffff;
+    --shadow-sm: 0 1px 2px rgba(26, 31, 28, 0.04);
+    --shadow-md: 0 4px 16px rgba(26, 31, 28, 0.08);
+    --shadow-lg: 0 12px 40px rgba(26, 31, 28, 0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body { height: 100%; }
+
+  body {
+    font-family: 'Geist', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.5;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(201, 146, 107, 0.06) 0%, transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(45, 90, 63, 0.05) 0%, transparent 40%);
+  }
+
+  .app {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    min-height: 100vh;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* --- LEFT PANEL: Practice Branding --- */
+  .practice-panel {
+    background: linear-gradient(180deg, #1a3326 0%, #0f1f17 100%);
+    color: #e8e0d0;
+    padding: 40px 32px;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .practice-panel::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(201, 146, 107, 0.08) 0%, transparent 50%);
+    animation: drift 20s ease-in-out infinite;
+  }
+
+  @keyframes drift {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(20%, 10%); }
+  }
+
+  .practice-content { position: relative; z-index: 1; }
+
+  .practice-mark {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    margin-bottom: 12px;
+    opacity: 0.9;
+  }
+
+  .practice-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+  }
+
+  .practice-doctor {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--accent-glow);
+    margin-bottom: 32px;
+  }
+
+  .promise-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(232, 217, 184, 0.15);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+    backdrop-filter: blur(10px);
+  }
+
+  .promise-card h4 {
+    font-family: 'Geist', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    margin-bottom: 8px;
+  }
+
+  .promise-card p {
+    font-size: 14px;
+    line-height: 1.55;
+    color: #d4cdb8;
+  }
+
+  .practice-info {
+    margin-top: auto;
+    padding-top: 24px;
+    border-top: 1px solid rgba(232, 217, 184, 0.1);
+    font-size: 13px;
+    line-height: 1.7;
+    color: #b8b0a0;
+  }
+
+  .practice-info .row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 8px;
+  }
+
+  .practice-info .label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    width: 56px;
+    padding-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .powered-by {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(232, 217, 184, 0.1);
+    font-size: 11px;
+    color: #8a8275;
+    letter-spacing: 0.05em;
+  }
+
+  .powered-by strong {
+    color: var(--accent-glow);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+  }
+
+  /* --- RIGHT PANEL: Chat Interface --- */
+  .chat-panel {
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .chat-header {
+    padding: 20px 32px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(246, 243, 237, 0.85);
+    backdrop-filter: blur(12px);
+    z-index: 10;
+  }
+
+  .chat-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .status-dot {
+    width: 8px; height: 8px;
+    background: #4ade80;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.15);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.15); }
+    50% { box-shadow: 0 0 0 8px rgba(74, 222, 128, 0.05); }
+  }
+
+  .status-text {
+    font-size: 13px;
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+
+  .status-text strong { color: var(--ink); font-weight: 600; }
+
+  .chat-time {
+    font-family: 'Fraunces', serif;
+    font-size: 12px;
+    color: var(--ink-faint);
+    font-style: italic;
+  }
+
+  .messages {
+    flex: 1;
+    padding: 32px;
+    scroll-behavior: smooth;
+  }
+
+  .msg-group {
+    margin-bottom: 20px;
+    animation: msgIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  @keyframes msgIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .msg {
+    max-width: 78%;
+    padding: 14px 18px;
+    border-radius: 18px;
+    font-size: 15px;
+    line-height: 1.55;
+    word-wrap: break-word;
+  }
+
+  .msg-bot {
+    background: var(--bot-msg);
+    color: var(--ink);
+    border-bottom-left-radius: 4px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(212, 204, 186, 0.4);
+  }
+
+  .msg-user {
+    background: var(--user-msg);
+    color: var(--user-msg-text);
+    border-bottom-right-radius: 4px;
+    margin-left: auto;
+  }
+
+  .msg-meta {
+    font-size: 10px;
+    color: var(--ink-faint);
+    margin-top: 6px;
+    padding: 0 8px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .msg-meta.user { text-align: right; }
+
+  .typing {
+    display: flex;
+    gap: 4px;
+    padding: 16px 20px;
+    background: var(--bot-msg);
+    border-radius: 18px;
+    border-bottom-left-radius: 4px;
+    width: fit-content;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(212, 204, 186, 0.4);
+  }
+
+  .typing span {
+    width: 7px; height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: typing 1.3s ease-in-out infinite;
+  }
+
+  .typing span:nth-child(2) { animation-delay: 0.2s; }
+  .typing span:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes typing {
+    0%, 100% { transform: translateY(0); opacity: 0.4; }
+    50% { transform: translateY(-4px); opacity: 1; }
+  }
+
+  /* Quick reply chips */
+  .quick-replies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+    animation: msgIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s both;
+  }
+
+  .chip {
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 9px 16px;
+    border-radius: 100px;
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .chip:hover {
+    background: var(--accent);
+    color: var(--bg);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .chip:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  /* Booking card */
+  .booking-card {
+    background: linear-gradient(135deg, #ffffff 0%, #faf6ec 100%);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 24px;
+    margin-top: 12px;
+    box-shadow: var(--shadow-md);
+    animation: msgIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    max-width: 78%;
+  }
+
+  .booking-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .booking-icon {
+    width: 32px; height: 32px;
+    background: var(--accent);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .booking-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--ink);
+  }
+
+  .booking-detail {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 12px;
+    padding: 8px 0;
+    font-size: 14px;
+  }
+
+  .booking-detail .label {
+    color: var(--ink-faint);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding-top: 2px;
+  }
+
+  .booking-detail .value {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .booking-confirm {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    gap: 8px;
+  }
+
+  .btn-primary {
+    flex: 1;
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: #1f4530;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--ink-soft);
+    border: 1px solid var(--line);
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover {
+    background: var(--bg-deep);
+  }
+
+  /* Input area */
+  .input-area {
+    padding: 20px 32px 24px;
+    border-top: 1px solid var(--line);
+    background: rgba(246, 243, 237, 0.85);
+    backdrop-filter: blur(12px);
+  }
+
+  .input-wrap {
+    display: flex;
+    gap: 10px;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 6px 6px 6px 18px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .input-wrap:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(45, 90, 63, 0.08);
+  }
+
+  .input-wrap input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-family: 'Geist', sans-serif;
+    font-size: 15px;
+    color: var(--ink);
+    padding: 10px 0;
+    background: transparent;
+  }
+
+  .input-wrap input::placeholder { color: var(--ink-faint); }
+
+  .send-btn {
+    background: var(--accent);
+    color: white;
+    border: none;
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+
+  .send-btn:hover { background: #1f4530; transform: scale(1.05); }
+  .send-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+  .input-hint {
+    font-size: 11px;
+    color: var(--ink-faint);
+    margin-top: 10px;
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
+
+  /* Demo banner */
+  .demo-banner {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 10px 16px;
+    border-radius: 100px;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    z-index: 100;
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .demo-banner:hover { transform: scale(1.03); }
+  .demo-banner .pulse-dot {
+    width: 6px; height: 6px;
+    background: var(--accent-warm);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  /* Mobile */
+  @media (max-width: 900px) {
+    html, body {
+      height: auto;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .app {
+      grid-template-columns: 1fr;
+      height: auto;
+      min-height: 100vh;
+    }
+    .practice-panel {
+      padding: 20px 24px;
+      position: static;
+      height: auto;
+      max-height: none;
+    }
+    .practice-panel .promise-card,
+    .practice-panel .practice-info,
+    .practice-panel .powered-by { display: none; }
+    .practice-name { font-size: 22px; }
+    .practice-doctor { font-size: 14px; margin-bottom: 0; }
+    .chat-panel {
+      min-height: 80vh;
+    }
+    .messages {
+      padding: 20px;
+      overflow-y: visible;
+      flex: none;
+    }
+    .msg { max-width: 88%; }
+    .input-area {
+      padding: 16px 20px 20px;
+      position: sticky;
+      bottom: 0;
+    }
+    .demo-banner { top: 8px; right: 8px; padding: 8px 12px; font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner" onclick="alert('This is a live demo built by Velo AI for Fringe Salon.\n\nFor deployment information, contact:\nGabe Herrera — Velo AI\nWinter Springs, FL')">
+  <span class="pulse-dot"></span>
+  <span>Velo AI Demo</span>
+</div>
+
+<div class="app">
+
+  <!-- LEFT: Practice Brand Panel -->
+  <aside class="practice-panel">
+    <div class="practice-content">
+      <div class="practice-mark">Altamonte Springs · Hair, Nails &amp; Color</div>
+      <h1 class="practice-name">Fringe Salon</h1>
+      <p class="practice-doctor">Rose, Owner &amp; Master Colorist</p>
+
+      <div class="promise-card">
+        <h4>Always Open for Bookings</h4>
+        <p>Fringe is closed Sun and Mon and only open late Tue and Thu. The booking line never closes — DM at midnight Sunday, walk in Tuesday at 10. Closed-day inquiries that go unanswered bleed straight to nearby salons.</p>
+      </div>
+    </div>
+
+    <div class="practice-info">
+      <div class="row">
+        <div class="label">Address</div>
+        <div>1140 E Altamonte Dr, Suite #1014<br>Altamonte Springs, FL 32701</div>
+      </div>
+      <div class="row">
+        <div class="label">Phone</div>
+        <div>(407) 834-4055</div>
+      </div>
+      <div class="row">
+        <div class="label">Hours</div>
+        <div>Tue–Sat · Closed Sun &amp; Mon</div>
+      </div>
+    </div>
+
+    <div class="powered-by">
+      Concierge powered by <strong>VELO AI</strong>
+    </div>
+  </aside>
+
+  <!-- RIGHT: Chat Interface -->
+  <main class="chat-panel">
+    <header class="chat-header">
+      <div class="chat-status">
+        <span class="status-dot"></span>
+        <span class="status-text"><strong>Fringe Concierge</strong> · Available 24/7</span>
+      </div>
+      <span class="chat-time" id="chat-time">After hours · 11:47 PM</span>
+    </header>
+
+    <div class="messages" id="messages"></div>
+
+    <div class="input-area">
+      <div class="input-wrap">
+        <input
+          type="text"
+          id="user-input"
+          placeholder="Type your question..."
+          autocomplete="off"
+        />
+        <button class="send-btn" id="send-btn" onclick="handleUserSend()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+        </button>
+      </div>
+      <div class="input-hint">Special-event color or signature treatment? Rose will be notified directly for time-sensitive bookings.</div>
+    </div>
+  </main>
+</div>
+
+<script>
+  // ============================================================
+  // VELO AI — 7-Step Persuasion Engine
+  // Acknowledge → Validate → Surface → Propose → Reference → Timebox → Commit
+  // ============================================================
+
+  const messagesEl = document.getElementById('messages');
+  const inputEl = document.getElementById('user-input');
+  const sendBtn = document.getElementById('send-btn');
+
+  // Conversation memory
+  const memory = {
+    name: null,
+    concern: null,
+    isExisting: null,
+    urgency: null,
+    treatmentInterest: null,
+    history: []
+  };
+
+  // Set realistic after-hours timestamp
+  const now = new Date();
+  const hours = now.getHours() < 8 || now.getHours() >= 17 ? '11:47 PM' : '6:32 AM';
+  document.getElementById('chat-time').textContent = `After hours · ${hours}`;
+
+  function addBotMessage(text, delay = 700, withChips = null) {
+    return new Promise(resolve => {
+      // Show typing indicator
+      const typingId = 't' + Date.now();
+      const typing = document.createElement('div');
+      typing.className = 'msg-group';
+      typing.id = typingId;
+      typing.innerHTML = `<div class="typing"><span></span><span></span><span></span></div>`;
+      messagesEl.appendChild(typing);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+
+      setTimeout(() => {
+        document.getElementById(typingId)?.remove();
+        const msgGroup = document.createElement('div');
+        msgGroup.className = 'msg-group';
+        let html = `<div class="msg msg-bot">${text}</div><div class="msg-meta">Fringe Concierge</div>`;
+
+        if (withChips) {
+          html += `<div class="quick-replies">`;
+          withChips.forEach((chip, i) => {
+            html += `<button class="chip" onclick="handleChipClick('${chip.value.replace(/'/g, "\\'")}', this)">${chip.label}</button>`;
+          });
+          html += `</div>`;
+        }
+
+        msgGroup.innerHTML = html;
+        messagesEl.appendChild(msgGroup);
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+        resolve();
+      }, delay);
+    });
+  }
+
+  function addUserMessage(text) {
+    const msgGroup = document.createElement('div');
+    msgGroup.className = 'msg-group';
+    msgGroup.innerHTML = `
+      <div class="msg msg-user" style="margin-left:auto;">${text}</div>
+      <div class="msg-meta user">You · just now</div>
+    `;
+    messagesEl.appendChild(msgGroup);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+    memory.history.push({ role: 'user', text });
+  }
+
+  function disableChips(currentBtn) {
+    const chips = currentBtn.parentElement.querySelectorAll('.chip');
+    chips.forEach(c => c.disabled = true);
+    currentBtn.style.background = 'var(--accent)';
+    currentBtn.style.color = 'var(--bg)';
+  }
+
+  function showBookingCard(treatment, time) {
+    const card = document.createElement('div');
+    card.className = 'msg-group';
+    card.innerHTML = `
+      <div class="booking-card">
+        <div class="booking-header">
+          <div class="booking-icon">F</div>
+          <div class="booking-title">Appointment Hold Created</div>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Guest</span>
+          <span class="value">${memory.name || 'New guest'}</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">For</span>
+          <span class="value">${treatment}</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Proposed</span>
+          <span class="value">${time}</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">With</span>
+          <span class="value">Rose · Master Colorist (or available stylist)</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Location</span>
+          <span class="value">1140 E Altamonte Dr, Suite #1014, Altamonte Springs</span>
+        </div>
+        <div class="booking-confirm">
+          <button class="btn-primary" onclick="confirmBooking()">Confirm appointment</button>
+          <button class="btn-secondary" onclick="proposeAlternative()">Different time</button>
+        </div>
+      </div>
+    `;
+    messagesEl.appendChild(card);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  // ============================================================
+  // Conversation Flow — applies the 7-step skeleton
+  // ============================================================
+
+  async function startConversation() {
+    await addBotMessage(
+      `Welcome to Fringe! Rose and the team are off the chair for the night, but I'm the after-hours booking concierge. I can quote services, hold appointments on Vagaro or Booksy, and answer hair, nail, or color questions before tomorrow.<br><br>What brings you here tonight?`,
+      400,
+      [
+        { label: '🎨 Color or signature treatment', value: 'high-value' },
+        { label: '💇 Cut, style, or blow-dry', value: 'emergency' },
+        { label: '💅 Nails, skin, or waxing', value: 'new-patient' },
+        { label: '❓ Pricing or hours question', value: 'question' }
+      ]
+    );
+  }
+
+  async function handleChipClick(value, btn) {
+    disableChips(btn);
+    const labelMap = {
+      'emergency': 'I want a cut, style, or blow-dry',
+      'high-value': "I want color or a signature treatment",
+      'new-patient': "I want nails, skin, or waxing",
+      'question': 'I have a pricing or hours question',
+      'yes-existing': "Yes, I'm a regular",
+      'no-new': "No, I'd be new to Fringe",
+      'severe': 'This week — special event',
+      'moderate': "Within 2 weeks",
+      'mild': 'Whenever there\'s availability',
+      'implants': 'Highlights or balayage',
+      'invisalign': '"Hair Plastic Surgery" / keratin',
+      'both': 'Color correction or single-process',
+      'tomorrow-am': 'Tuesday morning',
+      'tomorrow-pm': 'Thursday evening',
+      'this-week': 'Saturday'
+    };
+    addUserMessage(labelMap[value] || value);
+    memory.history.push({ role: 'user', value });
+    await routeIntent(value);
+  }
+
+  async function routeIntent(value) {
+    // CUT/STYLE PATH ----------------------------------
+    if (value === 'emergency') {
+      memory.concern = 'cut-style';
+      await addBotMessage(
+        `Love that. Cut and style is a great place to start at Fringe — women's cuts run $45, men's $30, kids $30, bang trim $10, blow-dry from $30, flat iron from $40, and up-dos start at $70.`,
+        900
+      );
+      await addBotMessage(
+        `Heads-up on hours so I can prioritize: Sun and Mon we're closed, Tue and Thu run 10am–8pm, Wed 10am–4pm, Fri 9am–3pm, Sat 9am–4pm. When do you need it by?`,
+        1100,
+        [
+          { label: '🔴 This week — special event', value: 'severe' },
+          { label: '🟡 Within 2 weeks', value: 'moderate' },
+          { label: '🟢 Whenever there\'s availability', value: 'mild' }
+        ]
+      );
+      return;
+    }
+
+    if (value === 'severe') {
+      memory.urgency = 'severe';
+      await addBotMessage(
+        `Got it — special event urgency. Rose keeps a couple priority slots open each week, and Tue or Thu evenings are the only late-night options at Fringe so those go fast.<br><br>Can I get your first name and best phone number? When the event matters, we want to make sure you walk out feeling like every dollar earned its place.`,
+        1200
+      );
+      memory.collecting = 'name-phone';
+      return;
+    }
+
+    if (value === 'moderate' || value === 'mild') {
+      memory.urgency = value;
+      await addBotMessage(
+        `Perfect timeline. Fringe's quietest windows are usually mid-morning Tue or Wed — easy to get in and out without a wait.<br><br>What's your first name? I'll have someone pre-confirm with you when the salon opens Tuesday at 10.`,
+        1100
+      );
+      memory.collecting = 'name';
+      return;
+    }
+
+    // COLOR PATH ----------
+    if (value === 'high-value') {
+      memory.concern = 'color';
+      await addBotMessage(
+        `Smart move to reach out before booking — Rose is a master colorist with 25+ years on this chair, and she'd much rather hear what you're going for first than fix something rushed. Fringe's color menu: single-process from $65, partial highlight from $85, full highlight from $120, color + partial from $150, bleach touch-up from $75, clear glaze from $45.<br><br>What kind of color or treatment are you thinking?`,
+        1100,
+        [
+          { label: '✨ Highlights / balayage', value: 'implants' },
+          { label: '💎 "Hair Plastic Surgery" / keratin', value: 'invisalign' },
+          { label: '🎨 Color correction / single-process', value: 'both' }
+        ]
+      );
+      return;
+    }
+
+    if (value === 'implants' || value === 'invisalign' || value === 'both') {
+      memory.treatmentInterest = value;
+      const txt = value === 'implants'
+        ? 'highlights or balayage'
+        : value === 'invisalign'
+          ? 'the signature "Hair Plastic Surgery" reconstructive treatment or a Redken Shape Control keratin'
+          : 'a color correction or single-process';
+
+      const priceLine = value === 'implants'
+        ? 'Partial highlight starts at $85, full at $120, and color + partial at $150 — depends on length and how much lift we\'re after.'
+        : value === 'invisalign'
+          ? '"Hair Plastic Surgery" — Fringe\'s signature reconstructive treatment — starts at $225. Redken Shape Control keratin runs $100/hr. Both are designed to bring damaged, color-treated, or chemically-tired hair back to life.'
+          : 'Single-process starts at $65, bleach touch-up at $75, and a clear glaze at $45. Color correction is quoted in person after Rose sees your hair history.';
+
+      // Step 3: Surface (the real concern most clients have)
+      // Step 4: Propose concrete next step
+      await addBotMessage(
+        `Most clients asking about ${txt} have one of two questions: <em>"Will it actually look natural on me?"</em> and <em>"What's it really going to cost?"</em><br><br>${priceLine} The most accurate quote comes from a 15-minute consultation — Rose looks at your hair, walks through what's realistic, and books the right block of time before you commit.<br><br>Want me to hold a consult slot this week?`,
+        1300,
+        [
+          { label: '📅 Tuesday morning', value: 'tomorrow-am' },
+          { label: '🌅 Thursday evening', value: 'tomorrow-pm' },
+          { label: '📆 Saturday', value: 'this-week' }
+        ]
+      );
+      return;
+    }
+
+    // BOOKING PATH ----------------------------------
+    if (['tomorrow-am', 'tomorrow-pm', 'this-week'].includes(value)) {
+      const timeMap = {
+        'tomorrow-am': 'Tuesday at 10:30 AM',
+        'tomorrow-pm': 'Thursday at 6:30 PM',
+        'this-week': 'Saturday at 11:00 AM'
+      };
+      memory.proposedTime = timeMap[value];
+
+      await addBotMessage(
+        `Perfect. Let me hold ${timeMap[value]} for you. What's your first name so I can put it on the schedule?`,
+        900
+      );
+      memory.collecting = 'name-for-booking';
+      return;
+    }
+
+    // NAILS / SKIN / WAXING PATH ---------------------------
+    if (value === 'new-patient') {
+      memory.concern = 'nails-skin';
+      await addBotMessage(
+        `Good call — Fringe is a full hair-and-nails salon, so we have you covered. Quick price snapshot:<br><br>• <strong>Nails:</strong> Dazzle Dry vegan mani $20, paraffin/oil mani $25, express mani $12, gel mani $35, salon pedi $40, express pedi $25<br>• <strong>Skin:</strong> Facial from $65, glycolic peel $75, makeup from $45<br>• <strong>Brow/lash tinting:</strong> $25 each<br>• <strong>Waxing:</strong> Brow, lip, chin, bikini, leg, and back available<br><br>What's your first name? I'll save you a slot in the right book.`,
+        1300
+      );
+      memory.collecting = 'name-new-patient';
+      return;
+    }
+
+    // QUESTION PATH -------------------------------
+    if (value === 'question') {
+      memory.concern = 'question';
+      await addBotMessage(
+        `Of course — type your question. Pricing, hours, services, or stylists, I can usually answer right now. If it's specific to your hair history or a color correction, Rose will follow up when the salon opens Tuesday at 10.`,
+        900
+      );
+      memory.collecting = 'free-question';
+      return;
+    }
+  }
+
+  // ============================================================
+  // Free-text input handler
+  // ============================================================
+  async function handleUserSend() {
+    const text = inputEl.value.trim();
+    if (!text) return;
+    addUserMessage(text);
+    inputEl.value = '';
+
+    // Name collection states
+    if (memory.collecting === 'name' || memory.collecting === 'name-new-patient' || memory.collecting === 'name-for-booking' || memory.collecting === 'name-phone') {
+      // Extract first name (rough)
+      const name = text.split(/\s+/)[0].replace(/[^a-zA-Z]/g, '');
+      memory.name = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+      const oldState = memory.collecting;
+
+      const responses = {
+        'name': `Thank you, ${memory.name}. What's the best phone number to reach you at? The team will text you a confirmation Tuesday morning.`,
+        'name-new-patient': `Nice to meet you, ${memory.name}. Are you switching from another salon, prepping for a special event, or just ready for a refresh?`,
+        'name-for-booking': `Thanks, ${memory.name}. What's your best phone number? We'll text confirmation as soon as the salon opens.`,
+        'name-phone': `Thank you, ${memory.name}. What's your best callback number? Rose will reach out Tuesday morning.`
+      };
+      await addBotMessage(responses[oldState] || responses['name'], 800);
+
+      // Set next state
+      if (oldState === 'name-new-patient') {
+        memory.collecting = 'new-patient-reason';
+      } else {
+        memory.collecting = 'phone';
+      }
+      return;
+    }
+
+    if (memory.collecting === 'phone') {
+      memory.phone = text;
+      memory.collecting = null;
+
+      // Show booking card or confirmation based on flow
+      if (memory.proposedTime) {
+        const treatmentMap = {
+          'implants': 'Highlights / Balayage Consultation',
+          'invisalign': '"Hair Plastic Surgery" / Keratin Consultation',
+          'both': 'Color Correction / Single-Process Consultation',
+          'emergency': 'Cut & Style Appointment'
+        };
+        const treatment = treatmentMap[memory.treatmentInterest] || treatmentMap[memory.urgency] || 'New Guest Visit';
+
+        await addBotMessage(
+          `Perfect. Here's the hold I'm creating with the Fringe team:`,
+          800
+        );
+        setTimeout(() => showBookingCard(treatment, memory.proposedTime), 1200);
+      } else if (memory.urgency === 'severe') {
+        await addBotMessage(
+          `Got it, ${memory.name} — I'm flagging this for Rose's morning attention. Expect a text from <strong>(407) 834-4055</strong> Tuesday at 10 with priority slots, since we're closed Sun and Mon.<br><br>If your event is in the next 48 hours, you can also book directly through Vagaro at vagaro.com/fringehairandnailssalon or via Booksy.`,
+          1100
+        );
+      } else {
+        await addBotMessage(
+          `All set, ${memory.name}. The Fringe team will text you at ${text} when we open Tuesday morning to confirm.<br><br>Anything else I can help with tonight?`,
+          1000
+        );
+      }
+      return;
+    }
+
+    if (memory.collecting === 'new-patient-reason') {
+      memory.reason = text;
+      memory.collecting = null;
+      await addBotMessage(
+        `Got it. Fringe keeps new-guest slots open Tuesday and Thursday since those are our late evenings — would Tuesday at 11 AM or Thursday at 6 PM work better?`,
+        1000,
+        [
+          { label: '📅 Tuesday 11 AM', value: 'tomorrow-am' },
+          { label: '📅 Thursday 6 PM', value: 'tomorrow-pm' }
+        ]
+      );
+      memory.proposedTime = null;
+      return;
+    }
+
+    if (memory.collecting === 'free-question') {
+      // Generic intelligent fallback
+      memory.collecting = null;
+      await addBotMessage(
+        `Thanks for sending that over. I've logged your question for Rose to review when the salon opens Tuesday at 10 — someone will reach out by mid-morning.<br><br>Want me to also hold a consult slot in case it's easier in person?`,
+        1100,
+        [
+          { label: '✅ Yes, hold a slot', value: 'tomorrow-am' },
+          { label: 'No thanks', value: 'no-slot' }
+        ]
+      );
+      return;
+    }
+
+    // Default fallback if no state matches
+    await addBotMessage(
+      `Thanks for sharing that. So I can route this correctly — are you most interested in color, a cut/style, nails or skin, or pricing info?`,
+      900,
+      [
+        { label: '🎨 Color', value: 'high-value' },
+        { label: '💇 Cut / Style', value: 'emergency' },
+        { label: '💅 Nails / Skin', value: 'new-patient' }
+      ]
+    );
+  }
+
+  function confirmBooking() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) {
+      card.style.transition = 'all 0.3s ease';
+      card.style.background = 'linear-gradient(135deg, #2d5a3f 0%, #1f4530 100%)';
+      card.style.color = 'white';
+      card.querySelector('.booking-title').style.color = 'white';
+      card.querySelector('.booking-title').textContent = '✓ Appointment Confirmed';
+      card.querySelector('.booking-icon').style.background = 'white';
+      card.querySelector('.booking-icon').style.color = 'var(--accent)';
+      card.querySelectorAll('.label').forEach(el => el.style.color = 'rgba(255,255,255,0.6)');
+      card.querySelectorAll('.value').forEach(el => el.style.color = 'white');
+      card.querySelector('.booking-confirm').remove();
+    }
+    setTimeout(async () => {
+      await addBotMessage(
+        `You're all set, ${memory.name}. The Fringe team has been notified — you'll get a confirmation text from <strong>(407) 834-4055</strong> when we open. You can also see the booking on Vagaro at vagaro.com/fringehairandnailssalon.<br><br>Take care tonight — see you soon.`,
+        700
+      );
+    }, 400);
+  }
+
+  function proposeAlternative() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) card.remove();
+    addBotMessage(
+      `No problem. Fringe has openings Tuesday at 11 AM, Wednesday at 1 PM, or Saturday at 10 AM — which works best? (Reminder: we're closed Sun and Mon.)`,
+      600,
+      [
+        { label: '🌅 Tue 11 AM', value: 'tomorrow-am' },
+        { label: '🕦 Wed 1 PM', value: 'tomorrow-pm' },
+        { label: '🌆 Sat 10 AM', value: 'this-week' }
+      ]
+    );
+  }
+
+  // Enter key support
+  inputEl.addEventListener('keydown', e => {
+    if (e.key === 'Enter') handleUserSend();
+  });
+
+  // Boot
+  setTimeout(startConversation, 600);
+</script>
+
+</body>
+</html>

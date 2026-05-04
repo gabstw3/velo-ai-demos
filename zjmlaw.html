@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Zachary J. McCormick PLLC — After-Hours Intake | Powered by Velo AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Estate-planning palette: warm parchment + deep navy + muted gold.
+       Slower, gentler, more reverent than Wayside's forest/copper.   */
+    --bg: #f4efe6;
+    --bg-deep: #e8e0d2;
+    --ink: #1a1f2c;
+    --ink-soft: #4a536b;
+    --ink-faint: #8a8f9e;
+    --accent: #2a3a5c;       /* deep navy — the law firm primary */
+    --accent-warm: #b08540;  /* muted gold — accent */
+    --accent-glow: #e6d4a8;
+    --line: #d4ccb8;
+    --bot-msg: #ffffff;
+    --user-msg: #2a3a5c;
+    --user-msg-text: #ffffff;
+    --shadow-sm: 0 1px 3px rgba(26, 31, 44, 0.06);
+    --shadow-md: 0 4px 16px rgba(26, 31, 44, 0.08);
+    --shadow-lg: 0 12px 40px rgba(26, 31, 44, 0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body { height: 100%; }
+
+  body {
+    font-family: 'Geist', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.5;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(176, 133, 64, 0.05) 0%, transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(42, 58, 92, 0.04) 0%, transparent 40%);
+  }
+
+  .app {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    min-height: 100vh;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .practice-panel {
+    background: linear-gradient(180deg, #1a2540 0%, #0f1729 100%);
+    color: #e8e0d0;
+    padding: 40px 32px;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .practice-panel::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(176, 133, 64, 0.08) 0%, transparent 50%);
+    animation: drift 22s ease-in-out infinite;
+  }
+
+  @keyframes drift {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(20%, 10%); }
+  }
+
+  .practice-content { position: relative; z-index: 1; }
+
+  .practice-mark {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    margin-bottom: 12px;
+    opacity: 0.9;
+  }
+
+  .practice-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+  }
+
+  .practice-doctor {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--accent-glow);
+    margin-bottom: 32px;
+  }
+
+  .promise-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(232, 224, 184, 0.15);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+    backdrop-filter: blur(10px);
+  }
+
+  .promise-card h4 {
+    font-family: 'Geist', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    margin-bottom: 8px;
+  }
+
+  .promise-card p {
+    font-size: 14px;
+    line-height: 1.55;
+    color: #d4cdb8;
+  }
+
+  .practice-info {
+    margin-top: auto;
+    padding-top: 24px;
+    border-top: 1px solid rgba(232, 224, 184, 0.1);
+    font-size: 13px;
+    line-height: 1.7;
+    color: #b8b0a0;
+  }
+
+  .practice-info .row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 8px;
+  }
+
+  .practice-info .label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    width: 56px;
+    padding-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .powered-by {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(232, 224, 184, 0.1);
+    font-size: 11px;
+    color: #8a8275;
+    letter-spacing: 0.05em;
+  }
+
+  .powered-by strong {
+    color: var(--accent-glow);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+  }
+
+  .chat-panel {
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .chat-header {
+    padding: 20px 32px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(244, 239, 230, 0.85);
+    backdrop-filter: blur(12px);
+    z-index: 10;
+  }
+
+  .chat-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .status-dot {
+    width: 8px; height: 8px;
+    background: #4ade80;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.15);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.15); }
+    50% { box-shadow: 0 0 0 8px rgba(74, 222, 128, 0.05); }
+  }
+
+  .status-text {
+    font-size: 13px;
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+
+  .status-text strong { color: var(--ink); font-weight: 600; }
+
+  .chat-time {
+    font-family: 'Fraunces', serif;
+    font-size: 12px;
+    color: var(--ink-faint);
+    font-style: italic;
+  }
+
+  .messages {
+    flex: 1;
+    padding: 32px;
+    scroll-behavior: smooth;
+  }
+
+  .msg-group {
+    margin-bottom: 20px;
+    animation: msgIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  @keyframes msgIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .msg {
+    max-width: 78%;
+    padding: 14px 18px;
+    border-radius: 18px;
+    font-size: 15px;
+    line-height: 1.55;
+    word-wrap: break-word;
+  }
+
+  .msg-bot {
+    background: var(--bot-msg);
+    color: var(--ink);
+    border-bottom-left-radius: 4px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(212, 204, 184, 0.4);
+  }
+
+  .msg-user {
+    background: var(--user-msg);
+    color: var(--user-msg-text);
+    border-bottom-right-radius: 4px;
+    margin-left: auto;
+  }
+
+  .msg-meta {
+    font-size: 10px;
+    color: var(--ink-faint);
+    margin-top: 6px;
+    padding: 0 8px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .msg-meta.user { text-align: right; }
+
+  .typing {
+    display: flex;
+    gap: 4px;
+    padding: 16px 20px;
+    background: var(--bot-msg);
+    border-radius: 18px;
+    border-bottom-left-radius: 4px;
+    width: fit-content;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(212, 204, 184, 0.4);
+  }
+
+  .typing span {
+    width: 7px; height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: typing 1.4s ease-in-out infinite;
+  }
+
+  .typing span:nth-child(2) { animation-delay: 0.2s; }
+  .typing span:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes typing {
+    0%, 100% { transform: translateY(0); opacity: 0.4; }
+    50% { transform: translateY(-4px); opacity: 1; }
+  }
+
+  .quick-replies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+    animation: msgIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s both;
+  }
+
+  .chip {
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 9px 16px;
+    border-radius: 100px;
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .chip:hover {
+    background: var(--accent);
+    color: var(--bg);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .chip:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .booking-card {
+    background: linear-gradient(135deg, #ffffff 0%, #faf6ec 100%);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 24px;
+    margin-top: 12px;
+    box-shadow: var(--shadow-md);
+    animation: msgIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    max-width: 78%;
+  }
+
+  .booking-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .booking-icon {
+    width: 32px; height: 32px;
+    background: var(--accent);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .booking-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--ink);
+  }
+
+  .booking-detail {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 12px;
+    padding: 8px 0;
+    font-size: 14px;
+  }
+
+  .booking-detail .label {
+    color: var(--ink-faint);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding-top: 2px;
+  }
+
+  .booking-detail .value {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .booking-confirm {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    gap: 8px;
+  }
+
+  .btn-primary {
+    flex: 1;
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: #1a2540;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--ink-soft);
+    border: 1px solid var(--line);
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover {
+    background: var(--bg-deep);
+  }
+
+  .input-area {
+    padding: 20px 32px 24px;
+    border-top: 1px solid var(--line);
+    background: rgba(244, 239, 230, 0.85);
+    backdrop-filter: blur(12px);
+  }
+
+  .input-wrap {
+    display: flex;
+    gap: 10px;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 6px 6px 6px 18px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .input-wrap:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(42, 58, 92, 0.08);
+  }
+
+  .input-wrap input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-family: 'Geist', sans-serif;
+    font-size: 15px;
+    color: var(--ink);
+    padding: 10px 0;
+    background: transparent;
+  }
+
+  .input-wrap input::placeholder { color: var(--ink-faint); }
+
+  .send-btn {
+    background: var(--accent);
+    color: white;
+    border: none;
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+
+  .send-btn:hover { background: #1a2540; transform: scale(1.05); }
+  .send-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+  .input-hint {
+    font-size: 11px;
+    color: var(--ink-faint);
+    margin-top: 10px;
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
+
+  .demo-banner {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 10px 16px;
+    border-radius: 100px;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    z-index: 100;
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .demo-banner:hover { transform: scale(1.03); }
+  .demo-banner .pulse-dot {
+    width: 6px; height: 6px;
+    background: var(--accent-warm);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @media (max-width: 900px) {
+    html, body {
+      height: auto;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .app {
+      grid-template-columns: 1fr;
+      height: auto;
+      min-height: 100vh;
+    }
+    .practice-panel {
+      padding: 20px 24px;
+      position: static;
+      height: auto;
+      max-height: none;
+    }
+    .practice-panel .promise-card,
+    .practice-panel .practice-info,
+    .practice-panel .powered-by { display: none; }
+    .practice-name { font-size: 22px; }
+    .practice-doctor { font-size: 14px; margin-bottom: 0; }
+    .chat-panel {
+      min-height: 80vh;
+    }
+    .messages {
+      padding: 20px;
+      overflow-y: visible;
+      flex: none;
+    }
+    .msg { max-width: 88%; }
+    .input-area {
+      padding: 16px 20px 20px;
+      position: sticky;
+      bottom: 0;
+    }
+    .demo-banner { top: 8px; right: 8px; padding: 8px 12px; font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner" onclick="alert('This is a live demo built by Velo AI for Zachary J. McCormick PLLC\n\nFor deployment information, contact:\nGabe Herrera — Velo AI\nWinter Springs, FL')">
+  <span class="pulse-dot"></span>
+  <span>Velo AI Demo</span>
+</div>
+
+<div class="app">
+
+  <!-- LEFT: Practice Brand Panel -->
+  <aside class="practice-panel">
+    <div class="practice-content">
+      <div class="practice-mark">Tavares, Florida · Lake County · Civil Litigation</div>
+      <h1 class="practice-name">Zachary J. McCormick PLLC</h1>
+      <p class="practice-doctor">Zachary J. McCormick, Esq. — FL Supreme Court Certified Mediator &amp; Arbitrator</p>
+
+      <div class="promise-card">
+        <h4>Counsel for Lake County Businesses</h4>
+        <p>Civil litigation focused on small and mid-sized businesses — construction, property, contracts, and insurance disputes. The firm closes Fridays and over the lunch hour, but matters don't keep banker's hours. After-hours intake captures what the contact form cannot.</p>
+      </div>
+    </div>
+
+    <div class="practice-info">
+      <div class="row">
+        <div class="label">Address</div>
+        <div>210 N. Texas Ave.<br>Tavares, FL 32778</div>
+      </div>
+      <div class="row">
+        <div class="label">Phone</div>
+        <div>(352) 742-7474</div>
+      </div>
+      <div class="row">
+        <div class="label">Hours</div>
+        <div>Mon–Thu 9a–6p · Closed 12–1 · Friday closed</div>
+      </div>
+    </div>
+
+    <div class="powered-by">
+      Intake powered by <strong>VELO AI</strong>
+    </div>
+  </aside>
+
+  <!-- RIGHT: Chat Interface -->
+  <main class="chat-panel">
+    <header class="chat-header">
+      <div class="chat-status">
+        <span class="status-dot"></span>
+        <span class="status-text"><strong>ZJM Intake</strong> · Available 24/7</span>
+      </div>
+      <span class="chat-time" id="chat-time">After hours · 11:47 PM</span>
+    </header>
+
+    <div class="messages" id="messages"></div>
+
+    <div class="input-area">
+      <div class="input-wrap">
+        <input
+          type="text"
+          id="user-input"
+          placeholder="Type your message..."
+          autocomplete="off"
+        />
+        <button class="send-btn" id="send-btn" onclick="handleUserSend()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+        </button>
+      </div>
+      <div class="input-hint">A current client of Mr. McCormick? He will be notified directly for urgent matters.</div>
+    </div>
+  </main>
+</div>
+
+<script>
+  // ============================================================
+  // VELO AI — Zachary J. McCormick PLLC Intake Flow
+  // Formal-authoritative register. Civil litigation for small/medium
+  // businesses — construction, property, contracts, insurance bad-faith,
+  // sealing/expungements. Past Lake County Bar President, JNC Chair,
+  // Special Master. Of Counsel: James Hope (Board-Cert. Crim. Defense).
+  // ============================================================
+
+  const messagesEl = document.getElementById('messages');
+  const inputEl = document.getElementById('user-input');
+  const sendBtn = document.getElementById('send-btn');
+
+  const memory = {
+    name: null,
+    matter: null,
+    isExisting: null,
+    urgency: null,
+    history: []
+  };
+
+  const now = new Date();
+  const hours = now.getHours() < 8 || now.getHours() >= 17 ? '11:47 PM' : '6:32 AM';
+  document.getElementById('chat-time').textContent = `After hours · ${hours}`;
+
+  function addBotMessage(text, delay = 700, withChips = null) {
+    return new Promise(resolve => {
+      const typingId = 't' + Date.now();
+      const typing = document.createElement('div');
+      typing.className = 'msg-group';
+      typing.id = typingId;
+      typing.innerHTML = `<div class="typing"><span></span><span></span><span></span></div>`;
+      messagesEl.appendChild(typing);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+
+      setTimeout(() => {
+        document.getElementById(typingId)?.remove();
+        const msgGroup = document.createElement('div');
+        msgGroup.className = 'msg-group';
+        let html = `<div class="msg msg-bot">${text}</div><div class="msg-meta">ZJM Intake</div>`;
+
+        if (withChips) {
+          html += `<div class="quick-replies">`;
+          withChips.forEach((chip) => {
+            html += `<button class="chip" onclick="handleChipClick('${chip.value.replace(/'/g, "\\'")}', this)">${chip.label}</button>`;
+          });
+          html += `</div>`;
+        }
+
+        msgGroup.innerHTML = html;
+        messagesEl.appendChild(msgGroup);
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+        resolve();
+      }, delay);
+    });
+  }
+
+  function addUserMessage(text) {
+    const msgGroup = document.createElement('div');
+    msgGroup.className = 'msg-group';
+    msgGroup.innerHTML = `
+      <div class="msg msg-user" style="margin-left:auto;">${text}</div>
+      <div class="msg-meta user">You · just now</div>
+    `;
+    messagesEl.appendChild(msgGroup);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+    memory.history.push({ role: 'user', text });
+  }
+
+  function disableChips(currentBtn) {
+    const chips = currentBtn.parentElement.querySelectorAll('.chip');
+    chips.forEach(c => c.disabled = true);
+    currentBtn.style.background = 'var(--accent)';
+    currentBtn.style.color = 'var(--bg)';
+  }
+
+  function showBookingCard(matterType, time) {
+    const card = document.createElement('div');
+    card.className = 'msg-group';
+    card.innerHTML = `
+      <div class="booking-card">
+        <div class="booking-header">
+          <div class="booking-icon">Z</div>
+          <div class="booking-title">Consultation Hold Created</div>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Client</span>
+          <span class="value">${memory.name || 'New client'}</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Matter</span>
+          <span class="value">${matterType}</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Proposed</span>
+          <span class="value">${time}</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">With</span>
+          <span class="value">Zachary J. McCormick, Esq.</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Office</span>
+          <span class="value">210 N. Texas Ave., Tavares</span>
+        </div>
+        <div class="booking-confirm">
+          <button class="btn-primary" onclick="confirmBooking()">Confirm consultation</button>
+          <button class="btn-secondary" onclick="proposeAlternative()">Different time</button>
+        </div>
+      </div>
+    `;
+    messagesEl.appendChild(card);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  // ============================================================
+  // Conversation Flow
+  // ============================================================
+
+  async function startConversation() {
+    await addBotMessage(
+      `Good evening — you've reached the after-hours line for Zachary J. McCormick PLLC in Tavares. Mr. McCormick represents small and mid-sized businesses across Lake County in construction, property, and contract disputes, and he is a Florida Supreme Court Certified Mediator and Qualified Arbitrator. The office is closed for the evening, but I can take down what's happening and route it to him in the morning.<br><br>What brings you here tonight?`,
+      400,
+      [
+        { label: '🏗️ Construction dispute / lien', value: 'construction' },
+        { label: '🏢 Property or commercial real estate', value: 'property' },
+        { label: '📑 Contract drafting or dispute', value: 'contract' },
+        { label: '🛡️ Insurance denial / bad faith', value: 'insurance' },
+        { label: '🔒 Sealing / expungement', value: 'sealing' },
+        { label: '⚖️ Criminal defense matter', value: 'criminal' },
+        { label: '❓ A general question', value: 'question' }
+      ]
+    );
+  }
+
+  async function handleChipClick(value, btn) {
+    disableChips(btn);
+    const labelMap = {
+      'construction': "I have a construction dispute or lien matter",
+      'property': "I have a property or commercial real estate matter",
+      'contract': "I need help with a contract — drafting or dispute",
+      'insurance': "An insurance carrier denied or low-balled my claim",
+      'sealing': "I'd like to seal or expunge a record",
+      'criminal': "I have a criminal defense matter",
+      'question': "I just have a general question",
+      'subcontractor': "Subcontractor / payment issue",
+      'owner-builder': "Owner / general contractor dispute",
+      'lien-deadline': "Lien filing or release question",
+      'lease-dispute': "Lease dispute",
+      'title-issue': "Title or boundary issue",
+      'sale-purchase': "Sale or purchase contract",
+      'drafting-new': "I need a contract drafted",
+      'breach-existing': "An existing contract is being breached",
+      'review-pending': "Reviewing a contract before signing",
+      'denial-letter': "Carrier issued a denial letter",
+      'low-ball': "Carrier offered far less than the claim",
+      'delay-tactics': "Carrier is dragging out the claim",
+      'urgent-frozen': "Yes — there's a deadline within 7 days",
+      'urgent-soon': "Within 30 days",
+      'urgent-planning': "No deadline yet",
+      'this-week': "This week",
+      'next-week': "Next week",
+      'flexible': "I'm flexible"
+    };
+    addUserMessage(labelMap[value] || value);
+    memory.history.push({ role: 'user', value });
+    await routeIntent(value);
+  }
+
+  async function routeIntent(value) {
+    // CONSTRUCTION PATH ------------------------------------------
+    if (value === 'construction') {
+      memory.matter = 'construction';
+      await addBotMessage(
+        `Construction matters are central to Mr. McCormick's practice — particularly disputes between owners, general contractors, and subcontractors, and Florida construction lien questions, which run on tight statutory deadlines. The first thing he'll want to know is what stage you're in.<br><br>Which best describes your situation?`,
+        1300,
+        [
+          { label: '🔧 Subcontractor / payment', value: 'subcontractor' },
+          { label: '🏗️ Owner / GC dispute', value: 'owner-builder' },
+          { label: '📅 Lien deadline question', value: 'lien-deadline' }
+        ]
+      );
+      return;
+    }
+
+    if (['subcontractor', 'owner-builder', 'lien-deadline'].includes(value)) {
+      memory.constructionType = value;
+      await addBotMessage(
+        `Thank you. Is there a deadline coming — a lien window closing, a notice period running, or a hearing already set?`,
+        1000,
+        [
+          { label: '🔴 Within 7 days', value: 'urgent-frozen' },
+          { label: '🟡 Within 30 days', value: 'urgent-soon' },
+          { label: '🟢 No deadline yet', value: 'urgent-planning' }
+        ]
+      );
+      return;
+    }
+
+    // PROPERTY PATH ----------------------------------------------
+    if (value === 'property') {
+      memory.matter = 'property';
+      await addBotMessage(
+        `Property and commercial real estate matters surface on tight windows — closings, lease deadlines, title objections. Which is closest to your situation?`,
+        1200,
+        [
+          { label: '📃 Lease dispute', value: 'lease-dispute' },
+          { label: '🗺️ Title or boundary issue', value: 'title-issue' },
+          { label: '🤝 Sale or purchase contract', value: 'sale-purchase' }
+        ]
+      );
+      return;
+    }
+
+    if (['lease-dispute', 'title-issue', 'sale-purchase'].includes(value)) {
+      memory.propertyType = value;
+      await addBotMessage(
+        `Thank you. Is there a closing date, notice deadline, or court date already set?`,
+        1000,
+        [
+          { label: '🔴 Within 7 days', value: 'urgent-frozen' },
+          { label: '🟡 Within 30 days', value: 'urgent-soon' },
+          { label: '🟢 No deadline yet', value: 'urgent-planning' }
+        ]
+      );
+      return;
+    }
+
+    // CONTRACT PATH ----------------------------------------------
+    if (value === 'contract') {
+      memory.matter = 'contract';
+      await addBotMessage(
+        `Contracts are bread-and-butter work for Mr. McCormick — both drafting and litigation when something goes sideways. Which best describes what you need?`,
+        1200,
+        [
+          { label: '✍️ Need a contract drafted', value: 'drafting-new' },
+          { label: '⚠️ Existing contract being breached', value: 'breach-existing' },
+          { label: '🔍 Review before signing', value: 'review-pending' }
+        ]
+      );
+      return;
+    }
+
+    if (['drafting-new', 'breach-existing', 'review-pending'].includes(value)) {
+      memory.contractType = value;
+      await addBotMessage(
+        `Thank you. Is there a signature window, a demand-letter response date, or a hearing on the calendar?`,
+        1000,
+        [
+          { label: '🔴 Within 7 days', value: 'urgent-frozen' },
+          { label: '🟡 Within 30 days', value: 'urgent-soon' },
+          { label: '🟢 No deadline yet', value: 'urgent-planning' }
+        ]
+      );
+      return;
+    }
+
+    // INSURANCE BAD FAITH PATH -----------------------------------
+    if (value === 'insurance') {
+      memory.matter = 'insurance';
+      await addBotMessage(
+        `Insurance disputes — denied claims, bad-faith handling, and lowball offers — are an active part of the practice. The carrier's playbook is to delay; Mr. McCormick's response is statutory pressure and, where appropriate, litigation. What is the carrier doing?`,
+        1300,
+        [
+          { label: '✉️ Issued a denial letter', value: 'denial-letter' },
+          { label: '💸 Offered far less than the claim', value: 'low-ball' },
+          { label: '🐢 Dragging out the claim', value: 'delay-tactics' }
+        ]
+      );
+      return;
+    }
+
+    if (['denial-letter', 'low-ball', 'delay-tactics'].includes(value)) {
+      memory.insuranceType = value;
+      await addBotMessage(
+        `Thank you. Are you within any policy or statutory deadline (suit limit, proof-of-loss period, appraisal demand)?`,
+        1000,
+        [
+          { label: '🔴 Within 7 days', value: 'urgent-frozen' },
+          { label: '🟡 Within 30 days', value: 'urgent-soon' },
+          { label: '🟢 No deadline yet', value: 'urgent-planning' }
+        ]
+      );
+      return;
+    }
+
+    // SEALING / EXPUNGEMENT PATH ---------------------------------
+    if (value === 'sealing') {
+      memory.matter = 'sealing';
+      await addBotMessage(
+        `Sealing and expungement applications follow a defined process in Florida, and eligibility is the first question to answer. Mr. McCormick can typically tell within a brief consultation whether your case qualifies and what the realistic timeline looks like.<br><br>Is there a job, licensing, or housing deadline driving this?`,
+        1200,
+        [
+          { label: '🔴 Yes — within 30 days', value: 'urgent-frozen' },
+          { label: '🟡 Within a few months', value: 'urgent-soon' },
+          { label: '🟢 No deadline — exploring', value: 'urgent-planning' }
+        ]
+      );
+      return;
+    }
+
+    // CRIMINAL DEFENSE (Of Counsel: James Hope) ------------------
+    if (value === 'criminal') {
+      memory.matter = 'criminal';
+      await addBotMessage(
+        `For criminal defense, the firm works with James Hope — a Florida Bar Board Certified Criminal Defense Specialist (a credential held by roughly eighty attorneys statewide) — who serves as Of Counsel. If charges have been filed or an arrest has occurred, this is treated as priority and routed first thing in the morning.<br><br>Is anything time-pressured tonight?`,
+        1300,
+        [
+          { label: '🔴 Arrest or hearing imminent', value: 'urgent-frozen' },
+          { label: '🟡 Investigation under way', value: 'urgent-soon' },
+          { label: '🟢 Just exploring options', value: 'urgent-planning' }
+        ]
+      );
+      return;
+    }
+
+    // URGENCY HANDLERS -------------------------------------------
+    if (value === 'urgent-frozen') {
+      memory.urgency = 'severe';
+      await addBotMessage(
+        `Understood — that is exactly what Mr. McCormick will want flagged for him tonight. I'm marking this as priority. He will return your call first thing in the morning, before his calendar opens.<br><br>May I have your first name and the best callback number? If a deadline falls within the next 48 hours, please mention it.`,
+        1200
+      );
+      memory.collecting = 'name-phone';
+      return;
+    }
+
+    if (value === 'urgent-soon' || value === 'urgent-planning') {
+      memory.urgency = value;
+      await addBotMessage(
+        `Thank you — that helps me set expectations. Mr. McCormick reserves consultation hours Tuesday through Thursday for new matters. He served as President of the Lake County Bar Association and currently chairs the Judicial Nominating Commission for the Fifth Judicial Circuit, which means he is in court regularly and reads schedules carefully.<br><br>What is your first name? I'll have him reach out tomorrow morning to set a time.`,
+        1100
+      );
+      memory.collecting = 'name';
+      return;
+    }
+
+    if (['this-week', 'next-week', 'flexible'].includes(value)) {
+      const timeMap = {
+        'this-week': 'Thursday at 2:00 PM',
+        'next-week': 'Tuesday at 10:30 AM',
+        'flexible': 'Wednesday at 1:00 PM'
+      };
+      memory.proposedTime = timeMap[value];
+
+      await addBotMessage(
+        `Very good. Allow me to hold ${timeMap[value]} for you. May I have your first name to place on Mr. McCormick's calendar?`,
+        900
+      );
+      memory.collecting = 'name-for-booking';
+      return;
+    }
+
+    // GENERAL QUESTION PATH ------------------------------------
+    if (value === 'question') {
+      memory.matter = 'question';
+      await addBotMessage(
+        `Of course — please type your question. If it warrants Mr. McCormick's direct attention (case strategy, opposing counsel, statutory specifics), I'll route it to him and he'll respond in the morning.`,
+        900
+      );
+      memory.collecting = 'free-question';
+      return;
+    }
+  }
+
+  // ============================================================
+  // Free-text input handler
+  // ============================================================
+  async function handleUserSend() {
+    const text = inputEl.value.trim();
+    if (!text) return;
+    addUserMessage(text);
+    inputEl.value = '';
+
+    if (memory.collecting === 'name' || memory.collecting === 'name-for-booking' || memory.collecting === 'name-phone') {
+      const name = text.split(/\s+/)[0].replace(/[^a-zA-Z]/g, '');
+      memory.name = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+
+      const responses = {
+        'name': `Thank you, ${memory.name}. May I have the best phone number to reach you? I want to make certain Mr. McCormick has it before his morning calls begin.`,
+        'name-for-booking': `Thank you, ${memory.name}. And the best phone number? Mr. McCormick's office will text a confirmation by 9 AM tomorrow.`,
+        'name-phone': `Thank you, ${memory.name}. What is the best callback number? Mr. McCormick will telephone you in the morning.`
+      };
+      const oldState = memory.collecting;
+      await addBotMessage(responses[oldState], 800);
+      memory.collecting = 'phone';
+      return;
+    }
+
+    if (memory.collecting === 'phone') {
+      memory.phone = text;
+      memory.collecting = null;
+
+      if (memory.proposedTime) {
+        const matterMap = {
+          'construction': 'Construction Litigation Consult',
+          'property': 'Property Litigation Consult',
+          'contract': 'Contract Consult',
+          'insurance': 'Insurance Dispute Consult',
+          'sealing': 'Sealing / Expungement Consult',
+          'criminal': 'Criminal Defense Consult (Of Counsel)',
+          'question': 'General Consultation'
+        };
+        const matter = matterMap[memory.matter] || 'New Client Consultation';
+
+        await addBotMessage(
+          `Very good. Here is the hold I am placing on Mr. McCormick's calendar:`,
+          800
+        );
+        setTimeout(() => showBookingCard(matter, memory.proposedTime), 1200);
+      } else if (memory.urgency === 'severe') {
+        await addBotMessage(
+          `Thank you, ${memory.name}. I have flagged this as priority for Mr. McCormick. Please expect a call from <strong>(352) 742-7474</strong> first thing in the morning.<br><br>If anything material changes overnight — a deadline shifts, a new development arises — please feel free to text this number, and Mr. McCormick will see it before his first appointment.`,
+          1100
+        );
+      } else {
+        await addBotMessage(
+          `Very good, ${memory.name}. Mr. McCormick will reach out to ${text} by mid-morning tomorrow to set a time that works for you.<br><br>Is there anything else I can record for him this evening?`,
+          1000
+        );
+      }
+      return;
+    }
+
+    if (memory.collecting === 'free-question') {
+      memory.collecting = null;
+      await addBotMessage(
+        `Thank you for sending that. I have logged your question for Mr. McCormick to review first thing tomorrow morning — he will either respond directly or have his office follow up by 10 AM.<br><br>Would you like me to also hold a consultation slot in case it is easier discussed in person?`,
+        1100,
+        [
+          { label: '✅ Yes, hold a slot', value: 'this-week' },
+          { label: 'No thank you', value: 'no-slot' }
+        ]
+      );
+      return;
+    }
+
+    // Fallback
+    await addBotMessage(
+      `Thank you for sharing that. So I may route this properly to Mr. McCormick — would you say this is more of a construction matter, a contract or property matter, or something else?`,
+      900,
+      [
+        { label: '🏗️ Construction', value: 'construction' },
+        { label: '📑 Contract', value: 'contract' },
+        { label: '❓ General question', value: 'question' }
+      ]
+    );
+  }
+
+  function confirmBooking() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) {
+      card.style.transition = 'all 0.3s ease';
+      card.style.background = 'linear-gradient(135deg, #2a3a5c 0%, #1a2540 100%)';
+      card.style.color = 'white';
+      card.querySelector('.booking-title').style.color = 'white';
+      card.querySelector('.booking-icon').style.background = 'white';
+      card.querySelector('.booking-icon').style.color = 'var(--accent)';
+      card.querySelectorAll('.label').forEach(el => el.style.color = 'rgba(255,255,255,0.6)');
+      card.querySelectorAll('.value').forEach(el => el.style.color = 'white');
+      card.querySelector('.booking-confirm').remove();
+    }
+    setTimeout(async () => {
+      await addBotMessage(
+        `You are set, ${memory.name}. Mr. McCormick has been notified, and you will receive a confirmation text from <strong>(352) 742-7474</strong> tomorrow morning.<br><br>Take good care this evening — we look forward to meeting with you.`,
+        700
+      );
+    }, 400);
+  }
+
+  function proposeAlternative() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) card.remove();
+    addBotMessage(
+      `Of course. Mr. McCormick has openings Tuesday at 11 AM, Wednesday at 3 PM, or Thursday at 10 AM — which suits you best?`,
+      600,
+      [
+        { label: '🌅 Tuesday 11 AM', value: 'this-week' },
+        { label: '🕒 Wednesday 3 PM', value: 'next-week' },
+        { label: '☀️ Thursday 10 AM', value: 'flexible' }
+      ]
+    );
+  }
+
+  inputEl.addEventListener('keydown', e => {
+    if (e.key === 'Enter') handleUserSend();
+  });
+
+  setTimeout(startConversation, 600);
+</script>
+
+</body>
+</html>

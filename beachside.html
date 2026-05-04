@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Beachside Realty — After-Hours Lead Concierge | Powered by Velo AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Coastal beachside palette: sea-foam cream + coral sunset + deep Atlantic blue.
+       Old-Florida classy, boutique, family-feel. */
+    --bg: #f3efe4;
+    --bg-deep: #e4ddc9;
+    --ink: #142233;
+    --ink-soft: #44546a;
+    --ink-faint: #87909e;
+    --accent: #1f4a6b;       /* deep Atlantic blue — broker primary */
+    --accent-warm: #d97a5b;  /* coral sunset accent */
+    --accent-glow: #f6d8b8;
+    --line: #d2c9b3;
+    --bot-msg: #ffffff;
+    --user-msg: #1f4a6b;
+    --user-msg-text: #ffffff;
+    --shadow-sm: 0 1px 3px rgba(20, 34, 51, 0.06);
+    --shadow-md: 0 4px 16px rgba(20, 34, 51, 0.08);
+    --shadow-lg: 0 12px 40px rgba(20, 34, 51, 0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body { height: 100%; }
+
+  body {
+    font-family: 'Geist', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.5;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(217, 122, 91, 0.05) 0%, transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(31, 74, 107, 0.04) 0%, transparent 40%);
+  }
+
+  .app {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    min-height: 100vh;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .practice-panel {
+    background: linear-gradient(180deg, #1c3a55 0%, #0f1e2d 100%);
+    color: #e8e0d0;
+    padding: 40px 32px;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .practice-panel::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(217, 122, 91, 0.10) 0%, transparent 50%);
+    animation: drift 22s ease-in-out infinite;
+  }
+
+  @keyframes drift {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(20%, 10%); }
+  }
+
+  .practice-content { position: relative; z-index: 1; }
+
+  .practice-mark {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    margin-bottom: 12px;
+    opacity: 0.9;
+  }
+
+  .practice-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+  }
+
+  .practice-doctor {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--accent-glow);
+    margin-bottom: 32px;
+  }
+
+  .promise-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(246, 216, 184, 0.15);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+    backdrop-filter: blur(10px);
+  }
+
+  .promise-card h4 {
+    font-family: 'Geist', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    margin-bottom: 8px;
+  }
+
+  .promise-card p {
+    font-size: 14px;
+    line-height: 1.55;
+    color: #d4cdb8;
+  }
+
+  .practice-info {
+    margin-top: auto;
+    padding-top: 24px;
+    border-top: 1px solid rgba(246, 216, 184, 0.1);
+    font-size: 13px;
+    line-height: 1.7;
+    color: #b8b0a0;
+  }
+
+  .practice-info .row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 8px;
+  }
+
+  .practice-info .label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    width: 56px;
+    padding-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .powered-by {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(246, 216, 184, 0.1);
+    font-size: 11px;
+    color: #8a8275;
+    letter-spacing: 0.05em;
+  }
+
+  .powered-by strong {
+    color: var(--accent-glow);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+  }
+
+  .chat-panel {
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .chat-header {
+    padding: 20px 32px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(243, 239, 228, 0.85);
+    backdrop-filter: blur(12px);
+    z-index: 10;
+  }
+
+  .chat-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .status-dot {
+    width: 8px; height: 8px;
+    background: #4ade80;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.15);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.15); }
+    50% { box-shadow: 0 0 0 8px rgba(74, 222, 128, 0.05); }
+  }
+
+  .status-text {
+    font-size: 13px;
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+
+  .status-text strong { color: var(--ink); font-weight: 600; }
+
+  .chat-time {
+    font-family: 'Fraunces', serif;
+    font-size: 12px;
+    color: var(--ink-faint);
+    font-style: italic;
+  }
+
+  .messages {
+    flex: 1;
+    padding: 32px;
+    scroll-behavior: smooth;
+  }
+
+  .msg-group {
+    margin-bottom: 20px;
+    animation: msgIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  @keyframes msgIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .msg {
+    max-width: 78%;
+    padding: 14px 18px;
+    border-radius: 18px;
+    font-size: 15px;
+    line-height: 1.55;
+    word-wrap: break-word;
+  }
+
+  .msg-bot {
+    background: var(--bot-msg);
+    color: var(--ink);
+    border-bottom-left-radius: 4px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(210, 201, 179, 0.4);
+  }
+
+  .msg-user {
+    background: var(--user-msg);
+    color: var(--user-msg-text);
+    border-bottom-right-radius: 4px;
+    margin-left: auto;
+  }
+
+  .msg-meta {
+    font-size: 10px;
+    color: var(--ink-faint);
+    margin-top: 6px;
+    padding: 0 8px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .msg-meta.user { text-align: right; }
+
+  .typing {
+    display: flex;
+    gap: 4px;
+    padding: 16px 20px;
+    background: var(--bot-msg);
+    border-radius: 18px;
+    border-bottom-left-radius: 4px;
+    width: fit-content;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(210, 201, 179, 0.4);
+  }
+
+  .typing span {
+    width: 7px; height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: typing 1.4s ease-in-out infinite;
+  }
+
+  .typing span:nth-child(2) { animation-delay: 0.2s; }
+  .typing span:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes typing {
+    0%, 100% { transform: translateY(0); opacity: 0.4; }
+    50% { transform: translateY(-4px); opacity: 1; }
+  }
+
+  .quick-replies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+    animation: msgIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s both;
+  }
+
+  .chip {
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 9px 16px;
+    border-radius: 100px;
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .chip:hover {
+    background: var(--accent);
+    color: var(--bg);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .chip:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .booking-card {
+    background: linear-gradient(135deg, #ffffff 0%, #faf2e3 100%);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 24px;
+    margin-top: 12px;
+    box-shadow: var(--shadow-md);
+    animation: msgIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    max-width: 78%;
+  }
+
+  .booking-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .booking-icon {
+    width: 32px; height: 32px;
+    background: var(--accent);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .booking-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--ink);
+  }
+
+  .booking-detail {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 12px;
+    padding: 8px 0;
+    font-size: 14px;
+  }
+
+  .booking-detail .label {
+    color: var(--ink-faint);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding-top: 2px;
+  }
+
+  .booking-detail .value {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .booking-confirm {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    gap: 8px;
+  }
+
+  .btn-primary {
+    flex: 1;
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: #15324a;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--ink-soft);
+    border: 1px solid var(--line);
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover {
+    background: var(--bg-deep);
+  }
+
+  .input-area {
+    padding: 20px 32px 24px;
+    border-top: 1px solid var(--line);
+    background: rgba(243, 239, 228, 0.85);
+    backdrop-filter: blur(12px);
+  }
+
+  .input-wrap {
+    display: flex;
+    gap: 10px;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 6px 6px 6px 18px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .input-wrap:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(31, 74, 107, 0.08);
+  }
+
+  .input-wrap input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-family: 'Geist', sans-serif;
+    font-size: 15px;
+    color: var(--ink);
+    padding: 10px 0;
+    background: transparent;
+  }
+
+  .input-wrap input::placeholder { color: var(--ink-faint); }
+
+  .send-btn {
+    background: var(--accent);
+    color: white;
+    border: none;
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+
+  .send-btn:hover { background: #15324a; transform: scale(1.05); }
+  .send-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+  .input-hint {
+    font-size: 11px;
+    color: var(--ink-faint);
+    margin-top: 10px;
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
+
+  .demo-banner {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 10px 16px;
+    border-radius: 100px;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    z-index: 100;
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .demo-banner:hover { transform: scale(1.03); }
+  .demo-banner .pulse-dot {
+    width: 6px; height: 6px;
+    background: var(--accent-warm);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @media (max-width: 900px) {
+    html, body {
+      height: auto;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .app {
+      grid-template-columns: 1fr;
+      height: auto;
+      min-height: 100vh;
+    }
+    .practice-panel {
+      padding: 20px 24px;
+      position: static;
+      height: auto;
+      max-height: none;
+    }
+    .practice-panel .promise-card,
+    .practice-panel .practice-info,
+    .practice-panel .powered-by { display: none; }
+    .practice-name { font-size: 22px; }
+    .practice-doctor { font-size: 14px; margin-bottom: 0; }
+    .chat-panel {
+      min-height: 80vh;
+    }
+    .messages {
+      padding: 20px;
+      overflow-y: visible;
+      flex: none;
+    }
+    .msg { max-width: 88%; }
+    .input-area {
+      padding: 16px 20px 20px;
+      position: sticky;
+      bottom: 0;
+    }
+    .demo-banner { top: 8px; right: 8px; padding: 8px 12px; font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner" onclick="alert('This is a live demo built by Velo AI for Beachside Realty.\n\nFor deployment information, contact:\nGabe Herrera — Velo AI\nWinter Springs, FL')">
+  <span class="pulse-dot"></span>
+  <span>Velo AI Demo</span>
+</div>
+
+<div class="app">
+
+  <!-- LEFT: Brand Panel -->
+  <aside class="practice-panel">
+    <div class="practice-content">
+      <div class="practice-mark">New Smyrna Beach · Boutique Since 1983</div>
+      <h1 class="practice-name">Beachside Realty</h1>
+      <p class="practice-doctor">Susan Hounsom · Broker / Owner</p>
+
+      <div class="promise-card">
+        <h4>Forty-Two Years On Flagler Avenue</h4>
+        <p>The beachside market never sleeps — and neither should the front desk. Susan and her team built this firm on personal answers, not voicemail trees, and that promise carries into every after-hours visit.</p>
+      </div>
+    </div>
+
+    <div class="practice-info">
+      <div class="row">
+        <div class="label">Address</div>
+        <div>315 Flagler Ave<br>New Smyrna Beach, FL 32169</div>
+      </div>
+      <div class="row">
+        <div class="label">Phone</div>
+        <div>(386) 427-1212 · Rentals (386) 427-8039</div>
+      </div>
+      <div class="row">
+        <div class="label">Hours</div>
+        <div>Mon–Fri 9a–5p · Sat 10a–2:30p · Closed Sun</div>
+      </div>
+      <div class="row">
+        <div class="label">Service</div>
+        <div>NSB · Coronado Shores · Bethune Beach · Edgewater</div>
+      </div>
+    </div>
+
+    <div class="powered-by">
+      Lead concierge powered by <strong>VELO AI</strong>
+    </div>
+  </aside>
+
+  <!-- RIGHT: Chat Interface -->
+  <main class="chat-panel">
+    <header class="chat-header">
+      <div class="chat-status">
+        <span class="status-dot"></span>
+        <span class="status-text"><strong>Beachside Concierge</strong> · Available 24/7</span>
+      </div>
+      <span class="chat-time" id="chat-time">After hours · 9:43 PM</span>
+    </header>
+
+    <div class="messages" id="messages"></div>
+
+    <div class="input-area">
+      <div class="input-wrap">
+        <input
+          type="text"
+          id="user-input"
+          placeholder="Type your message..."
+          autocomplete="off"
+        />
+        <button class="send-btn" id="send-btn" onclick="handleUserSend()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+        </button>
+      </div>
+      <div class="input-hint">Already working with one of our agents? Susan is notified directly for time-sensitive matters.</div>
+    </div>
+  </main>
+</div>
+
+<script>
+  // ============================================================
+  // VELO AI — Beachside Realty Lead Concierge
+  // Buy / Sell / Rent / Property-Manage routes → consult booking
+  // ============================================================
+
+  const messagesEl = document.getElementById('messages');
+  const inputEl = document.getElementById('user-input');
+  const sendBtn = document.getElementById('send-btn');
+
+  const memory = {
+    name: null,
+    intent: null,           // buy, sell, rent, info
+    subPath: null,          // oceanfront/condo/investment/vacation/longterm/pm/etc.
+    timeline: null,
+    budget: null,
+    propertyType: null,
+    history: []
+  };
+
+  const now = new Date();
+  const hours = now.getHours() < 9 || now.getHours() >= 17 ? '9:43 PM' : '7:18 AM';
+  document.getElementById('chat-time').textContent = `After hours · ${hours}`;
+
+  function addBotMessage(text, delay = 700, withChips = null) {
+    return new Promise(resolve => {
+      const typingId = 't' + Date.now();
+      const typing = document.createElement('div');
+      typing.className = 'msg-group';
+      typing.id = typingId;
+      typing.innerHTML = `<div class="typing"><span></span><span></span><span></span></div>`;
+      messagesEl.appendChild(typing);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+
+      setTimeout(() => {
+        document.getElementById(typingId)?.remove();
+        const msgGroup = document.createElement('div');
+        msgGroup.className = 'msg-group';
+        let html = `<div class="msg msg-bot">${text}</div><div class="msg-meta">Beachside Concierge</div>`;
+
+        if (withChips) {
+          html += `<div class="quick-replies">`;
+          withChips.forEach((chip) => {
+            html += `<button class="chip" onclick="handleChipClick('${chip.value.replace(/'/g, "\\'")}', this)">${chip.label}</button>`;
+          });
+          html += `</div>`;
+        }
+
+        msgGroup.innerHTML = html;
+        messagesEl.appendChild(msgGroup);
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+        resolve();
+      }, delay);
+    });
+  }
+
+  function addUserMessage(text) {
+    const msgGroup = document.createElement('div');
+    msgGroup.className = 'msg-group';
+    msgGroup.innerHTML = `
+      <div class="msg msg-user" style="margin-left:auto;">${text}</div>
+      <div class="msg-meta user">You · just now</div>
+    `;
+    messagesEl.appendChild(msgGroup);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+    memory.history.push({ role: 'user', text });
+  }
+
+  function disableChips(currentBtn) {
+    const chips = currentBtn.parentElement.querySelectorAll('.chip');
+    chips.forEach(c => c.disabled = true);
+    currentBtn.style.background = 'var(--accent)';
+    currentBtn.style.color = 'var(--bg)';
+  }
+
+  function showBookingCard(meetingType, time) {
+    const card = document.createElement('div');
+    card.className = 'msg-group';
+    card.innerHTML = `
+      <div class="booking-card">
+        <div class="booking-header">
+          <div class="booking-icon">B</div>
+          <div class="booking-title">Consult Hold Created</div>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Client</span>
+          <span class="value">${memory.name || 'New lead'}</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">For</span>
+          <span class="value">${meetingType}</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Proposed</span>
+          <span class="value">${time}</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">With</span>
+          <span class="value">Susan Hounsom · Broker / Owner</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Office</span>
+          <span class="value">315 Flagler Ave, New Smyrna Beach</span>
+        </div>
+        <div class="booking-confirm">
+          <button class="btn-primary" onclick="confirmBooking()">Confirm consult</button>
+          <button class="btn-secondary" onclick="proposeAlternative()">Different time</button>
+        </div>
+      </div>
+    `;
+    messagesEl.appendChild(card);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  // ============================================================
+  // Conversation Flow
+  // ============================================================
+
+  async function startConversation() {
+    await addBotMessage(
+      `Welcome to Beachside Realty — you've reached the after-hours line on Flagler Avenue. Susan and the office have wrapped for the day, but I can take down what you need and have the right agent reach out first thing tomorrow.<br><br>What can I help with tonight?`,
+      400,
+      [
+        { label: '🏖️ Buying on the beachside', value: 'buy' },
+        { label: '📋 Selling a property', value: 'sell' },
+        { label: '🔑 Renting (vacation or long-term)', value: 'rent' },
+        { label: '❓ A general question', value: 'info' }
+      ]
+    );
+  }
+
+  async function handleChipClick(value, btn) {
+    disableChips(btn);
+    const labelMap = {
+      'buy': "I'm looking to buy",
+      'sell': "I'd like to sell a property",
+      'rent': "I'm looking at a rental",
+      'info': "I just have a general question",
+      // Buyer sub-intents
+      'buy-oceanfront': "Oceanfront / direct-beach",
+      'buy-condo': "Beachside condo",
+      'buy-investment': "Investment / income property",
+      // Seller sub-intents
+      'sell-residential': "A residential home or condo",
+      'sell-vacation': "A vacation rental property",
+      'sell-commercial': "A commercial property",
+      // Rental sub-intents
+      'rent-vacation': "A vacation / short-term rental",
+      'rent-longterm': "A long-term rental",
+      'rent-pm': "Property management for my place",
+      // Budget
+      'budget-entry': "Up to $750k",
+      'budget-mid': "$750k–$1.5M",
+      'budget-upper': "$1.5M–$2.5M",
+      'budget-luxury': "$2.5M+",
+      // Timeline
+      'timeline-now': "Within 30 days",
+      'timeline-soon': "1–3 months",
+      'timeline-later': "Just exploring",
+      'sell-now': "Soon — within 30 days",
+      'sell-3mo': "Within a few months",
+      'sell-explore': "Just exploring",
+      // Booking
+      'this-week': "This week",
+      'next-week': "Next week",
+      'flexible': "I'm flexible",
+      'no-slot': "No thanks"
+    };
+    addUserMessage(labelMap[value] || value);
+    memory.history.push({ role: 'user', value });
+    await routeIntent(value);
+  }
+
+  async function routeIntent(value) {
+    // ============= BUYING PATH =============
+    if (value === 'buy') {
+      memory.intent = 'buy';
+      await addBotMessage(
+        `Wonderful — the beachside market here in 32169 has its own rhythm, and Susan's been working it since 1983, so you're in good hands. The team covers everything from Coronado Shores down through Bethune Beach.<br><br>What kind of buy are you picturing?`,
+        1200,
+        [
+          { label: '🌊 Oceanfront home', value: 'buy-oceanfront' },
+          { label: '🏢 Beachside condo', value: 'buy-condo' },
+          { label: '💼 Investment property', value: 'buy-investment' }
+        ]
+      );
+      return;
+    }
+
+    if (['buy-oceanfront', 'buy-condo', 'buy-investment'].includes(value)) {
+      memory.subPath = value;
+      const intro = value === 'buy-oceanfront'
+        ? `Direct-oceanfront is one of our specialties — Susan's seen pretty much every front-row street in NSB change hands at some point. Inventory in that range right now runs from the high-$1Ms up into the $3M+ estate tier on Bethune Beach.`
+        : value === 'buy-condo'
+        ? `Beachside condos move fast around here — entry-level units start in the upper-$400s to mid-$500s, and the upper-floor and oceanfront stacks at Coronado Shores tend to live in the $700k–$1.2M range. The right answer really depends on whether you want to rent it back out when you're not using it.`
+        : `Smart move — short-term rental income on this stretch of beach is one of the better cash-flow stories in central Florida. We handle a lot of investor purchases, often with the property management piece bundled in so it's truly turn-key.`;
+      await addBotMessage(
+        `${intro}<br><br>What's the budget you're working with?`,
+        1400,
+        [
+          { label: 'Up to $750k', value: 'budget-entry' },
+          { label: '$750k–$1.5M', value: 'budget-mid' },
+          { label: '$1.5M–$2.5M', value: 'budget-upper' },
+          { label: '$2.5M+', value: 'budget-luxury' }
+        ]
+      );
+      return;
+    }
+
+    if (['budget-entry', 'budget-mid', 'budget-upper', 'budget-luxury'].includes(value)) {
+      memory.budget = value;
+      await addBotMessage(
+        `Good — that gives our agents a real starting point. And how soon are you actually looking to move on something?`,
+        1000,
+        [
+          { label: '🔥 Within 30 days', value: 'timeline-now' },
+          { label: '📅 1–3 months', value: 'timeline-soon' },
+          { label: '👀 Just exploring', value: 'timeline-later' }
+        ]
+      );
+      return;
+    }
+
+    if (['timeline-now', 'timeline-soon', 'timeline-later'].includes(value)) {
+      memory.timeline = value;
+      const message = value === 'timeline-now'
+        ? `At that pace Susan will want to put one of our buyer agents on it right away — probably Marsha or Lori Anne depending on which side of the island you're focused on. Want me to hold a 30-minute beachside buyer consult this week?`
+        : value === 'timeline-soon'
+        ? `Good runway. The team usually opens with a 30-minute beachside buyer briefing — what's actually on the market, what's coming, and where your budget lands. No pressure, no pre-tour. Want me to hold a slot?`
+        : `Smart approach — a lot of our best clients started a year out by getting educated on the neighborhoods. Susan keeps a 20-minute orientation conversation open for that exact reason. Want me to hold one?`;
+      await addBotMessage(message, 1300, [
+        { label: '📅 This week', value: 'this-week' },
+        { label: '📆 Next week', value: 'next-week' },
+        { label: "🤝 I'm flexible", value: 'flexible' }
+      ]);
+      return;
+    }
+
+    // ============= SELLING PATH =============
+    if (value === 'sell') {
+      memory.intent = 'sell';
+      await addBotMessage(
+        `Smart of you to start the conversation early — pricing the beachside market is part art, part data, and Susan's been tracking it for forty-two years. What kind of property are we talking about?`,
+        1300,
+        [
+          { label: '🏡 Residential home or condo', value: 'sell-residential' },
+          { label: '🏖️ A vacation rental property', value: 'sell-vacation' },
+          { label: '🏢 A commercial property', value: 'sell-commercial' }
+        ]
+      );
+      return;
+    }
+
+    if (['sell-residential', 'sell-vacation', 'sell-commercial'].includes(value)) {
+      memory.subPath = value;
+      const intro = value === 'sell-residential'
+        ? `Got it — most of our listings are exactly that. Susan and Marsha between them have probably listed half the homes on the beachside at some point.`
+        : value === 'sell-vacation'
+        ? `Great — Aimee runs our vacation rental side and knows how to position a property so the income story comes through to buyers. That alone usually adds real money to the offer.`
+        : `Got it — Peter handles our commercial side here on Flagler and across the corridor. He'll know exactly how to position whatever you're sitting on.`;
+      await addBotMessage(
+        `${intro}<br><br>How soon are you thinking?`,
+        1300,
+        [
+          { label: '🔥 Within 30 days', value: 'sell-now' },
+          { label: '📅 Within a few months', value: 'sell-3mo' },
+          { label: '👀 Just exploring', value: 'sell-explore' }
+        ]
+      );
+      return;
+    }
+
+    if (['sell-now', 'sell-3mo', 'sell-explore'].includes(value)) {
+      memory.timeline = value;
+      const message = value === 'sell-now'
+        ? `Tight window — the team will want to do a walk-through and a CMA before going live. Can you hold a 45-minute appointment this week?`
+        : value === 'sell-3mo'
+        ? `Good runway. We typically start with a no-obligation home valuation and market-position consult — gives you a clean number before you commit to anything. Want me to hold a slot?`
+        : `Sensible — Susan is genuinely happy to do a "what's it worth, should I list now or wait" conversation with no pressure to sign. Want me to hold a slot?`;
+      await addBotMessage(message, 1300, [
+        { label: '📅 This week', value: 'this-week' },
+        { label: '📆 Next week', value: 'next-week' },
+        { label: "🤝 I'm flexible", value: 'flexible' }
+      ]);
+      return;
+    }
+
+    // ============= RENTAL PATH =============
+    if (value === 'rent') {
+      memory.intent = 'rent';
+      await addBotMessage(
+        `Perfect — rentals are a meaningful piece of what we do. Aimee runs our rental and property-management side and the dedicated rentals line is (386) 427-8039 if you'd rather call directly.<br><br>What kind of rental are you asking about?`,
+        1300,
+        [
+          { label: '🏖️ Vacation / short-term', value: 'rent-vacation' },
+          { label: '🗝️ Long-term rental', value: 'rent-longterm' },
+          { label: '🛠️ Property management for my place', value: 'rent-pm' }
+        ]
+      );
+      return;
+    }
+
+    if (value === 'rent-vacation') {
+      memory.subPath = value;
+      await addBotMessage(
+        `Lovely — vacation stays on this stretch are some of the most-requested in the area, especially anything walkable to Flagler Ave. Aimee's calendar runs a few weeks out in season, so the earlier we get you on her list the better.<br><br>How soon are you looking to stay?`,
+        1400,
+        [
+          { label: '🔥 Within 30 days', value: 'timeline-now' },
+          { label: '📅 1–3 months out', value: 'timeline-soon' },
+          { label: '👀 Just exploring dates', value: 'timeline-later' }
+        ]
+      );
+      return;
+    }
+
+    if (value === 'rent-longterm') {
+      memory.subPath = value;
+      await addBotMessage(
+        `Got it — long-term is steadier inventory. Aimee keeps a working list of what's open and what's about to come back on the market. When are you trying to be moved in?`,
+        1300,
+        [
+          { label: '🔥 Within 30 days', value: 'timeline-now' },
+          { label: '📅 1–3 months', value: 'timeline-soon' },
+          { label: '👀 Just gauging', value: 'timeline-later' }
+        ]
+      );
+      return;
+    }
+
+    if (value === 'rent-pm') {
+      memory.subPath = value;
+      await addBotMessage(
+        `Great — property management is exactly Aimee's wheelhouse, and she came to us from running luxury portfolios in Palm Beach and Philadelphia, so she takes care of owners' homes the way she'd want hers handled. The conversation she usually starts with is a 30-minute walk-through your property and your goals — vacancy comfort, income target, level of involvement.<br><br>Want me to hold a slot?`,
+        1500,
+        [
+          { label: '📅 This week', value: 'this-week' },
+          { label: '📆 Next week', value: 'next-week' },
+          { label: "🤝 I'm flexible", value: 'flexible' }
+        ]
+      );
+      return;
+    }
+
+    // ============= BOOKING =============
+    if (['this-week', 'next-week', 'flexible'].includes(value)) {
+      const timeMap = {
+        'this-week': 'Thursday at 4:30 PM',
+        'next-week': 'Tuesday at 11:00 AM',
+        'flexible': 'Saturday at 10:30 AM'
+      };
+      memory.proposedTime = timeMap[value];
+
+      await addBotMessage(
+        `Perfect. Let me hold ${timeMap[value]} on the calendar — the office keeps Saturday morning slots specifically so people don't have to take time off work. What's your first name so I can put it down?`,
+        1100
+      );
+      memory.collecting = 'name-for-booking';
+      return;
+    }
+
+    if (value === 'no-slot') {
+      await addBotMessage(
+        `Totally fine — I've already logged your question for the team. Have a great evening, and welcome to Beachside Realty.`,
+        800
+      );
+      return;
+    }
+
+    // ============= GENERAL QUESTION =============
+    if (value === 'info') {
+      memory.intent = 'info';
+      await addBotMessage(
+        `Of course — go ahead and type your question. If it's something Susan or one of the agents needs to weigh in on personally (a specific listing, pricing, your situation), I'll route it to the right person and they'll get back to you in the morning.`,
+        900
+      );
+      memory.collecting = 'free-question';
+      return;
+    }
+  }
+
+  // ============================================================
+  // Free-text input handler
+  // ============================================================
+  async function handleUserSend() {
+    const text = inputEl.value.trim();
+    if (!text) return;
+    addUserMessage(text);
+    inputEl.value = '';
+
+    if (memory.collecting === 'name-for-booking') {
+      const name = text.split(/\s+/)[0].replace(/[^a-zA-Z]/g, '');
+      memory.name = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+      await addBotMessage(
+        `Thanks, ${memory.name}. What's the best phone number? The office will text you a confirmation by 9:30 AM tomorrow once Susan reviews the calendar.`,
+        800
+      );
+      memory.collecting = 'phone';
+      return;
+    }
+
+    if (memory.collecting === 'phone') {
+      memory.phone = text;
+      memory.collecting = null;
+
+      if (memory.proposedTime) {
+        const meetingMap = {
+          'buy': 'Beachside Buyer Consult',
+          'sell': 'Listing & Valuation Consult',
+          'rent': 'Rental & Property Management Consult',
+          'info': 'General Real Estate Consult'
+        };
+        const meeting = meetingMap[memory.intent] || 'New Client Consult';
+
+        await addBotMessage(
+          `Perfect. Here's the hold I'm creating on the office calendar:`,
+          800
+        );
+        setTimeout(() => showBookingCard(meeting, memory.proposedTime), 1200);
+      } else {
+        await addBotMessage(
+          `All set, ${memory.name}. The team will reach out to ${text} by mid-morning tomorrow.<br><br>Anything else on your mind tonight?`,
+          1000
+        );
+      }
+      return;
+    }
+
+    if (memory.collecting === 'free-question') {
+      memory.collecting = null;
+      await addBotMessage(
+        `Thanks for sending that over. I've logged your question for Susan to review first thing tomorrow — she'll either reply directly or have the right agent follow up by 10 AM.<br><br>Want me to also hold a consult slot in case it's easier to discuss live?`,
+        1100,
+        [
+          { label: '✅ Yes, hold a slot', value: 'this-week' },
+          { label: 'No thanks', value: 'no-slot' }
+        ]
+      );
+      return;
+    }
+
+    // Fallback
+    await addBotMessage(
+      `Thanks for sharing. So I can route this to the right desk — would you say this is more about buying, selling, renting, or just a general question?`,
+      900,
+      [
+        { label: '🏖️ Buying', value: 'buy' },
+        { label: '📋 Selling', value: 'sell' },
+        { label: '🔑 Renting', value: 'rent' },
+        { label: '❓ General question', value: 'info' }
+      ]
+    );
+  }
+
+  function confirmBooking() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) {
+      card.style.transition = 'all 0.3s ease';
+      card.style.background = 'linear-gradient(135deg, #1f4a6b 0%, #15324a 100%)';
+      card.style.color = 'white';
+      card.querySelector('.booking-title').style.color = 'white';
+      card.querySelector('.booking-icon').style.background = 'white';
+      card.querySelector('.booking-icon').style.color = 'var(--accent)';
+      card.querySelectorAll('.label').forEach(el => el.style.color = 'rgba(255,255,255,0.6)');
+      card.querySelectorAll('.value').forEach(el => el.style.color = 'white');
+      card.querySelector('.booking-confirm').remove();
+    }
+    setTimeout(async () => {
+      await addBotMessage(
+        `You're set, ${memory.name}. Susan has been notified, and you'll get a confirmation text from <strong>(386) 427-1212</strong> tomorrow morning.<br><br>Have a good evening — and welcome to Beachside Realty.`,
+        700
+      );
+    }, 400);
+  }
+
+  function proposeAlternative() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) card.remove();
+    addBotMessage(
+      `No problem — the office has openings Tuesday at 10 AM, Thursday at 1 PM, or Saturday at 11 AM. Which works best?`,
+      600,
+      [
+        { label: '🌅 Tuesday 10 AM', value: 'this-week' },
+        { label: '🌞 Thursday 1 PM', value: 'next-week' },
+        { label: '🏖️ Saturday 11 AM', value: 'flexible' }
+      ]
+    );
+  }
+
+  inputEl.addEventListener('keydown', e => {
+    if (e.key === 'Enter') handleUserSend();
+  });
+
+  setTimeout(startConversation, 600);
+</script>
+
+</body>
+</html>

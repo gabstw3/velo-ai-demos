@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pineda Law PLLC — After-Hours Intake | Powered by Velo AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Estate-planning palette: warm parchment + deep navy + muted gold.
+       Slower, gentler, more reverent than Wayside's forest/copper.   */
+    --bg: #f4efe6;
+    --bg-deep: #e8e0d2;
+    --ink: #1a1f2c;
+    --ink-soft: #4a536b;
+    --ink-faint: #8a8f9e;
+    --accent: #2a3a5c;       /* deep navy — the law firm primary */
+    --accent-warm: #b08540;  /* muted gold — accent */
+    --accent-glow: #e6d4a8;
+    --line: #d4ccb8;
+    --bot-msg: #ffffff;
+    --user-msg: #2a3a5c;
+    --user-msg-text: #ffffff;
+    --shadow-sm: 0 1px 3px rgba(26, 31, 44, 0.06);
+    --shadow-md: 0 4px 16px rgba(26, 31, 44, 0.08);
+    --shadow-lg: 0 12px 40px rgba(26, 31, 44, 0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body { height: 100%; }
+
+  body {
+    font-family: 'Geist', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.5;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(176, 133, 64, 0.05) 0%, transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(42, 58, 92, 0.04) 0%, transparent 40%);
+  }
+
+  .app {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    min-height: 100vh;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .practice-panel {
+    background: linear-gradient(180deg, #1a2540 0%, #0f1729 100%);
+    color: #e8e0d0;
+    padding: 40px 32px;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .practice-panel::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(176, 133, 64, 0.08) 0%, transparent 50%);
+    animation: drift 22s ease-in-out infinite;
+  }
+
+  @keyframes drift {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(20%, 10%); }
+  }
+
+  .practice-content { position: relative; z-index: 1; }
+
+  .practice-mark {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    margin-bottom: 12px;
+    opacity: 0.9;
+  }
+
+  .practice-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+  }
+
+  .practice-doctor {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--accent-glow);
+    margin-bottom: 32px;
+  }
+
+  .promise-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(232, 224, 184, 0.15);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+    backdrop-filter: blur(10px);
+  }
+
+  .promise-card h4 {
+    font-family: 'Geist', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    margin-bottom: 8px;
+  }
+
+  .promise-card p {
+    font-size: 14px;
+    line-height: 1.55;
+    color: #d4cdb8;
+  }
+
+  .practice-info {
+    margin-top: auto;
+    padding-top: 24px;
+    border-top: 1px solid rgba(232, 224, 184, 0.1);
+    font-size: 13px;
+    line-height: 1.7;
+    color: #b8b0a0;
+  }
+
+  .practice-info .row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 8px;
+  }
+
+  .practice-info .label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    width: 56px;
+    padding-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .powered-by {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(232, 224, 184, 0.1);
+    font-size: 11px;
+    color: #8a8275;
+    letter-spacing: 0.05em;
+  }
+
+  .powered-by strong {
+    color: var(--accent-glow);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+  }
+
+  .chat-panel {
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .chat-header {
+    padding: 20px 32px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(244, 239, 230, 0.85);
+    backdrop-filter: blur(12px);
+    z-index: 10;
+  }
+
+  .chat-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .status-dot {
+    width: 8px; height: 8px;
+    background: #4ade80;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.15);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.15); }
+    50% { box-shadow: 0 0 0 8px rgba(74, 222, 128, 0.05); }
+  }
+
+  .status-text {
+    font-size: 13px;
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+
+  .status-text strong { color: var(--ink); font-weight: 600; }
+
+  .chat-time {
+    font-family: 'Fraunces', serif;
+    font-size: 12px;
+    color: var(--ink-faint);
+    font-style: italic;
+  }
+
+  .messages {
+    flex: 1;
+    padding: 32px;
+    scroll-behavior: smooth;
+  }
+
+  .msg-group {
+    margin-bottom: 20px;
+    animation: msgIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  @keyframes msgIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .msg {
+    max-width: 78%;
+    padding: 14px 18px;
+    border-radius: 18px;
+    font-size: 15px;
+    line-height: 1.55;
+    word-wrap: break-word;
+  }
+
+  .msg-bot {
+    background: var(--bot-msg);
+    color: var(--ink);
+    border-bottom-left-radius: 4px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(212, 204, 184, 0.4);
+  }
+
+  .msg-user {
+    background: var(--user-msg);
+    color: var(--user-msg-text);
+    border-bottom-right-radius: 4px;
+    margin-left: auto;
+  }
+
+  .msg-meta {
+    font-size: 10px;
+    color: var(--ink-faint);
+    margin-top: 6px;
+    padding: 0 8px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .msg-meta.user { text-align: right; }
+
+  .typing {
+    display: flex;
+    gap: 4px;
+    padding: 16px 20px;
+    background: var(--bot-msg);
+    border-radius: 18px;
+    border-bottom-left-radius: 4px;
+    width: fit-content;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(212, 204, 184, 0.4);
+  }
+
+  .typing span {
+    width: 7px; height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: typing 1.4s ease-in-out infinite;
+  }
+
+  .typing span:nth-child(2) { animation-delay: 0.2s; }
+  .typing span:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes typing {
+    0%, 100% { transform: translateY(0); opacity: 0.4; }
+    50% { transform: translateY(-4px); opacity: 1; }
+  }
+
+  .quick-replies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+    animation: msgIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s both;
+  }
+
+  .chip {
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 9px 16px;
+    border-radius: 100px;
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .chip:hover {
+    background: var(--accent);
+    color: var(--bg);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .chip:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .booking-card {
+    background: linear-gradient(135deg, #ffffff 0%, #faf6ec 100%);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 24px;
+    margin-top: 12px;
+    box-shadow: var(--shadow-md);
+    animation: msgIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    max-width: 78%;
+  }
+
+  .booking-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .booking-icon {
+    width: 32px; height: 32px;
+    background: var(--accent);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .booking-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--ink);
+  }
+
+  .booking-detail {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 12px;
+    padding: 8px 0;
+    font-size: 14px;
+  }
+
+  .booking-detail .label {
+    color: var(--ink-faint);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding-top: 2px;
+  }
+
+  .booking-detail .value {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .booking-confirm {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    gap: 8px;
+  }
+
+  .btn-primary {
+    flex: 1;
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: #1a2540;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--ink-soft);
+    border: 1px solid var(--line);
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover {
+    background: var(--bg-deep);
+  }
+
+  .input-area {
+    padding: 20px 32px 24px;
+    border-top: 1px solid var(--line);
+    background: rgba(244, 239, 230, 0.85);
+    backdrop-filter: blur(12px);
+  }
+
+  .input-wrap {
+    display: flex;
+    gap: 10px;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 6px 6px 6px 18px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .input-wrap:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(42, 58, 92, 0.08);
+  }
+
+  .input-wrap input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-family: 'Geist', sans-serif;
+    font-size: 15px;
+    color: var(--ink);
+    padding: 10px 0;
+    background: transparent;
+  }
+
+  .input-wrap input::placeholder { color: var(--ink-faint); }
+
+  .send-btn {
+    background: var(--accent);
+    color: white;
+    border: none;
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+
+  .send-btn:hover { background: #1a2540; transform: scale(1.05); }
+  .send-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+  .input-hint {
+    font-size: 11px;
+    color: var(--ink-faint);
+    margin-top: 10px;
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
+
+  .demo-banner {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 10px 16px;
+    border-radius: 100px;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    z-index: 100;
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .demo-banner:hover { transform: scale(1.03); }
+  .demo-banner .pulse-dot {
+    width: 6px; height: 6px;
+    background: var(--accent-warm);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @media (max-width: 900px) {
+    html, body {
+      height: auto;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .app {
+      grid-template-columns: 1fr;
+      height: auto;
+      min-height: 100vh;
+    }
+    .practice-panel {
+      padding: 20px 24px;
+      position: static;
+      height: auto;
+      max-height: none;
+    }
+    .practice-panel .promise-card,
+    .practice-panel .practice-info,
+    .practice-panel .powered-by { display: none; }
+    .practice-name { font-size: 22px; }
+    .practice-doctor { font-size: 14px; margin-bottom: 0; }
+    .chat-panel {
+      min-height: 80vh;
+    }
+    .messages {
+      padding: 20px;
+      overflow-y: visible;
+      flex: none;
+    }
+    .msg { max-width: 88%; }
+    .input-area {
+      padding: 16px 20px 20px;
+      position: sticky;
+      bottom: 0;
+    }
+    .demo-banner { top: 8px; right: 8px; padding: 8px 12px; font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner" onclick="alert('This is a live demo built by Velo AI for Pineda Law PLLC\n\nFor deployment information, contact:\nGabe Herrera — Velo AI\nWinter Springs, FL')">
+  <span class="pulse-dot"></span>
+  <span>Velo AI Demo</span>
+</div>
+
+<div class="app">
+
+  <!-- LEFT: Practice Brand Panel -->
+  <aside class="practice-panel">
+    <div class="practice-content">
+      <div class="practice-mark">Heathrow / Lake Mary, Florida · AV Preeminent</div>
+      <h1 class="practice-name">Pineda Law PLLC</h1>
+      <p class="practice-doctor">Matthew Pineda, Esq. — Duke LL.M., UM Tax LL.M.</p>
+
+      <div class="promise-card">
+        <h4>Big-Firm Experience, Personal Service</h4>
+        <p>"My mission is to use my experience in larger law firms to help individuals and small business owners." Free consultations across estate planning, probate, entrepreneurship, immigration, and tax — answered with the seriousness each matter deserves.</p>
+      </div>
+    </div>
+
+    <div class="practice-info">
+      <div class="row">
+        <div class="label">Address</div>
+        <div>1515 International Parkway, Suite 2013<br>Lake Mary, FL 32746</div>
+      </div>
+      <div class="row">
+        <div class="label">Phone</div>
+        <div>(407) 775-1094</div>
+      </div>
+      <div class="row">
+        <div class="label">Hours</div>
+        <div>Mon–Fri 9a–5p · Free initial consultations</div>
+      </div>
+    </div>
+
+    <div class="powered-by">
+      Intake powered by <strong>VELO AI</strong>
+    </div>
+  </aside>
+
+  <!-- RIGHT: Chat Interface -->
+  <main class="chat-panel">
+    <header class="chat-header">
+      <div class="chat-status">
+        <span class="status-dot"></span>
+        <span class="status-text"><strong>Pineda Law Intake</strong> · Available 24/7</span>
+      </div>
+      <span class="chat-time" id="chat-time">After hours · 11:47 PM</span>
+    </header>
+
+    <div class="messages" id="messages"></div>
+
+    <div class="input-area">
+      <div class="input-wrap">
+        <input
+          type="text"
+          id="user-input"
+          placeholder="Type your message..."
+          autocomplete="off"
+        />
+        <button class="send-btn" id="send-btn" onclick="handleUserSend()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+        </button>
+      </div>
+      <div class="input-hint">A current client of Mr. Pineda? He will be notified directly for urgent matters.</div>
+    </div>
+  </main>
+</div>
+
+<script>
+  // ============================================================
+  // VELO AI — Pineda Law Intake Flow
+  // Formal-authoritative register. Pineda's practice spans estate
+  // planning, probate, entrepreneurship/startups, immigration, tax.
+  // Free consultations. Multi-jurisdiction (FL, NC, WY, U.S. Tax Court).
+  // ============================================================
+
+  const messagesEl = document.getElementById('messages');
+  const inputEl = document.getElementById('user-input');
+  const sendBtn = document.getElementById('send-btn');
+
+  const memory = {
+    name: null,
+    matter: null,
+    isExisting: null,
+    urgency: null,
+    history: []
+  };
+
+  const now = new Date();
+  const hours = now.getHours() < 8 || now.getHours() >= 17 ? '11:47 PM' : '6:32 AM';
+  document.getElementById('chat-time').textContent = `After hours · ${hours}`;
+
+  function addBotMessage(text, delay = 700, withChips = null) {
+    return new Promise(resolve => {
+      const typingId = 't' + Date.now();
+      const typing = document.createElement('div');
+      typing.className = 'msg-group';
+      typing.id = typingId;
+      typing.innerHTML = `<div class="typing"><span></span><span></span><span></span></div>`;
+      messagesEl.appendChild(typing);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+
+      setTimeout(() => {
+        document.getElementById(typingId)?.remove();
+        const msgGroup = document.createElement('div');
+        msgGroup.className = 'msg-group';
+        let html = `<div class="msg msg-bot">${text}</div><div class="msg-meta">Pineda Law Intake</div>`;
+
+        if (withChips) {
+          html += `<div class="quick-replies">`;
+          withChips.forEach((chip) => {
+            html += `<button class="chip" onclick="handleChipClick('${chip.value.replace(/'/g, "\\'")}', this)">${chip.label}</button>`;
+          });
+          html += `</div>`;
+        }
+
+        msgGroup.innerHTML = html;
+        messagesEl.appendChild(msgGroup);
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+        resolve();
+      }, delay);
+    });
+  }
+
+  function addUserMessage(text) {
+    const msgGroup = document.createElement('div');
+    msgGroup.className = 'msg-group';
+    msgGroup.innerHTML = `
+      <div class="msg msg-user" style="margin-left:auto;">${text}</div>
+      <div class="msg-meta user">You · just now</div>
+    `;
+    messagesEl.appendChild(msgGroup);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+    memory.history.push({ role: 'user', text });
+  }
+
+  function disableChips(currentBtn) {
+    const chips = currentBtn.parentElement.querySelectorAll('.chip');
+    chips.forEach(c => c.disabled = true);
+    currentBtn.style.background = 'var(--accent)';
+    currentBtn.style.color = 'var(--bg)';
+  }
+
+  function showBookingCard(matterType, time) {
+    const card = document.createElement('div');
+    card.className = 'msg-group';
+    card.innerHTML = `
+      <div class="booking-card">
+        <div class="booking-header">
+          <div class="booking-icon">P</div>
+          <div class="booking-title">Free Consultation Hold Created</div>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Client</span>
+          <span class="value">${memory.name || 'New client'}</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Matter</span>
+          <span class="value">${matterType}</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Proposed</span>
+          <span class="value">${time}</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">With</span>
+          <span class="value">Matthew Pineda, Esq.</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Office</span>
+          <span class="value">1515 International Pkwy, Ste. 2013, Lake Mary</span>
+        </div>
+        <div class="booking-confirm">
+          <button class="btn-primary" onclick="confirmBooking()">Confirm consultation</button>
+          <button class="btn-secondary" onclick="proposeAlternative()">Different time</button>
+        </div>
+      </div>
+    `;
+    messagesEl.appendChild(card);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  // ============================================================
+  // Conversation Flow
+  // ============================================================
+
+  async function startConversation() {
+    await addBotMessage(
+      `Good evening — you've reached the after-hours line for Pineda Law PLLC in Lake Mary. Mr. Pineda's mission is to bring big-firm experience to individuals and small business owners across estate planning, probate, entrepreneurship, immigration, and tax. He's away from the desk for the evening, but every initial consultation is free, and anything you share with me is confidential.<br><br>How may we help you tonight?`,
+      400,
+      [
+        { label: '📜 Estate plan / will / trust', value: 'estate' },
+        { label: '🕯️ Probate — a loved one passed', value: 'probate' },
+        { label: '🚀 Startup / business / investors', value: 'business' },
+        { label: '🌎 Immigration', value: 'immigration' },
+        { label: '🧾 Tax matter', value: 'tax' },
+        { label: '❓ A general question', value: 'question' }
+      ]
+    );
+  }
+
+  async function handleChipClick(value, btn) {
+    disableChips(btn);
+    const labelMap = {
+      'estate': "I'd like to plan a will, trust, or estate",
+      'probate': "A loved one has passed and I need probate help",
+      'business': "I have a startup or small business question",
+      'immigration': "I have an immigration matter",
+      'tax': "I have a tax matter",
+      'question': "I just have a general question",
+      'will-only': "Just a will",
+      'trust-revocable': "Will and revocable trust",
+      'advance-directives': "Power of attorney / advance directives",
+      'spouse': "Spouse",
+      'parent': "Parent",
+      'other-family': "Another family member",
+      'startup-formation': "Forming an entity",
+      'angel-capital': "Raising capital from angels",
+      'contracts-vendor': "Contracts or commercial agreements",
+      'family-immigration': "Family-based immigration",
+      'business-immigration': "Business / investor visa",
+      'naturalization': "Naturalization or citizenship",
+      'irs-notice': "IRS notice or audit",
+      'tax-planning': "Tax planning for myself or my business",
+      'tax-court': "U.S. Tax Court matter",
+      'urgent-frozen': "Yes — there's an immediate deadline",
+      'urgent-soon': "Soon, but not in crisis",
+      'urgent-planning': "No deadline — just planning",
+      'this-week': "This week",
+      'next-week': "Next week",
+      'flexible': "I'm flexible"
+    };
+    addUserMessage(labelMap[value] || value);
+    memory.history.push({ role: 'user', value });
+    await routeIntent(value);
+  }
+
+  async function routeIntent(value) {
+    // ESTATE PLANNING PATH ----------------------------------------
+    if (value === 'estate') {
+      memory.matter = 'estate';
+      await addBotMessage(
+        `A wise step. Mr. Pineda holds an LL.M. in Taxation from the University of Miami in addition to his Duke LL.M. in Law &amp; Entrepreneurship, and he draws on that tax background when structuring wills, trusts, and advance directives. The first consultation is at no charge and unhurried — he reviews your circumstances and tells you plainly whether a will alone serves you or whether a revocable trust is the better instrument.<br><br>What were you considering?`,
+        1300,
+        [
+          { label: '📄 Just a will', value: 'will-only' },
+          { label: '🏛️ Will and revocable trust', value: 'trust-revocable' },
+          { label: '🩺 Power of attorney / advance directives', value: 'advance-directives' }
+        ]
+      );
+      return;
+    }
+
+    if (['will-only', 'trust-revocable', 'advance-directives'].includes(value)) {
+      memory.estateType = value;
+      await addBotMessage(
+        `Understood. May I hold a complimentary consultation slot this week or next?`,
+        1000,
+        [
+          { label: '📅 This week', value: 'this-week' },
+          { label: '📆 Next week', value: 'next-week' },
+          { label: "🤝 I'm flexible", value: 'flexible' }
+        ]
+      );
+      return;
+    }
+
+    // PROBATE PATH -----------------------------------------------
+    if (value === 'probate') {
+      memory.matter = 'probate';
+      await addBotMessage(
+        `My condolences. Please take whatever time you need. Mr. Pineda guides families through Florida probate with care and clarity, and he will tell you straightforwardly whether a formal administration, summary administration, or a different path applies. Two pieces of information help him move quickly when he calls you back: your relationship to the person, and whether they had a will or trust in place.<br><br>If you are able to share — who is this for?`,
+        1300,
+        [
+          { label: 'Spouse', value: 'spouse' },
+          { label: 'Parent', value: 'parent' },
+          { label: 'Other family member', value: 'other-family' }
+        ]
+      );
+      return;
+    }
+
+    if (['spouse', 'parent', 'other-family'].includes(value)) {
+      memory.relation = value;
+      await addBotMessage(
+        `Thank you. Is anything in this matter time-sensitive — a frozen account, a property deadline, or a creditor claim?`,
+        1000,
+        [
+          { label: '🔴 Yes — accounts frozen / deadline', value: 'urgent-frozen' },
+          { label: '🟡 Soon, but not in crisis', value: 'urgent-soon' },
+          { label: '🟢 No urgency yet', value: 'urgent-planning' }
+        ]
+      );
+      return;
+    }
+
+    // BUSINESS / ENTREPRENEURSHIP PATH ---------------------------
+    if (value === 'business') {
+      memory.matter = 'business';
+      await addBotMessage(
+        `Excellent — entrepreneurship law is core to Mr. Pineda's practice. His Duke LL.M. is specifically in Law &amp; Entrepreneurship, and he is licensed in Florida, North Carolina, and Wyoming, which is meaningful for founders weighing where to incorporate. Whether you're forming an entity, raising from angel investors, or papering commercial agreements, the first consultation is free.<br><br>Which is closest to your situation?`,
+        1400,
+        [
+          { label: '🏗️ Forming an entity', value: 'startup-formation' },
+          { label: '💰 Raising from angels / capital', value: 'angel-capital' },
+          { label: '📑 Contracts or commercial agreements', value: 'contracts-vendor' }
+        ]
+      );
+      return;
+    }
+
+    if (['startup-formation', 'angel-capital', 'contracts-vendor'].includes(value)) {
+      memory.businessType = value;
+      await addBotMessage(
+        `Understood. Is anything time-sensitive — a closing date, a signature deadline, or a term sheet that needs review this week?`,
+        1000,
+        [
+          { label: '🔴 Yes — within 7 days', value: 'urgent-frozen' },
+          { label: '🟡 Within 30 days', value: 'urgent-soon' },
+          { label: '🟢 No deadline — exploring', value: 'urgent-planning' }
+        ]
+      );
+      return;
+    }
+
+    // IMMIGRATION PATH -------------------------------------------
+    if (value === 'immigration') {
+      memory.matter = 'immigration';
+      await addBotMessage(
+        `Immigration is personal for Mr. Pineda — he is the son of two immigrant parents, and he treats every immigration matter with the seriousness it deserves. Which best describes your situation?`,
+        1200,
+        [
+          { label: '👨‍👩‍👧 Family-based', value: 'family-immigration' },
+          { label: '💼 Business / investor visa', value: 'business-immigration' },
+          { label: '🇺🇸 Naturalization / citizenship', value: 'naturalization' }
+        ]
+      );
+      return;
+    }
+
+    if (['family-immigration', 'business-immigration', 'naturalization'].includes(value)) {
+      memory.immigrationType = value;
+      await addBotMessage(
+        `Thank you. Is there an immigration deadline or hearing coming up?`,
+        1000,
+        [
+          { label: '🔴 Yes — in the next 30 days', value: 'urgent-frozen' },
+          { label: '🟡 Within 90 days', value: 'urgent-soon' },
+          { label: '🟢 No deadline yet', value: 'urgent-planning' }
+        ]
+      );
+      return;
+    }
+
+    // TAX PATH ---------------------------------------------------
+    if (value === 'tax') {
+      memory.matter = 'tax';
+      await addBotMessage(
+        `Tax is one of Mr. Pineda's core competencies. He holds an LL.M. in Taxation from the University of Miami with an additional certificate in International Tax, and he is admitted to practice before the U.S. Tax Court. Which best describes your matter?`,
+        1300,
+        [
+          { label: '📬 IRS notice or audit', value: 'irs-notice' },
+          { label: '🧮 Tax planning', value: 'tax-planning' },
+          { label: '⚖️ U.S. Tax Court matter', value: 'tax-court' }
+        ]
+      );
+      return;
+    }
+
+    if (['irs-notice', 'tax-planning', 'tax-court'].includes(value)) {
+      memory.taxType = value;
+      await addBotMessage(
+        `Understood. Is there a response deadline on a notice, or a hearing date already set?`,
+        1000,
+        [
+          { label: '🔴 Yes — within 14 days', value: 'urgent-frozen' },
+          { label: '🟡 Within 60 days', value: 'urgent-soon' },
+          { label: '🟢 No deadline yet', value: 'urgent-planning' }
+        ]
+      );
+      return;
+    }
+
+    // URGENCY HANDLERS -------------------------------------------
+    if (value === 'urgent-frozen') {
+      memory.urgency = 'severe';
+      await addBotMessage(
+        `Understood — that is exactly the sort of matter Mr. Pineda will want flagged tonight. I'm marking this as priority. He will return your call first thing in the morning, before his appointments begin.<br><br>May I have your first name and the best callback number? If a deadline falls within the next 48 hours, please mention it.`,
+        1200
+      );
+      memory.collecting = 'name-phone';
+      return;
+    }
+
+    if (value === 'urgent-soon' || value === 'urgent-planning') {
+      memory.urgency = value;
+      await addBotMessage(
+        `Thank you — that helps. Mr. Pineda reserves consultation hours Tuesday through Thursday for new matters, and the first conversation is at no charge. He prefers an unhurried first call so he can give you an honest read.<br><br>What is your first name? I'll have him reach out tomorrow morning to set a time.`,
+        1100
+      );
+      memory.collecting = 'name';
+      return;
+    }
+
+    if (['this-week', 'next-week', 'flexible'].includes(value)) {
+      const timeMap = {
+        'this-week': 'Thursday at 2:00 PM',
+        'next-week': 'Tuesday at 10:30 AM',
+        'flexible': 'Wednesday at 1:00 PM'
+      };
+      memory.proposedTime = timeMap[value];
+
+      await addBotMessage(
+        `Very good. Allow me to hold ${timeMap[value]} for you. May I have your first name to place on Mr. Pineda's calendar?`,
+        900
+      );
+      memory.collecting = 'name-for-booking';
+      return;
+    }
+
+    // GENERAL QUESTION PATH ------------------------------------
+    if (value === 'question') {
+      memory.matter = 'question';
+      await addBotMessage(
+        `Of course — please type your question. If it warrants Mr. Pineda's direct attention, I'll route it to him and he'll respond in the morning. Where I can answer from his published practice information, I'll do so plainly.`,
+        900
+      );
+      memory.collecting = 'free-question';
+      return;
+    }
+  }
+
+  // ============================================================
+  // Free-text input handler
+  // ============================================================
+  async function handleUserSend() {
+    const text = inputEl.value.trim();
+    if (!text) return;
+    addUserMessage(text);
+    inputEl.value = '';
+
+    if (memory.collecting === 'name' || memory.collecting === 'name-for-booking' || memory.collecting === 'name-phone') {
+      const name = text.split(/\s+/)[0].replace(/[^a-zA-Z]/g, '');
+      memory.name = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+
+      const responses = {
+        'name': `Thank you, ${memory.name}. May I have the best phone number to reach you? I want to make certain Mr. Pineda has it before tomorrow.`,
+        'name-for-booking': `Thank you, ${memory.name}. And the best phone number? Mr. Pineda's office will text a confirmation by 9 AM tomorrow.`,
+        'name-phone': `Thank you, ${memory.name}. What is the best callback number? Mr. Pineda will telephone you in the morning.`
+      };
+      const oldState = memory.collecting;
+      await addBotMessage(responses[oldState], 800);
+      memory.collecting = 'phone';
+      return;
+    }
+
+    if (memory.collecting === 'phone') {
+      memory.phone = text;
+      memory.collecting = null;
+
+      if (memory.proposedTime) {
+        const matterMap = {
+          'estate': 'Estate Planning Consultation',
+          'probate': 'Probate Consultation',
+          'business': 'Entrepreneurship / Business Consultation',
+          'immigration': 'Immigration Consultation',
+          'tax': 'Tax Consultation',
+          'question': 'General Consultation'
+        };
+        const matter = matterMap[memory.matter] || 'New Client Consultation';
+
+        await addBotMessage(
+          `Very good. Here is the hold I am placing on Mr. Pineda's calendar:`,
+          800
+        );
+        setTimeout(() => showBookingCard(matter, memory.proposedTime), 1200);
+      } else if (memory.urgency === 'severe') {
+        await addBotMessage(
+          `Thank you, ${memory.name}. I have flagged this as priority for Mr. Pineda. Please expect a call from <strong>(407) 775-1094</strong> first thing in the morning.<br><br>If anything material changes overnight — a deadline shifts, a new development arises — please feel free to text this number, and Mr. Pineda will see it before his first appointment.`,
+          1100
+        );
+      } else {
+        await addBotMessage(
+          `Very good, ${memory.name}. Mr. Pineda will reach out to ${text} by mid-morning tomorrow to set a time that works for you.<br><br>Is there anything else I can record for him this evening?`,
+          1000
+        );
+      }
+      return;
+    }
+
+    if (memory.collecting === 'free-question') {
+      memory.collecting = null;
+      await addBotMessage(
+        `Thank you for sending that. I have logged your question for Mr. Pineda to review first thing tomorrow morning — he will either respond directly or have his office follow up by 10 AM.<br><br>Would you like me to also hold a free consultation slot in case it is easier discussed in person?`,
+        1100,
+        [
+          { label: '✅ Yes, hold a slot', value: 'this-week' },
+          { label: 'No thank you', value: 'no-slot' }
+        ]
+      );
+      return;
+    }
+
+    // Fallback
+    await addBotMessage(
+      `Thank you for sharing that. So I may route this properly to Mr. Pineda — would you say this is more of an estate matter, a business matter, or something else?`,
+      900,
+      [
+        { label: '📜 Estate', value: 'estate' },
+        { label: '🚀 Business', value: 'business' },
+        { label: '❓ General question', value: 'question' }
+      ]
+    );
+  }
+
+  function confirmBooking() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) {
+      card.style.transition = 'all 0.3s ease';
+      card.style.background = 'linear-gradient(135deg, #2a3a5c 0%, #1a2540 100%)';
+      card.style.color = 'white';
+      card.querySelector('.booking-title').style.color = 'white';
+      card.querySelector('.booking-icon').style.background = 'white';
+      card.querySelector('.booking-icon').style.color = 'var(--accent)';
+      card.querySelectorAll('.label').forEach(el => el.style.color = 'rgba(255,255,255,0.6)');
+      card.querySelectorAll('.value').forEach(el => el.style.color = 'white');
+      card.querySelector('.booking-confirm').remove();
+    }
+    setTimeout(async () => {
+      await addBotMessage(
+        `You are set, ${memory.name}. Mr. Pineda has been notified, and you will receive a confirmation text from <strong>(407) 775-1094</strong> tomorrow morning.<br><br>Take good care this evening — we look forward to meeting with you.`,
+        700
+      );
+    }, 400);
+  }
+
+  function proposeAlternative() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) card.remove();
+    addBotMessage(
+      `Of course. Mr. Pineda has openings Tuesday at 11 AM, Wednesday at 3 PM, or Friday at 10 AM — which suits you best?`,
+      600,
+      [
+        { label: '🌅 Tuesday 11 AM', value: 'this-week' },
+        { label: '🕒 Wednesday 3 PM', value: 'next-week' },
+        { label: '☀️ Friday 10 AM', value: 'flexible' }
+      ]
+    );
+  }
+
+  inputEl.addEventListener('keydown', e => {
+    if (e.key === 'Enter') handleUserSend();
+  });
+
+  setTimeout(startConversation, 600);
+</script>
+
+</body>
+</html>
