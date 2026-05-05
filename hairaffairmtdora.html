@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hair Affair of Mt. Dora — After-Hours Concierge | Powered by Velo AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5efe6;
+    --bg-deep: #e6dcc7;
+    --ink: #1f1c14;
+    --ink-soft: #4a4534;
+    --ink-faint: #8a826d;
+    --accent: #5b4a86;
+    --accent-warm: #c8a96a;
+    --accent-glow: #ecd9a8;
+    --line: #d3c6a7;
+    --user-msg: #5b4a86;
+    --user-msg-text: #f5efe6;
+    --bot-msg: #ffffff;
+    --shadow-sm: 0 1px 2px rgba(31, 28, 20, 0.04);
+    --shadow-md: 0 4px 16px rgba(31, 28, 20, 0.08);
+    --shadow-lg: 0 12px 40px rgba(31, 28, 20, 0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body { height: 100%; }
+
+  body {
+    font-family: 'Geist', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.5;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(200, 169, 106, 0.10) 0%, transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(91, 74, 134, 0.05) 0%, transparent 40%);
+  }
+
+  .app {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    min-height: 100vh;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* --- LEFT PANEL: Practice Branding --- */
+  .practice-panel {
+    background: linear-gradient(180deg, #2c2247 0%, #161029 100%);
+    color: #ecdfc8;
+    padding: 40px 32px;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .practice-panel::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(200, 169, 106, 0.10) 0%, transparent 50%);
+    animation: drift 20s ease-in-out infinite;
+  }
+
+  @keyframes drift {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(20%, 10%); }
+  }
+
+  .practice-content { position: relative; z-index: 1; }
+
+  .practice-mark {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    margin-bottom: 12px;
+    opacity: 0.9;
+  }
+
+  .practice-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+  }
+
+  .practice-doctor {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--accent-glow);
+    margin-bottom: 32px;
+  }
+
+  .promise-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(236, 217, 168, 0.15);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+    backdrop-filter: blur(10px);
+  }
+
+  .promise-card h4 {
+    font-family: 'Geist', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    margin-bottom: 8px;
+  }
+
+  .promise-card p {
+    font-size: 14px;
+    line-height: 1.55;
+    color: #ddcdb0;
+  }
+
+  .practice-info {
+    margin-top: auto;
+    padding-top: 24px;
+    border-top: 1px solid rgba(236, 217, 168, 0.1);
+    font-size: 13px;
+    line-height: 1.7;
+    color: #bbb098;
+  }
+
+  .practice-info .row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 8px;
+  }
+
+  .practice-info .label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    width: 56px;
+    padding-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .powered-by {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(236, 217, 168, 0.1);
+    font-size: 11px;
+    color: #8c826d;
+    letter-spacing: 0.05em;
+  }
+
+  .powered-by strong {
+    color: var(--accent-glow);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+  }
+
+  /* --- RIGHT PANEL: Chat Interface --- */
+  .chat-panel {
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .chat-header {
+    padding: 20px 32px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(245, 239, 230, 0.85);
+    backdrop-filter: blur(12px);
+    z-index: 10;
+  }
+
+  .chat-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .status-dot {
+    width: 8px; height: 8px;
+    background: #4ade80;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.15);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.15); }
+    50% { box-shadow: 0 0 0 8px rgba(74, 222, 128, 0.05); }
+  }
+
+  .status-text {
+    font-size: 13px;
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+
+  .status-text strong { color: var(--ink); font-weight: 600; }
+
+  .chat-time {
+    font-family: 'Fraunces', serif;
+    font-size: 12px;
+    color: var(--ink-faint);
+    font-style: italic;
+  }
+
+  .messages {
+    flex: 1;
+    padding: 32px;
+    scroll-behavior: smooth;
+  }
+
+  .msg-group {
+    margin-bottom: 20px;
+    animation: msgIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  @keyframes msgIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .msg {
+    max-width: 78%;
+    padding: 14px 18px;
+    border-radius: 18px;
+    font-size: 15px;
+    line-height: 1.55;
+    word-wrap: break-word;
+  }
+
+  .msg-bot {
+    background: var(--bot-msg);
+    color: var(--ink);
+    border-bottom-left-radius: 4px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(211, 198, 167, 0.4);
+  }
+
+  .msg-user {
+    background: var(--user-msg);
+    color: var(--user-msg-text);
+    border-bottom-right-radius: 4px;
+    margin-left: auto;
+  }
+
+  .msg-meta {
+    font-size: 10px;
+    color: var(--ink-faint);
+    margin-top: 6px;
+    padding: 0 8px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .msg-meta.user { text-align: right; }
+
+  .typing {
+    display: flex;
+    gap: 4px;
+    padding: 16px 20px;
+    background: var(--bot-msg);
+    border-radius: 18px;
+    border-bottom-left-radius: 4px;
+    width: fit-content;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(211, 198, 167, 0.4);
+  }
+
+  .typing span {
+    width: 7px; height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: typing 1.3s ease-in-out infinite;
+  }
+
+  .typing span:nth-child(2) { animation-delay: 0.2s; }
+  .typing span:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes typing {
+    0%, 100% { transform: translateY(0); opacity: 0.4; }
+    50% { transform: translateY(-4px); opacity: 1; }
+  }
+
+  /* Quick reply chips */
+  .quick-replies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+    animation: msgIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s both;
+  }
+
+  .chip {
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 9px 16px;
+    border-radius: 100px;
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .chip:hover {
+    background: var(--accent);
+    color: var(--bg);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .chip:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  /* Booking card */
+  .booking-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f7eed8 100%);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 24px;
+    margin-top: 12px;
+    box-shadow: var(--shadow-md);
+    animation: msgIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    max-width: 78%;
+  }
+
+  .booking-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .booking-icon {
+    width: 32px; height: 32px;
+    background: var(--accent);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .booking-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--ink);
+  }
+
+  .booking-detail {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 12px;
+    padding: 8px 0;
+    font-size: 14px;
+  }
+
+  .booking-detail .label {
+    color: var(--ink-faint);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding-top: 2px;
+  }
+
+  .booking-detail .value {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .booking-confirm {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    gap: 8px;
+  }
+
+  .btn-primary {
+    flex: 1;
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: #423567;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--ink-soft);
+    border: 1px solid var(--line);
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover {
+    background: var(--bg-deep);
+  }
+
+  /* Input area */
+  .input-area {
+    padding: 20px 32px 24px;
+    border-top: 1px solid var(--line);
+    background: rgba(245, 239, 230, 0.85);
+    backdrop-filter: blur(12px);
+  }
+
+  .input-wrap {
+    display: flex;
+    gap: 10px;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 6px 6px 6px 18px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .input-wrap:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(91, 74, 134, 0.08);
+  }
+
+  .input-wrap input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-family: 'Geist', sans-serif;
+    font-size: 15px;
+    color: var(--ink);
+    padding: 10px 0;
+    background: transparent;
+  }
+
+  .input-wrap input::placeholder { color: var(--ink-faint); }
+
+  .send-btn {
+    background: var(--accent);
+    color: white;
+    border: none;
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+
+  .send-btn:hover { background: #423567; transform: scale(1.05); }
+  .send-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+  .input-hint {
+    font-size: 11px;
+    color: var(--ink-faint);
+    margin-top: 10px;
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
+
+  /* Demo banner */
+  .demo-banner {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 10px 16px;
+    border-radius: 100px;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    z-index: 100;
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .demo-banner:hover { transform: scale(1.03); }
+  .demo-banner .pulse-dot {
+    width: 6px; height: 6px;
+    background: var(--accent-warm);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  /* Mobile */
+  @media (max-width: 900px) {
+    html, body {
+      height: auto;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .app {
+      grid-template-columns: 1fr;
+      height: auto;
+      min-height: 100vh;
+    }
+    .practice-panel {
+      padding: 20px 24px;
+      position: static;
+      height: auto;
+      max-height: none;
+    }
+    .practice-panel .promise-card,
+    .practice-panel .practice-info,
+    .practice-panel .powered-by { display: none; }
+    .practice-name { font-size: 22px; }
+    .practice-doctor { font-size: 14px; margin-bottom: 0; }
+    .chat-panel {
+      min-height: 80vh;
+    }
+    .messages {
+      padding: 20px;
+      overflow-y: visible;
+      flex: none;
+    }
+    .msg { max-width: 88%; }
+    .input-area {
+      padding: 16px 20px 20px;
+      position: sticky;
+      bottom: 0;
+    }
+    .demo-banner { top: 8px; right: 8px; padding: 8px 12px; font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner" onclick="alert('This is a live demo built by Velo AI for Hair Affair of Mt. Dora.\\n\\nFor deployment information, contact:\\nGabe Herrera — Velo AI\\nWinter Springs, FL')">
+  <span class="pulse-dot"></span>
+  <span>Velo AI Demo</span>
+</div>
+
+<div class="app">
+
+  <!-- LEFT: Practice Brand Panel -->
+  <aside class="practice-panel">
+    <div class="practice-content">
+      <div class="practice-mark">Downtown Mt. Dora · Est. 49 Years · Our Purpose Is You</div>
+      <h1 class="practice-name">Hair Affair of Mt. Dora</h1>
+      <p class="practice-doctor">Owner Tonya Yutzy · 30+ Years In Industry</p>
+
+      <div class="promise-card">
+        <h4>Heritage Salon, Modern Concierge</h4>
+        <p>49 years on W 3rd Avenue in the historic district. Owner Tonya Yutzy took the reins in January 2020 as the salon's third owner. Hair Affair is a full-service heritage salon — color, balayage, smoothing treatments, perms, microblading, lash lift &amp; tint, microneedling, Swedish &amp; deep-tissue massage, and facials — and the only Malina USA pro stockist in the area.</p>
+      </div>
+    </div>
+
+    <div class="practice-info">
+      <div class="row">
+        <div class="label">Address</div>
+        <div>108 W 3rd Ave<br>Mount Dora, FL 32757</div>
+      </div>
+      <div class="row">
+        <div class="label">Phone</div>
+        <div>(352) 383-3644</div>
+      </div>
+      <div class="row">
+        <div class="label">Hours</div>
+        <div>Tue–Fri 9a–5p · Sat 8:30a–1p<br>Mon by appt · Closed Sun</div>
+      </div>
+    </div>
+
+    <div class="powered-by">
+      Concierge powered by <strong>VELO AI</strong>
+    </div>
+  </aside>
+
+  <!-- RIGHT: Chat Interface -->
+  <main class="chat-panel">
+    <header class="chat-header">
+      <div class="chat-status">
+        <span class="status-dot"></span>
+        <span class="status-text"><strong>Hair Affair Concierge</strong> · Available 24/7</span>
+      </div>
+      <span class="chat-time" id="chat-time">After hours · 11:47 PM</span>
+    </header>
+
+    <div class="messages" id="messages"></div>
+
+    <div class="input-area">
+      <div class="input-wrap">
+        <input
+          type="text"
+          id="user-input"
+          placeholder="Type your question..."
+          autocomplete="off"
+        />
+        <button class="send-btn" id="send-btn" onclick="handleUserSend()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+        </button>
+      </div>
+      <div class="input-hint">Hair Affair books by phone &amp; contact form only — this concierge captures every after-hours request so the front desk has it ready Tuesday at 9 AM.</div>
+    </div>
+  </main>
+</div>
+
+<script>
+  // ============================================================
+  // VELO AI — 7-Step Persuasion Engine
+  // Acknowledge → Validate → Surface → Propose → Reference → Timebox → Commit
+  // ============================================================
+
+  const messagesEl = document.getElementById('messages');
+  const inputEl = document.getElementById('user-input');
+  const sendBtn = document.getElementById('send-btn');
+
+  // Conversation memory
+  const memory = {
+    name: null,
+    concern: null,
+    isExisting: null,
+    urgency: null,
+    treatmentInterest: null,
+    history: []
+  };
+
+  // Set realistic after-hours timestamp
+  const now = new Date();
+  const hours = now.getHours() < 8 || now.getHours() >= 17 ? '11:47 PM' : '6:32 AM';
+  document.getElementById('chat-time').textContent = `After hours · ${hours}`;
+
+  function addBotMessage(text, delay = 700, withChips = null) {
+    return new Promise(resolve => {
+      // Show typing indicator
+      const typingId = 't' + Date.now();
+      const typing = document.createElement('div');
+      typing.className = 'msg-group';
+      typing.id = typingId;
+      typing.innerHTML = `<div class="typing"><span></span><span></span><span></span></div>`;
+      messagesEl.appendChild(typing);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+
+      setTimeout(() => {
+        document.getElementById(typingId)?.remove();
+        const msgGroup = document.createElement('div');
+        msgGroup.className = 'msg-group';
+        let html = `<div class="msg msg-bot">${text}</div><div class="msg-meta">Hair Affair Concierge</div>`;
+
+        if (withChips) {
+          html += `<div class="quick-replies">`;
+          withChips.forEach((chip, i) => {
+            html += `<button class="chip" onclick="handleChipClick('${chip.value.replace(/'/g, "\\'")}', this)">${chip.label}</button>`;
+          });
+          html += `</div>`;
+        }
+
+        msgGroup.innerHTML = html;
+        messagesEl.appendChild(msgGroup);
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+        resolve();
+      }, delay);
+    });
+  }
+
+  function addUserMessage(text) {
+    const msgGroup = document.createElement('div');
+    msgGroup.className = 'msg-group';
+    msgGroup.innerHTML = `
+      <div class="msg msg-user" style="margin-left:auto;">${text}</div>
+      <div class="msg-meta user">You · just now</div>
+    `;
+    messagesEl.appendChild(msgGroup);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+    memory.history.push({ role: 'user', text });
+  }
+
+  function disableChips(currentBtn) {
+    const chips = currentBtn.parentElement.querySelectorAll('.chip');
+    chips.forEach(c => c.disabled = true);
+    currentBtn.style.background = 'var(--accent)';
+    currentBtn.style.color = 'var(--bg)';
+  }
+
+  function showBookingCard(treatment, time) {
+    const card = document.createElement('div');
+    card.className = 'msg-group';
+    card.innerHTML = `
+      <div class="booking-card">
+        <div class="booking-header">
+          <div class="booking-icon">HA</div>
+          <div class="booking-title">Request Captured for Front Desk</div>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Guest</span>
+          <span class="value">${memory.name || 'New guest'}</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">For</span>
+          <span class="value">${treatment}</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Requested</span>
+          <span class="value">${time}</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Routes To</span>
+          <span class="value">(352) 383-3644 · Tonya &amp; team</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Location</span>
+          <span class="value">108 W 3rd Ave, Mount Dora</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Confirmed By</span>
+          <span class="value">Phone callback Tue–Fri 9a or Sat 8:30a</span>
+        </div>
+        <div class="booking-confirm">
+          <button class="btn-primary" onclick="confirmBooking()">Send to front desk</button>
+          <button class="btn-secondary" onclick="proposeAlternative()">Different time</button>
+        </div>
+      </div>
+    `;
+    messagesEl.appendChild(card);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  // ============================================================
+  // Conversation Flow — applies the 7-step skeleton
+  // ============================================================
+
+  async function startConversation() {
+    await addBotMessage(
+      `Welcome to Hair Affair of Mt. Dora — 49 years on W 3rd Avenue, and our purpose is you. The salon is closed for the night, but I'm here to capture your request so Tonya and the team have it ready when the phone reopens Tuesday at 9 AM.<br><br>What service brings you here tonight?`,
+      400,
+      [
+        { label: '🎨 Color / balayage / highlights', value: 'color' },
+        { label: '✂️ Cut, smoothing or perm', value: 'cut' },
+        { label: '💆 Massage / facial / microneedling', value: 'spa' },
+        { label: '👁️ Lashes / brows / microblading', value: 'beauty' },
+        { label: '❓ A pricing question', value: 'question' }
+      ]
+    );
+  }
+
+  async function handleChipClick(value, btn) {
+    disableChips(btn);
+    const labelMap = {
+      'color': 'I want color, balayage, or highlights',
+      'cut': "I want a cut, smoothing treatment, or perm",
+      'spa': "I want massage, a facial, or microneedling",
+      'beauty': 'I want lash lift/tint, brows, or microblading',
+      'question': 'I have a pricing question',
+      'new-guest': "I'm new to Hair Affair",
+      'returning': "I've been here before",
+      'event-week': 'I have an event this week',
+      'next-2wk': "Within the next 2 weeks",
+      'flexible': "I'm flexible",
+      'tue-am': 'Tuesday morning',
+      'wed-pm': 'Wednesday afternoon',
+      'fri-am': 'Friday morning',
+      'sat-am': 'Saturday morning (8:30a–1p)',
+      'mon-appt': 'Monday by appointment',
+      'massage-swedish': 'Swedish / relaxation',
+      'massage-deep': 'Deep tissue',
+      'massage-lymph': 'Lymphatic drainage',
+      'facial': 'Facial',
+      'microneedling': 'Microneedling',
+      'lash-lift': 'Lash lift &amp; tint',
+      'microblade': 'Microblading',
+      'brow': 'Brow shape / tint'
+    };
+    addUserMessage(labelMap[value] || value);
+    memory.history.push({ role: 'user', value });
+    await routeIntent(value);
+  }
+
+  async function routeIntent(value) {
+    // COLOR PATH ----------------------------------
+    if (value === 'color') {
+      memory.concern = 'color';
+      memory.treatmentInterest = 'color';
+      await addBotMessage(
+        `Color is one of Hair Affair's anchor services — full color, balayage, highlights, color melts, plus the smoothing treatments that pair with them. Tonya's team has been doing color on this block of 3rd Avenue for nearly five decades, so they've seen every hair history.<br><br>Quick question — are you new to Hair Affair, or have you been in before?`,
+        1200,
+        [
+          { label: '👋 New guest', value: 'new-guest' },
+          { label: '💜 Been here before', value: 'returning' }
+        ]
+      );
+      return;
+    }
+
+    // CUT / SMOOTHING / PERM ----------------------
+    if (value === 'cut') {
+      memory.concern = 'cut';
+      memory.treatmentInterest = 'cut';
+      await addBotMessage(
+        `Cuts, perms, and smoothing treatments are bread-and-butter at Hair Affair. The team also stocks Malina USA pro tools and extensions if you've been thinking about adding length or fullness while you're in.<br><br>Are you new to Hair Affair, or returning?`,
+        1100,
+        [
+          { label: '👋 New guest', value: 'new-guest' },
+          { label: '💜 Returning', value: 'returning' }
+        ]
+      );
+      return;
+    }
+
+    // SPA PATH ------------------------------------
+    if (value === 'spa') {
+      memory.concern = 'spa';
+      await addBotMessage(
+        `Hair Affair's spa side runs alongside the salon — Swedish, deep-tissue, lymphatic massage, facials, and microneedling. Most guests pair a service with their hair appointment so they only park downtown once.<br><br>Which sounds right tonight?`,
+        1100,
+        [
+          { label: '🌿 Swedish / relaxation', value: 'massage-swedish' },
+          { label: '💪 Deep tissue', value: 'massage-deep' },
+          { label: '💧 Lymphatic drainage', value: 'massage-lymph' },
+          { label: '✨ Facial', value: 'facial' },
+          { label: '🪡 Microneedling', value: 'microneedling' }
+        ]
+      );
+      return;
+    }
+
+    if (['massage-swedish', 'massage-deep', 'massage-lymph', 'facial', 'microneedling'].includes(value)) {
+      memory.treatmentInterest = value;
+      const txtMap = {
+        'massage-swedish': 'Swedish / relaxation massage',
+        'massage-deep': 'deep-tissue massage',
+        'massage-lymph': 'lymphatic drainage massage',
+        'facial': 'a facial',
+        'microneedling': 'microneedling'
+      };
+      await addBotMessage(
+        `${txtMap[value].charAt(0).toUpperCase() + txtMap[value].slice(1)} — got it. The spa room books separately from the chairs, so I'll flag this so the front desk pairs it correctly with your provider when they call you back.<br><br>Are you new to Hair Affair, or returning?`,
+        1100,
+        [
+          { label: '👋 New guest', value: 'new-guest' },
+          { label: '💜 Returning', value: 'returning' }
+        ]
+      );
+      return;
+    }
+
+    // BEAUTY PATH ---------------------------------
+    if (value === 'beauty') {
+      memory.concern = 'beauty';
+      await addBotMessage(
+        `Lash lift &amp; tint, brow shaping, and microblading are all in-house at Hair Affair — microblading is by appointment only with a touch-up included. Which were you considering?`,
+        1100,
+        [
+          { label: '💫 Lash lift &amp; tint', value: 'lash-lift' },
+          { label: '🪞 Brow shape / tint', value: 'brow' },
+          { label: '🖌️ Microblading', value: 'microblade' }
+        ]
+      );
+      return;
+    }
+
+    if (['lash-lift', 'brow', 'microblade'].includes(value)) {
+      memory.treatmentInterest = value;
+      const txtMap = {
+        'lash-lift': 'lash lift & tint',
+        'brow': 'brow shape / tint',
+        'microblade': 'microblading'
+      };
+      const note = value === 'microblade'
+        ? `Microblading at Hair Affair is a 2-visit service — initial session plus a 6–8 week perfecting touch-up. The front desk will quote you the package when they call back.`
+        : `${txtMap[value].charAt(0).toUpperCase() + txtMap[value].slice(1)} typically books in a 60-minute slot — easy to pair with a cut or color the same day.`;
+      await addBotMessage(
+        `${note}<br><br>Are you new to Hair Affair, or returning?`,
+        1200,
+        [
+          { label: '👋 New guest', value: 'new-guest' },
+          { label: '💜 Returning', value: 'returning' }
+        ]
+      );
+      return;
+    }
+
+    // EXISTING / NEW BRANCHING ---------------------
+    if (value === 'new-guest') {
+      memory.isExisting = false;
+      await addBotMessage(
+        `Welcome — Hair Affair gets a lot of new guests from Eustis, Tavares, and the Mt. Dora historic-district visitor crowd, so the team is good at first-timers. When were you hoping to come in?`,
+        1100,
+        [
+          { label: '🚨 Event this week', value: 'event-week' },
+          { label: '📆 Within 2 weeks', value: 'next-2wk' },
+          { label: '🌿 Flexible', value: 'flexible' }
+        ]
+      );
+      return;
+    }
+
+    if (value === 'returning') {
+      memory.isExisting = true;
+      await addBotMessage(
+        `Welcome back. The front desk should still have your guest card on file — when were you hoping to come in?`,
+        1000,
+        [
+          { label: '🚨 Event this week', value: 'event-week' },
+          { label: '📆 Within 2 weeks', value: 'next-2wk' },
+          { label: '🌿 Flexible', value: 'flexible' }
+        ]
+      );
+      return;
+    }
+
+    // URGENCY ROUTING ------------------------------
+    if (value === 'event-week') {
+      memory.urgency = 'event-week';
+      await addBotMessage(
+        `Got it — event this week. Heads up on the Hair Affair schedule so we set expectations correctly: the salon is open Tue–Fri 9a–5p and Sat 8:30a–1p, with Monday by appointment only and Sunday closed. Saturday closes at 1pm so morning slots fill first.<br><br>Which window works?`,
+        1300,
+        [
+          { label: '📅 Tuesday morning', value: 'tue-am' },
+          { label: '🌇 Wednesday afternoon', value: 'wed-pm' },
+          { label: '☀️ Friday morning', value: 'fri-am' },
+          { label: '🗓️ Saturday morning', value: 'sat-am' },
+          { label: '🌙 Monday by appt', value: 'mon-appt' }
+        ]
+      );
+      return;
+    }
+
+    if (value === 'next-2wk' || value === 'flexible') {
+      memory.urgency = value;
+      await addBotMessage(
+        `Perfect — that gives the team room to pair you with the right stylist or spa provider rather than slotting you in. Tue–Fri 9a–5p mid-day fills first; Saturday morning (8:30a–1p) is the most-requested window.<br><br>Which fits best?`,
+        1100,
+        [
+          { label: '📅 Tuesday morning', value: 'tue-am' },
+          { label: '🌇 Wednesday afternoon', value: 'wed-pm' },
+          { label: '☀️ Friday morning', value: 'fri-am' },
+          { label: '🗓️ Saturday morning', value: 'sat-am' },
+          { label: '🌙 Monday by appt', value: 'mon-appt' }
+        ]
+      );
+      return;
+    }
+
+    // TIME SLOT BOOKING ----------------------------
+    if (['tue-am', 'wed-pm', 'fri-am', 'sat-am', 'mon-appt'].includes(value)) {
+      const timeMap = {
+        'tue-am': 'Tuesday at 9:30 AM',
+        'wed-pm': 'Wednesday at 2:00 PM',
+        'fri-am': 'Friday at 10:00 AM',
+        'sat-am': 'Saturday at 9:00 AM',
+        'mon-appt': 'Monday (by appointment — front desk will confirm)'
+      };
+      memory.proposedTime = timeMap[value];
+
+      await addBotMessage(
+        `Great — I'll capture ${timeMap[value]} as your requested window. Hair Affair confirms every booking by phone (no online scheduler), so this stays as a request until the front desk calls you back to lock it.<br><br>What's your first name?`,
+        1100
+      );
+      memory.collecting = 'name-for-booking';
+      return;
+    }
+
+    // QUESTION PATH -------------------------------
+    if (value === 'question') {
+      memory.concern = 'question';
+      await addBotMessage(
+        `Of course — type your question. Hair Affair offers full salon plus spa, so pricing depends on the service. If it's something the team needs to weigh in on personally, I'll log it for Tonya's morning review.`,
+        900
+      );
+      memory.collecting = 'free-question';
+      return;
+    }
+  }
+
+  // ============================================================
+  // Free-text input handler
+  // ============================================================
+  async function handleUserSend() {
+    const text = inputEl.value.trim();
+    if (!text) return;
+    addUserMessage(text);
+    inputEl.value = '';
+
+    // Name collection states
+    if (memory.collecting === 'name-for-booking' || memory.collecting === 'name-phone') {
+      const name = text.split(/\s+/)[0].replace(/[^a-zA-Z]/g, '');
+      memory.name = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+      memory.collecting = 'phone';
+
+      await addBotMessage(
+        `Thank you, ${memory.name}. What's the best phone number for the front desk to call you back on? They'll dial you from <strong>(352) 383-3644</strong> when the salon reopens.`,
+        800
+      );
+      return;
+    }
+
+    if (memory.collecting === 'phone') {
+      memory.phone = text;
+      memory.collecting = null;
+
+      // Show booking card or confirmation based on flow
+      if (memory.proposedTime) {
+        const treatmentMap = {
+          'color': 'Color / Balayage / Highlights',
+          'cut': 'Cut / Smoothing / Perm',
+          'massage-swedish': 'Swedish Massage',
+          'massage-deep': 'Deep Tissue Massage',
+          'massage-lymph': 'Lymphatic Drainage Massage',
+          'facial': 'Facial',
+          'microneedling': 'Microneedling Session',
+          'lash-lift': 'Lash Lift & Tint',
+          'brow': 'Brow Shape / Tint',
+          'microblade': 'Microblading (Initial + Touch-Up)'
+        };
+        const treatment = treatmentMap[memory.treatmentInterest] || 'New Guest Visit';
+
+        await addBotMessage(
+          `Perfect. Here's the request I'm sending to the Hair Affair front desk:`,
+          800
+        );
+        setTimeout(() => showBookingCard(treatment, memory.proposedTime), 1200);
+      } else if (memory.urgency === 'event-week') {
+        await addBotMessage(
+          `Got it, ${memory.name} — event this week. I'm flagging this priority so it's the first call Tonya or the front desk makes Tuesday morning. Expect a ring from <strong>(352) 383-3644</strong> at or shortly after 9 AM.<br><br>If your event falls on Sun or Mon (the closed days) and you can't wait, sending a DM to <strong>@hair_affair_of_mount_dora</strong> on Instagram is a good backup.`,
+          1300
+        );
+      } else {
+        await addBotMessage(
+          `All set, ${memory.name}. The Hair Affair team will call you at ${text} when the salon reopens to confirm your appointment.<br><br>Anything else I can help with tonight?`,
+          1100
+        );
+      }
+      return;
+    }
+
+    if (memory.collecting === 'free-question') {
+      memory.collecting = null;
+      await addBotMessage(
+        `Thanks for sending that over. I've logged your question for Tonya and the team — someone will call you from <strong>(352) 383-3644</strong> when the salon reopens (Tue–Fri 9a, Sat 8:30a). Want me to also capture a tentative appointment window so you don't lose your spot while we wait?`,
+        1200,
+        [
+          { label: '✅ Yes, capture a window', value: 'next-2wk' },
+          { label: 'No thanks', value: 'no-slot' }
+        ]
+      );
+      return;
+    }
+
+    // Default fallback if no state matches
+    await addBotMessage(
+      `Thanks for sharing that. So I can route this to the right side of the salon — what service are you most interested in?`,
+      900,
+      [
+        { label: '🎨 Color', value: 'color' },
+        { label: '✂️ Cut / Smoothing', value: 'cut' },
+        { label: '💆 Spa', value: 'spa' },
+        { label: '👁️ Lashes / Brows', value: 'beauty' }
+      ]
+    );
+  }
+
+  function confirmBooking() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) {
+      card.style.transition = 'all 0.3s ease';
+      card.style.background = 'linear-gradient(135deg, #5b4a86 0%, #423567 100%)';
+      card.style.color = 'white';
+      card.querySelector('.booking-title').style.color = 'white';
+      card.querySelector('.booking-title').textContent = '✓ Sent to Front Desk';
+      card.querySelector('.booking-icon').style.background = 'white';
+      card.querySelector('.booking-icon').style.color = 'var(--accent)';
+      card.querySelectorAll('.label').forEach(el => el.style.color = 'rgba(255,255,255,0.6)');
+      card.querySelectorAll('.value').forEach(el => el.style.color = 'white');
+      card.querySelector('.booking-confirm').remove();
+    }
+    setTimeout(async () => {
+      await addBotMessage(
+        `You're on the list, ${memory.name}. The Hair Affair front desk will call from <strong>(352) 383-3644</strong> when the salon reopens to lock the time and walk through anything else you need. Our purpose is you — talk soon.`,
+        700
+      );
+    }, 400);
+  }
+
+  function proposeAlternative() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) card.remove();
+    addBotMessage(
+      `No problem. Hair Affair's typical open windows are Wednesday 11 AM, Thursday 3 PM, or Saturday 9:30 AM — which works best?`,
+      600,
+      [
+        { label: '🌅 Wed 11 AM', value: 'wed-pm' },
+        { label: '🌇 Thu 3 PM', value: 'fri-am' },
+        { label: '☀️ Sat 9:30 AM', value: 'sat-am' }
+      ]
+    );
+  }
+
+  // Enter key support
+  inputEl.addEventListener('keydown', e => {
+    if (e.key === 'Enter') handleUserSend();
+  });
+
+  // Boot
+  setTimeout(startConversation, 600);
+</script>
+
+</body>
+</html>
