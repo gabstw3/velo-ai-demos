@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Fuentes Team — After-Hours Lead Concierge | Powered by Velo AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Real estate palette: warm cream + terra clay + slate blue.
+       Confident, modern, not luxury-snobby. Approachable boutique vibe. */
+    --bg: #f5f0e8;
+    --bg-deep: #e8dfd0;
+    --ink: #1d2434;
+    --ink-soft: #4a5066;
+    --ink-faint: #8a8f9e;
+    --accent: #2e4d7a;       /* slate blue — the broker primary */
+    --accent-warm: #c97852;  /* warm terra clay accent */
+    --accent-glow: #f3d8b7;
+    --line: #d4ccb8;
+    --bot-msg: #ffffff;
+    --user-msg: #2e4d7a;
+    --user-msg-text: #ffffff;
+    --shadow-sm: 0 1px 3px rgba(29, 36, 52, 0.06);
+    --shadow-md: 0 4px 16px rgba(29, 36, 52, 0.08);
+    --shadow-lg: 0 12px 40px rgba(29, 36, 52, 0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body { height: 100%; }
+
+  body {
+    font-family: 'Geist', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.5;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(201, 120, 82, 0.05) 0%, transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(46, 77, 122, 0.04) 0%, transparent 40%);
+  }
+
+  .app {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    min-height: 100vh;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .practice-panel {
+    background: linear-gradient(180deg, #1f2f4d 0%, #131c2f 100%);
+    color: #e8e0d0;
+    padding: 40px 32px;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .practice-panel::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(201, 120, 82, 0.10) 0%, transparent 50%);
+    animation: drift 22s ease-in-out infinite;
+  }
+
+  @keyframes drift {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(20%, 10%); }
+  }
+
+  .practice-content { position: relative; z-index: 1; }
+
+  .practice-mark {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    margin-bottom: 12px;
+    opacity: 0.9;
+  }
+
+  .practice-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+  }
+
+  .practice-doctor {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--accent-glow);
+    margin-bottom: 32px;
+  }
+
+  .promise-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(243, 216, 183, 0.15);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+    backdrop-filter: blur(10px);
+  }
+
+  .promise-card h4 {
+    font-family: 'Geist', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    margin-bottom: 8px;
+  }
+
+  .promise-card p {
+    font-size: 14px;
+    line-height: 1.55;
+    color: #d4cdb8;
+  }
+
+  .practice-info {
+    margin-top: auto;
+    padding-top: 24px;
+    border-top: 1px solid rgba(243, 216, 183, 0.1);
+    font-size: 13px;
+    line-height: 1.7;
+    color: #b8b0a0;
+  }
+
+  .practice-info .row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 8px;
+  }
+
+  .practice-info .label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    width: 56px;
+    padding-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .powered-by {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(243, 216, 183, 0.1);
+    font-size: 11px;
+    color: #8a8275;
+    letter-spacing: 0.05em;
+  }
+
+  .powered-by strong {
+    color: var(--accent-glow);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+  }
+
+  .chat-panel {
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .chat-header {
+    padding: 20px 32px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(245, 240, 232, 0.85);
+    backdrop-filter: blur(12px);
+    z-index: 10;
+  }
+
+  .chat-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .status-dot {
+    width: 8px; height: 8px;
+    background: #4ade80;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.15);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.15); }
+    50% { box-shadow: 0 0 0 8px rgba(74, 222, 128, 0.05); }
+  }
+
+  .status-text {
+    font-size: 13px;
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+
+  .status-text strong { color: var(--ink); font-weight: 600; }
+
+  .chat-time {
+    font-family: 'Fraunces', serif;
+    font-size: 12px;
+    color: var(--ink-faint);
+    font-style: italic;
+  }
+
+  .messages {
+    flex: 1;
+    padding: 32px;
+    scroll-behavior: smooth;
+  }
+
+  .msg-group {
+    margin-bottom: 20px;
+    animation: msgIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  @keyframes msgIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .msg {
+    max-width: 78%;
+    padding: 14px 18px;
+    border-radius: 18px;
+    font-size: 15px;
+    line-height: 1.55;
+    word-wrap: break-word;
+  }
+
+  .msg-bot {
+    background: var(--bot-msg);
+    color: var(--ink);
+    border-bottom-left-radius: 4px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(212, 204, 184, 0.4);
+  }
+
+  .msg-user {
+    background: var(--user-msg);
+    color: var(--user-msg-text);
+    border-bottom-right-radius: 4px;
+    margin-left: auto;
+  }
+
+  .msg-meta {
+    font-size: 10px;
+    color: var(--ink-faint);
+    margin-top: 6px;
+    padding: 0 8px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .msg-meta.user { text-align: right; }
+
+  .typing {
+    display: flex;
+    gap: 4px;
+    padding: 16px 20px;
+    background: var(--bot-msg);
+    border-radius: 18px;
+    border-bottom-left-radius: 4px;
+    width: fit-content;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(212, 204, 184, 0.4);
+  }
+
+  .typing span {
+    width: 7px; height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: typing 1.4s ease-in-out infinite;
+  }
+
+  .typing span:nth-child(2) { animation-delay: 0.2s; }
+  .typing span:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes typing {
+    0%, 100% { transform: translateY(0); opacity: 0.4; }
+    50% { transform: translateY(-4px); opacity: 1; }
+  }
+
+  .quick-replies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+    animation: msgIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s both;
+  }
+
+  .chip {
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 9px 16px;
+    border-radius: 100px;
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .chip:hover {
+    background: var(--accent);
+    color: var(--bg);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .chip:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .booking-card {
+    background: linear-gradient(135deg, #ffffff 0%, #faf3e6 100%);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 24px;
+    margin-top: 12px;
+    box-shadow: var(--shadow-md);
+    animation: msgIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    max-width: 78%;
+  }
+
+  .booking-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .booking-icon {
+    width: 32px; height: 32px;
+    background: var(--accent);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .booking-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--ink);
+  }
+
+  .booking-detail {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 12px;
+    padding: 8px 0;
+    font-size: 14px;
+  }
+
+  .booking-detail .label {
+    color: var(--ink-faint);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding-top: 2px;
+  }
+
+  .booking-detail .value {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .booking-confirm {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    gap: 8px;
+  }
+
+  .btn-primary {
+    flex: 1;
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: #1f2f4d;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--ink-soft);
+    border: 1px solid var(--line);
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover {
+    background: var(--bg-deep);
+  }
+
+  .input-area {
+    padding: 20px 32px 24px;
+    border-top: 1px solid var(--line);
+    background: rgba(245, 240, 232, 0.85);
+    backdrop-filter: blur(12px);
+  }
+
+  .input-wrap {
+    display: flex;
+    gap: 10px;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 6px 6px 6px 18px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .input-wrap:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(46, 77, 122, 0.08);
+  }
+
+  .input-wrap input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-family: 'Geist', sans-serif;
+    font-size: 15px;
+    color: var(--ink);
+    padding: 10px 0;
+    background: transparent;
+  }
+
+  .input-wrap input::placeholder { color: var(--ink-faint); }
+
+  .send-btn {
+    background: var(--accent);
+    color: white;
+    border: none;
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+
+  .send-btn:hover { background: #1f2f4d; transform: scale(1.05); }
+  .send-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+  .input-hint {
+    font-size: 11px;
+    color: var(--ink-faint);
+    margin-top: 10px;
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
+
+  .demo-banner {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 10px 16px;
+    border-radius: 100px;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    z-index: 100;
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .demo-banner:hover { transform: scale(1.03); }
+  .demo-banner .pulse-dot {
+    width: 6px; height: 6px;
+    background: var(--accent-warm);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @media (max-width: 900px) {
+    html, body {
+      height: auto;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .app {
+      grid-template-columns: 1fr;
+      height: auto;
+      min-height: 100vh;
+    }
+    .practice-panel {
+      padding: 20px 24px;
+      position: static;
+      height: auto;
+      max-height: none;
+    }
+    .practice-panel .promise-card,
+    .practice-panel .practice-info,
+    .practice-panel .powered-by { display: none; }
+    .practice-name { font-size: 22px; }
+    .practice-doctor { font-size: 14px; margin-bottom: 0; }
+    .chat-panel {
+      min-height: 80vh;
+    }
+    .messages {
+      padding: 20px;
+      overflow-y: visible;
+      flex: none;
+    }
+    .msg { max-width: 88%; }
+    .input-area {
+      padding: 16px 20px 20px;
+      position: sticky;
+      bottom: 0;
+    }
+    .demo-banner { top: 8px; right: 8px; padding: 8px 12px; font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner" onclick="alert('This is a live demo built by Velo AI for The Fuentes Team.\n\nFor deployment information, contact:\nGabe Herrera — Velo AI\nWinter Springs, FL')">
+  <span class="pulse-dot"></span>
+  <span>Velo AI Demo</span>
+</div>
+
+<div class="app">
+
+  <!-- LEFT: Brand Panel -->
+  <aside class="practice-panel">
+    <div class="practice-content">
+      <div class="practice-mark">Central Florida · Family-Led Trio · eXp Realty</div>
+      <h1 class="practice-name">The Fuentes Team</h1>
+      <p class="practice-doctor">Tony, Elsa &amp; Crystal Fuentes · REALTORS®</p>
+
+      <div class="promise-card">
+        <h4>Your Story Deserves A Listener</h4>
+        <p>Real estate is rarely just a transaction — it's a chapter. Tony, Elsa, and Crystal treat every buyer and seller like family, day or after hours. No lead reaches a dead end on this site.</p>
+      </div>
+    </div>
+
+    <div class="practice-info">
+      <div class="row">
+        <div class="label">Brokerage</div>
+        <div>eXp Realty<br>Cloud-based · Central Florida</div>
+      </div>
+      <div class="row">
+        <div class="label">Phone</div>
+        <div>(888) 883-8509</div>
+      </div>
+      <div class="row">
+        <div class="label">Hours</div>
+        <div>Mon–Sat 9a–7p · Sun by appointment</div>
+      </div>
+      <div class="row">
+        <div class="label">Service</div>
+        <div>Kissimmee · Orlando · Windermere · Davenport</div>
+      </div>
+      <div class="row">
+        <div class="label">Idiomas</div>
+        <div>English &amp; Español — fully bilingual</div>
+      </div>
+    </div>
+
+    <div class="powered-by">
+      Lead concierge powered by <strong>VELO AI</strong>
+    </div>
+  </aside>
+
+  <!-- RIGHT: Chat Interface -->
+  <main class="chat-panel">
+    <header class="chat-header">
+      <div class="chat-status">
+        <span class="status-dot"></span>
+        <span class="status-text"><strong>Fuentes Team Concierge</strong> · Available 24/7</span>
+      </div>
+      <span class="chat-time" id="chat-time">After hours · 9:43 PM</span>
+    </header>
+
+    <div class="messages" id="messages"></div>
+
+    <div class="input-area">
+      <div class="input-wrap">
+        <input
+          type="text"
+          id="user-input"
+          placeholder="Type your message... (English or Español)"
+          autocomplete="off"
+        />
+        <button class="send-btn" id="send-btn" onclick="handleUserSend()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+        </button>
+      </div>
+      <div class="input-hint">Already working with The Fuentes Team? Tony is notified directly for time-sensitive matters.</div>
+    </div>
+  </main>
+</div>
+
+<script>
+  // ============================================================
+  // VELO AI — Real Estate Lead Qualifier
+  // The Fuentes Team — buyer/seller intent → bilingual consult booking
+  // ============================================================
+
+  const messagesEl = document.getElementById('messages');
+  const inputEl = document.getElementById('user-input');
+  const sendBtn = document.getElementById('send-btn');
+
+  const memory = {
+    name: null,
+    intent: null,           // buying, selling, both, info
+    timeline: null,
+    budget: null,
+    financing: null,
+    propertyType: null,
+    history: []
+  };
+
+  const now = new Date();
+  const hours = now.getHours() < 8 || now.getHours() >= 17 ? '9:43 PM' : '7:18 AM';
+  document.getElementById('chat-time').textContent = `After hours · ${hours}`;
+
+  function addBotMessage(text, delay = 700, withChips = null) {
+    return new Promise(resolve => {
+      const typingId = 't' + Date.now();
+      const typing = document.createElement('div');
+      typing.className = 'msg-group';
+      typing.id = typingId;
+      typing.innerHTML = `<div class="typing"><span></span><span></span><span></span></div>`;
+      messagesEl.appendChild(typing);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+
+      setTimeout(() => {
+        document.getElementById(typingId)?.remove();
+        const msgGroup = document.createElement('div');
+        msgGroup.className = 'msg-group';
+        let html = `<div class="msg msg-bot">${text}</div><div class="msg-meta">Fuentes Team Concierge</div>`;
+
+        if (withChips) {
+          html += `<div class="quick-replies">`;
+          withChips.forEach((chip) => {
+            html += `<button class="chip" onclick="handleChipClick('${chip.value.replace(/'/g, "\\'")}', this)">${chip.label}</button>`;
+          });
+          html += `</div>`;
+        }
+
+        msgGroup.innerHTML = html;
+        messagesEl.appendChild(msgGroup);
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+        resolve();
+      }, delay);
+    });
+  }
+
+  function addUserMessage(text) {
+    const msgGroup = document.createElement('div');
+    msgGroup.className = 'msg-group';
+    msgGroup.innerHTML = `
+      <div class="msg msg-user" style="margin-left:auto;">${text}</div>
+      <div class="msg-meta user">You · just now</div>
+    `;
+    messagesEl.appendChild(msgGroup);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+    memory.history.push({ role: 'user', text });
+  }
+
+  function disableChips(currentBtn) {
+    const chips = currentBtn.parentElement.querySelectorAll('.chip');
+    chips.forEach(c => c.disabled = true);
+    currentBtn.style.background = 'var(--accent)';
+    currentBtn.style.color = 'var(--bg)';
+  }
+
+  function showBookingCard(meetingType, time) {
+    const card = document.createElement('div');
+    card.className = 'msg-group';
+    card.innerHTML = `
+      <div class="booking-card">
+        <div class="booking-header">
+          <div class="booking-icon">F</div>
+          <div class="booking-title">Consult Hold Created</div>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Client</span>
+          <span class="value">${memory.name || 'New lead'}</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">For</span>
+          <span class="value">${meetingType}</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Proposed</span>
+          <span class="value">${time}</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">With</span>
+          <span class="value">Tony Fuentes · Team Lead</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Format</span>
+          <span class="value">Zoom or in-person · Central Florida</span>
+        </div>
+        <div class="booking-confirm">
+          <button class="btn-primary" onclick="confirmBooking()">Confirm consult</button>
+          <button class="btn-secondary" onclick="proposeAlternative()">Different time</button>
+        </div>
+      </div>
+    `;
+    messagesEl.appendChild(card);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  // ============================================================
+  // Conversation Flow
+  // ============================================================
+
+  async function startConversation() {
+    await addBotMessage(
+      `Welcome — you've reached the after-hours line for The Fuentes Team. Tony, Elsa, and Crystal have wrapped showings for the day, but I can get your story on the calendar so the right Fuentes calls you back personally tomorrow.<br><br>What brings you in tonight?`,
+      400,
+      [
+        { label: '🏡 Looking to buy', value: 'buying' },
+        { label: '📋 Thinking about selling', value: 'selling' },
+        { label: '🔄 Both — buying & selling', value: 'both' },
+        { label: '❓ A general question', value: 'info' }
+      ]
+    );
+  }
+
+  async function handleChipClick(value, btn) {
+    disableChips(btn);
+    const labelMap = {
+      'buying': "I'm looking to buy a home",
+      'selling': "I'm thinking about selling",
+      'both': "I need to do both — sell and buy",
+      'info': "I just have a general question",
+      'first-time': "Yes, first-time buyer",
+      'repeat-buyer': "No, I've owned before",
+      'investor': "I'm buying as an investor",
+      'budget-low': "Under $400k",
+      'budget-mid': "$400k–$700k",
+      'budget-high': "$700k+ / luxury",
+      'financing-cash': "Paying cash",
+      'financing-prequal': "Pre-approved",
+      'financing-need': "Need a lender referral",
+      'timeline-now': "Within 30 days",
+      'timeline-soon': "1–3 months",
+      'timeline-later': "Just exploring",
+      'sell-now': "Soon — within 30 days",
+      'sell-3mo': "Within a few months",
+      'sell-explore': "Just exploring",
+      'this-week': "This week",
+      'next-week': "Next week",
+      'flexible': "I'm flexible"
+    };
+    addUserMessage(labelMap[value] || value);
+    memory.history.push({ role: 'user', value });
+    await routeIntent(value);
+  }
+
+  async function routeIntent(value) {
+    // BUYING PATH ----------------------------------
+    if (value === 'buying') {
+      memory.intent = 'buying';
+      await addBotMessage(
+        `Perfect — Tony and Elsa have been guiding Central Florida buyers since 2001, and Crystal has been licensed since 2019, so the team covers everything from a first home in Kissimmee to a Windermere estate.<br><br>To match you with the right Fuentes — what describes you best?`,
+        1100,
+        [
+          { label: '🆕 First-time buyer', value: 'first-time' },
+          { label: '🔁 Owned before', value: 'repeat-buyer' },
+          { label: '📈 Investor / second home', value: 'investor' }
+        ]
+      );
+      return;
+    }
+
+    if (value === 'first-time') {
+      memory.firstTime = true;
+      await addBotMessage(
+        `Wonderful — first-time buyers are where the team really shines. Their New York roots taught them to translate every clause and closing cost into plain language (English or Español), so you'll never feel rushed or talked over.<br><br>Where are you on financing?`,
+        1300,
+        [
+          { label: '💰 Paying cash', value: 'financing-cash' },
+          { label: '✅ Pre-approved', value: 'financing-prequal' },
+          { label: '🤔 Need a lender intro', value: 'financing-need' }
+        ]
+      );
+      return;
+    }
+
+    if (value === 'repeat-buyer') {
+      memory.firstTime = false;
+      await addBotMessage(
+        `Got it — experienced buyers usually move quickly because they know the process. The Fuentes Team will respect your pace.<br><br>What's the budget range you're targeting?`,
+        1000,
+        [
+          { label: 'Under $400k', value: 'budget-low' },
+          { label: '$400k–$700k', value: 'budget-mid' },
+          { label: '$700k+ / luxury', value: 'budget-high' }
+        ]
+      );
+      return;
+    }
+
+    if (value === 'investor') {
+      memory.firstTime = false;
+      memory.investor = true;
+      await addBotMessage(
+        `Smart — Tony's background is property investment, that's literally how the family started in real estate before they crossed into client work. He'll talk cap rates, short-term rental rules, and 1031s with you like another investor.<br><br>What price tier are you targeting?`,
+        1300,
+        [
+          { label: 'Under $400k', value: 'budget-low' },
+          { label: '$400k–$700k', value: 'budget-mid' },
+          { label: '$700k+ / luxury', value: 'budget-high' }
+        ]
+      );
+      return;
+    }
+
+    if (['financing-cash', 'financing-prequal', 'financing-need'].includes(value)) {
+      memory.financing = value;
+      const transition = value === 'financing-need'
+        ? `No worries — the team has a short list of trusted Central Florida lenders (including bilingual ones) and can introduce you tomorrow. Pre-approval usually takes 48–72 hours.<br><br>What budget range are you targeting?`
+        : `Excellent. What budget range are you targeting?`;
+      await addBotMessage(transition, 1100, [
+        { label: 'Under $400k', value: 'budget-low' },
+        { label: '$400k–$700k', value: 'budget-mid' },
+        { label: '$700k+ / luxury', value: 'budget-high' }
+      ]);
+      return;
+    }
+
+    if (['budget-low', 'budget-mid', 'budget-high'].includes(value)) {
+      memory.budget = value;
+      const note = value === 'budget-high'
+        ? `Beautiful — that lands you firmly in Tony's wheelhouse. He's spent years walking luxury clients through Windermere, Reunion, and gated Lake Nona estates.<br><br>How soon are you looking to actually close?`
+        : `Perfect. And how soon are you looking to actually close?`;
+      await addBotMessage(
+        note,
+        1000,
+        [
+          { label: '🔥 Within 30 days', value: 'timeline-now' },
+          { label: '📅 1–3 months', value: 'timeline-soon' },
+          { label: '👀 Just exploring', value: 'timeline-later' }
+        ]
+      );
+      return;
+    }
+
+    if (['timeline-now', 'timeline-soon', 'timeline-later'].includes(value)) {
+      memory.timeline = value;
+      const message = value === 'timeline-now'
+        ? `Understood — at that pace Tony will want to move on a strategy call quickly. The team holds evening slots open for active buyers. Want me to hold a 30-minute consult this week?`
+        : value === 'timeline-soon'
+        ? `That's a healthy runway. Tony usually opens with a 30-minute "your story first" call — no pressure, just maps the path. Want me to hold a slot?`
+        : `That's actually how most Fuentes clients begin — exploring six or twelve months out, then moving when the right home appears. Want me to hold a 20-minute orientation call?`;
+      await addBotMessage(message, 1300, [
+        { label: '📅 This week', value: 'this-week' },
+        { label: '📆 Next week', value: 'next-week' },
+        { label: "🤝 I'm flexible", value: 'flexible' }
+      ]);
+      return;
+    }
+
+    // SELLING PATH ---------------------------------
+    if (value === 'selling') {
+      memory.intent = 'selling';
+      await addBotMessage(
+        `Smart to start the conversation early. With 18+ years in Central Florida and deep relationships in Kissimmee, Orlando, and Windermere, the Fuentes Team usually positions a home so the first weekend on market is the strongest one.<br><br>How soon are you thinking?`,
+        1300,
+        [
+          { label: '🔥 Within 30 days', value: 'sell-now' },
+          { label: '📅 Within a few months', value: 'sell-3mo' },
+          { label: '👀 Just exploring', value: 'sell-explore' }
+        ]
+      );
+      return;
+    }
+
+    if (['sell-now', 'sell-3mo', 'sell-explore'].includes(value)) {
+      memory.timeline = value;
+      const message = value === 'sell-now'
+        ? `Tight timeline — Tony or Elsa will want a 45-minute walk-through plus a CMA before listing. They have evening slots Tuesday and Thursday. Want me to hold one?`
+        : value === 'sell-3mo'
+        ? `Healthy runway. The Fuentes Team's first move is always a complimentary home valuation plus a market position consult — gives you a real number before any commitment. Want me to hold a slot?`
+        : `Wise — most of the team's best sellers start exploring six months out. Tony does a 30-minute "should I sell now or hold" conversation, no listing pressure. Want me to hold a slot?`;
+      await addBotMessage(message, 1300, [
+        { label: '📅 This week', value: 'this-week' },
+        { label: '📆 Next week', value: 'next-week' },
+        { label: "🤝 I'm flexible", value: 'flexible' }
+      ]);
+      return;
+    }
+
+    // BOTH PATH ------------------------------------
+    if (value === 'both') {
+      memory.intent = 'both';
+      await addBotMessage(
+        `Buying and selling at the same time is a choreography problem — and that's exactly why a three-person family team is an advantage. Tony can run the sell side while Elsa or Crystal works your buy side, so neither half slows the other down.<br><br>How soon are you looking to make the move?`,
+        1400,
+        [
+          { label: '🔥 Within 30 days', value: 'timeline-now' },
+          { label: '📅 1–3 months', value: 'timeline-soon' },
+          { label: '👀 Just exploring', value: 'timeline-later' }
+        ]
+      );
+      return;
+    }
+
+    // BOOKING -------------------------------------
+    if (['this-week', 'next-week', 'flexible'].includes(value)) {
+      const timeMap = {
+        'this-week': 'Thursday at 6:00 PM',
+        'next-week': 'Tuesday at 5:30 PM',
+        'flexible': 'Wednesday at 6:30 PM'
+      };
+      memory.proposedTime = timeMap[value];
+
+      await addBotMessage(
+        `Perfect. Let me hold ${timeMap[value]} for you — the Fuentes Team books evening slots on purpose so you don't have to skip work for a real-estate call. What's your first name so I can put it on Tony's calendar?`,
+        1100
+      );
+      memory.collecting = 'name-for-booking';
+      return;
+    }
+
+    // GENERAL QUESTION PATH -----------------------
+    if (value === 'info') {
+      memory.intent = 'info';
+      await addBotMessage(
+        `Of course — type your question and I'll route it to the right person on the team. Pricing or neighborhood-specific questions go straight to Tony; closing or paperwork questions usually go to Elsa. You'll hear back by mid-morning.`,
+        900
+      );
+      memory.collecting = 'free-question';
+      return;
+    }
+  }
+
+  // ============================================================
+  // Free-text input handler
+  // ============================================================
+  async function handleUserSend() {
+    const text = inputEl.value.trim();
+    if (!text) return;
+    addUserMessage(text);
+    inputEl.value = '';
+
+    if (memory.collecting === 'name-for-booking') {
+      const name = text.split(/\s+/)[0].replace(/[^a-zA-Z]/g, '');
+      memory.name = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+      await addBotMessage(
+        `Thanks, ${memory.name}. What's the best phone number? You'll get a confirmation text from the Fuentes Team line by 9 AM tomorrow.`,
+        800
+      );
+      memory.collecting = 'phone';
+      return;
+    }
+
+    if (memory.collecting === 'phone') {
+      memory.phone = text;
+      memory.collecting = null;
+
+      if (memory.proposedTime) {
+        const meetingMap = {
+          'buying': 'Buyer Strategy Consult',
+          'selling': 'Listing & Valuation Consult',
+          'both': 'Buy & Sell Strategy Consult',
+          'info': 'General Real Estate Consult'
+        };
+        const meeting = meetingMap[memory.intent] || 'New Client Consult';
+
+        await addBotMessage(
+          `Perfect. Here's the hold I'm creating for Tony:`,
+          800
+        );
+        setTimeout(() => showBookingCard(meeting, memory.proposedTime), 1200);
+      } else {
+        await addBotMessage(
+          `All set, ${memory.name}. The Fuentes Team will reach out to ${text} by mid-morning tomorrow.<br><br>Anything else on your mind tonight?`,
+          1000
+        );
+      }
+      return;
+    }
+
+    if (memory.collecting === 'free-question') {
+      memory.collecting = null;
+      await addBotMessage(
+        `Thanks for sending that over. I've logged your question for Tony to review first thing tomorrow — he'll either reply directly or have Elsa or Crystal follow up by 10 AM.<br><br>Want me to also hold a consult slot in case it's easier to discuss live?`,
+        1100,
+        [
+          { label: '✅ Yes, hold a slot', value: 'this-week' },
+          { label: 'No thanks', value: 'no-slot' }
+        ]
+      );
+      return;
+    }
+
+    // Fallback
+    await addBotMessage(
+      `Thanks for sharing. So I can route this to the right Fuentes — would you say this is more about buying, selling, or just a general question?`,
+      900,
+      [
+        { label: '🏡 Buying', value: 'buying' },
+        { label: '📋 Selling', value: 'selling' },
+        { label: '❓ General question', value: 'info' }
+      ]
+    );
+  }
+
+  function confirmBooking() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) {
+      card.style.transition = 'all 0.3s ease';
+      card.style.background = 'linear-gradient(135deg, #2e4d7a 0%, #1f2f4d 100%)';
+      card.style.color = 'white';
+      card.querySelector('.booking-title').style.color = 'white';
+      card.querySelector('.booking-icon').style.background = 'white';
+      card.querySelector('.booking-icon').style.color = 'var(--accent)';
+      card.querySelectorAll('.label').forEach(el => el.style.color = 'rgba(255,255,255,0.6)');
+      card.querySelectorAll('.value').forEach(el => el.style.color = 'white');
+      card.querySelector('.booking-confirm').remove();
+    }
+    setTimeout(async () => {
+      await addBotMessage(
+        `You're set, ${memory.name}. Tony has been notified, and you'll get a confirmation text from <strong>(888) 883-8509</strong> tomorrow morning.<br><br>Have a good night — y bienvenido a la familia Fuentes.`,
+        700
+      );
+    }, 400);
+  }
+
+  function proposeAlternative() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) card.remove();
+    addBotMessage(
+      `No problem. The Fuentes Team has openings Tuesday at 5 PM, Thursday at 6:30 PM, or Saturday at 10 AM — which works best?`,
+      600,
+      [
+        { label: '🌅 Tuesday 5 PM', value: 'this-week' },
+        { label: '🌆 Thursday 6:30 PM', value: 'next-week' },
+        { label: '☀️ Saturday 10 AM', value: 'flexible' }
+      ]
+    );
+  }
+
+  inputEl.addEventListener('keydown', e => {
+    if (e.key === 'Enter') handleUserSend();
+  });
+
+  setTimeout(startConversation, 600);
+</script>
+
+</body>
+</html>

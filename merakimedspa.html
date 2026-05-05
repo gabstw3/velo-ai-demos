@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Meraki Wellness & Med Spa — Booking Concierge | Powered by Velo AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f3ed;
+    --bg-deep: #ece6d8;
+    --ink: #1a1f1c;
+    --ink-soft: #4a544c;
+    --ink-faint: #8a8f86;
+    --accent: #2d5a3f;
+    --accent-warm: #c9926b;
+    --accent-glow: #e8d9b8;
+    --line: #d4ccba;
+    --user-msg: #2d5a3f;
+    --user-msg-text: #f6f3ed;
+    --bot-msg: #ffffff;
+    --shadow-sm: 0 1px 2px rgba(26, 31, 28, 0.04);
+    --shadow-md: 0 4px 16px rgba(26, 31, 28, 0.08);
+    --shadow-lg: 0 12px 40px rgba(26, 31, 28, 0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body { height: 100%; }
+
+  body {
+    font-family: 'Geist', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.5;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(201, 146, 107, 0.06) 0%, transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(45, 90, 63, 0.05) 0%, transparent 40%);
+  }
+
+  .app {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    min-height: 100vh;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* --- LEFT PANEL: Practice Branding --- */
+  .practice-panel {
+    background: linear-gradient(180deg, #1a3326 0%, #0f1f17 100%);
+    color: #e8e0d0;
+    padding: 40px 32px;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .practice-panel::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(201, 146, 107, 0.08) 0%, transparent 50%);
+    animation: drift 20s ease-in-out infinite;
+  }
+
+  @keyframes drift {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(20%, 10%); }
+  }
+
+  .practice-content { position: relative; z-index: 1; }
+
+  .practice-mark {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    margin-bottom: 12px;
+    opacity: 0.9;
+  }
+
+  .practice-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+  }
+
+  .practice-doctor {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--accent-glow);
+    margin-bottom: 32px;
+  }
+
+  .promise-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(232, 217, 184, 0.15);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+    backdrop-filter: blur(10px);
+  }
+
+  .promise-card h4 {
+    font-family: 'Geist', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    margin-bottom: 8px;
+  }
+
+  .promise-card p {
+    font-size: 14px;
+    line-height: 1.55;
+    color: #d4cdb8;
+  }
+
+  .practice-info {
+    margin-top: auto;
+    padding-top: 24px;
+    border-top: 1px solid rgba(232, 217, 184, 0.1);
+    font-size: 13px;
+    line-height: 1.7;
+    color: #b8b0a0;
+  }
+
+  .practice-info .row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 8px;
+  }
+
+  .practice-info .label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    width: 56px;
+    padding-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .powered-by {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(232, 217, 184, 0.1);
+    font-size: 11px;
+    color: #8a8275;
+    letter-spacing: 0.05em;
+  }
+
+  .powered-by strong {
+    color: var(--accent-glow);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+  }
+
+  /* --- RIGHT PANEL: Chat Interface --- */
+  .chat-panel {
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .chat-header {
+    padding: 20px 32px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(246, 243, 237, 0.85);
+    backdrop-filter: blur(12px);
+    z-index: 10;
+  }
+
+  .chat-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .status-dot {
+    width: 8px; height: 8px;
+    background: #4ade80;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.15);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.15); }
+    50% { box-shadow: 0 0 0 8px rgba(74, 222, 128, 0.05); }
+  }
+
+  .status-text {
+    font-size: 13px;
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+
+  .status-text strong { color: var(--ink); font-weight: 600; }
+
+  .chat-time {
+    font-family: 'Fraunces', serif;
+    font-size: 12px;
+    color: var(--ink-faint);
+    font-style: italic;
+  }
+
+  .messages {
+    flex: 1;
+    padding: 32px;
+    scroll-behavior: smooth;
+  }
+
+  .msg-group {
+    margin-bottom: 20px;
+    animation: msgIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  @keyframes msgIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .msg {
+    max-width: 78%;
+    padding: 14px 18px;
+    border-radius: 18px;
+    font-size: 15px;
+    line-height: 1.55;
+    word-wrap: break-word;
+  }
+
+  .msg-bot {
+    background: var(--bot-msg);
+    color: var(--ink);
+    border-bottom-left-radius: 4px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(212, 204, 186, 0.4);
+  }
+
+  .msg-user {
+    background: var(--user-msg);
+    color: var(--user-msg-text);
+    border-bottom-right-radius: 4px;
+    margin-left: auto;
+  }
+
+  .msg-meta {
+    font-size: 10px;
+    color: var(--ink-faint);
+    margin-top: 6px;
+    padding: 0 8px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .msg-meta.user { text-align: right; }
+
+  .typing {
+    display: flex;
+    gap: 4px;
+    padding: 16px 20px;
+    background: var(--bot-msg);
+    border-radius: 18px;
+    border-bottom-left-radius: 4px;
+    width: fit-content;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(212, 204, 186, 0.4);
+  }
+
+  .typing span {
+    width: 7px; height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: typing 1.3s ease-in-out infinite;
+  }
+
+  .typing span:nth-child(2) { animation-delay: 0.2s; }
+  .typing span:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes typing {
+    0%, 100% { transform: translateY(0); opacity: 0.4; }
+    50% { transform: translateY(-4px); opacity: 1; }
+  }
+
+  /* Quick reply chips */
+  .quick-replies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+    animation: msgIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s both;
+  }
+
+  .chip {
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 9px 16px;
+    border-radius: 100px;
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .chip:hover {
+    background: var(--accent);
+    color: var(--bg);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .chip:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  /* Booking card */
+  .booking-card {
+    background: linear-gradient(135deg, #ffffff 0%, #faf6ec 100%);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 24px;
+    margin-top: 12px;
+    box-shadow: var(--shadow-md);
+    animation: msgIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    max-width: 78%;
+  }
+
+  .booking-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .booking-icon {
+    width: 32px; height: 32px;
+    background: var(--accent);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .booking-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--ink);
+  }
+
+  .booking-detail {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 12px;
+    padding: 8px 0;
+    font-size: 14px;
+  }
+
+  .booking-detail .label {
+    color: var(--ink-faint);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding-top: 2px;
+  }
+
+  .booking-detail .value {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .booking-confirm {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    gap: 8px;
+  }
+
+  .btn-primary {
+    flex: 1;
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: #1f4530;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--ink-soft);
+    border: 1px solid var(--line);
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover {
+    background: var(--bg-deep);
+  }
+
+  /* Input area */
+  .input-area {
+    padding: 20px 32px 24px;
+    border-top: 1px solid var(--line);
+    background: rgba(246, 243, 237, 0.85);
+    backdrop-filter: blur(12px);
+  }
+
+  .input-wrap {
+    display: flex;
+    gap: 10px;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 6px 6px 6px 18px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .input-wrap:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(45, 90, 63, 0.08);
+  }
+
+  .input-wrap input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-family: 'Geist', sans-serif;
+    font-size: 15px;
+    color: var(--ink);
+    padding: 10px 0;
+    background: transparent;
+  }
+
+  .input-wrap input::placeholder { color: var(--ink-faint); }
+
+  .send-btn {
+    background: var(--accent);
+    color: white;
+    border: none;
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+
+  .send-btn:hover { background: #1f4530; transform: scale(1.05); }
+  .send-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+  .input-hint {
+    font-size: 11px;
+    color: var(--ink-faint);
+    margin-top: 10px;
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
+
+  /* Demo banner */
+  .demo-banner {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 10px 16px;
+    border-radius: 100px;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    z-index: 100;
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .demo-banner:hover { transform: scale(1.03); }
+  .demo-banner .pulse-dot {
+    width: 6px; height: 6px;
+    background: var(--accent-warm);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  /* Mobile */
+  @media (max-width: 900px) {
+    html, body {
+      height: auto;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .app {
+      grid-template-columns: 1fr;
+      height: auto;
+      min-height: 100vh;
+    }
+    .practice-panel {
+      padding: 20px 24px;
+      position: static;
+      height: auto;
+      max-height: none;
+    }
+    .practice-panel .promise-card,
+    .practice-panel .practice-info,
+    .practice-panel .powered-by { display: none; }
+    .practice-name { font-size: 22px; }
+    .practice-doctor { font-size: 14px; margin-bottom: 0; }
+    .chat-panel {
+      min-height: 80vh;
+    }
+    .messages {
+      padding: 20px;
+      overflow-y: visible;
+      flex: none;
+    }
+    .msg { max-width: 88%; }
+    .input-area {
+      padding: 16px 20px 20px;
+      position: sticky;
+      bottom: 0;
+    }
+    .demo-banner { top: 8px; right: 8px; padding: 8px 12px; font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner" onclick="alert('This is a live demo built by Velo AI for Meraki Wellness & Med Spa.\n\nFor deployment information, contact:\nGabe Herrera — Velo AI\nWinter Springs, FL')">
+  <span class="pulse-dot"></span>
+  <span>Velo AI Demo</span>
+</div>
+
+<div class="app">
+
+  <!-- LEFT: Practice Brand Panel -->
+  <aside class="practice-panel">
+    <div class="practice-content">
+      <div class="practice-mark">Altamonte Springs, Florida · Master Injector · Wellness + Aesthetics</div>
+      <h1 class="practice-name">Meraki Wellness & Med Spa</h1>
+      <p class="practice-doctor">Pamela Petersen, MHA · Full Specialist</p>
+
+      <div class="promise-card">
+        <h4>Always Open for Bookings</h4>
+        <p>Meraki blends master-injector aesthetics with full wellness — neuromodulators (Botox, Daxxify), dermal fillers (Juvederm, Restylane, RHA), PDO threads, ZO Skin Health protocols, microneedling, peels, dermaplaning, weight-loss injections (Semaglutide, Tirzepatide), and IV infusion therapy. Pamela's signature is facial contouring with injectables. Bookings come in around the clock; the concierge makes sure every one is captured.</p>
+      </div>
+    </div>
+
+    <div class="practice-info">
+      <div class="row">
+        <div class="label">Address</div>
+        <div>375 N State Rd 434, Suite 1004<br>Altamonte Springs, FL 32714</div>
+      </div>
+      <div class="row">
+        <div class="label">Phone</div>
+        <div>(407) 755-1004</div>
+      </div>
+      <div class="row">
+        <div class="label">Hours</div>
+        <div>Mon-Fri 8a-6p · Sat by Appt<br>Closed Sundays</div>
+      </div>
+    </div>
+
+    <div class="powered-by">
+      Concierge powered by <strong>VELO AI</strong>
+    </div>
+  </aside>
+
+  <!-- RIGHT: Chat Interface -->
+  <main class="chat-panel">
+    <header class="chat-header">
+      <div class="chat-status">
+        <span class="status-dot"></span>
+        <span class="status-text"><strong>Meraki Concierge</strong> · Available 24/7</span>
+      </div>
+      <span class="chat-time" id="chat-time">After hours · 11:47 PM</span>
+    </header>
+
+    <div class="messages" id="messages"></div>
+
+    <div class="input-area">
+      <div class="input-wrap">
+        <input
+          type="text"
+          id="user-input"
+          placeholder="Type your question..."
+          autocomplete="off"
+        />
+        <button class="send-btn" id="send-btn" onclick="handleUserSend()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+        </button>
+      </div>
+      <div class="input-hint">An established Meraki patient? Pamela and her team will be notified directly for time-sensitive requests.</div>
+    </div>
+  </main>
+</div>
+
+<script>
+  // ============================================================
+  // VELO AI — 7-Step Persuasion Engine
+  // Acknowledge → Validate → Surface → Propose → Reference → Timebox → Commit
+  // ============================================================
+
+  const messagesEl = document.getElementById('messages');
+  const inputEl = document.getElementById('user-input');
+  const sendBtn = document.getElementById('send-btn');
+
+  // Conversation memory
+  const memory = {
+    name: null,
+    concern: null,
+    isExisting: null,
+    urgency: null,
+    treatmentInterest: null,
+    history: []
+  };
+
+  // Set realistic after-hours timestamp
+  const now = new Date();
+  const hours = now.getHours() < 8 || now.getHours() >= 17 ? '11:47 PM' : '6:32 AM';
+  document.getElementById('chat-time').textContent = `After hours · ${hours}`;
+
+  function addBotMessage(text, delay = 700, withChips = null) {
+    return new Promise(resolve => {
+      const typingId = 't' + Date.now();
+      const typing = document.createElement('div');
+      typing.className = 'msg-group';
+      typing.id = typingId;
+      typing.innerHTML = `<div class="typing"><span></span><span></span><span></span></div>`;
+      messagesEl.appendChild(typing);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+
+      setTimeout(() => {
+        document.getElementById(typingId)?.remove();
+        const msgGroup = document.createElement('div');
+        msgGroup.className = 'msg-group';
+        let html = `<div class="msg msg-bot">${text}</div><div class="msg-meta">Meraki Concierge</div>`;
+
+        if (withChips) {
+          html += `<div class="quick-replies">`;
+          withChips.forEach((chip, i) => {
+            html += `<button class="chip" onclick="handleChipClick('${chip.value.replace(/'/g, "\\'")}', this)">${chip.label}</button>`;
+          });
+          html += `</div>`;
+        }
+
+        msgGroup.innerHTML = html;
+        messagesEl.appendChild(msgGroup);
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+        resolve();
+      }, delay);
+    });
+  }
+
+  function addUserMessage(text) {
+    const msgGroup = document.createElement('div');
+    msgGroup.className = 'msg-group';
+    msgGroup.innerHTML = `
+      <div class="msg msg-user" style="margin-left:auto;">${text}</div>
+      <div class="msg-meta user">You · just now</div>
+    `;
+    messagesEl.appendChild(msgGroup);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+    memory.history.push({ role: 'user', text });
+  }
+
+  function disableChips(currentBtn) {
+    const chips = currentBtn.parentElement.querySelectorAll('.chip');
+    chips.forEach(c => c.disabled = true);
+    currentBtn.style.background = 'var(--accent)';
+    currentBtn.style.color = 'var(--bg)';
+  }
+
+  function showBookingCard(treatment, time) {
+    const card = document.createElement('div');
+    card.className = 'msg-group';
+    card.innerHTML = `
+      <div class="booking-card">
+        <div class="booking-header">
+          <div class="booking-icon">M</div>
+          <div class="booking-title">Consultation Hold Created</div>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Patient</span>
+          <span class="value">${memory.name || 'New patient'}</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">For</span>
+          <span class="value">${treatment}</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Proposed</span>
+          <span class="value">${time}</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">With</span>
+          <span class="value">Pamela / Meraki Team</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Location</span>
+          <span class="value">375 N State Rd 434, Ste 1004</span>
+        </div>
+        <div class="booking-confirm">
+          <button class="btn-primary" onclick="confirmBooking()">Confirm appointment</button>
+          <button class="btn-secondary" onclick="proposeAlternative()">Different time</button>
+        </div>
+      </div>
+    `;
+    messagesEl.appendChild(card);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  // ============================================================
+  // Conversation Flow — applies the 7-step skeleton
+  // ============================================================
+
+  async function startConversation() {
+    await addBotMessage(
+      `Welcome to Meraki Wellness & Med Spa — Pamela's Altamonte Springs practice for master-injector aesthetics and wellness. The clinic is wrapped for the night, but I'm here — I can hold consults across injectables, skin treatments, weight-loss programs, and IV therapy, walk you through what each service is best for, and answer questions before you go to sleep.<br><br>What brings you here tonight?`,
+      400,
+      [
+        { label: '💉 Injectables (Botox / filler)', value: 'inject' },
+        { label: '✨ Skin (facial / peel / SkinPen)', value: 'skin' },
+        { label: '⚖️ Weight loss / IV therapy', value: 'wellness' },
+        { label: '❓ A pricing question', value: 'question' }
+      ]
+    );
+  }
+
+  async function handleChipClick(value, btn) {
+    disableChips(btn);
+    const labelMap = {
+      'inject': "I'm interested in injectables",
+      'skin': "I'm interested in skin treatments",
+      'wellness': "I'm interested in weight loss or IV therapy",
+      'question': 'I have a pricing question',
+      'inject-botox': 'Botox or Daxxify',
+      'inject-filler': 'Dermal filler',
+      'inject-threads': 'PDO threads / thread lift',
+      'skin-facial': 'Signature facial',
+      'skin-peel': 'Chemical peel / PRX',
+      'skin-microneedle': 'SkinPen Microneedling',
+      'skin-derma': 'Dermaplaning',
+      'wl-semaglutide': 'Weight loss injections',
+      'wl-iv': 'IV infusion / vitamin shots',
+      'wl-tshape': 'Body contouring (T-SHAPE 2)',
+      'tomorrow-am': 'Tomorrow morning',
+      'tomorrow-pm': 'Tomorrow afternoon',
+      'this-week': 'Sometime this week',
+      'no-slot': "No thanks, I'll wait"
+    };
+    addUserMessage(labelMap[value] || value);
+    memory.history.push({ role: 'user', value });
+    await routeIntent(value);
+  }
+
+  async function routeIntent(value) {
+    // INJECTABLES PATH ----------------------------------
+    if (value === 'inject') {
+      memory.concern = 'inject';
+      await addBotMessage(
+        `Injectables are Pamela's specialty — facial contouring done with a master-injector eye for proportion. Most consults run about 30 minutes so we can map placement and goals before any product is opened.`,
+        900
+      );
+      await addBotMessage(
+        `Which area are you focused on?`,
+        1100,
+        [
+          { label: '💉 Botox / Daxxify', value: 'inject-botox' },
+          { label: '💎 Dermal filler', value: 'inject-filler' },
+          { label: '🧵 PDO threads', value: 'inject-threads' }
+        ]
+      );
+      return;
+    }
+
+    if (['inject-botox', 'inject-filler', 'inject-threads'].includes(value)) {
+      memory.treatmentInterest = value;
+      const blurb = {
+        'inject-botox': `Meraki uses both Botox and Daxxify — Daxxify tends to last a touch longer for the right candidate. Pamela maps the muscle pattern in person before dosing so the result reads natural, not frozen.`,
+        'inject-filler': `Meraki carries Juvederm, Restylane, and the RHA Collection — each has a place depending on whether we're refining lips, restoring midface volume, or contouring jawline. The product choice is part of the consult.`,
+        'inject-threads': `PDO threads are a great fit when filler isn't quite right — used for subtle lift and to stimulate collagen. Pamela will assess whether threads, filler, or a combo is the cleaner answer for what you're trying to achieve.`
+      };
+
+      await addBotMessage(
+        `${blurb[value]}<br><br>Most patients have one of two questions: <em>"Will this look natural?"</em> and <em>"How much for what I actually need?"</em> — both are best answered in a 30-minute consult before anything is treated. Want me to hold a slot this week?`,
+        1300,
+        [
+          { label: '📅 Tomorrow morning', value: 'tomorrow-am' },
+          { label: '🌅 Tomorrow afternoon', value: 'tomorrow-pm' },
+          { label: '📆 Sometime this week', value: 'this-week' }
+        ]
+      );
+      return;
+    }
+
+    // SKIN PATH ----------
+    if (value === 'skin') {
+      memory.concern = 'skin';
+      await addBotMessage(
+        `Skin is the long game — and the right protocol depends on what you're treating (texture, tone, pigmentation, fine lines) and how much downtime you can take. Meraki carries ZO Skin Health and pairs in-clinic treatments with at-home regimens.`,
+        900,
+        [
+          { label: '🌿 Signature facial', value: 'skin-facial' },
+          { label: '🧪 Peel / PRX Derm Perfexion', value: 'skin-peel' },
+          { label: '🪡 SkinPen Microneedling', value: 'skin-microneedle' },
+          { label: '✨ Dermaplaning', value: 'skin-derma' }
+        ]
+      );
+      return;
+    }
+
+    if (['skin-facial', 'skin-peel', 'skin-microneedle', 'skin-derma'].includes(value)) {
+      memory.treatmentInterest = value;
+      const blurb = {
+        'skin-facial': `The Red Carpet Ready Facial is the most-booked — designed for visible glow with no real downtime, ideal before an event.`,
+        'skin-peel': `Meraki offers traditional chemical peels plus PRX Derm Perfexion — a no-peeling treatment that lifts and brightens in a series of three to four sessions.`,
+        'skin-microneedle': `SkinPen is the only FDA-cleared microneedling device — best in a series of three for texture, fine lines, and acne scarring.`,
+        'skin-derma': `Dermaplaning is the gentlest of the bunch — manual exfoliation plus peach-fuzz removal, a great pair for a peel or facial.`
+      };
+
+      await addBotMessage(
+        `${blurb[value]}<br><br>For first-time patients we recommend a quick consult so the plan matches your skin, not a generic protocol. Want me to hold a slot this week?`,
+        1300,
+        [
+          { label: '📅 Tomorrow morning', value: 'tomorrow-am' },
+          { label: '🌅 Tomorrow afternoon', value: 'tomorrow-pm' },
+          { label: '📆 Sometime this week', value: 'this-week' }
+        ]
+      );
+      return;
+    }
+
+    // WELLNESS PATH ---------------------------
+    if (value === 'wellness') {
+      memory.concern = 'wellness';
+      await addBotMessage(
+        `Meraki's wellness side covers medically-supervised weight loss, IV infusion therapy, and vitamin shots. For weight loss, new patients get $50 off their first injection (limit one per patient).`,
+        900,
+        [
+          { label: '💊 Semaglutide / Tirzepatide', value: 'wl-semaglutide' },
+          { label: '💧 IV infusion / vitamin shot', value: 'wl-iv' },
+          { label: '🔥 T-SHAPE 2 body contouring', value: 'wl-tshape' }
+        ]
+      );
+      return;
+    }
+
+    if (['wl-semaglutide', 'wl-iv', 'wl-tshape'].includes(value)) {
+      memory.treatmentInterest = value;
+      const blurb = {
+        'wl-semaglutide': `Both Semaglutide and Tirzepatide are offered with full medical oversight — labs, intake, and a personalized dosing plan. New patients get $50 off their first injection.`,
+        'wl-iv': `IV infusions and vitamin shots are walk-in friendly once you're an established patient — most appointments take 30-45 minutes. We'll match the formula (hydration, immunity, energy, recovery) to what you're after.`,
+        'wl-tshape': `T-SHAPE 2 is non-invasive body contouring — radiofrequency, ultrasound, and electroporation in one device. Best paired with a wellness plan for visible results in a series.`
+      };
+
+      await addBotMessage(
+        `${blurb[value]}<br><br>Want me to hold a consult this week so Pamela can review your goals and intake?`,
+        1300,
+        [
+          { label: '📅 Tomorrow morning', value: 'tomorrow-am' },
+          { label: '🌅 Tomorrow afternoon', value: 'tomorrow-pm' },
+          { label: '📆 Sometime this week', value: 'this-week' }
+        ]
+      );
+      return;
+    }
+
+    // BOOKING PATH ----------------------------------
+    if (['tomorrow-am', 'tomorrow-pm', 'this-week'].includes(value)) {
+      const timeMap = {
+        'tomorrow-am': 'Tomorrow at 9:30 AM',
+        'tomorrow-pm': 'Tomorrow at 2:00 PM',
+        'this-week': 'Thursday at 10:00 AM'
+      };
+      memory.proposedTime = timeMap[value];
+
+      await addBotMessage(
+        `Perfect. Let me hold ${timeMap[value]} for you. What's your first name so I can put it on the schedule?`,
+        900
+      );
+      memory.collecting = 'name-for-booking';
+      return;
+    }
+
+    // QUESTION PATH -------------------------------
+    if (value === 'question') {
+      memory.concern = 'question';
+      await addBotMessage(
+        `Of course — type your question. If it's about pricing, services, or which treatment is the right fit, I can usually answer right now. Anything specific to your medical history or current medications, the clinical team will follow up tomorrow.`,
+        900
+      );
+      memory.collecting = 'free-question';
+      return;
+    }
+
+    if (value === 'no-slot') {
+      await addBotMessage(
+        `No problem — I've left a note for Pamela's team. Whenever you're ready, just message back.`,
+        700
+      );
+      return;
+    }
+  }
+
+  // ============================================================
+  // Free-text input handler
+  // ============================================================
+  async function handleUserSend() {
+    const text = inputEl.value.trim();
+    if (!text) return;
+    addUserMessage(text);
+    inputEl.value = '';
+
+    if (memory.collecting === 'name-for-booking' || memory.collecting === 'name') {
+      const name = text.split(/\s+/)[0].replace(/[^a-zA-Z]/g, '');
+      memory.name = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+      memory.collecting = 'phone';
+      await addBotMessage(
+        `Thanks, ${memory.name}. What's your best phone number? The Meraki team will text you a confirmation in the morning.`,
+        800
+      );
+      return;
+    }
+
+    if (memory.collecting === 'phone') {
+      memory.phone = text;
+      memory.collecting = null;
+
+      if (memory.proposedTime) {
+        const treatmentMap = {
+          'inject-botox': 'Botox / Daxxify Consultation',
+          'inject-filler': 'Dermal Filler Consultation',
+          'inject-threads': 'PDO Thread Consultation',
+          'skin-facial': 'Signature Facial',
+          'skin-peel': 'Chemical Peel / PRX Consultation',
+          'skin-microneedle': 'SkinPen Microneedling Consultation',
+          'skin-derma': 'Dermaplaning Appointment',
+          'wl-semaglutide': 'Weight Loss Injection Intake',
+          'wl-iv': 'IV Therapy Appointment',
+          'wl-tshape': 'T-SHAPE 2 Body Contouring Consult'
+        };
+        const treatment = treatmentMap[memory.treatmentInterest] || 'New Patient Consultation';
+
+        await addBotMessage(
+          `Perfect. Here's the hold I'm creating with the Meraki team:`,
+          800
+        );
+        setTimeout(() => showBookingCard(treatment, memory.proposedTime), 1200);
+      } else {
+        await addBotMessage(
+          `All set, ${memory.name}. The Meraki team will text you at ${text} tomorrow morning to confirm your appointment from <strong>(407) 755-1004</strong>.<br><br>Anything else I can help with tonight?`,
+          1000
+        );
+      }
+      return;
+    }
+
+    if (memory.collecting === 'free-question') {
+      memory.collecting = null;
+      await addBotMessage(
+        `Thanks for sending that over. I've logged your question for the Meraki team to review first thing in the morning — someone will reach out by 10 AM.<br><br>Want me to also hold a consult slot in case it's easier to discuss in person?`,
+        1100,
+        [
+          { label: '✅ Yes, hold a slot', value: 'tomorrow-am' },
+          { label: 'No thanks', value: 'no-slot' }
+        ]
+      );
+      return;
+    }
+
+    // Default fallback if no state matches
+    await addBotMessage(
+      `Thanks for sharing that. So I can route this correctly — are you most interested in injectables, skin treatments, weight loss / IV therapy, or pricing info?`,
+      900,
+      [
+        { label: '💉 Injectables', value: 'inject' },
+        { label: '✨ Skin', value: 'skin' },
+        { label: '⚖️ Wellness', value: 'wellness' }
+      ]
+    );
+  }
+
+  function confirmBooking() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) {
+      card.style.transition = 'all 0.3s ease';
+      card.style.background = 'linear-gradient(135deg, #2d5a3f 0%, #1f4530 100%)';
+      card.style.color = 'white';
+      card.querySelector('.booking-title').style.color = 'white';
+      card.querySelector('.booking-title').textContent = '✓ Appointment Confirmed';
+      card.querySelector('.booking-icon').style.background = 'white';
+      card.querySelector('.booking-icon').style.color = 'var(--accent)';
+      card.querySelectorAll('.label').forEach(el => el.style.color = 'rgba(255,255,255,0.6)');
+      card.querySelectorAll('.value').forEach(el => el.style.color = 'white');
+      card.querySelector('.booking-confirm').remove();
+    }
+    setTimeout(async () => {
+      await addBotMessage(
+        `You're all set, ${memory.name}. The Meraki team has been notified — you'll get a confirmation text from <strong>(407) 755-1004</strong> in the morning.<br><br>Take care tonight — see you at the clinic.`,
+        700
+      );
+    }, 400);
+  }
+
+  function proposeAlternative() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) card.remove();
+    addBotMessage(
+      `No problem. Meraki has openings Tuesday at 11 AM, Wednesday at 3 PM, or Friday at 10 AM — which works best?`,
+      600,
+      [
+        { label: '🌅 Tuesday 11 AM', value: 'tomorrow-am' },
+        { label: '🕦 Wednesday 3 PM', value: 'tomorrow-pm' },
+        { label: '🌆 Friday 10 AM', value: 'this-week' }
+      ]
+    );
+  }
+
+  // Enter key support
+  inputEl.addEventListener('keydown', e => {
+    if (e.key === 'Enter') handleUserSend();
+  });
+
+  // Boot
+  setTimeout(startConversation, 600);
+</script>
+
+</body>
+</html>
