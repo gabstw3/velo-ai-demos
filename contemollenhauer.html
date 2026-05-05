@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Conte Mollenhauer Law Firm — After-Hours Intake | Powered by Velo AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Estate planning palette: warm parchment, deep navy, muted gold.
+       Mary's brand reads reverent, classic, deliberate — never rushed. */
+    --bg: #f4efe6;
+    --bg-deep: #e8e0d2;
+    --ink: #1a1f2c;
+    --ink-soft: #4a536b;
+    --ink-faint: #8a8f9e;
+    --accent: #2a3a5c;
+    --accent-warm: #b08540;
+    --accent-glow: #e6d4a8;
+    --line: #d4ccb8;
+    --bot-msg: #ffffff;
+    --user-msg: #2a3a5c;
+    --user-msg-text: #ffffff;
+    --shadow-sm: 0 1px 3px rgba(26, 31, 44, 0.06);
+    --shadow-md: 0 4px 16px rgba(26, 31, 44, 0.08);
+    --shadow-lg: 0 12px 40px rgba(26, 31, 44, 0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body { height: 100%; }
+
+  body {
+    font-family: 'Geist', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.5;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(176, 133, 64, 0.05) 0%, transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(42, 58, 92, 0.04) 0%, transparent 40%);
+  }
+
+  .app {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    min-height: 100vh;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .practice-panel {
+    background: linear-gradient(180deg, #1a2540 0%, #0f1729 100%);
+    color: #e8e0d0;
+    padding: 40px 32px;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .practice-panel::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(176, 133, 64, 0.08) 0%, transparent 50%);
+    animation: drift 22s ease-in-out infinite;
+  }
+
+  @keyframes drift {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(20%, 10%); }
+  }
+
+  .practice-content { position: relative; z-index: 1; }
+
+  .practice-mark {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    margin-bottom: 12px;
+    opacity: 0.9;
+  }
+
+  .practice-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+  }
+
+  .practice-doctor {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--accent-glow);
+    margin-bottom: 32px;
+  }
+
+  .promise-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(232, 224, 184, 0.15);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+    backdrop-filter: blur(10px);
+  }
+
+  .promise-card h4 {
+    font-family: 'Geist', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    margin-bottom: 8px;
+  }
+
+  .promise-card p {
+    font-size: 14px;
+    line-height: 1.55;
+    color: #d4cdb8;
+  }
+
+  .practice-info {
+    margin-top: auto;
+    padding-top: 24px;
+    border-top: 1px solid rgba(232, 224, 184, 0.1);
+    font-size: 13px;
+    line-height: 1.7;
+    color: #b8b0a0;
+  }
+
+  .practice-info .row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 8px;
+  }
+
+  .practice-info .label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    width: 56px;
+    padding-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .powered-by {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(232, 224, 184, 0.1);
+    font-size: 11px;
+    color: #8a8275;
+    letter-spacing: 0.05em;
+  }
+
+  .powered-by strong {
+    color: var(--accent-glow);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+  }
+
+  .chat-panel {
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .chat-header {
+    padding: 20px 32px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(244, 239, 230, 0.85);
+    backdrop-filter: blur(12px);
+    z-index: 10;
+  }
+
+  .chat-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .status-dot {
+    width: 8px; height: 8px;
+    background: #4ade80;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.15);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.15); }
+    50% { box-shadow: 0 0 0 8px rgba(74, 222, 128, 0.05); }
+  }
+
+  .status-text {
+    font-size: 13px;
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+
+  .status-text strong { color: var(--ink); font-weight: 600; }
+
+  .chat-time {
+    font-family: 'Fraunces', serif;
+    font-size: 12px;
+    color: var(--ink-faint);
+    font-style: italic;
+  }
+
+  .messages {
+    flex: 1;
+    padding: 32px;
+    scroll-behavior: smooth;
+  }
+
+  .msg-group {
+    margin-bottom: 20px;
+    animation: msgIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  @keyframes msgIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .msg {
+    max-width: 78%;
+    padding: 14px 18px;
+    border-radius: 18px;
+    font-size: 15px;
+    line-height: 1.55;
+    word-wrap: break-word;
+  }
+
+  .msg-bot {
+    background: var(--bot-msg);
+    color: var(--ink);
+    border-bottom-left-radius: 4px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(212, 204, 184, 0.4);
+  }
+
+  .msg-user {
+    background: var(--user-msg);
+    color: var(--user-msg-text);
+    border-bottom-right-radius: 4px;
+    margin-left: auto;
+  }
+
+  .msg-meta {
+    font-size: 10px;
+    color: var(--ink-faint);
+    margin-top: 6px;
+    padding: 0 8px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .msg-meta.user { text-align: right; }
+
+  .typing {
+    display: flex;
+    gap: 4px;
+    padding: 16px 20px;
+    background: var(--bot-msg);
+    border-radius: 18px;
+    border-bottom-left-radius: 4px;
+    width: fit-content;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(212, 204, 184, 0.4);
+  }
+
+  .typing span {
+    width: 7px; height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: typing 1.4s ease-in-out infinite;
+  }
+
+  .typing span:nth-child(2) { animation-delay: 0.2s; }
+  .typing span:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes typing {
+    0%, 100% { transform: translateY(0); opacity: 0.4; }
+    50% { transform: translateY(-4px); opacity: 1; }
+  }
+
+  .quick-replies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+    animation: msgIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s both;
+  }
+
+  .chip {
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 9px 16px;
+    border-radius: 100px;
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .chip:hover {
+    background: var(--accent);
+    color: var(--bg);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .chip:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .booking-card {
+    background: linear-gradient(135deg, #ffffff 0%, #faf6ec 100%);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 24px;
+    margin-top: 12px;
+    box-shadow: var(--shadow-md);
+    animation: msgIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    max-width: 78%;
+  }
+
+  .booking-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .booking-icon {
+    width: 32px; height: 32px;
+    background: var(--accent);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .booking-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--ink);
+  }
+
+  .booking-detail {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 12px;
+    padding: 8px 0;
+    font-size: 14px;
+  }
+
+  .booking-detail .label {
+    color: var(--ink-faint);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding-top: 2px;
+  }
+
+  .booking-detail .value {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .booking-confirm {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    gap: 8px;
+  }
+
+  .btn-primary {
+    flex: 1;
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: #1a2540;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--ink-soft);
+    border: 1px solid var(--line);
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover {
+    background: var(--bg-deep);
+  }
+
+  .input-area {
+    padding: 20px 32px 24px;
+    border-top: 1px solid var(--line);
+    background: rgba(244, 239, 230, 0.85);
+    backdrop-filter: blur(12px);
+  }
+
+  .input-wrap {
+    display: flex;
+    gap: 10px;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 6px 6px 6px 18px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .input-wrap:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(42, 58, 92, 0.08);
+  }
+
+  .input-wrap input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-family: 'Geist', sans-serif;
+    font-size: 15px;
+    color: var(--ink);
+    padding: 10px 0;
+    background: transparent;
+  }
+
+  .input-wrap input::placeholder { color: var(--ink-faint); }
+
+  .send-btn {
+    background: var(--accent);
+    color: white;
+    border: none;
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+
+  .send-btn:hover { background: #1a2540; transform: scale(1.05); }
+  .send-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+  .input-hint {
+    font-size: 11px;
+    color: var(--ink-faint);
+    margin-top: 10px;
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
+
+  .demo-banner {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 10px 16px;
+    border-radius: 100px;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    z-index: 100;
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .demo-banner:hover { transform: scale(1.03); }
+  .demo-banner .pulse-dot {
+    width: 6px; height: 6px;
+    background: var(--accent-warm);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @media (max-width: 900px) {
+    html, body {
+      height: auto;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .app {
+      grid-template-columns: 1fr;
+      height: auto;
+      min-height: 100vh;
+    }
+    .practice-panel {
+      padding: 20px 24px;
+      position: static;
+      height: auto;
+      max-height: none;
+    }
+    .practice-panel .promise-card,
+    .practice-panel .practice-info,
+    .practice-panel .powered-by { display: none; }
+    .practice-name { font-size: 22px; }
+    .practice-doctor { font-size: 14px; margin-bottom: 0; }
+    .chat-panel {
+      min-height: 80vh;
+    }
+    .messages {
+      padding: 20px;
+      overflow-y: visible;
+      flex: none;
+    }
+    .msg { max-width: 88%; }
+    .input-area {
+      padding: 16px 20px 20px;
+      position: sticky;
+      bottom: 0;
+    }
+    .demo-banner { top: 8px; right: 8px; padding: 8px 12px; font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner" onclick="alert('This is a live demo built by Velo AI for Conte Mollenhauer Law Firm\n\nFor deployment information, contact:\nGabe Herrera — Velo AI\nWinter Springs, FL')">
+  <span class="pulse-dot"></span>
+  <span>Velo AI Demo</span>
+</div>
+
+<div class="app">
+
+  <!-- LEFT: Firm Brand Panel -->
+  <aside class="practice-panel">
+    <div class="practice-content">
+      <div class="practice-mark">Lake Mary, Florida · Estate Planning</div>
+      <h1 class="practice-name">Conte Mollenhauer Law Firm</h1>
+      <p class="practice-doctor">Mary Conte, J.D.</p>
+
+      <div class="promise-card">
+        <h4>Plan Before You Need To</h4>
+        <p>Wills, trusts, probate, and asset protection — done thoroughly the first time. As a Stetson-educated attorney and former military spouse, Mary brings a personal understanding of why future planning matters, and why families regret waiting.</p>
+      </div>
+    </div>
+
+    <div class="practice-info">
+      <div class="row">
+        <div class="label">Address</div>
+        <div>605 Crescent Executive Ct, Suite 112<br>Lake Mary, FL 32746</div>
+      </div>
+      <div class="row">
+        <div class="label">Phone</div>
+        <div>(321) 926-3242</div>
+      </div>
+      <div class="row">
+        <div class="label">Hours</div>
+        <div>Mon–Fri 9a–5p · Confidential consults</div>
+      </div>
+    </div>
+
+    <div class="powered-by">
+      Intake powered by <strong>VELO AI</strong>
+    </div>
+  </aside>
+
+  <!-- RIGHT: Chat Interface -->
+  <main class="chat-panel">
+    <header class="chat-header">
+      <div class="chat-status">
+        <span class="status-dot"></span>
+        <span class="status-text"><strong>Conte Mollenhauer Intake</strong> · Available 24/7</span>
+      </div>
+      <span class="chat-time" id="chat-time">After hours · 11:47 PM</span>
+    </header>
+
+    <div class="messages" id="messages"></div>
+
+    <div class="input-area">
+      <div class="input-wrap">
+        <input
+          type="text"
+          id="user-input"
+          placeholder="Type your message..."
+          autocomplete="off"
+        />
+        <button class="send-btn" id="send-btn" onclick="handleUserSend()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+        </button>
+      </div>
+      <div class="input-hint">An existing client? Mary will be notified directly for time-sensitive matters.</div>
+    </div>
+  </main>
+</div>
+
+<script>
+  // ============================================================
+  // VELO AI — Conte Mollenhauer Estate Planning Intake
+  // Calibrated formal-authoritative register for end-of-life planning,
+  // probate after a loss, and trust administration urgency triage.
+  // ============================================================
+
+  const messagesEl = document.getElementById('messages');
+  const inputEl = document.getElementById('user-input');
+  const sendBtn = document.getElementById('send-btn');
+
+  const memory = {
+    name: null,
+    matter: null,
+    isExisting: null,
+    urgency: null,
+    history: []
+  };
+
+  const now = new Date();
+  const hours = now.getHours() < 8 || now.getHours() >= 17 ? '11:47 PM' : '6:32 AM';
+  document.getElementById('chat-time').textContent = `After hours · ${hours}`;
+
+  function addBotMessage(text, delay = 700, withChips = null) {
+    return new Promise(resolve => {
+      const typingId = 't' + Date.now();
+      const typing = document.createElement('div');
+      typing.className = 'msg-group';
+      typing.id = typingId;
+      typing.innerHTML = `<div class="typing"><span></span><span></span><span></span></div>`;
+      messagesEl.appendChild(typing);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+
+      setTimeout(() => {
+        document.getElementById(typingId)?.remove();
+        const msgGroup = document.createElement('div');
+        msgGroup.className = 'msg-group';
+        let html = `<div class="msg msg-bot">${text}</div><div class="msg-meta">Conte Mollenhauer Intake</div>`;
+
+        if (withChips) {
+          html += `<div class="quick-replies">`;
+          withChips.forEach((chip) => {
+            html += `<button class="chip" onclick="handleChipClick('${chip.value.replace(/'/g, "\\'")}', this)">${chip.label}</button>`;
+          });
+          html += `</div>`;
+        }
+
+        msgGroup.innerHTML = html;
+        messagesEl.appendChild(msgGroup);
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+        resolve();
+      }, delay);
+    });
+  }
+
+  function addUserMessage(text) {
+    const msgGroup = document.createElement('div');
+    msgGroup.className = 'msg-group';
+    msgGroup.innerHTML = `
+      <div class="msg msg-user" style="margin-left:auto;">${text}</div>
+      <div class="msg-meta user">You · just now</div>
+    `;
+    messagesEl.appendChild(msgGroup);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+    memory.history.push({ role: 'user', text });
+  }
+
+  function disableChips(currentBtn) {
+    const chips = currentBtn.parentElement.querySelectorAll('.chip');
+    chips.forEach(c => c.disabled = true);
+    currentBtn.style.background = 'var(--accent)';
+    currentBtn.style.color = 'var(--bg)';
+  }
+
+  function showBookingCard(matterType, time) {
+    const card = document.createElement('div');
+    card.className = 'msg-group';
+    card.innerHTML = `
+      <div class="booking-card">
+        <div class="booking-header">
+          <div class="booking-icon">CM</div>
+          <div class="booking-title">Consultation Hold Created</div>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Client</span>
+          <span class="value">${memory.name || 'New client'}</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Matter</span>
+          <span class="value">${matterType}</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Proposed</span>
+          <span class="value">${time}</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">With</span>
+          <span class="value">Mary Conte, J.D.</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Office</span>
+          <span class="value">605 Crescent Executive Ct, Lake Mary</span>
+        </div>
+        <div class="booking-confirm">
+          <button class="btn-primary" onclick="confirmBooking()">Confirm consultation</button>
+          <button class="btn-secondary" onclick="proposeAlternative()">Different time</button>
+        </div>
+      </div>
+    `;
+    messagesEl.appendChild(card);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  // ============================================================
+  // Conversation Flow — Estate Planning + Probate
+  // ============================================================
+
+  async function startConversation() {
+    await addBotMessage(
+      `Good evening — you've reached the after-hours line for Conte Mollenhauer Law Firm in Lake Mary. The firm focuses on estate planning, probate administration, trusts, and asset protection. Mary is wrapped for the day, but everything you share with me is held in confidence. I'll take down what's on your mind and have her reach back out personally.<br><br>What brings you here tonight?`,
+      400,
+      [
+        { label: '🕯️ A loved one passed', value: 'probate' },
+        { label: '📜 I need a will or trust', value: 'planning' },
+        { label: '🛡️ Power of attorney / healthcare', value: 'poa' },
+        { label: '❓ A general question', value: 'question' }
+      ]
+    );
+  }
+
+  async function handleChipClick(value, btn) {
+    disableChips(btn);
+    const labelMap = {
+      'probate': "I lost a loved one and need probate help",
+      'planning': "I want to put a will or trust in place",
+      'poa': "I need power of attorney or healthcare documents",
+      'question': "I just have a general question",
+      'spouse': "Spouse / partner",
+      'parent': "Parent",
+      'other-family': "Another family member",
+      'has-will': "Yes, they had a will",
+      'no-will': "No, they didn't have a will",
+      'unsure-will': "I'm not sure",
+      'urgent-frozen': "Frozen accounts / immediate concern",
+      'urgent-soon': "Important but not crisis",
+      'urgent-planning': "Just exploring my options",
+      'this-week': "This week",
+      'next-week': "Next week",
+      'flexible': "I'm flexible"
+    };
+    addUserMessage(labelMap[value] || value);
+    memory.history.push({ role: 'user', value });
+    await routeIntent(value);
+  }
+
+  async function routeIntent(value) {
+    // PROBATE PATH (someone passed) ----------------------------
+    if (value === 'probate') {
+      memory.matter = 'probate';
+      await addBotMessage(
+        `I'm so sorry for your loss. Probate calls are some of the most personal a firm receives. Mary handles probate and trust administration directly — including the post-loss paperwork most families don't know how to navigate. The two things that help her move quickly: who passed, and whether they had any documents in place.`,
+        1200
+      );
+      await addBotMessage(
+        `If you're able to share — who passed?`,
+        900,
+        [
+          { label: 'Spouse / partner', value: 'spouse' },
+          { label: 'Parent', value: 'parent' },
+          { label: 'Another family member', value: 'other-family' }
+        ]
+      );
+      return;
+    }
+
+    if (['spouse', 'parent', 'other-family'].includes(value)) {
+      memory.relation = value;
+      await addBotMessage(
+        `Thank you. Did they have a will or trust in place?`,
+        900,
+        [
+          { label: 'Yes, they had a will', value: 'has-will' },
+          { label: "No, they didn't", value: 'no-will' },
+          { label: "I'm not sure", value: 'unsure-will' }
+        ]
+      );
+      return;
+    }
+
+    if (['has-will', 'no-will', 'unsure-will'].includes(value)) {
+      memory.docs = value;
+      await addBotMessage(
+        `Got it. One last question, then I'll get this in front of Mary — is there anything time-sensitive happening (frozen bank accounts, a property sale already in motion, a deadline from the court), or is this something we can plan thoughtfully this week?`,
+        1100,
+        [
+          { label: '🔴 Time-sensitive — something is frozen', value: 'urgent-frozen' },
+          { label: '🟡 Important but not a crisis', value: 'urgent-soon' },
+          { label: '🟢 Exploring my options', value: 'urgent-planning' }
+        ]
+      );
+      return;
+    }
+
+    if (value === 'urgent-frozen') {
+      memory.urgency = 'severe';
+      await addBotMessage(
+        `Understood — Mary specifically wants to hear about probate matters where assets are frozen or a deadline is in motion. I'm flagging this as priority and she'll call you first thing in the morning before her calendar starts.<br><br>Can I get your first name and best callback number?`,
+        1200
+      );
+      memory.collecting = 'name-phone';
+      return;
+    }
+
+    if (value === 'urgent-soon' || value === 'urgent-planning') {
+      memory.urgency = value;
+      await addBotMessage(
+        `Thank you — that helps. Mary keeps confidential consultation slots Tuesday through Thursday for new probate matters. The firm has been guiding Central Florida families through estate transitions for nearly two decades.<br><br>What's your first name? I'll have her reach out tomorrow morning to set a time.`,
+        1100
+      );
+      memory.collecting = 'name';
+      return;
+    }
+
+    // PLANNING PATH (will / trust / estate plan) ----------------
+    if (value === 'planning') {
+      memory.matter = 'planning';
+      await addBotMessage(
+        `Smart to start before you need to. Mary's approach to estate planning is deliberate — she'll walk you through wills, revocable trusts, asset protection, and any business succession pieces as a coordinated package, not piecemeal documents. Most clients leave their first consult with a clear written roadmap.<br><br>Want me to hold a confidential planning consultation this week or next?`,
+        1400,
+        [
+          { label: '📅 This week', value: 'this-week' },
+          { label: '📆 Next week', value: 'next-week' },
+          { label: "🤝 I'm flexible", value: 'flexible' }
+        ]
+      );
+      return;
+    }
+
+    if (['this-week', 'next-week', 'flexible'].includes(value)) {
+      const timeMap = {
+        'this-week': 'Thursday at 2:00 PM',
+        'next-week': 'Tuesday at 10:30 AM',
+        'flexible': 'Wednesday at 1:00 PM'
+      };
+      memory.proposedTime = timeMap[value];
+
+      await addBotMessage(
+        `Excellent. I'll hold ${timeMap[value]} for you. What's your first name so I can put it on Mary's calendar?`,
+        900
+      );
+      memory.collecting = 'name-for-booking';
+      return;
+    }
+
+    // POA / HEALTHCARE PATH (often time-sensitive — declining family member)
+    if (value === 'poa') {
+      memory.matter = 'poa';
+      await addBotMessage(
+        `Powers of attorney and healthcare surrogates often come up when a parent is declining or after a hospital scare. Mary can draft a durable POA, a healthcare designation, and a living will as one coordinated package — and she can do it quickly when the timing requires.<br><br>So I route the right urgency: is there an active health situation driving the timing, or is this planning ahead?`,
+        1200,
+        [
+          { label: '🔴 Active health change', value: 'urgent-frozen' },
+          { label: '🟡 Soon, but no crisis', value: 'urgent-soon' },
+          { label: '🟢 Just planning ahead', value: 'urgent-planning' }
+        ]
+      );
+      return;
+    }
+
+    // GENERAL QUESTION PATH ------------------------------------
+    if (value === 'question') {
+      memory.matter = 'question';
+      await addBotMessage(
+        `Of course — type your question. The firm focuses on estate planning, probate, trusts, and real estate, so I'll route it directly to Mary if it needs her review.`,
+        900
+      );
+      memory.collecting = 'free-question';
+      return;
+    }
+  }
+
+  // ============================================================
+  // Free-text input handler
+  // ============================================================
+  async function handleUserSend() {
+    const text = inputEl.value.trim();
+    if (!text) return;
+    addUserMessage(text);
+    inputEl.value = '';
+
+    if (memory.collecting === 'name' || memory.collecting === 'name-for-booking' || memory.collecting === 'name-phone') {
+      const name = text.split(/\s+/)[0].replace(/[^a-zA-Z]/g, '');
+      memory.name = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+
+      const responses = {
+        'name': `Thank you, ${memory.name}. What's the best phone number to reach you at? I want to make sure Mary has it before tomorrow.`,
+        'name-for-booking': `Thank you, ${memory.name}. What's your phone number? The firm will text a confirmation by 9 AM tomorrow.`,
+        'name-phone': `Thank you, ${memory.name}. What's the best callback number? Mary will call you in the morning.`
+      };
+      const oldState = memory.collecting;
+      await addBotMessage(responses[oldState], 800);
+      memory.collecting = 'phone';
+      return;
+    }
+
+    if (memory.collecting === 'phone') {
+      memory.phone = text;
+      memory.collecting = null;
+
+      if (memory.proposedTime) {
+        const matterMap = {
+          'probate': 'Probate / Trust Administration',
+          'planning': 'Estate Planning Consultation',
+          'poa': 'POA & Healthcare Documents',
+          'question': 'General Consultation'
+        };
+        const matter = matterMap[memory.matter] || 'New Client Consultation';
+
+        await addBotMessage(
+          `Excellent. Here's the hold I'm creating for Mary:`,
+          800
+        );
+        setTimeout(() => showBookingCard(matter, memory.proposedTime), 1200);
+      } else if (memory.urgency === 'severe') {
+        await addBotMessage(
+          `Thank you, ${memory.name}. I've flagged this as priority for Mary. Expect a call from <strong>(321) 926-3242</strong> first thing in the morning.<br><br>If anything materially changes overnight — a new deadline, a hospital update, a court notice — feel free to reply to this thread and the firm will see it before her first appointment. You're not navigating this alone.`,
+          1100
+        );
+      } else {
+        await addBotMessage(
+          `All set, ${memory.name}. Mary will reach out to ${text} by mid-morning tomorrow to set up a time that works.<br><br>Anything else weighing on you tonight?`,
+          1000
+        );
+      }
+      return;
+    }
+
+    if (memory.collecting === 'free-question') {
+      memory.collecting = null;
+      await addBotMessage(
+        `Thank you for sending that over. I've logged your question for Mary to review first thing tomorrow morning — she'll either reply directly or have the firm follow up by 10 AM.<br><br>Want me to also hold a consultation slot in case it's easier to discuss in person?`,
+        1100,
+        [
+          { label: '✅ Yes, hold a slot', value: 'this-week' },
+          { label: 'No thanks', value: 'no-slot' }
+        ]
+      );
+      return;
+    }
+
+    // Fallback
+    await addBotMessage(
+      `Thank you for sharing that. So I can route this correctly to Mary — would you say this is more of a probate matter, an estate plan you'd like to put together, or a general question?`,
+      900,
+      [
+        { label: '🕯️ Probate', value: 'probate' },
+        { label: '📜 Estate plan', value: 'planning' },
+        { label: '❓ General question', value: 'question' }
+      ]
+    );
+  }
+
+  function confirmBooking() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) {
+      card.style.transition = 'all 0.3s ease';
+      card.style.background = 'linear-gradient(135deg, #2a3a5c 0%, #1a2540 100%)';
+      card.style.color = 'white';
+      card.querySelector('.booking-title').style.color = 'white';
+      card.querySelector('.booking-icon').style.background = 'white';
+      card.querySelector('.booking-icon').style.color = 'var(--accent)';
+      card.querySelectorAll('.label').forEach(el => el.style.color = 'rgba(255,255,255,0.6)');
+      card.querySelectorAll('.value').forEach(el => el.style.color = 'white');
+      card.querySelector('.booking-confirm').remove();
+    }
+    setTimeout(async () => {
+      await addBotMessage(
+        `You're set, ${memory.name}. Mary has been notified, and you'll receive a confirmation text from <strong>(321) 926-3242</strong> tomorrow morning.<br><br>Take care tonight — the firm will see you soon.`,
+        700
+      );
+    }, 400);
+  }
+
+  function proposeAlternative() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) card.remove();
+    addBotMessage(
+      `No problem. Mary has openings Tuesday at 11 AM, Wednesday at 3 PM, or Friday at 10 AM — which works best?`,
+      600,
+      [
+        { label: '🌅 Tuesday 11 AM', value: 'this-week' },
+        { label: '🕒 Wednesday 3 PM', value: 'next-week' },
+        { label: '☀️ Friday 10 AM', value: 'flexible' }
+      ]
+    );
+  }
+
+  inputEl.addEventListener('keydown', e => {
+    if (e.key === 'Enter') handleUserSend();
+  });
+
+  setTimeout(startConversation, 600);
+</script>
+
+</body>
+</html>
