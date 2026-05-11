@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Maxine's on Shine — After-Hours Reservations | Powered by Velo AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f3ed;
+    --bg-deep: #ece6d8;
+    --ink: #1a1f1c;
+    --ink-soft: #4a544c;
+    --ink-faint: #8a8f86;
+    --accent: #2d5a3f;
+    --accent-warm: #c9926b;
+    --accent-glow: #e8d9b8;
+    --line: #d4ccba;
+    --user-msg: #2d5a3f;
+    --user-msg-text: #f6f3ed;
+    --bot-msg: #ffffff;
+    --shadow-sm: 0 1px 2px rgba(26, 31, 28, 0.04);
+    --shadow-md: 0 4px 16px rgba(26, 31, 28, 0.08);
+    --shadow-lg: 0 12px 40px rgba(26, 31, 28, 0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body { height: 100%; }
+
+  body {
+    font-family: 'Geist', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.5;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(201, 146, 107, 0.06) 0%, transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(45, 90, 63, 0.05) 0%, transparent 40%);
+  }
+
+  .app {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    min-height: 100vh;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* --- LEFT PANEL: Practice Branding --- */
+  .practice-panel {
+    background: linear-gradient(180deg, #1a3326 0%, #0f1f17 100%);
+    color: #e8e0d0;
+    padding: 40px 32px;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .practice-panel::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(201, 146, 107, 0.08) 0%, transparent 50%);
+    animation: drift 20s ease-in-out infinite;
+  }
+
+  @keyframes drift {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(20%, 10%); }
+  }
+
+  .practice-content { position: relative; z-index: 1; }
+
+  .practice-mark {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    margin-bottom: 12px;
+    opacity: 0.9;
+  }
+
+  .practice-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+  }
+
+  .practice-doctor {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--accent-glow);
+    margin-bottom: 32px;
+  }
+
+  .promise-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(232, 217, 184, 0.15);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+    backdrop-filter: blur(10px);
+  }
+
+  .promise-card h4 {
+    font-family: 'Geist', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    margin-bottom: 8px;
+  }
+
+  .promise-card p {
+    font-size: 14px;
+    line-height: 1.55;
+    color: #d4cdb8;
+  }
+
+  .practice-info {
+    margin-top: auto;
+    padding-top: 24px;
+    border-top: 1px solid rgba(232, 217, 184, 0.1);
+    font-size: 13px;
+    line-height: 1.7;
+    color: #b8b0a0;
+  }
+
+  .practice-info .row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 8px;
+  }
+
+  .practice-info .label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    width: 56px;
+    padding-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .powered-by {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(232, 217, 184, 0.1);
+    font-size: 11px;
+    color: #8a8275;
+    letter-spacing: 0.05em;
+  }
+
+  .powered-by strong {
+    color: var(--accent-glow);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+  }
+
+  /* --- RIGHT PANEL: Chat Interface --- */
+  .chat-panel {
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .chat-header {
+    padding: 20px 32px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(246, 243, 237, 0.85);
+    backdrop-filter: blur(12px);
+    z-index: 10;
+  }
+
+  .chat-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .status-dot {
+    width: 8px; height: 8px;
+    background: #4ade80;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.15);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.15); }
+    50% { box-shadow: 0 0 0 8px rgba(74, 222, 128, 0.05); }
+  }
+
+  .status-text {
+    font-size: 13px;
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+
+  .status-text strong { color: var(--ink); font-weight: 600; }
+
+  .chat-time {
+    font-family: 'Fraunces', serif;
+    font-size: 12px;
+    color: var(--ink-faint);
+    font-style: italic;
+  }
+
+  .messages {
+    flex: 1;
+    padding: 32px;
+    scroll-behavior: smooth;
+  }
+
+  .msg-group {
+    margin-bottom: 20px;
+    animation: msgIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  @keyframes msgIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .msg {
+    max-width: 78%;
+    padding: 14px 18px;
+    border-radius: 18px;
+    font-size: 15px;
+    line-height: 1.55;
+    word-wrap: break-word;
+  }
+
+  .msg-bot {
+    background: var(--bot-msg);
+    color: var(--ink);
+    border-bottom-left-radius: 4px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(212, 204, 186, 0.4);
+  }
+
+  .msg-user {
+    background: var(--user-msg);
+    color: var(--user-msg-text);
+    border-bottom-right-radius: 4px;
+    margin-left: auto;
+  }
+
+  .msg-meta {
+    font-size: 10px;
+    color: var(--ink-faint);
+    margin-top: 6px;
+    padding: 0 8px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .msg-meta.user { text-align: right; }
+
+  .typing {
+    display: flex;
+    gap: 4px;
+    padding: 16px 20px;
+    background: var(--bot-msg);
+    border-radius: 18px;
+    border-bottom-left-radius: 4px;
+    width: fit-content;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(212, 204, 186, 0.4);
+  }
+
+  .typing span {
+    width: 7px; height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: typing 1.3s ease-in-out infinite;
+  }
+
+  .typing span:nth-child(2) { animation-delay: 0.2s; }
+  .typing span:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes typing {
+    0%, 100% { transform: translateY(0); opacity: 0.4; }
+    50% { transform: translateY(-4px); opacity: 1; }
+  }
+
+  /* Quick reply chips */
+  .quick-replies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+    animation: msgIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s both;
+  }
+
+  .chip {
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 9px 16px;
+    border-radius: 100px;
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .chip:hover {
+    background: var(--accent);
+    color: var(--bg);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .chip:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  /* Booking card */
+  .booking-card {
+    background: linear-gradient(135deg, #ffffff 0%, #faf6ec 100%);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 24px;
+    margin-top: 12px;
+    box-shadow: var(--shadow-md);
+    animation: msgIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    max-width: 78%;
+  }
+
+  .booking-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .booking-icon {
+    width: 32px; height: 32px;
+    background: var(--accent);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .booking-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--ink);
+  }
+
+  .booking-detail {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 12px;
+    padding: 8px 0;
+    font-size: 14px;
+  }
+
+  .booking-detail .label {
+    color: var(--ink-faint);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding-top: 2px;
+  }
+
+  .booking-detail .value {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .booking-confirm {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    gap: 8px;
+  }
+
+  .btn-primary {
+    flex: 1;
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: #1f4530;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--ink-soft);
+    border: 1px solid var(--line);
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover {
+    background: var(--bg-deep);
+  }
+
+  /* Input area */
+  .input-area {
+    padding: 20px 32px 24px;
+    border-top: 1px solid var(--line);
+    background: rgba(246, 243, 237, 0.85);
+    backdrop-filter: blur(12px);
+  }
+
+  .input-wrap {
+    display: flex;
+    gap: 10px;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 6px 6px 6px 18px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .input-wrap:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(45, 90, 63, 0.08);
+  }
+
+  .input-wrap input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-family: 'Geist', sans-serif;
+    font-size: 15px;
+    color: var(--ink);
+    padding: 10px 0;
+    background: transparent;
+  }
+
+  .input-wrap input::placeholder { color: var(--ink-faint); }
+
+  .send-btn {
+    background: var(--accent);
+    color: white;
+    border: none;
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+
+  .send-btn:hover { background: #1f4530; transform: scale(1.05); }
+  .send-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+  .input-hint {
+    font-size: 11px;
+    color: var(--ink-faint);
+    margin-top: 10px;
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
+
+  /* Demo banner */
+  .demo-banner {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 10px 16px;
+    border-radius: 100px;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    z-index: 100;
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .demo-banner:hover { transform: scale(1.03); }
+  .demo-banner .pulse-dot {
+    width: 6px; height: 6px;
+    background: var(--accent-warm);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  /* Mobile */
+  @media (max-width: 900px) {
+    html, body {
+      height: auto;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .app {
+      grid-template-columns: 1fr;
+      height: auto;
+      min-height: 100vh;
+    }
+    .practice-panel {
+      padding: 20px 24px;
+      position: static;
+      height: auto;
+      max-height: none;
+    }
+    .practice-panel .promise-card,
+    .practice-panel .practice-info,
+    .practice-panel .powered-by { display: none; }
+    .practice-name { font-size: 22px; }
+    .practice-doctor { font-size: 14px; margin-bottom: 0; }
+    .chat-panel {
+      min-height: 80vh;
+    }
+    .messages {
+      padding: 20px;
+      overflow-y: visible;
+      flex: none;
+    }
+    .msg { max-width: 88%; }
+    .input-area {
+      padding: 16px 20px 20px;
+      position: sticky;
+      bottom: 0;
+    }
+    .demo-banner { top: 8px; right: 8px; padding: 8px 12px; font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner" onclick="alert('This is a live demo built by Velo AI for Maxine\'s on Shine.\n\nFor deployment information, contact:\nGabe Herrera — Velo AI\nWinter Springs, FL')">
+  <span class="pulse-dot"></span>
+  <span>Velo AI Demo</span>
+</div>
+
+<div class="app">
+
+  <!-- LEFT: Practice Brand Panel -->
+  <aside class="practice-panel">
+    <div class="practice-content">
+      <div class="practice-mark">Thornton Park, Orlando · Michelin Recommended 2022–2025</div>
+      <h1 class="practice-name">Maxine's on Shine</h1>
+      <p class="practice-doctor">Maxine Earhart — Owner & Host</p>
+
+      <div class="promise-card">
+        <h4>Always Open for Reservations</h4>
+        <p>Michelin Recommended four years running. Maxine's on Shine is Thornton Park's most celebrated neighborhood restaurant — eclectic American plates, a dog-friendly patio, and Maxine herself setting the tone. Orlando Magazine Best Downtown Restaurant six consecutive years. Every reservation matters here.</p>
+      </div>
+    </div>
+
+    <div class="practice-info">
+      <div class="row">
+        <div class="label">Address</div>
+        <div>337 N Shine Ave<br>Orlando, FL 32803</div>
+      </div>
+      <div class="row">
+        <div class="label">Phone</div>
+        <div>(407) 674-6841</div>
+      </div>
+      <div class="row">
+        <div class="label">Hours</div>
+        <div>Tue–Sun 5p–10p · Brunch Sat–Sun 10a–3p</div>
+      </div>
+    </div>
+
+    <div class="powered-by">
+      Concierge powered by <strong>VELO AI</strong>
+    </div>
+  </aside>
+
+  <!-- RIGHT: Chat Interface -->
+  <main class="chat-panel">
+    <header class="chat-header">
+      <div class="chat-status">
+        <span class="status-dot"></span>
+        <span class="status-text"><strong>Maxine's on Shine</strong> · Available 24/7</span>
+      </div>
+      <span class="chat-time" id="chat-time">After hours · 11:47 PM</span>
+    </header>
+
+    <div class="messages" id="messages"></div>
+
+    <div class="input-area">
+      <div class="input-wrap">
+        <input
+          type="text"
+          id="user-input"
+          placeholder="Type your message..."
+          autocomplete="off"
+        />
+        <button class="send-btn" id="send-btn" onclick="handleUserSend()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+        </button>
+      </div>
+      <div class="input-hint">Planning something special? Maxine will be personally notified about large parties and events.</div>
+    </div>
+  </main>
+</div>
+
+<script>
+  // ============================================================
+  // VELO AI — 7-Step Persuasion Engine
+  // Acknowledge → Validate → Surface → Propose → Reference → Timebox → Commit
+  // ============================================================
+
+  const messagesEl = document.getElementById('messages');
+  const inputEl = document.getElementById('user-input');
+  const sendBtn = document.getElementById('send-btn');
+
+  // Conversation memory
+  const memory = {
+    name: null,
+    concern: null,
+    isExisting: null,
+    urgency: null,
+    treatmentInterest: null,
+    history: []
+  };
+
+  // Set realistic after-hours timestamp
+  const now = new Date();
+  const hours = now.getHours() < 8 || now.getHours() >= 17 ? '11:47 PM' : '6:32 AM';
+  document.getElementById('chat-time').textContent = `After hours · ${hours}`;
+
+  function addBotMessage(text, delay = 700, withChips = null) {
+    return new Promise(resolve => {
+      const typingId = 't' + Date.now();
+      const typing = document.createElement('div');
+      typing.className = 'msg-group';
+      typing.id = typingId;
+      typing.innerHTML = `<div class="typing"><span></span><span></span><span></span></div>`;
+      messagesEl.appendChild(typing);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+
+      setTimeout(() => {
+        document.getElementById(typingId)?.remove();
+        const msgGroup = document.createElement('div');
+        msgGroup.className = 'msg-group';
+        let html = `<div class="msg msg-bot">${text}</div><div class="msg-meta">Maxine's on Shine</div>`;
+
+        if (withChips) {
+          html += `<div class="quick-replies">`;
+          withChips.forEach((chip) => {
+            html += `<button class="chip" onclick="handleChipClick('${chip.value.replace(/'/g, "\\'")}', this)">${chip.label}</button>`;
+          });
+          html += `</div>`;
+        }
+
+        msgGroup.innerHTML = html;
+        messagesEl.appendChild(msgGroup);
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+        resolve();
+      }, delay);
+    });
+  }
+
+  function addUserMessage(text) {
+    const msgGroup = document.createElement('div');
+    msgGroup.className = 'msg-group';
+    msgGroup.innerHTML = `
+      <div class="msg msg-user" style="margin-left:auto;">${text}</div>
+      <div class="msg-meta user">You · just now</div>
+    `;
+    messagesEl.appendChild(msgGroup);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+    memory.history.push({ role: 'user', text });
+  }
+
+  function disableChips(currentBtn) {
+    const chips = currentBtn.parentElement.querySelectorAll('.chip');
+    chips.forEach(c => c.disabled = true);
+    currentBtn.style.background = 'var(--accent)';
+    currentBtn.style.color = 'var(--bg)';
+  }
+
+  function showBookingCard(service, time) {
+    const card = document.createElement('div');
+    card.className = 'msg-group';
+    card.innerHTML = `
+      <div class="booking-card">
+        <div class="booking-header">
+          <div class="booking-icon">M</div>
+          <div class="booking-title">Reservation Hold Created</div>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Guest</span>
+          <span class="value">${memory.name || 'New Guest'}</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">For</span>
+          <span class="value">${service}</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Proposed</span>
+          <span class="value">${time}</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">With</span>
+          <span class="value">Maxine's Team</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Location</span>
+          <span class="value">337 N Shine Ave, Orlando</span>
+        </div>
+        <div class="booking-confirm">
+          <button class="btn-primary" onclick="confirmBooking()">Confirm reservation</button>
+          <button class="btn-secondary" onclick="proposeAlternative()">Different time</button>
+        </div>
+      </div>
+    `;
+    messagesEl.appendChild(card);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  // ============================================================
+  // Conversation Flow
+  // ============================================================
+
+  async function startConversation() {
+    await addBotMessage(
+      `Hey — you've reached the after-hours line for Maxine's on Shine in Thornton Park. We're Michelin Recommended and Orlando Magazine's Best Downtown Restaurant six years running, so we stay pretty busy. I can hold a reservation, answer questions, or help with a special event.<br><br>What brings you by tonight?`,
+      400,
+      [
+        { label: '🍽️ Reserve a table', value: 'reserve' },
+        { label: '☀️ Brunch reservation', value: 'brunch' },
+        { label: '🥂 Private event or buyout', value: 'event' },
+        { label: '❓ Quick question', value: 'question' }
+      ]
+    );
+  }
+
+  async function handleChipClick(value, btn) {
+    disableChips(btn);
+    const labelMap = {
+      'reserve': 'I want to reserve a table',
+      'brunch': 'I want a brunch reservation',
+      'event': 'I\'m interested in a private event or buyout',
+      'question': 'I have a quick question',
+      'tonight': 'Tonight or tomorrow',
+      'this-week': 'Within the week',
+      'flexible': 'Whatever works',
+      'small': 'Intimate dinner (2–4)',
+      'medium': 'Small group (5–8)',
+      'large': 'Large party (9+)',
+      'brunch-sat': 'Saturday brunch',
+      'brunch-sun': 'Sunday brunch',
+      'brunch-flex': 'Either works',
+      'event-dinner': 'Private dinner',
+      'event-buyout': 'Full restaurant buyout',
+      'event-reception': 'Reception or cocktail event',
+      'tomorrow-am': 'Confirm tomorrow by noon',
+      'tomorrow-pm': 'Tomorrow afternoon',
+      'this-week-slot': 'Sometime this week'
+    };
+    addUserMessage(labelMap[value] || value);
+    memory.history.push({ role: 'user', value });
+    await routeIntent(value);
+  }
+
+  async function routeIntent(value) {
+
+    // DINNER RESERVATION PATH
+    if (value === 'reserve') {
+      memory.concern = 'dinner';
+      await addBotMessage(
+        `Happy to hold a table. Maxine's books up quickly — especially Thursday through Saturday evenings. How soon are you thinking?`,
+        800,
+        [
+          { label: '🔴 Tonight or tomorrow', value: 'tonight' },
+          { label: '🟡 Within the week', value: 'this-week' },
+          { label: '🟢 Whatever works', value: 'flexible' }
+        ]
+      );
+      return;
+    }
+
+    if (value === 'tonight') {
+      memory.urgency = 'tonight';
+      await addBotMessage(
+        `Got it — last-minute at Maxine's is doable but the dining room fills fast. Party size helps a lot here. What are we working with?`,
+        900,
+        [
+          { label: '🕯️ Intimate dinner (2–4)', value: 'small' },
+          { label: '👥 Small group (5–8)', value: 'medium' },
+          { label: '🎉 Large party (9+)', value: 'large' }
+        ]
+      );
+      return;
+    }
+
+    if (value === 'this-week' || value === 'flexible') {
+      memory.urgency = value;
+      await addBotMessage(
+        `Perfect. Mid-week — Tuesday, Wednesday, Thursday — tends to have the best availability, and honestly the most relaxed experience. How many are you bringing?`,
+        1000,
+        [
+          { label: '🕯️ Intimate (2–4)', value: 'small' },
+          { label: '👥 Small group (5–8)', value: 'medium' },
+          { label: '🎉 Large party (9+)', value: 'large' }
+        ]
+      );
+      return;
+    }
+
+    if (value === 'small') {
+      memory.partySize = 'small';
+      await addBotMessage(
+        `A table for two to four — that's the sweet spot at Maxine's. The patio is beautiful in the evening if you want outdoor seating.<br><br>What's your first name and a phone number? Maxine's team will confirm by noon tomorrow at the latest.`,
+        1100
+      );
+      memory.collecting = 'name-phone';
+      return;
+    }
+
+    if (value === 'medium') {
+      memory.partySize = 'medium';
+      await addBotMessage(
+        `Five to eight is a great group for the private corner of the dining room. We can usually accommodate that with a day's notice.<br><br>What's your first name and a phone number to confirm?`,
+        1100
+      );
+      memory.collecting = 'name-phone';
+      return;
+    }
+
+    if (value === 'large') {
+      memory.partySize = 'large';
+      await addBotMessage(
+        `Nine or more — that's a party, and Maxine will be personally notified. Large groups at Maxine's often do a prix-fixe or family-style format which makes service smoother.<br><br>First name and phone number? Maxine's team will reach out directly.`,
+        1200
+      );
+      memory.collecting = 'name-phone';
+      return;
+    }
+
+    // BRUNCH PATH
+    if (value === 'brunch') {
+      memory.concern = 'brunch';
+      await addBotMessage(
+        `Brunch at Maxine's is Saturday and Sunday, 10 AM to 3 PM — it's one of the best brunches in Thornton Park. Which day are you thinking?`,
+        900,
+        [
+          { label: '☀️ Saturday brunch', value: 'brunch-sat' },
+          { label: '☀️ Sunday brunch', value: 'brunch-sun' },
+          { label: '📅 Either works', value: 'brunch-flex' }
+        ]
+      );
+      return;
+    }
+
+    if (value === 'brunch-sat' || value === 'brunch-sun' || value === 'brunch-flex') {
+      const dayText = value === 'brunch-sat' ? 'Saturday' : value === 'brunch-sun' ? 'Sunday' : 'the weekend';
+      memory.brunchDay = dayText;
+      await addBotMessage(
+        `${dayText === 'the weekend' ? 'Weekend' : dayText} brunch — great choice. Mimosas, the egg dishes, and the patio on a sunny morning are hard to beat.<br><br>How many guests, and what's your first name? I'll get the team to hold a spot.`,
+        1100
+      );
+      memory.collecting = 'name-brunch';
+      return;
+    }
+
+    // PRIVATE EVENT PATH
+    if (value === 'event') {
+      memory.concern = 'event';
+      await addBotMessage(
+        `Maxine's does private events beautifully — the space is intimate enough that it feels curated, and large enough to make an impression. What kind of event are you thinking?`,
+        900,
+        [
+          { label: '🍷 Private dinner', value: 'event-dinner' },
+          { label: '🏛️ Full restaurant buyout', value: 'event-buyout' },
+          { label: '🥂 Reception or cocktail event', value: 'event-reception' }
+        ]
+      );
+      return;
+    }
+
+    if (value === 'event-dinner' || value === 'event-buyout' || value === 'event-reception') {
+      const eventType = value === 'event-dinner' ? 'a private dinner' : value === 'event-buyout' ? 'a full buyout' : 'a reception or cocktail event';
+      memory.treatmentInterest = value;
+      await addBotMessage(
+        `${value === 'event-buyout' ? 'A full buyout — Maxine handles those personally.' : `${eventType.charAt(0).toUpperCase() + eventType.slice(1)} — one of Maxine's specialties.`} Most clients planning ${eventType} at Maxine's want to know: <em>"What does it actually cost?"</em> and <em>"Can we customize the menu?"</em> Both answers require a quick call with Maxine's events team.<br><br>What's your first name and the best phone number to reach you? Maxine will be personally notified.`,
+        1400
+      );
+      memory.collecting = 'name-phone';
+      return;
+    }
+
+    // BOOKING SLOT PATH (for brunch or event follow-up)
+    if (['tomorrow-am', 'tomorrow-pm', 'this-week-slot'].includes(value)) {
+      const timeMap = {
+        'tomorrow-am': 'Tomorrow — confirmed by noon',
+        'tomorrow-pm': 'Tomorrow at 2:00 PM',
+        'this-week-slot': 'Thursday this week'
+      };
+      memory.proposedTime = timeMap[value];
+      await addBotMessage(
+        `Perfect. Let me hold ${timeMap[value]} for you. What's your first name?`,
+        900
+      );
+      memory.collecting = 'name-for-booking';
+      return;
+    }
+
+    // QUESTION PATH
+    if (value === 'question') {
+      memory.concern = 'question';
+      await addBotMessage(
+        `Of course — go ahead and type your question. Hours, menu, dietary needs, parking, patio — I can usually answer right now. Something more specific and the team will follow up in the morning.`,
+        900
+      );
+      memory.collecting = 'free-question';
+      return;
+    }
+  }
+
+  // ============================================================
+  // Free-text input handler
+  // ============================================================
+  async function handleUserSend() {
+    const text = inputEl.value.trim();
+    if (!text) return;
+    addUserMessage(text);
+    inputEl.value = '';
+
+    // Name collection
+    if (['name', 'name-phone', 'name-for-booking', 'name-brunch'].includes(memory.collecting)) {
+      const rawState = memory.collecting;
+      const name = text.split(/\s+/)[0].replace(/[^a-zA-Z]/g, '');
+      memory.name = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+
+      const responses = {
+        'name': `Thank you, ${memory.name}. Best phone number to confirm? The team will reach out by noon tomorrow.`,
+        'name-phone': `Thank you, ${memory.name}. Best phone number? We'll confirm by noon tomorrow.`,
+        'name-for-booking': `Thanks, ${memory.name}. What's your best phone number? The team will text confirmation in the morning.`,
+        'name-brunch': `Lovely, ${memory.name}. Phone number to confirm the brunch reservation?`
+      };
+
+      await addBotMessage(responses[rawState] || responses['name'], 800);
+
+      if (rawState === 'name-brunch') {
+        memory.collecting = 'phone-brunch';
+      } else {
+        memory.collecting = 'phone';
+      }
+      return;
+    }
+
+    if (memory.collecting === 'phone' || memory.collecting === 'phone-brunch') {
+      memory.phone = text;
+      const isBrunch = memory.collecting === 'phone-brunch';
+      memory.collecting = null;
+
+      if (memory.proposedTime) {
+        const serviceMap = {
+          'event-dinner': 'Private Dinner',
+          'event-buyout': 'Full Restaurant Buyout',
+          'event-reception': 'Reception / Cocktail Event'
+        };
+        const service = serviceMap[memory.treatmentInterest] || (memory.concern === 'brunch' ? `Brunch — ${memory.brunchDay || 'Weekend'}` : 'Dinner Reservation');
+
+        await addBotMessage(`Here's the hold I'm creating for Maxine's team:`, 800);
+        setTimeout(() => showBookingCard(service, memory.proposedTime), 1200);
+      } else if (isBrunch) {
+        await addBotMessage(
+          `All set, ${memory.name}. Maxine's team will confirm your brunch reservation by tomorrow morning. See you then — (407) 674-6841 if anything changes.`,
+          1000
+        );
+      } else if (memory.concern === 'event') {
+        await addBotMessage(
+          `Got it, ${memory.name}. Maxine will be personally notified — expect a call from the events team within 24 hours. (407) 674-6841 if you need to reach us first.`,
+          1100
+        );
+      } else {
+        // Standard reservation confirmation
+        const partyDesc = memory.partySize === 'large' ? 'large party' : memory.partySize === 'medium' ? 'group' : 'table';
+        await addBotMessage(
+          `You're all set, ${memory.name}. Maxine's team will confirm your ${partyDesc} reservation by noon tomorrow at the latest. See you soon — (407) 674-6841 if anything changes.`,
+          1000
+        );
+      }
+      return;
+    }
+
+    if (memory.collecting === 'free-question') {
+      memory.collecting = null;
+      await addBotMessage(
+        `Thanks for that. I've logged your question for Maxine's team — someone will follow up by morning. Want me to also hold a reservation while we're here?`,
+        1100,
+        [
+          { label: '✅ Yes, hold a table', value: 'reserve' },
+          { label: 'No thanks', value: 'question' }
+        ]
+      );
+      return;
+    }
+
+    // Default fallback
+    await addBotMessage(
+      `Thanks for reaching out. So I can help — are you looking to make a reservation, plan a private event, or ask a quick question?`,
+      900,
+      [
+        { label: '🍽️ Reservation', value: 'reserve' },
+        { label: '🥂 Private event', value: 'event' },
+        { label: '❓ Quick question', value: 'question' }
+      ]
+    );
+  }
+
+  function confirmBooking() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) {
+      card.style.transition = 'all 0.3s ease';
+      card.style.background = 'linear-gradient(135deg, #2d5a3f 0%, #1f4530 100%)';
+      card.style.color = 'white';
+      card.querySelector('.booking-title').style.color = 'white';
+      card.querySelector('.booking-title').textContent = '✓ Reservation Confirmed';
+      card.querySelector('.booking-icon').style.background = 'white';
+      card.querySelector('.booking-icon').style.color = 'var(--accent)';
+      card.querySelectorAll('.label').forEach(el => el.style.color = 'rgba(255,255,255,0.6)');
+      card.querySelectorAll('.value').forEach(el => el.style.color = 'white');
+      card.querySelector('.booking-confirm').remove();
+    }
+    setTimeout(async () => {
+      await addBotMessage(
+        `You're all set. Maxine's team will confirm your reservation by noon tomorrow at the latest. See you soon — (407) 674-6841 if anything changes.`,
+        700
+      );
+    }, 400);
+  }
+
+  function proposeAlternative() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) card.remove();
+    addBotMessage(
+      `No problem. Maxine's has availability Tuesday at 6 PM, Wednesday at 7 PM, or Thursday at 8 PM — which works better?`,
+      600,
+      [
+        { label: '🌿 Tuesday 6 PM', value: 'tonight' },
+        { label: '🌿 Wednesday 7 PM', value: 'this-week' },
+        { label: '🌿 Thursday 8 PM', value: 'flexible' }
+      ]
+    );
+  }
+
+  inputEl.addEventListener('keydown', e => {
+    if (e.key === 'Enter') handleUserSend();
+  });
+
+  setTimeout(startConversation, 600);
+</script>
+
+</body>
+</html>

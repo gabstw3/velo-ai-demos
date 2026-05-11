@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>H. Clay Parker, Esq. — After-Hours Intake | Powered by Velo AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Estate-planning palette: warm parchment + deep navy + muted gold.
+       Slower, gentler, more reverent than Wayside's forest/copper.   */
+    --bg: #f4efe6;
+    --bg-deep: #e8e0d2;
+    --ink: #1a1f2c;
+    --ink-soft: #4a536b;
+    --ink-faint: #8a8f9e;
+    --accent: #2a3a5c;       /* deep navy — the law firm primary */
+    --accent-warm: #b08540;  /* muted gold — accent */
+    --accent-glow: #e6d4a8;
+    --line: #d4ccb8;
+    --bot-msg: #ffffff;
+    --user-msg: #2a3a5c;
+    --user-msg-text: #ffffff;
+    --shadow-sm: 0 1px 3px rgba(26, 31, 44, 0.06);
+    --shadow-md: 0 4px 16px rgba(26, 31, 44, 0.08);
+    --shadow-lg: 0 12px 40px rgba(26, 31, 44, 0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body { height: 100%; }
+
+  body {
+    font-family: 'Geist', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.5;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(176, 133, 64, 0.05) 0%, transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(42, 58, 92, 0.04) 0%, transparent 40%);
+  }
+
+  .app {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    min-height: 100vh;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .practice-panel {
+    background: linear-gradient(180deg, #1a2540 0%, #0f1729 100%);
+    color: #e8e0d0;
+    padding: 40px 32px;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .practice-panel::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(176, 133, 64, 0.08) 0%, transparent 50%);
+    animation: drift 22s ease-in-out infinite;
+  }
+
+  @keyframes drift {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(20%, 10%); }
+  }
+
+  .practice-content { position: relative; z-index: 1; }
+
+  .practice-mark {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    margin-bottom: 12px;
+    opacity: 0.9;
+  }
+
+  .practice-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+  }
+
+  .practice-doctor {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--accent-glow);
+    margin-bottom: 32px;
+  }
+
+  .promise-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(232, 224, 184, 0.15);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+    backdrop-filter: blur(10px);
+  }
+
+  .promise-card h4 {
+    font-family: 'Geist', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    margin-bottom: 8px;
+  }
+
+  .promise-card p {
+    font-size: 14px;
+    line-height: 1.55;
+    color: #d4cdb8;
+  }
+
+  .practice-info {
+    margin-top: auto;
+    padding-top: 24px;
+    border-top: 1px solid rgba(232, 224, 184, 0.1);
+    font-size: 13px;
+    line-height: 1.7;
+    color: #b8b0a0;
+  }
+
+  .practice-info .row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 8px;
+  }
+
+  .practice-info .label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    width: 56px;
+    padding-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .powered-by {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(232, 224, 184, 0.1);
+    font-size: 11px;
+    color: #8a8275;
+    letter-spacing: 0.05em;
+  }
+
+  .powered-by strong {
+    color: var(--accent-glow);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+  }
+
+  .chat-panel {
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .chat-header {
+    padding: 20px 32px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(244, 239, 230, 0.85);
+    backdrop-filter: blur(12px);
+    z-index: 10;
+  }
+
+  .chat-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .status-dot {
+    width: 8px; height: 8px;
+    background: #4ade80;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.15);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.15); }
+    50% { box-shadow: 0 0 0 8px rgba(74, 222, 128, 0.05); }
+  }
+
+  .status-text {
+    font-size: 13px;
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+
+  .status-text strong { color: var(--ink); font-weight: 600; }
+
+  .chat-time {
+    font-family: 'Fraunces', serif;
+    font-size: 12px;
+    color: var(--ink-faint);
+    font-style: italic;
+  }
+
+  .messages {
+    flex: 1;
+    padding: 32px;
+    scroll-behavior: smooth;
+  }
+
+  .msg-group {
+    margin-bottom: 20px;
+    animation: msgIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  @keyframes msgIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .msg {
+    max-width: 78%;
+    padding: 14px 18px;
+    border-radius: 18px;
+    font-size: 15px;
+    line-height: 1.55;
+    word-wrap: break-word;
+  }
+
+  .msg-bot {
+    background: var(--bot-msg);
+    color: var(--ink);
+    border-bottom-left-radius: 4px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(212, 204, 184, 0.4);
+  }
+
+  .msg-user {
+    background: var(--user-msg);
+    color: var(--user-msg-text);
+    border-bottom-right-radius: 4px;
+    margin-left: auto;
+  }
+
+  .msg-meta {
+    font-size: 10px;
+    color: var(--ink-faint);
+    margin-top: 6px;
+    padding: 0 8px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .msg-meta.user { text-align: right; }
+
+  .typing {
+    display: flex;
+    gap: 4px;
+    padding: 16px 20px;
+    background: var(--bot-msg);
+    border-radius: 18px;
+    border-bottom-left-radius: 4px;
+    width: fit-content;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(212, 204, 184, 0.4);
+  }
+
+  .typing span {
+    width: 7px; height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: typing 1.4s ease-in-out infinite;
+  }
+
+  .typing span:nth-child(2) { animation-delay: 0.2s; }
+  .typing span:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes typing {
+    0%, 100% { transform: translateY(0); opacity: 0.4; }
+    50% { transform: translateY(-4px); opacity: 1; }
+  }
+
+  .quick-replies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+    animation: msgIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s both;
+  }
+
+  .chip {
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 9px 16px;
+    border-radius: 100px;
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .chip:hover {
+    background: var(--accent);
+    color: var(--bg);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .chip:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .booking-card {
+    background: linear-gradient(135deg, #ffffff 0%, #faf6ec 100%);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 24px;
+    margin-top: 12px;
+    box-shadow: var(--shadow-md);
+    animation: msgIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    max-width: 78%;
+  }
+
+  .booking-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .booking-icon {
+    width: 32px; height: 32px;
+    background: var(--accent);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .booking-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--ink);
+  }
+
+  .booking-detail {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 12px;
+    padding: 8px 0;
+    font-size: 14px;
+  }
+
+  .booking-detail .label {
+    color: var(--ink-faint);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding-top: 2px;
+  }
+
+  .booking-detail .value {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .booking-confirm {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    gap: 8px;
+  }
+
+  .btn-primary {
+    flex: 1;
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: #1a2540;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--ink-soft);
+    border: 1px solid var(--line);
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover {
+    background: var(--bg-deep);
+  }
+
+  .input-area {
+    padding: 20px 32px 24px;
+    border-top: 1px solid var(--line);
+    background: rgba(244, 239, 230, 0.85);
+    backdrop-filter: blur(12px);
+  }
+
+  .input-wrap {
+    display: flex;
+    gap: 10px;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 6px 6px 6px 18px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .input-wrap:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(42, 58, 92, 0.08);
+  }
+
+  .input-wrap input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-family: 'Geist', sans-serif;
+    font-size: 15px;
+    color: var(--ink);
+    padding: 10px 0;
+    background: transparent;
+  }
+
+  .input-wrap input::placeholder { color: var(--ink-faint); }
+
+  .send-btn {
+    background: var(--accent);
+    color: white;
+    border: none;
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+
+  .send-btn:hover { background: #1a2540; transform: scale(1.05); }
+  .send-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+  .input-hint {
+    font-size: 11px;
+    color: var(--ink-faint);
+    margin-top: 10px;
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
+
+  .demo-banner {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 10px 16px;
+    border-radius: 100px;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    z-index: 100;
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .demo-banner:hover { transform: scale(1.03); }
+  .demo-banner .pulse-dot {
+    width: 6px; height: 6px;
+    background: var(--accent-warm);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @media (max-width: 900px) {
+    html, body {
+      height: auto;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .app {
+      grid-template-columns: 1fr;
+      height: auto;
+      min-height: 100vh;
+    }
+    .practice-panel {
+      padding: 20px 24px;
+      position: static;
+      height: auto;
+      max-height: none;
+    }
+    .practice-panel .promise-card,
+    .practice-panel .practice-info,
+    .practice-panel .powered-by { display: none; }
+    .practice-name { font-size: 22px; }
+    .practice-doctor { font-size: 14px; margin-bottom: 0; }
+    .chat-panel {
+      min-height: 80vh;
+    }
+    .messages {
+      padding: 20px;
+      overflow-y: visible;
+      flex: none;
+    }
+    .msg { max-width: 88%; }
+    .input-area {
+      padding: 16px 20px 20px;
+      position: sticky;
+      bottom: 0;
+    }
+    .demo-banner { top: 8px; right: 8px; padding: 8px 12px; font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner" onclick="alert('This is a live demo built by Velo AI for H. Clay Parker, Esq.\n\nFor deployment information, contact:\nGabe Herrera — Velo AI\nWinter Springs, FL')">
+  <span class="pulse-dot"></span>
+  <span>Velo AI Demo</span>
+</div>
+
+<div class="app">
+
+  <!-- LEFT: Practice Brand Panel -->
+  <aside class="practice-panel">
+    <div class="practice-content">
+      <div class="practice-mark">Downtown Orlando · N Orange Ave · Business Litigation · AV Preeminent</div>
+      <h1 class="practice-name">H. Clay Parker, Esq.</h1>
+      <p class="practice-doctor">Henry Clay Parker IV — Business Litigator · 30+ Years</p>
+
+      <div class="promise-card">
+        <h4>The After-Hours Promise</h4>
+        <p>AV Preeminent-rated solo business litigator on N Orange Ave with 30+ years of practice. Mr. Parker handles contract disputes, business torts, and commercial litigation — and offers a $50 initial consultation. Business legal crises don't wait until morning. This line doesn't either.</p>
+      </div>
+    </div>
+
+    <div class="practice-info">
+      <div class="row">
+        <div class="label">Address</div>
+        <div>250 N Orange Ave<br>Orlando, FL 32801</div>
+      </div>
+      <div class="row">
+        <div class="label">Phone</div>
+        <div>(407) 759-5555</div>
+      </div>
+      <div class="row">
+        <div class="label">Hours</div>
+        <div>Mon–Fri · $50 initial consultation</div>
+      </div>
+    </div>
+
+    <div class="powered-by">
+      Intake powered by <strong>VELO AI</strong>
+    </div>
+  </aside>
+
+  <!-- RIGHT: Chat Interface -->
+  <main class="chat-panel">
+    <header class="chat-header">
+      <div class="chat-status">
+        <span class="status-dot"></span>
+        <span class="status-text"><strong>Clay Parker Law</strong> · Available 24/7</span>
+      </div>
+      <span class="chat-time" id="chat-time">After hours · 11:47 PM</span>
+    </header>
+
+    <div class="messages" id="messages"></div>
+
+    <div class="input-area">
+      <div class="input-wrap">
+        <input
+          type="text"
+          id="user-input"
+          placeholder="Type your message..."
+          autocomplete="off"
+        />
+        <button class="send-btn" id="send-btn" onclick="handleUserSend()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+        </button>
+      </div>
+      <div class="input-hint">A current client of Mr. Parker? He will be notified directly for urgent matters.</div>
+    </div>
+  </main>
+</div>
+
+<script>
+  // ============================================================
+  // VELO AI — H. Clay Parker, Esq. After-Hours Intake Flow
+  // Formal-authoritative register for business litigation,
+  // contract disputes, and commercial matters. Measured, direct.
+  // ============================================================
+
+  const messagesEl = document.getElementById('messages');
+  const inputEl = document.getElementById('user-input');
+  const sendBtn = document.getElementById('send-btn');
+
+  const memory = {
+    name: null,
+    matter: null,
+    isExisting: null,
+    urgency: null,
+    history: []
+  };
+
+  const now = new Date();
+  const hours = now.getHours() < 8 || now.getHours() >= 17 ? '11:47 PM' : '6:32 AM';
+  document.getElementById('chat-time').textContent = `After hours · ${hours}`;
+
+  function addBotMessage(text, delay = 700, withChips = null) {
+    return new Promise(resolve => {
+      const typingId = 't' + Date.now();
+      const typing = document.createElement('div');
+      typing.className = 'msg-group';
+      typing.id = typingId;
+      typing.innerHTML = `<div class="typing"><span></span><span></span><span></span></div>`;
+      messagesEl.appendChild(typing);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+
+      setTimeout(() => {
+        document.getElementById(typingId)?.remove();
+        const msgGroup = document.createElement('div');
+        msgGroup.className = 'msg-group';
+        let html = `<div class="msg msg-bot">${text}</div><div class="msg-meta">Clay Parker Law</div>`;
+
+        if (withChips) {
+          html += `<div class="quick-replies">`;
+          withChips.forEach((chip) => {
+            html += `<button class="chip" onclick="handleChipClick('${chip.value.replace(/'/g, "\\'")}', this)">${chip.label}</button>`;
+          });
+          html += `</div>`;
+        }
+
+        msgGroup.innerHTML = html;
+        messagesEl.appendChild(msgGroup);
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+        resolve();
+      }, delay);
+    });
+  }
+
+  function addUserMessage(text) {
+    const msgGroup = document.createElement('div');
+    msgGroup.className = 'msg-group';
+    msgGroup.innerHTML = `
+      <div class="msg msg-user" style="margin-left:auto;">${text}</div>
+      <div class="msg-meta user">You · just now</div>
+    `;
+    messagesEl.appendChild(msgGroup);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+    memory.history.push({ role: 'user', text });
+  }
+
+  function disableChips(currentBtn) {
+    const chips = currentBtn.parentElement.querySelectorAll('.chip');
+    chips.forEach(c => c.disabled = true);
+    currentBtn.style.background = 'var(--accent)';
+    currentBtn.style.color = 'var(--bg)';
+  }
+
+  function showBookingCard(matterType, time) {
+    const card = document.createElement('div');
+    card.className = 'msg-group';
+    card.innerHTML = `
+      <div class="booking-card">
+        <div class="booking-header">
+          <div class="booking-icon">P</div>
+          <div class="booking-title">Consultation Hold Created</div>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Client</span>
+          <span class="value">${memory.name || 'New client'}</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Matter</span>
+          <span class="value">${matterType}</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Proposed</span>
+          <span class="value">${time}</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">With</span>
+          <span class="value">H. Clay Parker, Esq.</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Office</span>
+          <span class="value">250 N Orange Ave, Orlando, FL 32801</span>
+        </div>
+        <div class="booking-confirm">
+          <button class="btn-primary" onclick="confirmBooking()">Confirm consultation</button>
+          <button class="btn-secondary" onclick="proposeAlternative()">Different time</button>
+        </div>
+      </div>
+    `;
+    messagesEl.appendChild(card);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  // ============================================================
+  // Conversation Flow
+  // ============================================================
+
+  async function startConversation() {
+    await addBotMessage(
+      `Good evening — you've reached the after-hours line for H. Clay Parker, Esq. Mr. Parker is an AV Preeminent-rated business litigator with 30 years of practice in downtown Orlando. He handles contract disputes, business torts, and commercial litigation and offers a $50 initial consultation. Anything you share here is confidential.<br><br>What can I help you with tonight?`,
+      400,
+      [
+        { label: 'Contract dispute or breach', value: 'contract' },
+        { label: 'Business partnership issue', value: 'partnership' },
+        { label: 'Commercial litigation', value: 'commercial' },
+        { label: 'I need a $50 consultation', value: 'consultation' },
+        { label: 'General question', value: 'question' }
+      ]
+    );
+  }
+
+  async function handleChipClick(value, btn) {
+    disableChips(btn);
+    const labelMap = {
+      'contract': "Contract dispute or breach",
+      'partnership': "Business partnership issue",
+      'commercial': "Commercial litigation",
+      'consultation': "I need a $50 consultation",
+      'question': "I have a general question",
+      'contract-breach': "Breach of contract",
+      'contract-nonpayment': "Non-payment or collections",
+      'contract-injunction': "Injunction or emergency relief",
+      'partner-dissolution': "Partnership dissolution",
+      'partner-breach': "Partner breach of fiduciary duty",
+      'partner-buyout': "Forced buyout or valuation dispute",
+      'commercial-pending': "Active lawsuit — need representation",
+      'commercial-presuit': "Pre-suit — evaluating options",
+      'commercial-appeal': "Appeal or post-judgment matter",
+      'urgent-deadline': "Yes — there is an active deadline",
+      'urgent-soon': "Soon, but no immediate deadline",
+      'urgent-planning': "No deadline — evaluating options",
+      'this-week': "This week",
+      'next-week': "Next week",
+      'flexible': "I am flexible"
+    };
+    addUserMessage(labelMap[value] || value);
+    memory.history.push({ role: 'user', value });
+    await routeIntent(value);
+  }
+
+  async function routeIntent(value) {
+
+    // CONTRACT DISPUTE PATH ----------------------------------------
+    if (value === 'contract') {
+      memory.matter = 'contract';
+      await addBotMessage(
+        `Contract disputes are Mr. Parker's primary practice. With 30 years of business litigation experience in downtown Orlando, he has handled breaches of every complexity — from vendor agreements to multi-party commercial contracts. May I ask which best describes your situation?`,
+        1200,
+        [
+          { label: 'Breach of contract', value: 'contract-breach' },
+          { label: 'Non-payment or collections', value: 'contract-nonpayment' },
+          { label: 'Injunction or emergency relief', value: 'contract-injunction' }
+        ]
+      );
+      return;
+    }
+
+    if (['contract-breach', 'contract-nonpayment', 'contract-injunction'].includes(value)) {
+      memory.contractType = value;
+      await addBotMessage(
+        `Understood. Is there a filing deadline, a court date, or an active matter requiring immediate attention?`,
+        1000,
+        [
+          { label: 'Yes — active deadline', value: 'urgent-deadline' },
+          { label: 'Soon, but no immediate deadline', value: 'urgent-soon' },
+          { label: 'Evaluating options', value: 'urgent-planning' }
+        ]
+      );
+      return;
+    }
+
+    // PARTNERSHIP DISPUTE PATH --------------------------------------
+    if (value === 'partnership') {
+      memory.matter = 'partnership';
+      await addBotMessage(
+        `Business partnership disputes are among the most consequential matters in commercial litigation, and they require counsel who moves decisively. Mr. Parker has represented both majority and minority interests in Orlando-area disputes for decades. Which best describes your situation?`,
+        1300,
+        [
+          { label: 'Partnership dissolution', value: 'partner-dissolution' },
+          { label: 'Breach of fiduciary duty', value: 'partner-breach' },
+          { label: 'Buyout or valuation dispute', value: 'partner-buyout' }
+        ]
+      );
+      return;
+    }
+
+    if (['partner-dissolution', 'partner-breach', 'partner-buyout'].includes(value)) {
+      memory.partnerType = value;
+      await addBotMessage(
+        `Thank you. Is there an active legal proceeding, a demand letter, or an imminent deadline involved?`,
+        1000,
+        [
+          { label: 'Yes — active proceeding', value: 'urgent-deadline' },
+          { label: 'Demand letter received', value: 'urgent-soon' },
+          { label: 'No filing yet', value: 'urgent-planning' }
+        ]
+      );
+      return;
+    }
+
+    // COMMERCIAL LITIGATION PATH ------------------------------------
+    if (value === 'commercial') {
+      memory.matter = 'commercial';
+      await addBotMessage(
+        `Mr. Parker handles commercial litigation across the full case lifecycle — from pre-suit evaluation through trial and, where necessary, appeal. Where does your matter currently stand?`,
+        1200,
+        [
+          { label: 'Active lawsuit — need representation', value: 'commercial-pending' },
+          { label: 'Pre-suit — evaluating options', value: 'commercial-presuit' },
+          { label: 'Appeal or post-judgment', value: 'commercial-appeal' }
+        ]
+      );
+      return;
+    }
+
+    if (['commercial-pending', 'commercial-presuit', 'commercial-appeal'].includes(value)) {
+      memory.commercialType = value;
+      await addBotMessage(
+        `Noted. Is there a hearing date, response deadline, or other time-sensitive obligation in this matter?`,
+        1000,
+        [
+          { label: 'Yes — there is a deadline', value: 'urgent-deadline' },
+          { label: 'Soon, but not immediate', value: 'urgent-soon' },
+          { label: 'No immediate deadline', value: 'urgent-planning' }
+        ]
+      );
+      return;
+    }
+
+    // CONSULTATION BOOKING PATH ------------------------------------
+    if (value === 'consultation') {
+      memory.matter = 'consultation';
+      await addBotMessage(
+        `Mr. Parker offers a $50 initial consultation — a straightforward meeting to review your situation, answer your questions directly, and tell you plainly whether he can help. Most clients find it clarifying regardless of what comes next.<br><br>When would you like to schedule?`,
+        1100,
+        [
+          { label: 'This week', value: 'this-week' },
+          { label: 'Next week', value: 'next-week' },
+          { label: "I'm flexible", value: 'flexible' }
+        ]
+      );
+      return;
+    }
+
+    // URGENCY HANDLERS -------------------------------------------
+    if (value === 'urgent-deadline') {
+      memory.urgency = 'severe';
+      await addBotMessage(
+        `That requires immediate attention. I am flagging this as priority for Mr. Parker — he will review this intake before his morning appointments begin.<br><br>Please provide your first name and the best callback number. If you can note the specific deadline or court date, include that as well.`,
+        1200
+      );
+      memory.collecting = 'name-phone';
+      return;
+    }
+
+    if (value === 'urgent-soon' || value === 'urgent-planning') {
+      memory.urgency = value;
+      await addBotMessage(
+        `Understood. Mr. Parker keeps consultation hours for new business litigation matters and prefers to give each prospective client an unhurried first conversation — which is why the initial consultation is a flat $50.<br><br>What is your first name? I will arrange for his office to reach out tomorrow morning to set a time.`,
+        1100
+      );
+      memory.collecting = 'name';
+      return;
+    }
+
+    if (['this-week', 'next-week', 'flexible'].includes(value)) {
+      const timeMap = {
+        'this-week': 'Thursday at 2:00 PM',
+        'next-week': 'Tuesday at 10:30 AM',
+        'flexible': 'Wednesday at 1:00 PM'
+      };
+      memory.proposedTime = timeMap[value];
+
+      await addBotMessage(
+        `Very well. I can hold ${timeMap[value]} for your $50 consultation with Mr. Parker. May I have your first name to place on his calendar?`,
+        900
+      );
+      memory.collecting = 'name-for-booking';
+      return;
+    }
+
+    // GENERAL QUESTION PATH ------------------------------------
+    if (value === 'question') {
+      memory.matter = 'question';
+      await addBotMessage(
+        `Please go ahead and type your question. Where I can provide a direct answer from Mr. Parker's published practice information, I will do so. Where the matter warrants his personal attention, I will route it accordingly and he will respond in the morning.`,
+        900
+      );
+      memory.collecting = 'free-question';
+      return;
+    }
+  }
+
+  // ============================================================
+  // Free-text input handler
+  // ============================================================
+  async function handleUserSend() {
+    const text = inputEl.value.trim();
+    if (!text) return;
+    addUserMessage(text);
+    inputEl.value = '';
+
+    if (memory.collecting === 'name' || memory.collecting === 'name-for-booking' || memory.collecting === 'name-phone') {
+      const name = text.split(/\s+/)[0].replace(/[^a-zA-Z]/g, '');
+      memory.name = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+
+      const responses = {
+        'name': `Thank you, ${memory.name}. May I have the best phone number to reach you? I want to ensure Mr. Parker has it before his morning calls begin.`,
+        'name-for-booking': `Thank you, ${memory.name}. And the best callback number? Mr. Parker's office will send a confirmation by 9 AM tomorrow.`,
+        'name-phone': `Thank you, ${memory.name}. What is the best number to reach you? Mr. Parker will telephone you in the morning.`
+      };
+      const oldState = memory.collecting;
+      await addBotMessage(responses[oldState], 800);
+      memory.collecting = 'phone';
+      return;
+    }
+
+    if (memory.collecting === 'phone') {
+      memory.phone = text;
+      memory.collecting = null;
+
+      if (memory.proposedTime) {
+        const matterMap = {
+          'contract': 'Contract Dispute Consultation',
+          'partnership': 'Partnership Dispute Consultation',
+          'commercial': 'Commercial Litigation Consultation',
+          'consultation': '$50 Initial Consultation',
+          'question': 'General Consultation'
+        };
+        const matter = matterMap[memory.matter] || 'Business Litigation Consultation';
+
+        await addBotMessage(
+          `Very good. Here is the hold I am placing on Mr. Parker's calendar:`,
+          800
+        );
+        setTimeout(() => showBookingCard(matter, memory.proposedTime), 1200);
+      } else if (memory.urgency === 'severe') {
+        await addBotMessage(
+          `Thank you, ${memory.name}. This intake has been flagged as priority for Mr. Parker. Please expect a call from <strong>(407) 759-5555</strong> first thing in the morning.<br><br>If the situation changes overnight — a deadline shifts, a new filing arrives — you may send a follow-up message here and Mr. Parker will see it before his first appointment.`,
+          1100
+        );
+      } else {
+        await addBotMessage(
+          `Noted, ${memory.name}. Mr. Parker will reach out to ${text} by mid-morning tomorrow to arrange a time that works for you.<br><br>Is there anything else you would like to note for his review tonight?`,
+          1000
+        );
+      }
+      return;
+    }
+
+    if (memory.collecting === 'free-question') {
+      memory.collecting = null;
+      await addBotMessage(
+        `Thank you. I have logged your question for Mr. Parker to review first thing tomorrow — he will either respond directly or have his office follow up by 10 AM.<br><br>Would you also like me to hold a $50 consultation slot in case the matter is easier addressed in person?`,
+        1100,
+        [
+          { label: 'Yes — hold a slot', value: 'consultation' },
+          { label: 'No, thank you', value: 'no-slot' }
+        ]
+      );
+      return;
+    }
+
+    if (memory.collecting === null && memory.matter === null) {
+      // Fallback for users who type before selecting a chip
+      await addBotMessage(
+        `Thank you for that. To ensure Mr. Parker has the right context — would you say this matter falls under contract disputes, a partnership issue, commercial litigation, or is it a general question?`,
+        900,
+        [
+          { label: 'Contract dispute', value: 'contract' },
+          { label: 'Partnership issue', value: 'partnership' },
+          { label: 'Commercial litigation', value: 'commercial' },
+          { label: 'General question', value: 'question' }
+        ]
+      );
+      return;
+    }
+
+    // General fallback
+    await addBotMessage(
+      `Thank you for sharing that. I have noted it for Mr. Parker's review. Is there anything else you would like him to know before he reaches out tomorrow?`,
+      900
+    );
+  }
+
+  function confirmBooking() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) {
+      card.style.transition = 'all 0.3s ease';
+      card.style.background = 'linear-gradient(135deg, #2a3a5c 0%, #1a2540 100%)';
+      card.style.color = 'white';
+      card.querySelector('.booking-title').style.color = 'white';
+      card.querySelector('.booking-icon').style.background = 'white';
+      card.querySelector('.booking-icon').style.color = 'var(--accent)';
+      card.querySelectorAll('.label').forEach(el => el.style.color = 'rgba(255,255,255,0.6)');
+      card.querySelectorAll('.value').forEach(el => el.style.color = 'white');
+      card.querySelector('.booking-confirm').remove();
+    }
+    setTimeout(async () => {
+      await addBotMessage(
+        `You are confirmed, ${memory.name}. Mr. Parker has been notified, and you will receive a confirmation from <strong>(407) 759-5555</strong> tomorrow morning.<br><br>We look forward to meeting with you.`,
+        700
+      );
+    }, 400);
+  }
+
+  function proposeAlternative() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) card.remove();
+    addBotMessage(
+      `Of course. Mr. Parker has availability Tuesday at 11 AM, Wednesday at 3 PM, or Friday at 10 AM — which suits your schedule?`,
+      600,
+      [
+        { label: 'Tuesday at 11 AM', value: 'this-week' },
+        { label: 'Wednesday at 3 PM', value: 'next-week' },
+        { label: 'Friday at 10 AM', value: 'flexible' }
+      ]
+    );
+  }
+
+  inputEl.addEventListener('keydown', e => {
+    if (e.key === 'Enter') handleUserSend();
+  });
+
+  setTimeout(startConversation, 600);
+</script>
+
+</body>
+</html>

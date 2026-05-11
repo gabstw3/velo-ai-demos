@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Law Office of Paulette Hamilton, P.A. — After-Hours Intake | Powered by Velo AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f4efe6;
+    --bg-deep: #e8e0d2;
+    --ink: #1a1f2c;
+    --ink-soft: #4a536b;
+    --ink-faint: #8a8f9e;
+    --accent: #2a3a5c;
+    --accent-warm: #b08540;
+    --accent-glow: #e6d4a8;
+    --line: #d4ccb8;
+    --bot-msg: #ffffff;
+    --user-msg: #2a3a5c;
+    --user-msg-text: #ffffff;
+    --shadow-sm: 0 1px 3px rgba(26, 31, 44, 0.06);
+    --shadow-md: 0 4px 16px rgba(26, 31, 44, 0.08);
+    --shadow-lg: 0 12px 40px rgba(26, 31, 44, 0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body { height: 100%; }
+
+  body {
+    font-family: 'Geist', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.5;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(176, 133, 64, 0.05) 0%, transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(42, 58, 92, 0.04) 0%, transparent 40%);
+  }
+
+  .app {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    min-height: 100vh;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .practice-panel {
+    background: linear-gradient(180deg, #1a2540 0%, #0f1729 100%);
+    color: #e8e0d0;
+    padding: 40px 32px;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .practice-panel::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(176, 133, 64, 0.08) 0%, transparent 50%);
+    animation: drift 22s ease-in-out infinite;
+  }
+
+  @keyframes drift {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(20%, 10%); }
+  }
+
+  .practice-content { position: relative; z-index: 1; }
+
+  .practice-mark {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    margin-bottom: 12px;
+    opacity: 0.9;
+  }
+
+  .practice-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+  }
+
+  .practice-doctor {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--accent-glow);
+    margin-bottom: 32px;
+  }
+
+  .promise-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(232, 224, 184, 0.15);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+    backdrop-filter: blur(10px);
+  }
+
+  .promise-card h4 {
+    font-family: 'Geist', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    margin-bottom: 8px;
+  }
+
+  .promise-card p {
+    font-size: 14px;
+    line-height: 1.55;
+    color: #d4cdb8;
+  }
+
+  .practice-info {
+    margin-top: auto;
+    padding-top: 24px;
+    border-top: 1px solid rgba(232, 224, 184, 0.1);
+    font-size: 13px;
+    line-height: 1.7;
+    color: #b8b0a0;
+  }
+
+  .practice-info .row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 8px;
+  }
+
+  .practice-info .label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    width: 56px;
+    padding-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .powered-by {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(232, 224, 184, 0.1);
+    font-size: 11px;
+    color: #8a8275;
+    letter-spacing: 0.05em;
+  }
+
+  .powered-by strong {
+    color: var(--accent-glow);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+  }
+
+  .chat-panel {
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .chat-header {
+    padding: 20px 32px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(244, 239, 230, 0.85);
+    backdrop-filter: blur(12px);
+    z-index: 10;
+  }
+
+  .chat-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .status-dot {
+    width: 8px; height: 8px;
+    background: #4ade80;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.15);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.15); }
+    50% { box-shadow: 0 0 0 8px rgba(74, 222, 128, 0.05); }
+  }
+
+  .status-text {
+    font-size: 13px;
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+
+  .status-text strong { color: var(--ink); font-weight: 600; }
+
+  .chat-time {
+    font-family: 'Fraunces', serif;
+    font-size: 12px;
+    color: var(--ink-faint);
+    font-style: italic;
+  }
+
+  .messages {
+    flex: 1;
+    padding: 32px;
+    scroll-behavior: smooth;
+  }
+
+  .msg-group {
+    margin-bottom: 20px;
+    animation: msgIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  @keyframes msgIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .msg {
+    max-width: 78%;
+    padding: 14px 18px;
+    border-radius: 18px;
+    font-size: 15px;
+    line-height: 1.55;
+    word-wrap: break-word;
+  }
+
+  .msg-bot {
+    background: var(--bot-msg);
+    color: var(--ink);
+    border-bottom-left-radius: 4px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(212, 204, 184, 0.4);
+  }
+
+  .msg-user {
+    background: var(--user-msg);
+    color: var(--user-msg-text);
+    border-bottom-right-radius: 4px;
+    margin-left: auto;
+  }
+
+  .msg-meta {
+    font-size: 10px;
+    color: var(--ink-faint);
+    margin-top: 6px;
+    padding: 0 8px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .msg-meta.user { text-align: right; }
+
+  .typing {
+    display: flex;
+    gap: 4px;
+    padding: 16px 20px;
+    background: var(--bot-msg);
+    border-radius: 18px;
+    border-bottom-left-radius: 4px;
+    width: fit-content;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(212, 204, 184, 0.4);
+  }
+
+  .typing span {
+    width: 7px; height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: typing 1.4s ease-in-out infinite;
+  }
+
+  .typing span:nth-child(2) { animation-delay: 0.2s; }
+  .typing span:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes typing {
+    0%, 100% { transform: translateY(0); opacity: 0.4; }
+    50% { transform: translateY(-4px); opacity: 1; }
+  }
+
+  .quick-replies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+    animation: msgIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s both;
+  }
+
+  .chip {
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 9px 16px;
+    border-radius: 100px;
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .chip:hover {
+    background: var(--accent);
+    color: var(--bg);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .chip:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .booking-card {
+    background: linear-gradient(135deg, #ffffff 0%, #faf6ec 100%);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 24px;
+    margin-top: 12px;
+    box-shadow: var(--shadow-md);
+    animation: msgIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    max-width: 78%;
+  }
+
+  .booking-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .booking-icon {
+    width: 32px; height: 32px;
+    background: var(--accent);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .booking-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--ink);
+  }
+
+  .booking-detail {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 12px;
+    padding: 8px 0;
+    font-size: 14px;
+  }
+
+  .booking-detail .label {
+    color: var(--ink-faint);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding-top: 2px;
+  }
+
+  .booking-detail .value {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .booking-confirm {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    gap: 8px;
+  }
+
+  .btn-primary {
+    flex: 1;
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: #1a2540;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--ink-soft);
+    border: 1px solid var(--line);
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover {
+    background: var(--bg-deep);
+  }
+
+  .input-area {
+    padding: 20px 32px 24px;
+    border-top: 1px solid var(--line);
+    background: rgba(244, 239, 230, 0.85);
+    backdrop-filter: blur(12px);
+  }
+
+  .input-wrap {
+    display: flex;
+    gap: 10px;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 6px 6px 6px 18px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .input-wrap:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(42, 58, 92, 0.08);
+  }
+
+  .input-wrap input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-family: 'Geist', sans-serif;
+    font-size: 15px;
+    color: var(--ink);
+    padding: 10px 0;
+    background: transparent;
+  }
+
+  .input-wrap input::placeholder { color: var(--ink-faint); }
+
+  .send-btn {
+    background: var(--accent);
+    color: white;
+    border: none;
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+
+  .send-btn:hover { background: #1a2540; transform: scale(1.05); }
+  .send-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+  .input-hint {
+    font-size: 11px;
+    color: var(--ink-faint);
+    margin-top: 10px;
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
+
+  .demo-banner {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 10px 16px;
+    border-radius: 100px;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    z-index: 100;
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .demo-banner:hover { transform: scale(1.03); }
+  .demo-banner .pulse-dot {
+    width: 6px; height: 6px;
+    background: var(--accent-warm);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @media (max-width: 900px) {
+    html, body {
+      height: auto;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .app {
+      grid-template-columns: 1fr;
+      height: auto;
+      min-height: 100vh;
+    }
+    .practice-panel {
+      padding: 20px 24px;
+      position: static;
+      height: auto;
+      max-height: none;
+    }
+    .practice-panel .promise-card,
+    .practice-panel .practice-info,
+    .practice-panel .powered-by { display: none; }
+    .practice-name { font-size: 22px; }
+    .practice-doctor { font-size: 14px; margin-bottom: 0; }
+    .chat-panel {
+      min-height: 80vh;
+    }
+    .messages {
+      padding: 20px;
+      overflow-y: visible;
+      flex: none;
+    }
+    .msg { max-width: 88%; }
+    .input-area {
+      padding: 16px 20px 20px;
+      position: sticky;
+      bottom: 0;
+    }
+    .demo-banner { top: 8px; right: 8px; padding: 8px 12px; font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner" onclick="alert('This is a live demo built by Velo AI for the Law Office of Paulette Hamilton, P.A.\n\nFor deployment information, contact:\nGabe Herrera — Velo AI\nWinter Springs, FL')">
+  <span class="pulse-dot"></span>
+  <span>Velo AI Demo</span>
+</div>
+
+<div class="app">
+
+  <!-- LEFT: Practice Brand Panel -->
+  <aside class="practice-panel">
+    <div class="practice-content">
+      <div class="practice-mark">Downtown Orlando · S Orange Ave · Solo Practice</div>
+      <h1 class="practice-name">Paulette Hamilton, P.A.</h1>
+      <p class="practice-doctor">Paulette F. Hamilton — Family Law Attorney</p>
+
+      <div class="promise-card">
+        <h4>Counsel With Compassion</h4>
+        <p>Solo family law practice on S Orange Ave in downtown Orlando. Ms. Hamilton has handled divorce, custody, and parenting matters for over 15 years. Family law clients often face their hardest moments outside business hours — this line is here to make sure no one goes unanswered.</p>
+      </div>
+    </div>
+
+    <div class="practice-info">
+      <div class="row">
+        <div class="label">Address</div>
+        <div>189 S Orange Ave<br>Orlando, FL 32801</div>
+      </div>
+      <div class="row">
+        <div class="label">Phone</div>
+        <div>(407) 420-2311</div>
+      </div>
+      <div class="row">
+        <div class="label">Hours</div>
+        <div>Mon–Fri 9a–5p · After-hours intake available 24/7</div>
+      </div>
+    </div>
+
+    <div class="powered-by">
+      Intake powered by <strong>VELO AI</strong>
+    </div>
+  </aside>
+
+  <!-- RIGHT: Chat Interface -->
+  <main class="chat-panel">
+    <header class="chat-header">
+      <div class="chat-status">
+        <span class="status-dot"></span>
+        <span class="status-text"><strong>Hamilton Law Intake</strong> · Available 24/7</span>
+      </div>
+      <span class="chat-time" id="chat-time">After hours · 11:47 PM</span>
+    </header>
+
+    <div class="messages" id="messages"></div>
+
+    <div class="input-area">
+      <div class="input-wrap">
+        <input
+          type="text"
+          id="user-input"
+          placeholder="Type your message..."
+          autocomplete="off"
+        />
+        <button class="send-btn" id="send-btn" onclick="handleUserSend()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+        </button>
+      </div>
+      <div class="input-hint">A current client of Ms. Hamilton? She will be notified directly for urgent matters.</div>
+    </div>
+  </main>
+</div>
+
+<script>
+  // ============================================================
+  // VELO AI — Paulette Hamilton, P.A. Intake Flow
+  // Solo family law practice — divorce, custody, parenting plans.
+  // Warm, direct, and compassionate. Clients are in hard moments.
+  // ============================================================
+
+  const messagesEl = document.getElementById('messages');
+  const inputEl = document.getElementById('user-input');
+  const sendBtn = document.getElementById('send-btn');
+
+  const memory = {
+    name: null,
+    matter: null,
+    isExisting: null,
+    urgency: null,
+    history: []
+  };
+
+  const now = new Date();
+  const hours = now.getHours() < 8 || now.getHours() >= 17 ? '11:47 PM' : '6:32 AM';
+  document.getElementById('chat-time').textContent = `After hours · ${hours}`;
+
+  function addBotMessage(text, delay = 700, withChips = null) {
+    return new Promise(resolve => {
+      const typingId = 't' + Date.now();
+      const typing = document.createElement('div');
+      typing.className = 'msg-group';
+      typing.id = typingId;
+      typing.innerHTML = `<div class="typing"><span></span><span></span><span></span></div>`;
+      messagesEl.appendChild(typing);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+
+      setTimeout(() => {
+        document.getElementById(typingId)?.remove();
+        const msgGroup = document.createElement('div');
+        msgGroup.className = 'msg-group';
+        let html = `<div class="msg msg-bot">${text}</div><div class="msg-meta">Hamilton Law Intake</div>`;
+
+        if (withChips) {
+          html += `<div class="quick-replies">`;
+          withChips.forEach((chip) => {
+            html += `<button class="chip" onclick="handleChipClick('${chip.value.replace(/'/g, "\\'")}', this)">${chip.label}</button>`;
+          });
+          html += `</div>`;
+        }
+
+        msgGroup.innerHTML = html;
+        messagesEl.appendChild(msgGroup);
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+        resolve();
+      }, delay);
+    });
+  }
+
+  function addUserMessage(text) {
+    const msgGroup = document.createElement('div');
+    msgGroup.className = 'msg-group';
+    msgGroup.innerHTML = `
+      <div class="msg msg-user" style="margin-left:auto;">${text}</div>
+      <div class="msg-meta user">You · just now</div>
+    `;
+    messagesEl.appendChild(msgGroup);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+    memory.history.push({ role: 'user', text });
+  }
+
+  function disableChips(currentBtn) {
+    const chips = currentBtn.parentElement.querySelectorAll('.chip');
+    chips.forEach(c => c.disabled = true);
+    currentBtn.style.background = 'var(--accent)';
+    currentBtn.style.color = 'var(--bg)';
+  }
+
+  function showBookingCard(matterType, time) {
+    const card = document.createElement('div');
+    card.className = 'msg-group';
+    card.innerHTML = `
+      <div class="booking-card">
+        <div class="booking-header">
+          <div class="booking-icon">H</div>
+          <div class="booking-title">Consultation Hold Created</div>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Client</span>
+          <span class="value">${memory.name || 'New client'}</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Matter</span>
+          <span class="value">${matterType}</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Proposed</span>
+          <span class="value">${time}</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">With</span>
+          <span class="value">Paulette F. Hamilton, Esq.</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Office</span>
+          <span class="value">189 S Orange Ave, Orlando, FL 32801</span>
+        </div>
+        <div class="booking-confirm">
+          <button class="btn-primary" onclick="confirmBooking()">Confirm consultation</button>
+          <button class="btn-secondary" onclick="proposeAlternative()">Different time</button>
+        </div>
+      </div>
+    `;
+    messagesEl.appendChild(card);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  // ============================================================
+  // Conversation Flow
+  // ============================================================
+
+  async function startConversation() {
+    await addBotMessage(
+      `Good evening — you've reached the after-hours intake line for Paulette Hamilton, P.A. in downtown Orlando. Ms. Hamilton focuses exclusively on family law — divorce, custody, and parenting matters — and she personally reviews all after-hours messages. Anything you share here is confidential.<br><br>What brings you here tonight?`,
+      400,
+      [
+        { label: 'Divorce or separation', value: 'divorce' },
+        { label: 'Child custody', value: 'custody' },
+        { label: 'Parenting plan', value: 'parenting-plan' },
+        { label: 'General question', value: 'question' }
+      ]
+    );
+  }
+
+  async function handleChipClick(value, btn) {
+    disableChips(btn);
+    const labelMap = {
+      'divorce': "I have a divorce or separation matter",
+      'custody': "I have a child custody issue",
+      'parenting-plan': "I need help with a parenting plan",
+      'question': "I have a general question",
+      'urgent-frozen': "Yes — there's an immediate deadline or concern",
+      'urgent-soon': "Soon, but not in crisis",
+      'urgent-planning': "No deadline — just getting started",
+      'this-week': "This week",
+      'next-week': "Next week",
+      'flexible': "I'm flexible",
+      'no-slot': "No thank you"
+    };
+    addUserMessage(labelMap[value] || value);
+    memory.history.push({ role: 'user', value });
+    await routeIntent(value);
+  }
+
+  async function routeIntent(value) {
+
+    // DIVORCE PATH -------------------------------------------------
+    if (value === 'divorce') {
+      memory.matter = 'divorce';
+      await addBotMessage(
+        `Divorce is one of the most significant decisions a person can make, and it's important to have someone in your corner who understands both the legal process and the human side of it. Ms. Hamilton handles uncontested and contested divorces, including matters involving property, support, and children.<br><br>Is there a specific aspect weighing on you most right now — the financial side, custody of children, or simply understanding your options?`,
+        1200
+      );
+      memory.collecting = 'divorce-detail';
+      return;
+    }
+
+    // CUSTODY PATH -------------------------------------------------
+    if (value === 'custody') {
+      memory.matter = 'custody';
+      await addBotMessage(
+        `Custody matters can feel urgent and emotional, especially when children are involved. Ms. Hamilton has navigated these cases across Orange County for over 15 years — from initial custody determinations to modifications when circumstances change.<br><br>Is there a hearing scheduled, or is this matter just getting started?`,
+        1200,
+        [
+          { label: 'Hearing coming up', value: 'urgent-frozen' },
+          { label: 'No hearing yet', value: 'urgent-planning' },
+          { label: 'Ongoing — modification needed', value: 'urgent-soon' }
+        ]
+      );
+      return;
+    }
+
+    // PARENTING PLAN PATH -----------------------------------------
+    if (value === 'parenting-plan') {
+      memory.matter = 'parenting-plan';
+      await addBotMessage(
+        `A solid parenting plan protects your children and reduces conflict down the road. Ms. Hamilton drafts and reviews parenting plans as standalone agreements or as part of a broader divorce proceeding. She'll make sure the plan reflects what actually works for your family.<br><br>Is this for an existing case, or are you starting the process fresh?`,
+        1200,
+        [
+          { label: 'Part of an active divorce', value: 'urgent-soon' },
+          { label: 'Standalone — co-parenting agreement', value: 'urgent-planning' },
+          { label: 'Need to modify an existing plan', value: 'urgent-soon' }
+        ]
+      );
+      return;
+    }
+
+    // URGENCY HANDLERS --------------------------------------------
+    if (value === 'urgent-frozen') {
+      memory.urgency = 'severe';
+      await addBotMessage(
+        `Understood — Ms. Hamilton will be notified that this message came in tonight and will prioritize reaching out to you. Please know you are not alone in this.<br><br>May I have your first name and a callback number? If there is a specific hearing date or deadline, please mention it so she has the full picture.`,
+        1200
+      );
+      memory.collecting = 'name-phone';
+      return;
+    }
+
+    if (value === 'urgent-soon' || value === 'urgent-planning') {
+      memory.urgency = value;
+      await addBotMessage(
+        `Thank you — that helps me set the right expectation. Ms. Hamilton typically has consultation availability Tuesday through Thursday. She prefers the first conversation to be unhurried so you can ask everything on your mind without feeling rushed.<br><br>What is your first name? I'll make sure she reaches out tomorrow morning.`,
+        1100
+      );
+      memory.collecting = 'name';
+      return;
+    }
+
+    if (['this-week', 'next-week', 'flexible'].includes(value)) {
+      const timeMap = {
+        'this-week': 'Thursday at 2:00 PM',
+        'next-week': 'Tuesday at 10:30 AM',
+        'flexible': 'Wednesday at 1:00 PM'
+      };
+      memory.proposedTime = timeMap[value];
+      await addBotMessage(
+        `Let me hold ${timeMap[value]} for you. May I have your first name to place on Ms. Hamilton's calendar?`,
+        900
+      );
+      memory.collecting = 'name-for-booking';
+      return;
+    }
+
+    // GENERAL QUESTION PATH ----------------------------------------
+    if (value === 'question') {
+      memory.matter = 'question';
+      await addBotMessage(
+        `Of course — go ahead and type your question. Ms. Hamilton focuses exclusively on family law, so if your question falls within divorce, custody, or parenting matters, she is the right person. I'll log it and she will respond first thing in the morning.`,
+        900
+      );
+      memory.collecting = 'free-question';
+      return;
+    }
+  }
+
+  // ============================================================
+  // Free-text input handler
+  // ============================================================
+  async function handleUserSend() {
+    const text = inputEl.value.trim();
+    if (!text) return;
+    addUserMessage(text);
+    inputEl.value = '';
+
+    if (memory.collecting === 'divorce-detail') {
+      memory.divorceDetail = text;
+      memory.collecting = null;
+      await addBotMessage(
+        `Thank you for sharing that. Ms. Hamilton will want to understand the full situation when she speaks with you — nothing you've said here is too complicated for her to navigate.<br><br>Is there a timeline or deadline on your end I should flag for her?`,
+        1100,
+        [
+          { label: 'Yes — there is a deadline', value: 'urgent-frozen' },
+          { label: 'Soon, but no hard deadline', value: 'urgent-soon' },
+          { label: 'No deadline — exploring options', value: 'urgent-planning' }
+        ]
+      );
+      return;
+    }
+
+    if (memory.collecting === 'name' || memory.collecting === 'name-for-booking' || memory.collecting === 'name-phone') {
+      const name = text.split(/\s+/)[0].replace(/[^a-zA-Z]/g, '');
+      memory.name = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+
+      const responses = {
+        'name': `Thank you, ${memory.name}. And the best phone number to reach you? Ms. Hamilton will call or text in the morning.`,
+        'name-for-booking': `Thank you, ${memory.name}. And the best phone number? Ms. Hamilton's office will send a confirmation by 9 AM.`,
+        'name-phone': `Thank you, ${memory.name}. What is the best callback number? Ms. Hamilton will make reaching you the first thing she does tomorrow.`
+      };
+      const oldState = memory.collecting;
+      await addBotMessage(responses[oldState], 800);
+      memory.collecting = 'phone';
+      return;
+    }
+
+    if (memory.collecting === 'phone') {
+      memory.phone = text;
+      memory.collecting = null;
+
+      if (memory.proposedTime) {
+        const matterMap = {
+          'divorce': 'Divorce Consultation',
+          'custody': 'Custody Consultation',
+          'parenting-plan': 'Parenting Plan Consultation',
+          'question': 'General Family Law Consultation'
+        };
+        const matter = matterMap[memory.matter] || 'Family Law Consultation';
+        await addBotMessage(`Very good. Here is the hold I'm placing on Ms. Hamilton's calendar:`, 800);
+        setTimeout(() => showBookingCard(matter, memory.proposedTime), 1200);
+      } else if (memory.urgency === 'severe') {
+        await addBotMessage(
+          `Thank you, ${memory.name}. I've flagged this as priority for Ms. Hamilton. She will reach out to <strong>${text}</strong> first thing tomorrow — before her scheduled appointments begin.<br><br>You've done the right thing reaching out tonight. She will be in touch.`,
+          1100
+        );
+      } else {
+        await addBotMessage(
+          `You're all set, ${memory.name}. Ms. Hamilton will reach out to ${text} in the morning to set a time. Is there anything else you'd like me to pass along to her?`,
+          1000
+        );
+      }
+      return;
+    }
+
+    if (memory.collecting === 'free-question') {
+      memory.collecting = null;
+      await addBotMessage(
+        `Thank you — I've logged your question for Ms. Hamilton. She will review it first thing tomorrow and respond directly or have her office follow up by 10 AM.<br><br>Would you like me to hold a consultation slot in case it's easier to talk through in person?`,
+        1100,
+        [
+          { label: 'Yes, hold a slot', value: 'this-week' },
+          { label: 'No thank you', value: 'no-slot' }
+        ]
+      );
+      return;
+    }
+
+    if (memory.collecting === null && memory.history.length > 0) {
+      // Generic fallback after conversation is underway
+      await addBotMessage(
+        `Thank you. To make sure I route this to Ms. Hamilton correctly — would you say this is a divorce matter, a custody issue, or something else related to family law?`,
+        900,
+        [
+          { label: 'Divorce or separation', value: 'divorce' },
+          { label: 'Custody or parenting', value: 'custody' },
+          { label: 'General question', value: 'question' }
+        ]
+      );
+      return;
+    }
+
+    // Cold fallback
+    await addBotMessage(
+      `Thank you for reaching out. Ms. Hamilton handles divorce, custody, and parenting matters exclusively. What brings you here tonight?`,
+      900,
+      [
+        { label: 'Divorce or separation', value: 'divorce' },
+        { label: 'Child custody', value: 'custody' },
+        { label: 'Parenting plan', value: 'parenting-plan' },
+        { label: 'General question', value: 'question' }
+      ]
+    );
+  }
+
+  function confirmBooking() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) {
+      card.style.transition = 'all 0.3s ease';
+      card.style.background = 'linear-gradient(135deg, #2a3a5c 0%, #1a2540 100%)';
+      card.style.color = 'white';
+      card.querySelector('.booking-title').style.color = 'white';
+      card.querySelector('.booking-icon').style.background = 'white';
+      card.querySelector('.booking-icon').style.color = 'var(--accent)';
+      card.querySelectorAll('.label').forEach(el => el.style.color = 'rgba(255,255,255,0.6)');
+      card.querySelectorAll('.value').forEach(el => el.style.color = 'white');
+      card.querySelector('.booking-confirm').remove();
+    }
+    setTimeout(async () => {
+      await addBotMessage(
+        `You are all set, ${memory.name || 'there'}. Ms. Hamilton has been notified and will confirm by phone or text from <strong>(407) 420-2311</strong> tomorrow morning.<br><br>Take care this evening — you're in good hands.`,
+        700
+      );
+    }, 400);
+  }
+
+  function proposeAlternative() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) card.remove();
+    addBotMessage(
+      `Of course. Ms. Hamilton also has openings Tuesday at 11 AM, Wednesday at 3 PM, or Friday at 10 AM — which works better?`,
+      600,
+      [
+        { label: 'Tuesday 11 AM', value: 'this-week' },
+        { label: 'Wednesday 3 PM', value: 'next-week' },
+        { label: 'Friday 10 AM', value: 'flexible' }
+      ]
+    );
+  }
+
+  inputEl.addEventListener('keydown', e => {
+    if (e.key === 'Enter') handleUserSend();
+  });
+
+  setTimeout(startConversation, 600);
+</script>
+
+</body>
+</html>

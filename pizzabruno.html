@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pizza Bruno — After-Hours Line | Powered by Velo AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f3ed;
+    --bg-deep: #ece6d8;
+    --ink: #1a1f1c;
+    --ink-soft: #4a544c;
+    --ink-faint: #8a8f86;
+    --accent: #2d5a3f;
+    --accent-warm: #c9926b;
+    --accent-glow: #e8d9b8;
+    --line: #d4ccba;
+    --user-msg: #2d5a3f;
+    --user-msg-text: #f6f3ed;
+    --bot-msg: #ffffff;
+    --shadow-sm: 0 1px 2px rgba(26, 31, 28, 0.04);
+    --shadow-md: 0 4px 16px rgba(26, 31, 28, 0.08);
+    --shadow-lg: 0 12px 40px rgba(26, 31, 28, 0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body { height: 100%; }
+
+  body {
+    font-family: 'Geist', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.5;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(201, 146, 107, 0.06) 0%, transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(45, 90, 63, 0.05) 0%, transparent 40%);
+  }
+
+  .app {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    min-height: 100vh;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* --- LEFT PANEL: Practice Branding --- */
+  .practice-panel {
+    background: linear-gradient(180deg, #1a3326 0%, #0f1f17 100%);
+    color: #e8e0d0;
+    padding: 40px 32px;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .practice-panel::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(201, 146, 107, 0.08) 0%, transparent 50%);
+    animation: drift 20s ease-in-out infinite;
+  }
+
+  @keyframes drift {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(20%, 10%); }
+  }
+
+  .practice-content { position: relative; z-index: 1; }
+
+  .practice-mark {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    margin-bottom: 12px;
+    opacity: 0.9;
+  }
+
+  .practice-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+  }
+
+  .practice-doctor {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--accent-glow);
+    margin-bottom: 32px;
+  }
+
+  .promise-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(232, 217, 184, 0.15);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+    backdrop-filter: blur(10px);
+  }
+
+  .promise-card h4 {
+    font-family: 'Geist', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    margin-bottom: 8px;
+  }
+
+  .promise-card p {
+    font-size: 14px;
+    line-height: 1.55;
+    color: #d4cdb8;
+  }
+
+  .practice-info {
+    margin-top: auto;
+    padding-top: 24px;
+    border-top: 1px solid rgba(232, 217, 184, 0.1);
+    font-size: 13px;
+    line-height: 1.7;
+    color: #b8b0a0;
+  }
+
+  .practice-info .row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 8px;
+  }
+
+  .practice-info .label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    width: 56px;
+    padding-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .powered-by {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(232, 217, 184, 0.1);
+    font-size: 11px;
+    color: #8a8275;
+    letter-spacing: 0.05em;
+  }
+
+  .powered-by strong {
+    color: var(--accent-glow);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+  }
+
+  /* --- RIGHT PANEL: Chat Interface --- */
+  .chat-panel {
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .chat-header {
+    padding: 20px 32px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(246, 243, 237, 0.85);
+    backdrop-filter: blur(12px);
+    z-index: 10;
+  }
+
+  .chat-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .status-dot {
+    width: 8px; height: 8px;
+    background: #4ade80;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.15);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.15); }
+    50% { box-shadow: 0 0 0 8px rgba(74, 222, 128, 0.05); }
+  }
+
+  .status-text {
+    font-size: 13px;
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+
+  .status-text strong { color: var(--ink); font-weight: 600; }
+
+  .chat-time {
+    font-family: 'Fraunces', serif;
+    font-size: 12px;
+    color: var(--ink-faint);
+    font-style: italic;
+  }
+
+  .messages {
+    flex: 1;
+    padding: 32px;
+    scroll-behavior: smooth;
+  }
+
+  .msg-group {
+    margin-bottom: 20px;
+    animation: msgIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  @keyframes msgIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .msg {
+    max-width: 78%;
+    padding: 14px 18px;
+    border-radius: 18px;
+    font-size: 15px;
+    line-height: 1.55;
+    word-wrap: break-word;
+  }
+
+  .msg-bot {
+    background: var(--bot-msg);
+    color: var(--ink);
+    border-bottom-left-radius: 4px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(212, 204, 186, 0.4);
+  }
+
+  .msg-user {
+    background: var(--user-msg);
+    color: var(--user-msg-text);
+    border-bottom-right-radius: 4px;
+    margin-left: auto;
+  }
+
+  .msg-meta {
+    font-size: 10px;
+    color: var(--ink-faint);
+    margin-top: 6px;
+    padding: 0 8px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .msg-meta.user { text-align: right; }
+
+  .typing {
+    display: flex;
+    gap: 4px;
+    padding: 16px 20px;
+    background: var(--bot-msg);
+    border-radius: 18px;
+    border-bottom-left-radius: 4px;
+    width: fit-content;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(212, 204, 186, 0.4);
+  }
+
+  .typing span {
+    width: 7px; height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: typing 1.3s ease-in-out infinite;
+  }
+
+  .typing span:nth-child(2) { animation-delay: 0.2s; }
+  .typing span:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes typing {
+    0%, 100% { transform: translateY(0); opacity: 0.4; }
+    50% { transform: translateY(-4px); opacity: 1; }
+  }
+
+  /* Quick reply chips */
+  .quick-replies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+    animation: msgIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s both;
+  }
+
+  .chip {
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 9px 16px;
+    border-radius: 100px;
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .chip:hover {
+    background: var(--accent);
+    color: var(--bg);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .chip:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  /* Booking card */
+  .booking-card {
+    background: linear-gradient(135deg, #ffffff 0%, #faf6ec 100%);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 24px;
+    margin-top: 12px;
+    box-shadow: var(--shadow-md);
+    animation: msgIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    max-width: 78%;
+  }
+
+  .booking-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .booking-icon {
+    width: 32px; height: 32px;
+    background: var(--accent);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .booking-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--ink);
+  }
+
+  .booking-detail {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 12px;
+    padding: 8px 0;
+    font-size: 14px;
+  }
+
+  .booking-detail .label {
+    color: var(--ink-faint);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding-top: 2px;
+  }
+
+  .booking-detail .value {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .booking-confirm {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    gap: 8px;
+  }
+
+  .btn-primary {
+    flex: 1;
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: #1f4530;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--ink-soft);
+    border: 1px solid var(--line);
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover {
+    background: var(--bg-deep);
+  }
+
+  /* Input area */
+  .input-area {
+    padding: 20px 32px 24px;
+    border-top: 1px solid var(--line);
+    background: rgba(246, 243, 237, 0.85);
+    backdrop-filter: blur(12px);
+  }
+
+  .input-wrap {
+    display: flex;
+    gap: 10px;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 6px 6px 6px 18px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .input-wrap:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(45, 90, 63, 0.08);
+  }
+
+  .input-wrap input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-family: 'Geist', sans-serif;
+    font-size: 15px;
+    color: var(--ink);
+    padding: 10px 0;
+    background: transparent;
+  }
+
+  .input-wrap input::placeholder { color: var(--ink-faint); }
+
+  .send-btn {
+    background: var(--accent);
+    color: white;
+    border: none;
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+
+  .send-btn:hover { background: #1f4530; transform: scale(1.05); }
+  .send-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+  .input-hint {
+    font-size: 11px;
+    color: var(--ink-faint);
+    margin-top: 10px;
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
+
+  /* Demo banner */
+  .demo-banner {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 10px 16px;
+    border-radius: 100px;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    z-index: 100;
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .demo-banner:hover { transform: scale(1.03); }
+  .demo-banner .pulse-dot {
+    width: 6px; height: 6px;
+    background: var(--accent-warm);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  /* Mobile */
+  @media (max-width: 900px) {
+    html, body {
+      height: auto;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .app {
+      grid-template-columns: 1fr;
+      height: auto;
+      min-height: 100vh;
+    }
+    .practice-panel {
+      padding: 20px 24px;
+      position: static;
+      height: auto;
+      max-height: none;
+    }
+    .practice-panel .promise-card,
+    .practice-panel .practice-info,
+    .practice-panel .powered-by { display: none; }
+    .practice-name { font-size: 22px; }
+    .practice-doctor { font-size: 14px; margin-bottom: 0; }
+    .chat-panel {
+      min-height: 80vh;
+    }
+    .messages {
+      padding: 20px;
+      overflow-y: visible;
+      flex: none;
+    }
+    .msg { max-width: 88%; }
+    .input-area {
+      padding: 16px 20px 20px;
+      position: sticky;
+      bottom: 0;
+    }
+    .demo-banner { top: 8px; right: 8px; padding: 8px 12px; font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner" onclick="alert('This is a live demo built by Velo AI for Pizza Bruno.\n\nFor deployment information, contact:\nGabe Herrera — Velo AI\nWinter Springs, FL')">
+  <span class="pulse-dot"></span>
+  <span>Velo AI Demo</span>
+</div>
+
+<div class="app">
+
+  <!-- LEFT: Practice Brand Panel -->
+  <aside class="practice-panel">
+    <div class="practice-content">
+      <div class="practice-mark">SODO · Curry Ford West, Orlando · Michelin Guide 2022–2025</div>
+      <h1 class="practice-name">Pizza Bruno</h1>
+      <p class="practice-doctor">Bruno Zacchini III — Owner &amp; Pizzaiolo</p>
+
+      <div class="promise-card">
+        <h4>Always Open for Reservations</h4>
+        <p>Michelin Guide-listed four years running. Pizza Bruno is Orlando's definitive independent pizzeria — cold-fermented dough, wood-fired at 1000°F, made by Bruno himself. Orlando Weekly's Best SODO Restaurant. The phone doesn't always get answered. This line does.</p>
+      </div>
+    </div>
+
+    <div class="practice-info">
+      <div class="row">
+        <div class="label">Address</div>
+        <div>SODO / Curry Ford West<br>Orlando, FL 32806</div>
+      </div>
+      <div class="row">
+        <div class="label">Phone</div>
+        <div>(407) 270-6833</div>
+      </div>
+      <div class="row">
+        <div class="label">Hours</div>
+        <div>Tue–Sun · 5pm–10pm</div>
+      </div>
+    </div>
+
+    <div class="powered-by">
+      Concierge powered by <strong>VELO AI</strong>
+    </div>
+  </aside>
+
+  <!-- RIGHT: Chat Interface -->
+  <main class="chat-panel">
+    <header class="chat-header">
+      <div class="chat-status">
+        <span class="status-dot"></span>
+        <span class="status-text"><strong>Pizza Bruno</strong> · Available 24/7</span>
+      </div>
+      <span class="chat-time" id="chat-time">After hours · 11:47 PM</span>
+    </header>
+
+    <div class="messages" id="messages"></div>
+
+    <div class="input-area">
+      <div class="input-wrap">
+        <input
+          type="text"
+          id="user-input"
+          placeholder="Type your message..."
+          autocomplete="off"
+        />
+        <button class="send-btn" id="send-btn" onclick="handleUserSend()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+        </button>
+      </div>
+      <div class="input-hint">Bruno is notified directly for large parties and private events.</div>
+    </div>
+  </main>
+</div>
+
+<script>
+  // ============================================================
+  // VELO AI — 7-Step Persuasion Engine
+  // Acknowledge → Validate → Surface → Propose → Reference → Timebox → Commit
+  // ============================================================
+
+  const messagesEl = document.getElementById('messages');
+  const inputEl = document.getElementById('user-input');
+  const sendBtn = document.getElementById('send-btn');
+
+  // Conversation memory
+  const memory = {
+    name: null,
+    concern: null,
+    partySize: null,
+    date: null,
+    time: null,
+    urgency: null,
+    flowType: null,
+    history: [],
+    collecting: null,
+    proposedTime: null,
+    phone: null
+  };
+
+  // Set realistic after-hours timestamp
+  const now = new Date();
+  const hours = now.getHours() < 8 || now.getHours() >= 17 ? '11:47 PM' : '6:32 AM';
+  document.getElementById('chat-time').textContent = `After hours · ${hours}`;
+
+  function addBotMessage(text, delay = 700, withChips = null) {
+    return new Promise(resolve => {
+      const typingId = 't' + Date.now();
+      const typing = document.createElement('div');
+      typing.className = 'msg-group';
+      typing.id = typingId;
+      typing.innerHTML = `<div class="typing"><span></span><span></span><span></span></div>`;
+      messagesEl.appendChild(typing);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+
+      setTimeout(() => {
+        document.getElementById(typingId)?.remove();
+        const msgGroup = document.createElement('div');
+        msgGroup.className = 'msg-group';
+        let html = `<div class="msg msg-bot">${text}</div><div class="msg-meta">Pizza Bruno</div>`;
+
+        if (withChips) {
+          html += `<div class="quick-replies">`;
+          withChips.forEach((chip) => {
+            html += `<button class="chip" onclick="handleChipClick('${chip.value.replace(/'/g, "\\'")}', this)">${chip.label}</button>`;
+          });
+          html += `</div>`;
+        }
+
+        msgGroup.innerHTML = html;
+        messagesEl.appendChild(msgGroup);
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+        resolve();
+      }, delay);
+    });
+  }
+
+  function addUserMessage(text) {
+    const msgGroup = document.createElement('div');
+    msgGroup.className = 'msg-group';
+    msgGroup.innerHTML = `
+      <div class="msg msg-user" style="margin-left:auto;">${text}</div>
+      <div class="msg-meta user">You · just now</div>
+    `;
+    messagesEl.appendChild(msgGroup);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+    memory.history.push({ role: 'user', text });
+  }
+
+  function disableChips(currentBtn) {
+    const chips = currentBtn.parentElement.querySelectorAll('.chip');
+    chips.forEach(c => c.disabled = true);
+    currentBtn.style.background = 'var(--accent)';
+    currentBtn.style.color = 'var(--bg)';
+  }
+
+  function showBookingCard(forWhat, time) {
+    const card = document.createElement('div');
+    card.className = 'msg-group';
+    card.innerHTML = `
+      <div class="booking-card">
+        <div class="booking-header">
+          <div class="booking-icon">B</div>
+          <div class="booking-title">Reservation Hold Created</div>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Name</span>
+          <span class="value">${memory.name || 'Guest'}</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Party</span>
+          <span class="value">${memory.partySize || 'TBD'}</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">For</span>
+          <span class="value">${forWhat}</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Proposed</span>
+          <span class="value">${time}</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Location</span>
+          <span class="value">SODO / Curry Ford West, Orlando, FL 32806</span>
+        </div>
+        <div class="booking-confirm">
+          <button class="btn-primary" onclick="confirmBooking()">Confirm reservation</button>
+          <button class="btn-secondary" onclick="proposeAlternative()">Different time</button>
+        </div>
+      </div>
+    `;
+    messagesEl.appendChild(card);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  // ============================================================
+  // Conversation Flow
+  // ============================================================
+
+  async function startConversation() {
+    await addBotMessage(
+      `Hey — you've reached the line for Pizza Bruno in SODO. Bruno's Michelin-listed and usually in the kitchen, so calls don't always get answered. That's what this is for. I can take a reservation, answer a question, or pass a note to Bruno directly.<br><br>What can I do for you?`,
+      400,
+      [
+        { label: 'Reserve a table', value: 'reserve' },
+        { label: 'Large party or private event', value: 'large-party' },
+        { label: 'Menu question', value: 'menu-question' },
+        { label: 'General question', value: 'general-question' }
+      ]
+    );
+  }
+
+  async function handleChipClick(value, btn) {
+    disableChips(btn);
+    const labelMap = {
+      'reserve': 'Reserve a table',
+      'large-party': 'Large party or private event',
+      'menu-question': 'Menu question',
+      'general-question': 'General question',
+      'party-2': '1–2 people',
+      'party-4': '3–4 people',
+      'party-6': '5–6 people',
+      'party-7plus': '7+ people',
+      'time-tonight': 'Tonight',
+      'time-tomorrow': 'Tomorrow',
+      'time-weekend': 'This weekend',
+      'time-other': 'Another night',
+      'confirm-res': 'Yes, confirm it',
+      'change-res': 'Change something',
+      'menu-style': 'Style of pizza',
+      'menu-dough': 'The dough',
+      'menu-dietary': 'Dietary options',
+      'menu-other': 'Something else',
+      'alt-tue': 'Tuesday evening',
+      'alt-wed': 'Wednesday evening',
+      'alt-fri': 'Friday evening'
+    };
+    addUserMessage(labelMap[value] || value);
+    memory.history.push({ role: 'user', value });
+    await routeIntent(value);
+  }
+
+  async function routeIntent(value) {
+
+    // RESERVATION PATH
+    if (value === 'reserve') {
+      memory.flowType = 'reservation';
+      await addBotMessage(
+        `Great. How many people are we talking?`,
+        700,
+        [
+          { label: '1–2 people', value: 'party-2' },
+          { label: '3–4 people', value: 'party-4' },
+          { label: '5–6 people', value: 'party-6' },
+          { label: '7+ people', value: 'party-7plus' }
+        ]
+      );
+      return;
+    }
+
+    if (value === 'party-2') { memory.partySize = '1–2 guests'; await askDate(); return; }
+    if (value === 'party-4') { memory.partySize = '3–4 guests'; await askDate(); return; }
+    if (value === 'party-6') { memory.partySize = '5–6 guests'; await askDate(); return; }
+    if (value === 'party-7plus') {
+      memory.partySize = '7+ guests';
+      memory.flowType = 'large-party';
+      await routeIntent('large-party');
+      return;
+    }
+
+    if (value === 'time-tonight') { memory.date = 'Tonight'; memory.proposedTime = 'Tonight'; await askName(); return; }
+    if (value === 'time-tomorrow') { memory.date = 'Tomorrow'; memory.proposedTime = 'Tomorrow evening'; await askName(); return; }
+    if (value === 'time-weekend') { memory.date = 'This weekend'; memory.proposedTime = 'This weekend'; await askName(); return; }
+    if (value === 'time-other') {
+      await addBotMessage(`No problem — drop the date and we'll find a time that works.`, 700);
+      memory.collecting = 'custom-date';
+      return;
+    }
+
+    // LARGE PARTY PATH
+    if (value === 'large-party') {
+      memory.flowType = 'large-party';
+      await addBotMessage(
+        `Got it — for 8 or more, Bruno gets notified directly. We handle private events and large parties personally.<br><br>Tell me a bit about the event — approximate headcount, date, and whether you're thinking full buyout or a reserved section. I'll pass it straight to Bruno.`,
+        1000
+      );
+      memory.collecting = 'large-party-details';
+      return;
+    }
+
+    // MENU QUESTION PATH
+    if (value === 'menu-question') {
+      memory.flowType = 'menu';
+      await addBotMessage(
+        `Happy to help. What do you want to know?`,
+        700,
+        [
+          { label: 'Style of pizza', value: 'menu-style' },
+          { label: 'The dough', value: 'menu-dough' },
+          { label: 'Dietary options', value: 'menu-dietary' },
+          { label: 'Something else', value: 'menu-other' }
+        ]
+      );
+      return;
+    }
+
+    if (value === 'menu-style') {
+      await addBotMessage(
+        `Bruno does Neapolitan-influenced pizza — thin, airy crust with a proper char, cooked in a wood-fired oven at around 1000°F. Not quite traditional Neapolitan, not New York — it's his own thing, and it's what got him in the Michelin Guide four years running. The menu rotates seasonally but always centers on a handful of well-composed pies. Simple, precise, no fluff.`,
+        1200
+      );
+      await addBotMessage(`Anything else, or want to grab a table?`, 900, [
+        { label: 'Reserve a table', value: 'reserve' },
+        { label: 'More questions', value: 'menu-question' }
+      ]);
+      return;
+    }
+
+    if (value === 'menu-dough') {
+      await addBotMessage(
+        `The dough is cold-fermented — Bruno lets it develop slowly over time, which gives the crust that depth of flavor and the right amount of chew. It's baked off in a wood-fired oven at 1000°F, so you get a proper leopard-spotted char without it turning dry or cracker-thin. The process is part of what makes it worth the drive.`,
+        1200
+      );
+      await addBotMessage(`Anything else?`, 800, [
+        { label: 'Reserve a table', value: 'reserve' },
+        { label: 'More questions', value: 'menu-question' }
+      ]);
+      return;
+    }
+
+    if (value === 'menu-dietary') {
+      await addBotMessage(
+        `There are vegetarian options on the menu — Bruno works with seasonal produce and a few of the pies are naturally veg-forward. For gluten or dairy questions, best to call ahead at (407) 270-6833 during service hours (Tue–Sun, 5–10pm) since the menu rotates and cross-contact is always a possibility in a small kitchen.`,
+        1200
+      );
+      await addBotMessage(`Anything else I can help with?`, 800, [
+        { label: 'Reserve a table', value: 'reserve' },
+        { label: 'Another question', value: 'menu-question' }
+      ]);
+      return;
+    }
+
+    if (value === 'menu-other') {
+      await addBotMessage(`Go ahead — what do you want to know? I'll answer if I can, or pass it to the team.`, 800);
+      memory.collecting = 'free-question';
+      return;
+    }
+
+    // GENERAL QUESTION PATH
+    if (value === 'general-question') {
+      memory.flowType = 'general';
+      await addBotMessage(
+        `Sure — what's on your mind? Hours, parking, reservations, the backstory — whatever you've got.`,
+        800
+      );
+      memory.collecting = 'free-question';
+      return;
+    }
+
+    // ALTERNATIVE TIMES
+    if (value === 'alt-tue') { memory.proposedTime = 'Tuesday evening'; await finishWithCard(); return; }
+    if (value === 'alt-wed') { memory.proposedTime = 'Wednesday evening'; await finishWithCard(); return; }
+    if (value === 'alt-fri') { memory.proposedTime = 'Friday evening'; await finishWithCard(); return; }
+
+    // DEFAULT FALLBACK
+    await addBotMessage(
+      `Got it. Let me make sure I get this to the right place — are you looking to reserve a table, ask about the menu, or something else?`,
+      900,
+      [
+        { label: 'Reserve a table', value: 'reserve' },
+        { label: 'Large party or private event', value: 'large-party' },
+        { label: 'Menu question', value: 'menu-question' }
+      ]
+    );
+  }
+
+  async function askDate() {
+    await addBotMessage(
+      `When are you thinking?`,
+      800,
+      [
+        { label: 'Tonight', value: 'time-tonight' },
+        { label: 'Tomorrow', value: 'time-tomorrow' },
+        { label: 'This weekend', value: 'time-weekend' },
+        { label: 'Another night', value: 'time-other' }
+      ]
+    );
+  }
+
+  async function askName() {
+    await addBotMessage(
+      `Good choice. What name should I put the reservation under?`,
+      800
+    );
+    memory.collecting = 'name';
+  }
+
+  async function finishWithCard() {
+    await addBotMessage(
+      `Here's what I've got — confirm and Bruno's team will have it:`,
+      800
+    );
+    setTimeout(() => showBookingCard('Dinner Reservation', memory.proposedTime || 'TBD'), 1000);
+  }
+
+  // ============================================================
+  // Free-text input handler
+  // ============================================================
+  async function handleUserSend() {
+    const text = inputEl.value.trim();
+    if (!text) return;
+    addUserMessage(text);
+    inputEl.value = '';
+
+    // Name collection
+    if (memory.collecting === 'name') {
+      const nameRaw = text.split(/\s+/)[0].replace(/[^a-zA-Z'-]/g, '');
+      memory.name = nameRaw.charAt(0).toUpperCase() + nameRaw.slice(1).toLowerCase();
+      memory.collecting = 'phone';
+      await addBotMessage(
+        `Nice to meet you, ${memory.name}. Best phone number for confirmation?`,
+        800
+      );
+      return;
+    }
+
+    // Phone collection
+    if (memory.collecting === 'phone') {
+      memory.phone = text;
+      memory.collecting = null;
+      await addBotMessage(
+        `Perfect. Here's what I've got — take a look:`,
+        800
+      );
+      setTimeout(() => showBookingCard('Dinner Reservation', memory.proposedTime || memory.date || 'TBD'), 1000);
+      return;
+    }
+
+    // Custom date entry
+    if (memory.collecting === 'custom-date') {
+      memory.date = text;
+      memory.proposedTime = text;
+      memory.collecting = null;
+      await askName();
+      return;
+    }
+
+    // Large party details
+    if (memory.collecting === 'large-party-details') {
+      memory.collecting = 'phone-large';
+      await addBotMessage(
+        `Got it — I'm passing this to Bruno directly. What's the best number to reach you?`,
+        900
+      );
+      return;
+    }
+
+    if (memory.collecting === 'phone-large') {
+      memory.phone = text;
+      memory.collecting = null;
+      await addBotMessage(
+        `Sent. Bruno or someone from the team will reach out within 24 hours to talk through the details. Large events book fast, especially weekends, so you'll hear back soon.<br><br>Is there anything else in the meantime?`,
+        1100,
+        [
+          { label: 'Menu question', value: 'menu-question' },
+          { label: 'General question', value: 'general-question' }
+        ]
+      );
+      return;
+    }
+
+    // Free question fallback
+    if (memory.collecting === 'free-question') {
+      memory.collecting = null;
+      const lower = text.toLowerCase();
+
+      // Try to answer common questions intelligently
+      if (lower.includes('hour') || lower.includes('open') || lower.includes('close')) {
+        await addBotMessage(
+          `Pizza Bruno is open Tuesday through Sunday, 5pm to 10pm. Closed Mondays. Reservations are recommended — walk-ins depend on availability.`,
+          900
+        );
+      } else if (lower.includes('park')) {
+        await addBotMessage(
+          `Street parking on Curry Ford West and the surrounding streets. It fills up on weekends — give yourself a few extra minutes if you're coming Friday or Saturday.`,
+          900
+        );
+      } else if (lower.includes('michelin') || lower.includes('award') || lower.includes('review')) {
+        await addBotMessage(
+          `Pizza Bruno has been in the Michelin Guide every year from 2022 through 2025. Also Orlando Weekly's Best SODO Restaurant. Bruno's been doing this for years and it shows — the recognition is well-earned.`,
+          1000
+        );
+      } else {
+        await addBotMessage(
+          `That's a good one — I'll pass it to the team and they'll follow up. Want to leave a number so they can reach you directly?`,
+          900
+        );
+        memory.collecting = 'phone-general';
+        return;
+      }
+
+      await addBotMessage(`Anything else?`, 700, [
+        { label: 'Reserve a table', value: 'reserve' },
+        { label: 'Another question', value: 'general-question' }
+      ]);
+      return;
+    }
+
+    if (memory.collecting === 'phone-general') {
+      memory.phone = text;
+      memory.collecting = null;
+      await addBotMessage(
+        `Got it. The team will reach out — usually same day or next morning. Anything else I can help with?`,
+        900,
+        [
+          { label: 'Reserve a table', value: 'reserve' },
+          { label: 'Menu question', value: 'menu-question' }
+        ]
+      );
+      return;
+    }
+
+    // Default fallback
+    await addBotMessage(
+      `Got it. What would you like to do?`,
+      800,
+      [
+        { label: 'Reserve a table', value: 'reserve' },
+        { label: 'Large party or private event', value: 'large-party' },
+        { label: 'Menu question', value: 'menu-question' },
+        { label: 'General question', value: 'general-question' }
+      ]
+    );
+  }
+
+  function confirmBooking() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) {
+      card.style.transition = 'all 0.3s ease';
+      card.style.background = 'linear-gradient(135deg, #2d5a3f 0%, #1f4530 100%)';
+      card.style.color = 'white';
+      card.querySelector('.booking-title').style.color = 'white';
+      card.querySelector('.booking-title').textContent = '✓ Reservation Confirmed';
+      card.querySelector('.booking-icon').style.background = 'white';
+      card.querySelector('.booking-icon').style.color = 'var(--accent)';
+      card.querySelectorAll('.label').forEach(el => el.style.color = 'rgba(255,255,255,0.6)');
+      card.querySelectorAll('.value').forEach(el => el.style.color = 'white');
+      card.querySelector('.booking-confirm').remove();
+    }
+    setTimeout(async () => {
+      await addBotMessage(
+        `You're all set${memory.name ? ', ' + memory.name : ''}. Bruno's team will confirm your reservation by 3 PM tomorrow. See you soon — <strong>(407) 270-6833</strong> if anything changes.`,
+        700
+      );
+    }, 400);
+  }
+
+  function proposeAlternative() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) card.remove();
+    addBotMessage(
+      `No problem — we've got availability Tuesday, Wednesday, and Friday evenings this week. Which works better?`,
+      600,
+      [
+        { label: 'Tuesday evening', value: 'alt-tue' },
+        { label: 'Wednesday evening', value: 'alt-wed' },
+        { label: 'Friday evening', value: 'alt-fri' }
+      ]
+    );
+  }
+
+  // Enter key support
+  inputEl.addEventListener('keydown', e => {
+    if (e.key === 'Enter') handleUserSend();
+  });
+
+  // Boot
+  setTimeout(startConversation, 600);
+</script>
+
+</body>
+</html>

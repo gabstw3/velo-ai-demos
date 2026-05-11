@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Florida One Real Estate — After-Hours Lead Concierge | Powered by Velo AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Real estate palette: warm cream + terra clay + slate blue.
+       Confident, modern, not luxury-snobby. Approachable boutique vibe. */
+    --bg: #f5f0e8;
+    --bg-deep: #e8dfd0;
+    --ink: #1d2434;
+    --ink-soft: #4a5066;
+    --ink-faint: #8a8f9e;
+    --accent: #2e4d7a;       /* slate blue — the broker primary */
+    --accent-warm: #c97852;  /* warm terra clay accent */
+    --accent-glow: #f3d8b7;
+    --line: #d4ccb8;
+    --bot-msg: #ffffff;
+    --user-msg: #2e4d7a;
+    --user-msg-text: #ffffff;
+    --shadow-sm: 0 1px 3px rgba(29, 36, 52, 0.06);
+    --shadow-md: 0 4px 16px rgba(29, 36, 52, 0.08);
+    --shadow-lg: 0 12px 40px rgba(29, 36, 52, 0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body { height: 100%; }
+
+  body {
+    font-family: 'Geist', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.5;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(201, 120, 82, 0.05) 0%, transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(46, 77, 122, 0.04) 0%, transparent 40%);
+  }
+
+  .app {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    min-height: 100vh;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .practice-panel {
+    background: linear-gradient(180deg, #1f2f4d 0%, #131c2f 100%);
+    color: #e8e0d0;
+    padding: 40px 32px;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .practice-panel::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(201, 120, 82, 0.10) 0%, transparent 50%);
+    animation: drift 22s ease-in-out infinite;
+  }
+
+  @keyframes drift {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(20%, 10%); }
+  }
+
+  .practice-content { position: relative; z-index: 1; }
+
+  .practice-mark {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    margin-bottom: 12px;
+    opacity: 0.9;
+  }
+
+  .practice-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+  }
+
+  .practice-doctor {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--accent-glow);
+    margin-bottom: 32px;
+  }
+
+  .promise-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(243, 216, 183, 0.15);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+    backdrop-filter: blur(10px);
+  }
+
+  .promise-card h4 {
+    font-family: 'Geist', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    margin-bottom: 8px;
+  }
+
+  .promise-card p {
+    font-size: 14px;
+    line-height: 1.55;
+    color: #d4cdb8;
+  }
+
+  .practice-info {
+    margin-top: auto;
+    padding-top: 24px;
+    border-top: 1px solid rgba(243, 216, 183, 0.1);
+    font-size: 13px;
+    line-height: 1.7;
+    color: #b8b0a0;
+  }
+
+  .practice-info .row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 8px;
+  }
+
+  .practice-info .label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    width: 56px;
+    padding-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .powered-by {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(243, 216, 183, 0.1);
+    font-size: 11px;
+    color: #8a8275;
+    letter-spacing: 0.05em;
+  }
+
+  .powered-by strong {
+    color: var(--accent-glow);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+  }
+
+  .chat-panel {
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .chat-header {
+    padding: 20px 32px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(245, 240, 232, 0.85);
+    backdrop-filter: blur(12px);
+    z-index: 10;
+  }
+
+  .chat-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .status-dot {
+    width: 8px; height: 8px;
+    background: #4ade80;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.15);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.15); }
+    50% { box-shadow: 0 0 0 8px rgba(74, 222, 128, 0.05); }
+  }
+
+  .status-text {
+    font-size: 13px;
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+
+  .status-text strong { color: var(--ink); font-weight: 600; }
+
+  .chat-time {
+    font-family: 'Fraunces', serif;
+    font-size: 12px;
+    color: var(--ink-faint);
+    font-style: italic;
+  }
+
+  .messages {
+    flex: 1;
+    padding: 32px;
+    scroll-behavior: smooth;
+  }
+
+  .msg-group {
+    margin-bottom: 20px;
+    animation: msgIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  @keyframes msgIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .msg {
+    max-width: 78%;
+    padding: 14px 18px;
+    border-radius: 18px;
+    font-size: 15px;
+    line-height: 1.55;
+    word-wrap: break-word;
+  }
+
+  .msg-bot {
+    background: var(--bot-msg);
+    color: var(--ink);
+    border-bottom-left-radius: 4px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(212, 204, 184, 0.4);
+  }
+
+  .msg-user {
+    background: var(--user-msg);
+    color: var(--user-msg-text);
+    border-bottom-right-radius: 4px;
+    margin-left: auto;
+  }
+
+  .msg-meta {
+    font-size: 10px;
+    color: var(--ink-faint);
+    margin-top: 6px;
+    padding: 0 8px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .msg-meta.user { text-align: right; }
+
+  .typing {
+    display: flex;
+    gap: 4px;
+    padding: 16px 20px;
+    background: var(--bot-msg);
+    border-radius: 18px;
+    border-bottom-left-radius: 4px;
+    width: fit-content;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(212, 204, 184, 0.4);
+  }
+
+  .typing span {
+    width: 7px; height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: typing 1.4s ease-in-out infinite;
+  }
+
+  .typing span:nth-child(2) { animation-delay: 0.2s; }
+  .typing span:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes typing {
+    0%, 100% { transform: translateY(0); opacity: 0.4; }
+    50% { transform: translateY(-4px); opacity: 1; }
+  }
+
+  .quick-replies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+    animation: msgIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s both;
+  }
+
+  .chip {
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 9px 16px;
+    border-radius: 100px;
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .chip:hover {
+    background: var(--accent);
+    color: var(--bg);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .chip:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .booking-card {
+    background: linear-gradient(135deg, #ffffff 0%, #faf3e6 100%);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 24px;
+    margin-top: 12px;
+    box-shadow: var(--shadow-md);
+    animation: msgIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    max-width: 78%;
+  }
+
+  .booking-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .booking-icon {
+    width: 32px; height: 32px;
+    background: var(--accent);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .booking-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--ink);
+  }
+
+  .booking-detail {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 12px;
+    padding: 8px 0;
+    font-size: 14px;
+  }
+
+  .booking-detail .label {
+    color: var(--ink-faint);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding-top: 2px;
+  }
+
+  .booking-detail .value {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .booking-confirm {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    gap: 8px;
+  }
+
+  .btn-primary {
+    flex: 1;
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: #1f2f4d;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--ink-soft);
+    border: 1px solid var(--line);
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover {
+    background: var(--bg-deep);
+  }
+
+  .input-area {
+    padding: 20px 32px 24px;
+    border-top: 1px solid var(--line);
+    background: rgba(245, 240, 232, 0.85);
+    backdrop-filter: blur(12px);
+  }
+
+  .input-wrap {
+    display: flex;
+    gap: 10px;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 6px 6px 6px 18px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .input-wrap:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(46, 77, 122, 0.08);
+  }
+
+  .input-wrap input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-family: 'Geist', sans-serif;
+    font-size: 15px;
+    color: var(--ink);
+    padding: 10px 0;
+    background: transparent;
+  }
+
+  .input-wrap input::placeholder { color: var(--ink-faint); }
+
+  .send-btn {
+    background: var(--accent);
+    color: white;
+    border: none;
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+
+  .send-btn:hover { background: #1f2f4d; transform: scale(1.05); }
+  .send-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+  .input-hint {
+    font-size: 11px;
+    color: var(--ink-faint);
+    margin-top: 10px;
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
+
+  .demo-banner {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 10px 16px;
+    border-radius: 100px;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    z-index: 100;
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .demo-banner:hover { transform: scale(1.03); }
+  .demo-banner .pulse-dot {
+    width: 6px; height: 6px;
+    background: var(--accent-warm);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @media (max-width: 900px) {
+    html, body {
+      height: auto;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .app {
+      grid-template-columns: 1fr;
+      height: auto;
+      min-height: 100vh;
+    }
+    .practice-panel {
+      padding: 20px 24px;
+      position: static;
+      height: auto;
+      max-height: none;
+    }
+    .practice-panel .promise-card,
+    .practice-panel .practice-info,
+    .practice-panel .powered-by { display: none; }
+    .practice-name { font-size: 22px; }
+    .practice-doctor { font-size: 14px; margin-bottom: 0; }
+    .chat-panel {
+      min-height: 80vh;
+    }
+    .messages {
+      padding: 20px;
+      overflow-y: visible;
+      flex: none;
+    }
+    .msg { max-width: 88%; }
+    .input-area {
+      padding: 16px 20px 20px;
+      position: sticky;
+      bottom: 0;
+    }
+    .demo-banner { top: 8px; right: 8px; padding: 8px 12px; font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner" onclick="alert('This is a live demo built by Velo AI for Florida One Real Estate.\n\nFor deployment information, contact:\nGabe Herrera — Velo AI\nWinter Springs, FL')">
+  <span class="pulse-dot"></span>
+  <span>Velo AI Demo</span>
+</div>
+
+<div class="app">
+
+  <!-- LEFT: Brand Panel -->
+  <aside class="practice-panel">
+    <div class="practice-content">
+      <div class="practice-mark">Historic Winter Park · Est. 1980 · Luxury Boutique Brokerage</div>
+      <h1 class="practice-name">Anthony Consalvo</h1>
+      <p class="practice-doctor">Anthony Consalvo · Broker/Owner, Florida One Real Estate</p>
+
+      <div class="promise-card">
+        <h4>Four Decades. One Block from Park Avenue.</h4>
+        <p>Anthony Consalvo has operated Florida One Real Estate from historic downtown Winter Park since 1980 — over 40 years. One block from Park Avenue. Boutique brokerage where every client receives the discretion and personal attention the Winter Park market demands.</p>
+      </div>
+    </div>
+
+    <div class="practice-info">
+      <div class="row">
+        <div class="label">Address</div>
+        <div>Winter Park, FL 32789<br>(one block from Park Avenue)</div>
+      </div>
+      <div class="row">
+        <div class="label">Phone</div>
+        <div>(407) 599-7070</div>
+      </div>
+      <div class="row">
+        <div class="label">Hours</div>
+        <div>Available 24/7 via concierge</div>
+      </div>
+      <div class="row">
+        <div class="label">Service</div>
+        <div>Winter Park · Park Avenue · Luxury &amp; Estate</div>
+      </div>
+    </div>
+
+    <div class="powered-by">
+      Lead concierge powered by <strong>VELO AI</strong>
+    </div>
+  </aside>
+
+  <!-- RIGHT: Chat Interface -->
+  <main class="chat-panel">
+    <header class="chat-header">
+      <div class="chat-status">
+        <span class="status-dot"></span>
+        <span class="status-text"><strong>Florida One Real Estate</strong> · Available 24/7</span>
+      </div>
+      <span class="chat-time" id="chat-time">After hours · 9:43 PM</span>
+    </header>
+
+    <div class="messages" id="messages"></div>
+
+    <div class="input-area">
+      <div class="input-wrap">
+        <input
+          type="text"
+          id="user-input"
+          placeholder="Type your message..."
+          autocomplete="off"
+        />
+        <button class="send-btn" id="send-btn" onclick="handleUserSend()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+        </button>
+      </div>
+      <div class="input-hint">Already working with Anthony? He is notified directly for time-sensitive matters.</div>
+    </div>
+  </main>
+</div>
+
+<script>
+  // ============================================================
+  // VELO AI — Real Estate Lead Qualifier
+  // Florida One Real Estate · Anthony Consalvo · Winter Park
+  // Buyer/seller intent → luxury/estate fit → consult booking
+  // ============================================================
+
+  const messagesEl = document.getElementById('messages');
+  const inputEl = document.getElementById('user-input');
+  const sendBtn = document.getElementById('send-btn');
+
+  const memory = {
+    name: null,
+    intent: null,           // buying, selling, luxury, market
+    timeline: null,
+    budget: null,
+    financing: null,
+    propertyType: null,
+    history: []
+  };
+
+  const now = new Date();
+  const hours = now.getHours() < 8 || now.getHours() >= 17 ? '9:43 PM' : '7:18 AM';
+  document.getElementById('chat-time').textContent = `After hours · ${hours}`;
+
+  function addBotMessage(text, delay = 700, withChips = null) {
+    return new Promise(resolve => {
+      const typingId = 't' + Date.now();
+      const typing = document.createElement('div');
+      typing.className = 'msg-group';
+      typing.id = typingId;
+      typing.innerHTML = `<div class="typing"><span></span><span></span><span></span></div>`;
+      messagesEl.appendChild(typing);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+
+      setTimeout(() => {
+        document.getElementById(typingId)?.remove();
+        const msgGroup = document.createElement('div');
+        msgGroup.className = 'msg-group';
+        let html = `<div class="msg msg-bot">${text}</div><div class="msg-meta">Florida One Real Estate</div>`;
+
+        if (withChips) {
+          html += `<div class="quick-replies">`;
+          withChips.forEach((chip) => {
+            html += `<button class="chip" onclick="handleChipClick('${chip.value.replace(/'/g, "\\'")}', this)">${chip.label}</button>`;
+          });
+          html += `</div>`;
+        }
+
+        msgGroup.innerHTML = html;
+        messagesEl.appendChild(msgGroup);
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+        resolve();
+      }, delay);
+    });
+  }
+
+  function addUserMessage(text) {
+    const msgGroup = document.createElement('div');
+    msgGroup.className = 'msg-group';
+    msgGroup.innerHTML = `
+      <div class="msg msg-user" style="margin-left:auto;">${text}</div>
+      <div class="msg-meta user">You · just now</div>
+    `;
+    messagesEl.appendChild(msgGroup);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+    memory.history.push({ role: 'user', text });
+  }
+
+  function disableChips(currentBtn) {
+    const chips = currentBtn.parentElement.querySelectorAll('.chip');
+    chips.forEach(c => c.disabled = true);
+    currentBtn.style.background = 'var(--accent)';
+    currentBtn.style.color = 'var(--bg)';
+  }
+
+  function showBookingCard(meetingType, time) {
+    const card = document.createElement('div');
+    card.className = 'msg-group';
+    card.innerHTML = `
+      <div class="booking-card">
+        <div class="booking-header">
+          <div class="booking-icon">C</div>
+          <div class="booking-title">Consult Hold Created</div>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Client</span>
+          <span class="value">${memory.name || 'New lead'}</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">For</span>
+          <span class="value">${meetingType}</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Proposed</span>
+          <span class="value">${time}</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">With</span>
+          <span class="value">Anthony Consalvo · Broker/Owner</span>
+        </div>
+        <div class="booking-detail">
+          <span class="label">Office</span>
+          <span class="value">Winter Park, FL · one block from Park Avenue</span>
+        </div>
+        <div class="booking-confirm">
+          <button class="btn-primary" onclick="confirmBooking()">Confirm consult</button>
+          <button class="btn-secondary" onclick="proposeAlternative()">Different time</button>
+        </div>
+      </div>
+    `;
+    messagesEl.appendChild(card);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  // ============================================================
+  // Conversation Flow
+  // ============================================================
+
+  async function startConversation() {
+    await addBotMessage(
+      `Good evening — you've reached the after-hours concierge for Florida One Real Estate in Winter Park. Anthony Consalvo has operated this boutique brokerage one block from Park Avenue since 1980 — over 40 years in the Winter Park luxury market. He'll follow up personally tomorrow morning.<br><br>What brings you here tonight?`,
+      400,
+      [
+        { label: 'Buying in Winter Park', value: 'buying' },
+        { label: 'Selling my Winter Park home', value: 'selling' },
+        { label: 'Luxury or estate property', value: 'luxury' },
+        { label: 'Market question', value: 'market' }
+      ]
+    );
+  }
+
+  async function handleChipClick(value, btn) {
+    disableChips(btn);
+    const labelMap = {
+      'buying': "I'm buying in Winter Park",
+      'selling': "I'm selling my Winter Park home",
+      'luxury': "I'm interested in luxury or estate property",
+      'market': "I have a market question",
+      'budget-under-1m': "Under $1M",
+      'budget-1m-3m': "$1M–$3M",
+      'budget-3m-plus': "$3M+",
+      'financing-cash': "Paying cash",
+      'financing-prequal': "Pre-approved",
+      'financing-need': "Need to discuss financing",
+      'timeline-now': "Within 60 days",
+      'timeline-soon': "3–6 months",
+      'timeline-later': "Just exploring",
+      'sell-now': "Soon — within 60 days",
+      'sell-3mo': "Within a few months",
+      'sell-explore': "Just getting a valuation",
+      'estate-buy': "Looking to acquire",
+      'estate-sell': "Looking to sell an estate",
+      'estate-both': "Both — estate transition",
+      'this-week': "This week",
+      'next-week': "Next week",
+      'flexible': "I'm flexible",
+      'no-slot': "No thanks"
+    };
+    addUserMessage(labelMap[value] || value);
+    memory.history.push({ role: 'user', value });
+    await routeIntent(value);
+  }
+
+  async function routeIntent(value) {
+
+    // BUYING PATH ----------------------------------
+    if (value === 'buying') {
+      memory.intent = 'buying';
+      await addBotMessage(
+        `Winter Park's residential market — especially close to Park Avenue — moves on relationships and local knowledge. Anthony has spent 40 years building exactly that network, which means access to properties before they ever reach the MLS.<br><br>What's your budget range?`,
+        1100,
+        [
+          { label: 'Under $1M', value: 'budget-under-1m' },
+          { label: '$1M–$3M', value: 'budget-1m-3m' },
+          { label: '$3M+', value: 'budget-3m-plus' }
+        ]
+      );
+      return;
+    }
+
+    if (['budget-under-1m', 'budget-1m-3m', 'budget-3m-plus'].includes(value)) {
+      memory.budget = value;
+      const budgetNote = value === 'budget-3m-plus'
+        ? `At that level, Anthony works exclusively — no junior agents, no handoffs. Every showing, every negotiation is personal.`
+        : value === 'budget-1m-3m'
+        ? `That bracket is the heart of the Winter Park luxury residential market. Anthony knows which streets, which lots, which floor plans hold value.`
+        : `Good range to work with. Winter Park has exceptional properties at that level — often overlooked by buyers chasing the Park Avenue address.`;
+      await addBotMessage(
+        `${budgetNote}<br><br>Where are you on financing?`,
+        1200,
+        [
+          { label: 'Paying cash', value: 'financing-cash' },
+          { label: 'Pre-approved', value: 'financing-prequal' },
+          { label: 'Need to discuss', value: 'financing-need' }
+        ]
+      );
+      return;
+    }
+
+    if (['financing-cash', 'financing-prequal', 'financing-need'].includes(value)) {
+      memory.financing = value;
+      await addBotMessage(
+        `Understood. And what's your timeline for moving?`,
+        900,
+        [
+          { label: 'Within 60 days', value: 'timeline-now' },
+          { label: '3–6 months', value: 'timeline-soon' },
+          { label: 'Just exploring', value: 'timeline-later' }
+        ]
+      );
+      return;
+    }
+
+    if (['timeline-now', 'timeline-soon', 'timeline-later'].includes(value)) {
+      memory.timeline = value;
+      const message = value === 'timeline-now'
+        ? `That's an active search. Anthony will want to speak with you directly this week — he keeps time for buyers who are ready to move. Shall I hold a consult?`
+        : value === 'timeline-soon'
+        ? `Good runway. A 30-minute strategy conversation now saves weeks later. Anthony can walk you through what's available off-market before you start formal tours. Want me to hold a slot?`
+        : `Smart way to approach it. Anthony is equally comfortable with a "just looking" conversation — no pressure, no sales pitch, just an honest orientation to the Winter Park market. Want to hold a 20-minute call?`;
+      await addBotMessage(message, 1300, [
+        { label: 'This week', value: 'this-week' },
+        { label: 'Next week', value: 'next-week' },
+        { label: "I'm flexible", value: 'flexible' }
+      ]);
+      return;
+    }
+
+    // SELLING PATH ---------------------------------
+    if (value === 'selling') {
+      memory.intent = 'selling';
+      await addBotMessage(
+        `Selling in Winter Park requires discretion and an established buyer network — two things Anthony has spent four decades cultivating. Boutique brokerage means your property isn't one of hundreds. It receives focused attention from the first conversation to closing.<br><br>How soon are you thinking?`,
+        1300,
+        [
+          { label: 'Within 60 days', value: 'sell-now' },
+          { label: 'Within a few months', value: 'sell-3mo' },
+          { label: 'Just getting a valuation', value: 'sell-explore' }
+        ]
+      );
+      return;
+    }
+
+    if (['sell-now', 'sell-3mo', 'sell-explore'].includes(value)) {
+      memory.timeline = value;
+      const message = value === 'sell-now'
+        ? `That's a near-term listing. Anthony will want to do a walk-through and private CMA before anything goes to market — presentation and pricing are everything in Winter Park. Can I hold a 45-minute appointment this week?`
+        : value === 'sell-3mo'
+        ? `Good timing. Anthony typically starts with a confidential home valuation — no obligation, no rush — so you have a clear number and a positioning strategy before you decide to list. Want to hold a slot?`
+        : `Perfectly reasonable. Anthony's valuation conversation includes market timing, comparable sales, and a frank assessment of net proceeds. It's a clean 30 minutes and it arms you with exactly the information you need. Want me to hold a slot?`;
+      await addBotMessage(message, 1300, [
+        { label: 'This week', value: 'this-week' },
+        { label: 'Next week', value: 'next-week' },
+        { label: "I'm flexible", value: 'flexible' }
+      ]);
+      return;
+    }
+
+    // LUXURY / ESTATE PATH -------------------------
+    if (value === 'luxury') {
+      memory.intent = 'luxury';
+      await addBotMessage(
+        `Florida One Real Estate has been a fixture in the Winter Park luxury and estate market since 1980. Anthony handles these transactions personally — the off-market relationships, the discretion, the nuance that estate-level properties require.<br><br>What brings you here?`,
+        1300,
+        [
+          { label: 'Looking to acquire an estate', value: 'estate-buy' },
+          { label: 'Looking to sell an estate', value: 'estate-sell' },
+          { label: 'Estate transition — both', value: 'estate-both' }
+        ]
+      );
+      return;
+    }
+
+    if (value === 'estate-buy') {
+      memory.intent = 'luxury-buy';
+      await addBotMessage(
+        `Anthony's off-market network in the Winter Park estate market is one of the most established in Central Florida. Properties at that level rarely appear publicly — they move through relationships.<br><br>When would you like to speak with him directly?`,
+        1300,
+        [
+          { label: 'This week', value: 'this-week' },
+          { label: 'Next week', value: 'next-week' },
+          { label: "I'm flexible", value: 'flexible' }
+        ]
+      );
+      return;
+    }
+
+    if (value === 'estate-sell') {
+      memory.intent = 'luxury-sell';
+      await addBotMessage(
+        `Estate-level listings require a different approach — a private CMA, a curated buyer list, and marketing that matches the property's stature. Anthony handles this personally, from first conversation to close. When would you like to connect?`,
+        1300,
+        [
+          { label: 'This week', value: 'this-week' },
+          { label: 'Next week', value: 'next-week' },
+          { label: "I'm flexible", value: 'flexible' }
+        ]
+      );
+      return;
+    }
+
+    if (value === 'estate-both') {
+      memory.intent = 'luxury-both';
+      await addBotMessage(
+        `An estate transition — selling and acquiring at the same level — is exactly the kind of coordinated engagement Anthony manages best. One relationship, both sides, complete discretion. When would you like to speak?`,
+        1300,
+        [
+          { label: 'This week', value: 'this-week' },
+          { label: 'Next week', value: 'next-week' },
+          { label: "I'm flexible", value: 'flexible' }
+        ]
+      );
+      return;
+    }
+
+    // MARKET QUESTION PATH -------------------------
+    if (value === 'market') {
+      memory.intent = 'market';
+      await addBotMessage(
+        `Of course — go ahead and type your question. Anthony has 40 years of Winter Park market data in his head and will weigh in personally. If it's a nuanced question, he'll follow up directly tomorrow morning.`,
+        900
+      );
+      memory.collecting = 'free-question';
+      return;
+    }
+
+    // BOOKING -------------------------------------
+    if (['this-week', 'next-week', 'flexible'].includes(value)) {
+      const timeMap = {
+        'this-week': 'Thursday at 10:00 AM',
+        'next-week': 'Tuesday at 9:30 AM',
+        'flexible': 'Wednesday at 11:00 AM'
+      };
+      memory.proposedTime = timeMap[value];
+
+      await addBotMessage(
+        `Perfect. I'll hold ${timeMap[value]} for you — Anthony keeps morning appointments for new client conversations. What's your first name so I can note it for his calendar?`,
+        1100
+      );
+      memory.collecting = 'name-for-booking';
+      return;
+    }
+
+    if (value === 'no-slot') {
+      await addBotMessage(
+        `Understood. Anthony will review your question and follow up personally. If anything is time-sensitive, you can reach Florida One Real Estate directly at <strong>(407) 599-7070</strong>. Good evening.`,
+        800
+      );
+      return;
+    }
+  }
+
+  // ============================================================
+  // Free-text input handler
+  // ============================================================
+  async function handleUserSend() {
+    const text = inputEl.value.trim();
+    if (!text) return;
+    addUserMessage(text);
+    inputEl.value = '';
+
+    if (memory.collecting === 'name-for-booking') {
+      const name = text.split(/\s+/)[0].replace(/[^a-zA-Z]/g, '');
+      memory.name = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+      await addBotMessage(
+        `Thank you, ${memory.name}. What's the best phone number for Anthony's office to reach you? You'll receive a confirmation by 9 AM tomorrow.`,
+        800
+      );
+      memory.collecting = 'phone';
+      return;
+    }
+
+    if (memory.collecting === 'phone') {
+      memory.phone = text;
+      memory.collecting = null;
+
+      if (memory.proposedTime) {
+        const meetingMap = {
+          'buying': 'Buyer Strategy Consult',
+          'selling': 'Listing & Valuation Consult',
+          'luxury': 'Luxury & Estate Consult',
+          'luxury-buy': 'Estate Acquisition Consult',
+          'luxury-sell': 'Estate Listing Consult',
+          'luxury-both': 'Estate Transition Consult',
+          'market': 'Market Intelligence Consult'
+        };
+        const meeting = meetingMap[memory.intent] || 'New Client Consult';
+
+        await addBotMessage(
+          `Here is the hold I am placing for Anthony's calendar:`,
+          800
+        );
+        setTimeout(() => showBookingCard(meeting, memory.proposedTime), 1200);
+      } else {
+        await addBotMessage(
+          `All set, ${memory.name}. Anthony will reach out to ${text} by mid-morning tomorrow.<br><br>Is there anything else I can assist with this evening?`,
+          1000
+        );
+      }
+      return;
+    }
+
+    if (memory.collecting === 'free-question') {
+      memory.collecting = null;
+      await addBotMessage(
+        `I've logged your question for Anthony. He'll review it first thing and follow up personally — typically by 9 AM.<br><br>Would you like me to hold a brief consult slot as well? Sometimes a five-minute conversation resolves what a text thread can't.`,
+        1100,
+        [
+          { label: 'Yes, hold a slot', value: 'this-week' },
+          { label: 'No thanks', value: 'no-slot' }
+        ]
+      );
+      return;
+    }
+
+    // Fallback
+    await addBotMessage(
+      `Thank you for that. To route this to Anthony correctly — is this primarily about buying, selling, or a market question?`,
+      900,
+      [
+        { label: 'Buying in Winter Park', value: 'buying' },
+        { label: 'Selling my home', value: 'selling' },
+        { label: 'Luxury or estate property', value: 'luxury' },
+        { label: 'Market question', value: 'market' }
+      ]
+    );
+  }
+
+  function confirmBooking() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) {
+      card.style.transition = 'all 0.3s ease';
+      card.style.background = 'linear-gradient(135deg, #2e4d7a 0%, #1f2f4d 100%)';
+      card.style.color = 'white';
+      card.querySelector('.booking-title').style.color = 'white';
+      card.querySelector('.booking-icon').style.background = 'white';
+      card.querySelector('.booking-icon').style.color = 'var(--accent)';
+      card.querySelectorAll('.label').forEach(el => el.style.color = 'rgba(255,255,255,0.6)');
+      card.querySelectorAll('.value').forEach(el => el.style.color = 'white');
+      card.querySelector('.booking-confirm').remove();
+    }
+    setTimeout(async () => {
+      await addBotMessage(
+        `You're confirmed, ${memory.name}. Anthony has been notified, and you'll receive a confirmation from Florida One Real Estate at <strong>(407) 599-7070</strong> tomorrow morning.<br><br>Good evening — we look forward to speaking with you.`,
+        700
+      );
+    }, 400);
+  }
+
+  function proposeAlternative() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) card.remove();
+    addBotMessage(
+      `Of course. Anthony has openings Tuesday at 9 AM, Thursday at 10:30 AM, or Friday at 9 AM — which suits you?`,
+      600,
+      [
+        { label: 'Tuesday 9 AM', value: 'this-week' },
+        { label: 'Thursday 10:30 AM', value: 'next-week' },
+        { label: 'Friday 9 AM', value: 'flexible' }
+      ]
+    );
+  }
+
+  inputEl.addEventListener('keydown', e => {
+    if (e.key === 'Enter') handleUserSend();
+  });
+
+  setTimeout(startConversation, 600);
+</script>
+
+</body>
+</html>
