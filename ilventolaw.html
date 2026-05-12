@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ilvento Law — After-Hours Intake | Powered by Velo AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f4efe6;
+    --bg-deep: #e8e0d2;
+    --ink: #1a1f2c;
+    --ink-soft: #4a536b;
+    --ink-faint: #8a8f9e;
+    --accent: #2a3a5c;
+    --accent-warm: #b08540;
+    --accent-glow: #e6d4a8;
+    --line: #d4ccb8;
+    --bot-msg: #ffffff;
+    --user-msg: #2a3a5c;
+    --user-msg-text: #ffffff;
+    --shadow-sm: 0 1px 3px rgba(26, 31, 44, 0.06);
+    --shadow-md: 0 4px 16px rgba(26, 31, 44, 0.08);
+    --shadow-lg: 0 12px 40px rgba(26, 31, 44, 0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+
+  body {
+    font-family: 'Geist', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.5;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(176, 133, 64, 0.05) 0%, transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(42, 58, 92, 0.04) 0%, transparent 40%);
+  }
+
+  .app { display: grid; grid-template-columns: 360px 1fr; min-height: 100vh; max-width: 1400px; margin: 0 auto; }
+
+  .practice-panel {
+    background: linear-gradient(180deg, #1a2540 0%, #0f1729 100%);
+    color: #e8e0d0;
+    padding: 40px 32px;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .practice-panel::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(176, 133, 64, 0.08) 0%, transparent 50%);
+    animation: drift 22s ease-in-out infinite;
+  }
+
+  @keyframes drift { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(20%, 10%); } }
+
+  .practice-content { position: relative; z-index: 1; }
+
+  .practice-mark { font-family: 'Fraunces', serif; font-weight: 500; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent-warm); margin-bottom: 12px; opacity: 0.9; }
+  .practice-name { font-family: 'Fraunces', serif; font-weight: 600; font-size: 30px; line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 6px; }
+  .practice-doctor { font-family: 'Fraunces', serif; font-weight: 400; font-style: italic; font-size: 16px; color: var(--accent-glow); margin-bottom: 32px; }
+
+  .promise-card { background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(232, 224, 184, 0.15); border-radius: 12px; padding: 20px; margin-bottom: 24px; backdrop-filter: blur(10px); }
+  .promise-card h4 { font-family: 'Geist', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-warm); margin-bottom: 8px; }
+  .promise-card p { font-size: 14px; line-height: 1.55; color: #d4cdb8; }
+
+  .practice-info { margin-top: auto; padding-top: 24px; border-top: 1px solid rgba(232, 224, 184, 0.1); font-size: 13px; line-height: 1.7; color: #b8b0a0; }
+  .practice-info .row { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 8px; }
+  .practice-info .label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-warm); width: 56px; padding-top: 2px; flex-shrink: 0; }
+
+  .powered-by { margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(232, 224, 184, 0.1); font-size: 11px; color: #8a8275; letter-spacing: 0.05em; }
+  .powered-by strong { color: var(--accent-glow); font-weight: 600; letter-spacing: 0.1em; }
+
+  .chat-panel { background: var(--bg); display: flex; flex-direction: column; position: relative; }
+
+  .chat-header { padding: 20px 32px; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; background: rgba(244, 239, 230, 0.85); backdrop-filter: blur(12px); z-index: 10; }
+  .chat-status { display: flex; align-items: center; gap: 10px; }
+  .status-dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.15); animation: pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.15); } 50% { box-shadow: 0 0 0 8px rgba(74, 222, 128, 0.05); } }
+  .status-text { font-size: 13px; color: var(--ink-soft); font-weight: 500; }
+  .status-text strong { color: var(--ink); font-weight: 600; }
+  .chat-time { font-family: 'Fraunces', serif; font-size: 12px; color: var(--ink-faint); font-style: italic; }
+
+  .messages { flex: 1; padding: 32px; scroll-behavior: smooth; }
+  .msg-group { margin-bottom: 20px; animation: msgIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  @keyframes msgIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .msg { max-width: 78%; padding: 14px 18px; border-radius: 18px; font-size: 15px; line-height: 1.55; word-wrap: break-word; }
+  .msg-bot { background: var(--bot-msg); color: var(--ink); border-bottom-left-radius: 4px; box-shadow: var(--shadow-sm); border: 1px solid rgba(212, 204, 184, 0.4); }
+  .msg-user { background: var(--user-msg); color: var(--user-msg-text); border-bottom-right-radius: 4px; margin-left: auto; }
+  .msg-meta { font-size: 10px; color: var(--ink-faint); margin-top: 6px; padding: 0 8px; letter-spacing: 0.05em; text-transform: uppercase; }
+  .msg-meta.user { text-align: right; }
+
+  .typing { display: flex; gap: 4px; padding: 16px 20px; background: var(--bot-msg); border-radius: 18px; border-bottom-left-radius: 4px; width: fit-content; box-shadow: var(--shadow-sm); border: 1px solid rgba(212, 204, 184, 0.4); }
+  .typing span { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; opacity: 0.5; animation: typing 1.4s ease-in-out infinite; }
+  .typing span:nth-child(2) { animation-delay: 0.2s; }
+  .typing span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes typing { 0%, 100% { transform: translateY(0); opacity: 0.4; } 50% { transform: translateY(-4px); opacity: 1; } }
+
+  .quick-replies { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; animation: msgIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s both; }
+  .chip { background: transparent; border: 1px solid var(--accent); color: var(--accent); padding: 9px 16px; border-radius: 100px; font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s ease; }
+  .chip:hover { background: var(--accent); color: var(--bg); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+  .chip:disabled { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
+
+  .booking-card { background: linear-gradient(135deg, #ffffff 0%, #faf6ec 100%); border: 1px solid var(--line); border-radius: 16px; padding: 24px; margin-top: 12px; box-shadow: var(--shadow-md); animation: msgIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); max-width: 78%; }
+  .booking-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+  .booking-icon { width: 32px; height: 32px; background: var(--accent); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-family: 'Fraunces', serif; font-weight: 600; font-size: 14px; }
+  .booking-title { font-family: 'Fraunces', serif; font-weight: 600; font-size: 16px; color: var(--ink); }
+  .booking-detail { display: grid; grid-template-columns: 90px 1fr; gap: 12px; padding: 8px 0; font-size: 14px; }
+  .booking-detail .label { color: var(--ink-faint); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; padding-top: 2px; }
+  .booking-detail .value { color: var(--ink); font-weight: 500; }
+  .booking-confirm { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); display: flex; gap: 8px; }
+  .btn-primary { flex: 1; background: var(--accent); color: white; border: none; padding: 11px 20px; border-radius: 8px; font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+  .btn-primary:hover { background: #1a2540; transform: translateY(-1px); box-shadow: var(--shadow-md); }
+  .btn-secondary { background: transparent; color: var(--ink-soft); border: 1px solid var(--line); padding: 11px 20px; border-radius: 8px; font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s; }
+  .btn-secondary:hover { background: var(--bg-deep); }
+
+  .input-area { padding: 20px 32px 24px; border-top: 1px solid var(--line); background: rgba(244, 239, 230, 0.85); backdrop-filter: blur(12px); }
+  .input-wrap { display: flex; gap: 10px; background: white; border: 1px solid var(--line); border-radius: 14px; padding: 6px 6px 6px 18px; transition: border-color 0.2s, box-shadow 0.2s; }
+  .input-wrap:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(42, 58, 92, 0.08); }
+  .input-wrap input { flex: 1; border: none; outline: none; font-family: 'Geist', sans-serif; font-size: 15px; color: var(--ink); padding: 10px 0; background: transparent; }
+  .input-wrap input::placeholder { color: var(--ink-faint); }
+  .send-btn { background: var(--accent); color: white; border: none; width: 40px; height: 40px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; flex-shrink: 0; }
+  .send-btn:hover { background: #1a2540; transform: scale(1.05); }
+  .send-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+  .input-hint { font-size: 11px; color: var(--ink-faint); margin-top: 10px; text-align: center; letter-spacing: 0.05em; }
+
+  .demo-banner { position: fixed; top: 16px; right: 16px; background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 100px; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; z-index: 100; box-shadow: var(--shadow-lg); display: flex; align-items: center; gap: 8px; cursor: pointer; transition: transform 0.2s; }
+  .demo-banner:hover { transform: scale(1.03); }
+  .demo-banner .pulse-dot { width: 6px; height: 6px; background: var(--accent-warm); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
+
+  @media (max-width: 900px) {
+    html, body { height: auto; overflow: auto; -webkit-overflow-scrolling: touch; }
+    .app { grid-template-columns: 1fr; height: auto; min-height: 100vh; }
+    .practice-panel { padding: 20px 24px; position: static; height: auto; max-height: none; }
+    .practice-panel .promise-card, .practice-panel .practice-info, .practice-panel .powered-by { display: none; }
+    .practice-name { font-size: 22px; }
+    .practice-doctor { font-size: 14px; margin-bottom: 0; }
+    .chat-panel { min-height: 80vh; }
+    .messages { padding: 20px; overflow-y: visible; flex: none; }
+    .msg { max-width: 88%; }
+    .input-area { padding: 16px 20px 20px; position: sticky; bottom: 0; }
+    .demo-banner { top: 8px; right: 8px; padding: 8px 12px; font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner" onclick="alert('This is a live demo built by Velo AI for Ilvento Law.\n\nFor deployment information, contact:\nGabe Herrera — Velo AI\nWinter Springs, FL')">
+  <span class="pulse-dot"></span>
+  <span>Velo AI Demo</span>
+</div>
+
+<div class="app">
+  <aside class="practice-panel">
+    <div class="practice-content">
+      <div class="practice-mark">Orlando, Florida · Board Certified Family Law · Mediator</div>
+      <h1 class="practice-name">Ilvento Law</h1>
+      <p class="practice-doctor">Lauren Ilvento, Esq. — Board Certified in Family & Marital Law</p>
+
+      <div class="promise-card">
+        <h4>Certified. Not Just Experienced.</h4>
+        <p>Board Certification in Family & Marital Law is held by fewer than 6% of Florida attorneys — it requires demonstrated expertise, peer review, and a rigorous examination. Ms. Ilvento is also a certified mediator and handles international family law matters. A steady hand for complex cases.</p>
+      </div>
+    </div>
+
+    <div class="practice-info">
+      <div class="row">
+        <div class="label">Address</div>
+        <div>1231 E Concord St<br>Orlando, FL 32803</div>
+      </div>
+      <div class="row">
+        <div class="label">Phone</div>
+        <div>(407) 898-0747</div>
+      </div>
+      <div class="row">
+        <div class="label">Practice</div>
+        <div>Divorce · Custody · Mediation · International</div>
+      </div>
+    </div>
+
+    <div class="powered-by">Intake powered by <strong>VELO AI</strong></div>
+  </aside>
+
+  <main class="chat-panel">
+    <header class="chat-header">
+      <div class="chat-status">
+        <span class="status-dot"></span>
+        <span class="status-text"><strong>Ilvento Law Intake</strong> · Available 24/7</span>
+      </div>
+      <span class="chat-time" id="chat-time">After hours · 11:47 PM</span>
+    </header>
+
+    <div class="messages" id="messages"></div>
+
+    <div class="input-area">
+      <div class="input-wrap">
+        <input type="text" id="user-input" placeholder="Type your message..." autocomplete="off" />
+        <button class="send-btn" id="send-btn" onclick="handleUserSend()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+      <div class="input-hint">Everything shared here is confidential. Ms. Ilvento will be notified for urgent matters.</div>
+    </div>
+  </main>
+</div>
+
+<script>
+  const messagesEl = document.getElementById('messages');
+  const inputEl = document.getElementById('user-input');
+  const memory = { name: null, matter: null, urgency: null, history: [] };
+
+  const now = new Date();
+  document.getElementById('chat-time').textContent = `After hours · ${now.getHours() < 8 || now.getHours() >= 17 ? '11:47 PM' : '6:32 AM'}`;
+
+  function addBotMessage(text, delay = 700, withChips = null) {
+    return new Promise(resolve => {
+      const typingId = 't' + Date.now();
+      const typing = document.createElement('div');
+      typing.className = 'msg-group'; typing.id = typingId;
+      typing.innerHTML = `<div class="typing"><span></span><span></span><span></span></div>`;
+      messagesEl.appendChild(typing);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+      setTimeout(() => {
+        document.getElementById(typingId)?.remove();
+        const mg = document.createElement('div');
+        mg.className = 'msg-group';
+        let html = `<div class="msg msg-bot">${text}</div><div class="msg-meta">Ilvento Law Intake</div>`;
+        if (withChips) {
+          html += `<div class="quick-replies">`;
+          withChips.forEach(c => { html += `<button class="chip" onclick="handleChipClick('${c.value.replace(/'/g,"\\'")}', this)">${c.label}</button>`; });
+          html += `</div>`;
+        }
+        mg.innerHTML = html;
+        messagesEl.appendChild(mg);
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+        resolve();
+      }, delay);
+    });
+  }
+
+  function addUserMessage(text) {
+    const mg = document.createElement('div'); mg.className = 'msg-group';
+    mg.innerHTML = `<div class="msg msg-user" style="margin-left:auto;">${text}</div><div class="msg-meta user">You · just now</div>`;
+    messagesEl.appendChild(mg); messagesEl.scrollTop = messagesEl.scrollHeight;
+    memory.history.push({ role: 'user', text });
+  }
+
+  function disableChips(btn) {
+    btn.parentElement.querySelectorAll('.chip').forEach(c => c.disabled = true);
+    btn.style.background = 'var(--accent)'; btn.style.color = 'var(--bg)';
+  }
+
+  function showBookingCard(matter, time) {
+    const card = document.createElement('div'); card.className = 'msg-group';
+    card.innerHTML = `<div class="booking-card">
+      <div class="booking-header"><div class="booking-icon">I</div><div class="booking-title">Consultation Hold Created</div></div>
+      <div class="booking-detail"><span class="label">Client</span><span class="value">${memory.name || 'New client'}</span></div>
+      <div class="booking-detail"><span class="label">Matter</span><span class="value">${matter}</span></div>
+      <div class="booking-detail"><span class="label">Proposed</span><span class="value">${time}</span></div>
+      <div class="booking-detail"><span class="label">With</span><span class="value">Lauren Ilvento, Esq.</span></div>
+      <div class="booking-detail"><span class="label">Office</span><span class="value">1231 E Concord St, Orlando</span></div>
+      <div class="booking-confirm">
+        <button class="btn-primary" onclick="confirmBooking()">Confirm consultation</button>
+        <button class="btn-secondary" onclick="proposeAlternative()">Different time</button>
+      </div></div>`;
+    messagesEl.appendChild(card); messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  async function startConversation() {
+    await addBotMessage(
+      `Good evening — you've reached the after-hours intake for Ilvento Law in Orlando. Ms. Ilvento is Board Certified in Family & Marital Law and a certified mediator. Everything you share is confidential. What may we help you with tonight?`,
+      400,
+      [
+        { label: '⚖️ Divorce or separation', value: 'divorce' },
+        { label: '👨‍👩‍👧 Custody or parenting time', value: 'custody' },
+        { label: '🤝 Mediation or collaborative', value: 'mediation' },
+        { label: '❓ A general question', value: 'question' }
+      ]
+    );
+  }
+
+  async function handleChipClick(value, btn) {
+    disableChips(btn);
+    const labels = {
+      'divorce': "I have a divorce or separation matter",
+      'custody': "I have a custody or parenting issue",
+      'mediation': "I'm interested in mediation or collaborative divorce",
+      'question': "I have a general question",
+      'urgent-now': "Yes — there's an immediate concern",
+      'urgent-soon': "A hearing or deadline is coming up",
+      'urgent-planning': "No urgency — just planning ahead",
+      'this-week': "This week", 'next-week': "Next week", 'flexible': "I'm flexible"
+    };
+    addUserMessage(labels[value] || value);
+    await routeIntent(value);
+  }
+
+  async function routeIntent(value) {
+    if (value === 'divorce') {
+      memory.matter = 'divorce';
+      await addBotMessage(`Divorce involves financial, parental, and emotional dimensions — and the decisions made early often shape the outcome. Ms. Ilvento's Board Certification means she has demonstrated mastery of these complexities, not just years of practice. Is there a pressing timeline — a filing, a hearing, or an immediate safety concern?`, 1200,
+        [
+          { label: '🔴 Immediate concern', value: 'urgent-now' },
+          { label: '🟡 Deadline or hearing coming', value: 'urgent-soon' },
+          { label: '🟢 No urgency yet', value: 'urgent-planning' }
+        ]
+      );
+      return;
+    }
+    if (value === 'custody') {
+      memory.matter = 'custody';
+      await addBotMessage(`Custody and parenting matters require a careful, child-centered approach — and in high-conflict situations, the right legal framing at the outset matters enormously. Ms. Ilvento handles everything from initial parenting plans to enforcement and modification. Is there a child-safety or time-sensitive concern right now?`, 1200,
+        [
+          { label: '🔴 Yes — urgent concern', value: 'urgent-now' },
+          { label: '🟡 Court date approaching', value: 'urgent-soon' },
+          { label: '🟢 Planning ahead', value: 'urgent-planning' }
+        ]
+      );
+      return;
+    }
+    if (value === 'mediation') {
+      memory.matter = 'mediation';
+      await addBotMessage(`Mediation and collaborative divorce can save significant time, cost, and emotional toll — and as a certified mediator, Ms. Ilvento can guide both parties through resolution without contested litigation. Does the other party know you're exploring this, or are you doing initial research?`, 1200,
+        [
+          { label: '🟢 Both of us are interested', value: 'urgent-planning' },
+          { label: '🟡 I'm researching first', value: 'urgent-soon' },
+          { label: '🔴 It's contested — I need advice', value: 'urgent-now' }
+        ]
+      );
+      return;
+    }
+    if (value === 'urgent-now') {
+      memory.urgency = 'severe';
+      await addBotMessage(`Understood — Ms. Ilvento will be notified and will prioritize your matter first thing tomorrow morning. May I have your first name and best callback number?`, 1100);
+      memory.collecting = 'name-phone';
+      return;
+    }
+    if (value === 'urgent-soon' || value === 'urgent-planning') {
+      memory.urgency = value;
+      await addBotMessage(`Thank you. Ms. Ilvento reserves dedicated consultation time for new clients — an unhurried conversation to understand your situation and give you a candid assessment. May I have your first name? She'll have her office reach out tomorrow to set a time.`, 1100);
+      memory.collecting = 'name';
+      return;
+    }
+    if (['this-week', 'next-week', 'flexible'].includes(value)) {
+      const t = { 'this-week': 'Thursday at 2:00 PM', 'next-week': 'Tuesday at 10:30 AM', 'flexible': 'Wednesday at 1:00 PM' };
+      memory.proposedTime = t[value];
+      await addBotMessage(`Allow me to hold ${t[value]} for you. May I have your first name?`, 900);
+      memory.collecting = 'name-for-booking';
+      return;
+    }
+    if (value === 'question') {
+      memory.matter = 'question';
+      await addBotMessage(`Please go ahead and type your question. Ms. Ilvento will review it and respond in the morning.`, 900);
+      memory.collecting = 'free-question';
+      return;
+    }
+  }
+
+  async function handleUserSend() {
+    const text = inputEl.value.trim();
+    if (!text) return;
+    addUserMessage(text); inputEl.value = '';
+    if (['name','name-for-booking','name-phone'].includes(memory.collecting)) {
+      const n = text.split(/\s+/)[0].replace(/[^a-zA-Z]/g,'');
+      memory.name = n.charAt(0).toUpperCase() + n.slice(1).toLowerCase();
+      const old = memory.collecting;
+      const r = { 'name': `Thank you, ${memory.name}. What's the best phone number? I want to make certain Ms. Ilvento has it before her morning calls.`, 'name-for-booking': `Thank you, ${memory.name}. And the best phone number? Her office will text a confirmation by 9 AM.`, 'name-phone': `Thank you, ${memory.name}. What is the best callback number?` };
+      await addBotMessage(r[old], 800);
+      memory.collecting = 'phone'; return;
+    }
+    if (memory.collecting === 'phone') {
+      memory.phone = text; memory.collecting = null;
+      if (memory.proposedTime) {
+        const m = { 'divorce': 'Divorce Consultation', 'custody': 'Custody Consultation', 'mediation': 'Mediation Consultation', 'question': 'General Consultation' };
+        await addBotMessage(`Here is the hold I am placing on Ms. Ilvento's calendar:`, 800);
+        setTimeout(() => showBookingCard(m[memory.matter] || 'New Client Consultation', memory.proposedTime), 1200);
+      } else if (memory.urgency === 'severe') {
+        await addBotMessage(`Thank you, ${memory.name}. Ms. Ilvento has been notified. Expect a call from <strong>(407) 898-0747</strong> first thing tomorrow morning.`, 1100);
+      } else {
+        await addBotMessage(`Thank you, ${memory.name}. Ms. Ilvento's office will reach out to ${text} tomorrow morning to schedule your consultation.<br><br>Is there anything else you'd like me to note?`, 1000);
+      }
+      return;
+    }
+    if (memory.collecting === 'free-question') {
+      memory.collecting = null;
+      await addBotMessage(`Logged. Ms. Ilvento will review your question first thing tomorrow and have her office follow up by 10 AM.<br><br>Would you like to also hold a consultation slot?`, 1100,
+        [{ label: '✅ Yes, hold a slot', value: 'this-week' }, { label: 'No thank you', value: 'no-slot' }]);
+      return;
+    }
+    await addBotMessage(`Thank you. May I ask whether this is more of a divorce matter, a custody concern, or a question about mediation?`, 900,
+      [{ label: '⚖️ Divorce', value: 'divorce' }, { label: '👨‍👩‍👧 Custody', value: 'custody' }, { label: '🤝 Mediation', value: 'mediation' }]);
+  }
+
+  function confirmBooking() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) {
+      Object.assign(card.style, { transition: 'all 0.3s ease', background: 'linear-gradient(135deg, #2a3a5c 0%, #1a2540 100%)', color: 'white' });
+      card.querySelector('.booking-title').style.color = 'white';
+      card.querySelector('.booking-icon').style.background = 'white';
+      card.querySelector('.booking-icon').style.color = 'var(--accent)';
+      card.querySelectorAll('.label').forEach(el => el.style.color = 'rgba(255,255,255,0.6)');
+      card.querySelectorAll('.value').forEach(el => el.style.color = 'white');
+      card.querySelector('.booking-confirm').remove();
+    }
+    setTimeout(async () => { await addBotMessage(`You are set, ${memory.name}. Ms. Ilvento has been notified. You will receive a confirmation from <strong>(407) 898-0747</strong> tomorrow morning.`, 700); }, 400);
+  }
+
+  function proposeAlternative() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) card.remove();
+    addBotMessage(`Of course. Ms. Ilvento has openings Tuesday at 11 AM, Wednesday at 3 PM, or Friday at 10 AM — which suits you best?`, 600,
+      [{ label: '🌅 Tuesday 11 AM', value: 'this-week' }, { label: '🕒 Wednesday 3 PM', value: 'next-week' }, { label: '☀️ Friday 10 AM', value: 'flexible' }]);
+  }
+
+  inputEl.addEventListener('keydown', e => { if (e.key === 'Enter') handleUserSend(); });
+  setTimeout(startConversation, 600);
+</script>
+</body>
+</html>
