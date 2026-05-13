@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Luigi's Italian Restaurant — Reservations Concierge | Powered by Velo AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f3ed; --bg-deep: #ece6d8; --ink: #1a1f1c; --ink-soft: #4a544c; --ink-faint: #8a8f86;
+    --accent: #2d5a3f; --accent-warm: #c9926b; --accent-glow: #e8d9b8; --line: #d4ccba;
+    --user-msg: #2d5a3f; --user-msg-text: #f6f3ed; --bot-msg: #ffffff;
+    --shadow-sm: 0 1px 2px rgba(26,31,28,0.04); --shadow-md: 0 4px 16px rgba(26,31,28,0.08); --shadow-lg: 0 12px 40px rgba(26,31,28,0.12);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body { font-family: 'Geist', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.5; overflow-x: hidden; background-image: radial-gradient(circle at 15% 20%, rgba(201,146,107,0.06) 0%, transparent 40%), radial-gradient(circle at 85% 80%, rgba(45,90,63,0.05) 0%, transparent 40%); }
+  .app { display: grid; grid-template-columns: 360px 1fr; min-height: 100vh; max-width: 1400px; margin: 0 auto; }
+  .practice-panel { background: linear-gradient(180deg, #1a3326 0%, #0f1f17 100%); color: #e8e0d0; padding: 40px 32px; display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; overflow: hidden; }
+  .practice-panel::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(201,146,107,0.08) 0%, transparent 50%); animation: drift 20s ease-in-out infinite; }
+  @keyframes drift { 0%, 100% { transform: translate(0,0); } 50% { transform: translate(20%,10%); } }
+  .practice-content { position: relative; z-index: 1; }
+  .practice-mark { font-family: 'Fraunces', serif; font-weight: 500; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent-warm); margin-bottom: 12px; opacity: 0.9; }
+  .practice-name { font-family: 'Fraunces', serif; font-weight: 600; font-size: 30px; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 6px; }
+  .practice-doctor { font-family: 'Fraunces', serif; font-weight: 400; font-style: italic; font-size: 16px; color: var(--accent-glow); margin-bottom: 32px; }
+  .promise-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(232,217,184,0.15); border-radius: 12px; padding: 20px; margin-bottom: 24px; backdrop-filter: blur(10px); }
+  .promise-card h4 { font-family: 'Geist', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-warm); margin-bottom: 8px; }
+  .promise-card p { font-size: 14px; line-height: 1.55; color: #d4cdb8; }
+  .practice-info { margin-top: auto; padding-top: 24px; border-top: 1px solid rgba(232,217,184,0.1); font-size: 13px; line-height: 1.7; color: #b8b0a0; }
+  .practice-info .row { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 8px; }
+  .practice-info .label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-warm); width: 56px; padding-top: 2px; flex-shrink: 0; }
+  .powered-by { margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(232,217,184,0.1); font-size: 11px; color: #8a8275; letter-spacing: 0.05em; }
+  .powered-by strong { color: var(--accent-glow); font-weight: 600; letter-spacing: 0.1em; }
+  .chat-panel { background: var(--bg); display: flex; flex-direction: column; position: relative; }
+  .chat-header { padding: 20px 32px; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; background: rgba(246,243,237,0.85); backdrop-filter: blur(12px); z-index: 10; }
+  .chat-status { display: flex; align-items: center; gap: 10px; }
+  .status-dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; box-shadow: 0 0 0 4px rgba(74,222,128,0.15); animation: pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { box-shadow: 0 0 0 4px rgba(74,222,128,0.15); } 50% { box-shadow: 0 0 0 8px rgba(74,222,128,0.05); } }
+  .status-text { font-size: 13px; color: var(--ink-soft); font-weight: 500; }
+  .status-text strong { color: var(--ink); font-weight: 600; }
+  .chat-time { font-family: 'Fraunces', serif; font-size: 12px; color: var(--ink-faint); font-style: italic; }
+  .messages { flex: 1; padding: 32px; scroll-behavior: smooth; }
+  .msg-group { margin-bottom: 20px; animation: msgIn 0.4s cubic-bezier(0.2,0.8,0.2,1); }
+  @keyframes msgIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .msg { max-width: 78%; padding: 14px 18px; border-radius: 18px; font-size: 15px; line-height: 1.55; word-wrap: break-word; }
+  .msg-bot { background: var(--bot-msg); color: var(--ink); border-bottom-left-radius: 4px; box-shadow: var(--shadow-sm); border: 1px solid rgba(212,204,186,0.4); }
+  .msg-user { background: var(--user-msg); color: var(--user-msg-text); border-bottom-right-radius: 4px; margin-left: auto; }
+  .msg-meta { font-size: 10px; color: var(--ink-faint); margin-top: 6px; padding: 0 8px; letter-spacing: 0.05em; text-transform: uppercase; }
+  .msg-meta.user { text-align: right; }
+  .typing { display: flex; gap: 4px; padding: 16px 20px; background: var(--bot-msg); border-radius: 18px; border-bottom-left-radius: 4px; width: fit-content; box-shadow: var(--shadow-sm); border: 1px solid rgba(212,204,186,0.4); }
+  .typing span { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; opacity: 0.5; animation: typing 1.3s ease-in-out infinite; }
+  .typing span:nth-child(2) { animation-delay: 0.2s; } .typing span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes typing { 0%, 100% { transform: translateY(0); opacity: 0.4; } 50% { transform: translateY(-4px); opacity: 1; } }
+  .quick-replies { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; animation: msgIn 0.4s cubic-bezier(0.2,0.8,0.2,1) 0.2s both; }
+  .chip { background: transparent; border: 1px solid var(--accent); color: var(--accent); padding: 9px 16px; border-radius: 100px; font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s ease; }
+  .chip:hover { background: var(--accent); color: var(--bg); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+  .chip:disabled { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
+  .booking-card { background: linear-gradient(135deg, #ffffff 0%, #faf6ec 100%); border: 1px solid var(--line); border-radius: 16px; padding: 24px; margin-top: 12px; box-shadow: var(--shadow-md); animation: msgIn 0.5s cubic-bezier(0.2,0.8,0.2,1); max-width: 78%; }
+  .booking-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+  .booking-icon { width: 32px; height: 32px; background: var(--accent); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-family: 'Fraunces', serif; font-weight: 600; font-size: 14px; }
+  .booking-title { font-family: 'Fraunces', serif; font-weight: 600; font-size: 16px; color: var(--ink); }
+  .booking-detail { display: grid; grid-template-columns: 90px 1fr; gap: 12px; padding: 8px 0; font-size: 14px; }
+  .booking-detail .label { color: var(--ink-faint); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; padding-top: 2px; }
+  .booking-detail .value { color: var(--ink); font-weight: 500; }
+  .booking-confirm { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); display: flex; gap: 8px; }
+  .btn-primary { flex: 1; background: var(--accent); color: white; border: none; padding: 11px 20px; border-radius: 8px; font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+  .btn-primary:hover { background: #1f4530; transform: translateY(-1px); box-shadow: var(--shadow-md); }
+  .btn-secondary { background: transparent; color: var(--ink-soft); border: 1px solid var(--line); padding: 11px 20px; border-radius: 8px; font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s; }
+  .btn-secondary:hover { background: var(--bg-deep); }
+  .input-area { padding: 20px 32px 24px; border-top: 1px solid var(--line); background: rgba(246,243,237,0.85); backdrop-filter: blur(12px); }
+  .input-wrap { display: flex; gap: 10px; background: white; border: 1px solid var(--line); border-radius: 14px; padding: 6px 6px 6px 18px; transition: border-color 0.2s, box-shadow 0.2s; }
+  .input-wrap:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(45,90,63,0.08); }
+  .input-wrap input { flex: 1; border: none; outline: none; font-family: 'Geist', sans-serif; font-size: 15px; color: var(--ink); padding: 10px 0; background: transparent; }
+  .input-wrap input::placeholder { color: var(--ink-faint); }
+  .send-btn { background: var(--accent); color: white; border: none; width: 40px; height: 40px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; flex-shrink: 0; }
+  .send-btn:hover { background: #1f4530; transform: scale(1.05); }
+  .send-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+  .input-hint { font-size: 11px; color: var(--ink-faint); margin-top: 10px; text-align: center; letter-spacing: 0.05em; }
+  .demo-banner { position: fixed; top: 16px; right: 16px; background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 100px; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; z-index: 100; box-shadow: var(--shadow-lg); display: flex; align-items: center; gap: 8px; cursor: pointer; transition: transform 0.2s; }
+  .demo-banner:hover { transform: scale(1.03); }
+  .demo-banner .pulse-dot { width: 6px; height: 6px; background: var(--accent-warm); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
+  @media (max-width: 900px) {
+    html, body { height: auto; overflow: auto; -webkit-overflow-scrolling: touch; }
+    .app { grid-template-columns: 1fr; height: auto; min-height: 100vh; }
+    .practice-panel { padding: 20px 24px; position: static; height: auto; max-height: none; }
+    .practice-panel .promise-card, .practice-panel .practice-info, .practice-panel .powered-by { display: none; }
+    .practice-name { font-size: 22px; } .practice-doctor { font-size: 14px; margin-bottom: 0; }
+    .chat-panel { min-height: 80vh; }
+    .messages { padding: 20px; overflow-y: visible; flex: none; } .msg { max-width: 88%; }
+    .input-area { padding: 16px 20px 20px; position: sticky; bottom: 0; }
+    .demo-banner { top: 8px; right: 8px; padding: 8px 12px; font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner" onclick="alert('This is a live demo built by Velo AI for Luigi\'s Italian Restaurant.\n\nFor deployment information, contact:\nGabe Herrera — Velo AI\nWinter Springs, FL')">
+  <span class="pulse-dot"></span><span>Velo AI Demo</span>
+</div>
+
+<div class="app">
+  <aside class="practice-panel">
+    <div class="practice-content">
+      <div class="practice-mark">Eustis, Florida · Family Italian</div>
+      <h1 class="practice-name">Luigi's Italian Restaurant</h1>
+      <p class="practice-doctor">Luigi Folgore, Owner — Recipes from Napoli</p>
+      <div class="promise-card">
+        <h4>Always Open for Reservations</h4>
+        <p>Luigi learned to cook in his family's restaurant in Napoli — and the tradition carries into every plate served in Eustis. Luigi's at the stove; the concierge handles reservations, large parties, and questions around the clock.</p>
+      </div>
+    </div>
+    <div class="practice-info">
+      <div class="row"><div class="label">Address</div><div>2814 David Walker Drive<br>Eustis, FL 32726</div></div>
+      <div class="row"><div class="label">Phone</div><div>(352) 508-1515</div></div>
+      <div class="row"><div class="label">Hours</div><div>Call for current hours</div></div>
+    </div>
+    <div class="powered-by">Concierge powered by <strong>VELO AI</strong></div>
+  </aside>
+
+  <main class="chat-panel">
+    <header class="chat-header">
+      <div class="chat-status"><span class="status-dot"></span><span class="status-text"><strong>Luigi's Concierge</strong> · Available 24/7</span></div>
+      <span class="chat-time" id="chat-time">After hours · 11:47 PM</span>
+    </header>
+    <div class="messages" id="messages"></div>
+    <div class="input-area">
+      <div class="input-wrap">
+        <input type="text" id="user-input" placeholder="Type your question..." autocomplete="off" />
+        <button class="send-btn" onclick="handleUserSend()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+      <div class="input-hint">Special occasion or large party? Luigi will be notified directly.</div>
+    </div>
+  </main>
+</div>
+
+<script>
+  const messagesEl = document.getElementById('messages');
+  const inputEl = document.getElementById('user-input');
+  const memory = { name: null, concern: null, urgency: null, proposedTime: null, collecting: null, history: [] };
+
+  const now = new Date();
+  document.getElementById('chat-time').textContent = `After hours · ${now.getHours() < 8 || now.getHours() >= 17 ? '11:47 PM' : '6:32 AM'}`;
+
+  function addBotMessage(text, delay = 700, chips = null) {
+    return new Promise(res => {
+      const id = 't' + Date.now();
+      const t = document.createElement('div'); t.className = 'msg-group'; t.id = id;
+      t.innerHTML = '<div class="typing"><span></span><span></span><span></span></div>';
+      messagesEl.appendChild(t); messagesEl.scrollTop = messagesEl.scrollHeight;
+      setTimeout(() => {
+        document.getElementById(id)?.remove();
+        const g = document.createElement('div'); g.className = 'msg-group';
+        let h = `<div class="msg msg-bot">${text}</div><div class="msg-meta">Luigi's Concierge</div>`;
+        if (chips) { h += '<div class="quick-replies">'; chips.forEach(c => { h += `<button class="chip" onclick="handleChipClick('${c.value.replace(/'/g,"\\'")}',this)">${c.label}</button>`; }); h += '</div>'; }
+        g.innerHTML = h; messagesEl.appendChild(g); messagesEl.scrollTop = messagesEl.scrollHeight; res();
+      }, delay);
+    });
+  }
+
+  function addUserMessage(text) {
+    const g = document.createElement('div'); g.className = 'msg-group';
+    g.innerHTML = `<div class="msg msg-user" style="margin-left:auto;">${text}</div><div class="msg-meta user">You · just now</div>`;
+    messagesEl.appendChild(g); messagesEl.scrollTop = messagesEl.scrollHeight;
+    memory.history.push({ role: 'user', text });
+  }
+
+  function disableChips(btn) {
+    btn.parentElement.querySelectorAll('.chip').forEach(c => c.disabled = true);
+    btn.style.background = 'var(--accent)'; btn.style.color = 'var(--bg)';
+  }
+
+  function showBookingCard(type, time) {
+    const g = document.createElement('div'); g.className = 'msg-group';
+    g.innerHTML = `<div class="booking-card">
+      <div class="booking-header"><div class="booking-icon">L</div><div class="booking-title">Reservation Hold Created</div></div>
+      <div class="booking-detail"><span class="label">Name</span><span class="value">${memory.name || 'Guest'}</span></div>
+      <div class="booking-detail"><span class="label">For</span><span class="value">${type}</span></div>
+      <div class="booking-detail"><span class="label">Proposed</span><span class="value">${time}</span></div>
+      <div class="booking-detail"><span class="label">Location</span><span class="value">2814 David Walker Dr, Eustis</span></div>
+      <div class="booking-confirm">
+        <button class="btn-primary" onclick="confirmBooking()">Confirm reservation</button>
+        <button class="btn-secondary" onclick="proposeAlternative()">Different time</button>
+      </div></div>`;
+    messagesEl.appendChild(g); messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  async function startConversation() {
+    await addBotMessage(
+      `Benvenuto — you've reached Luigi's Italian Restaurant in Eustis. Luigi's in the kitchen doing what he does best, so I'm here to handle reservations, large parties, and any questions. What brings you by tonight?`,
+      400,
+      [
+        { label: '🍝 Make a reservation', value: 'reservation' },
+        { label: '🎉 Large party or private event', value: 'event' },
+        { label: '🍷 Menu or hours question', value: 'question' },
+        { label: '🛍️ Takeout or to-go', value: 'takeout' }
+      ]
+    );
+  }
+
+  async function handleChipClick(value, btn) {
+    disableChips(btn);
+    const labels = { 'reservation': "I'd like to make a reservation", 'event': "I'm planning a large party or private event", 'question': "I have a menu or hours question", 'takeout': "I'd like to order takeout", 'tonight': "Tonight or tomorrow", 'thisweek': "This week", 'whenever': "Whenever works" };
+    addUserMessage(labels[value] || value);
+    await routeIntent(value);
+  }
+
+  async function routeIntent(value) {
+    if (value === 'reservation') {
+      memory.concern = 'reservation';
+      await addBotMessage(`Perfect — let's get you a table. When are you thinking?`, 800,
+        [{ label: '🔴 Tonight or tomorrow', value: 'tonight' }, { label: '🟡 This week', value: 'thisweek' }, { label: '🟢 Whenever works', value: 'whenever' }]);
+      return;
+    }
+    if (value === 'tonight') {
+      memory.urgency = 'urgent';
+      await addBotMessage(`Same-night tables can go quick. While I check availability, can I get your first name, party size, and a phone number? If you need a table within the next hour, give us a call at (352) 508-1515 directly — we hold a few walk-in spots.`, 1200);
+      memory.collecting = 'name-phone'; return;
+    }
+    if (['thisweek', 'whenever'].includes(value)) {
+      memory.urgency = value;
+      await addBotMessage(`Sounds great. Mid-week tends to have the most flexibility for parties of 4 or more. What's your first name and party size? We'll have someone pre-confirm with you in the morning.`, 1100);
+      memory.collecting = 'name'; return;
+    }
+    if (value === 'event') {
+      memory.concern = 'event';
+      await addBotMessage(`Luigi's is a great fit for family celebrations, birthday dinners, and group events — the Italian kitchen makes everything feel like a special occasion. What kind of event are you planning, and roughly how many guests?`, 1100);
+      memory.collecting = 'free-question'; return;
+    }
+    if (value === 'question') {
+      memory.concern = 'question';
+      await addBotMessage(`Go ahead — type your question. Hours, menu items, dietary accommodations — I can usually answer right now.`, 900);
+      memory.collecting = 'free-question'; return;
+    }
+    if (value === 'takeout') {
+      memory.concern = 'takeout';
+      await addBotMessage(`For to-go orders, the fastest way is to call us at <strong>(352) 508-1515</strong> during service hours. Want me to log your name so the team can reach out when they open tomorrow?`, 1000);
+      memory.collecting = 'name'; return;
+    }
+  }
+
+  async function handleUserSend() {
+    const text = inputEl.value.trim(); if (!text) return;
+    addUserMessage(text); inputEl.value = '';
+    if (['name', 'name-phone'].includes(memory.collecting)) {
+      const n = text.split(/\s+/)[0].replace(/[^a-zA-Z]/g, '');
+      memory.name = n.charAt(0).toUpperCase() + n.slice(1).toLowerCase();
+      const old = memory.collecting;
+      const r = { 'name': `Thank you, ${memory.name}. What's the best phone number? The team will text you a confirmation in the morning.`, 'name-phone': `Thank you, ${memory.name}. Best phone number? Someone will reach you as soon as service slows.` };
+      await addBotMessage(r[old] || r['name'], 800); memory.collecting = 'phone'; return;
+    }
+    if (memory.collecting === 'phone') {
+      memory.phone = text; memory.collecting = null;
+      const timeMap = { 'tonight': 'Tomorrow at 6:30 PM', 'thisweek': 'Wednesday at 7:00 PM', 'whenever': 'Thursday at 7:00 PM' };
+      const t = timeMap[memory.urgency] || 'Wednesday at 7:00 PM';
+      if (memory.concern === 'reservation') {
+        await addBotMessage(`Perfect. Here's the hold I'm creating for Luigi's team:`, 800);
+        setTimeout(() => showBookingCard('Dinner Reservation', t), 1200);
+      } else {
+        await addBotMessage(`All set, ${memory.name}. The team will reach out to ${text} tomorrow morning. Grazie mille!`, 1000);
+      }
+      return;
+    }
+    if (memory.collecting === 'free-question') {
+      memory.collecting = null;
+      await addBotMessage(`Got it — I've logged that for Luigi's team to review in the morning. Someone will follow up by 10 AM.<br><br>Want me to also hold a reservation slot?`, 1100,
+        [{ label: '✅ Yes, hold a table', value: 'thisweek' }, { label: 'No thanks', value: 'no-slot' }]);
+      return;
+    }
+    await addBotMessage(`Thanks! To route this right — are you looking to make a reservation, plan a larger event, or something else?`, 900,
+      [{ label: '🍝 Reservation', value: 'reservation' }, { label: '🎉 Large party', value: 'event' }, { label: '❓ Menu question', value: 'question' }]);
+  }
+
+  function confirmBooking() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) {
+      Object.assign(card.style, { transition: 'all 0.3s ease', background: 'linear-gradient(135deg,#2d5a3f 0%,#1f4530 100%)', color: 'white' });
+      card.querySelector('.booking-title').style.color = 'white'; card.querySelector('.booking-title').textContent = '✓ Reservation Confirmed';
+      card.querySelector('.booking-icon').style.cssText = 'background:white;color:var(--accent)';
+      card.querySelectorAll('.label').forEach(el => el.style.color = 'rgba(255,255,255,0.6)');
+      card.querySelectorAll('.value').forEach(el => el.style.color = 'white');
+      card.querySelector('.booking-confirm').remove();
+    }
+    setTimeout(async () => { await addBotMessage(`You're all set, ${memory.name}. Luigi's team has been notified — you'll get a confirmation text from <strong>(352) 508-1515</strong> by mid-morning.<br><br>Ci vediamo — see you soon!`, 700); }, 400);
+  }
+
+  function proposeAlternative() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) card.remove();
+    addBotMessage(`No problem. Luigi's has openings Tuesday at 6 PM, Wednesday at 7:30 PM, or Friday at 7 PM — which works?`, 600,
+      [{ label: '🌮 Tuesday 6 PM', value: 'tonight' }, { label: '🍷 Wednesday 7:30 PM', value: 'thisweek' }, { label: '🎉 Friday 7 PM', value: 'whenever' }]);
+  }
+
+  inputEl.addEventListener('keydown', e => { if (e.key === 'Enter') handleUserSend(); });
+  setTimeout(startConversation, 600);
+</script>
+</body>
+</html>
