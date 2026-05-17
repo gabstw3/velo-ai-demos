@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push)",
+      "Bash(git log *)",
+      "Bash(git status)",
+      "Bash(git diff *)",
+      "Bash(curl *)",
+      "Bash(python3 *)",
+      "Bash(grep *)",
+      "Bash(echo *)",
+      "Bash(cat *)",
+      "Bash(ls *)",
+      "Bash(tail *)",
+      "Bash(mkdir *)",
+      "Bash(until *)",
+      "Bash(for *)",
+      "Bash(cd /Users/g/velo-ai-demos*)"
+    ]
+  }
+}
