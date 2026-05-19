@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Agreement | Velo AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: #0a0d12;
+            color: #c9d1d9;
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+        .top-bar {
+            border-bottom: 1px solid rgba(26,111,255,0.15);
+            padding: 20px 0;
+            background: rgba(10,13,18,0.95);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .top-bar-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+        }
+        .logo-text {
+            font-size: 20px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+        }
+        .logo-text span { color: #1a6fff; }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 48px 24px 80px;
+        }
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+        .subtitle {
+            color: #6b7280;
+            font-size: 15px;
+            margin-bottom: 40px;
+        }
+        .agreement-section {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            padding: 32px;
+            margin-bottom: 24px;
+        }
+        .agreement-section h2 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-number {
+            background: linear-gradient(135deg, #1a6fff, #0d4fc7);
+            color: #fff;
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .agreement-section p, .agreement-section li {
+            font-size: 14px;
+            color: #9ca3af;
+            margin-bottom: 8px;
+        }
+        .agreement-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        .agreement-section ul li {
+            padding-left: 24px;
+            position: relative;
+            margin-bottom: 10px;
+        }
+        .agreement-section ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #1a6fff;
+        }
+        .included li::before { background: #22c55e; }
+        .excluded li::before { background: #6b7280; }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 16px;
+        }
+        .price-card {
+            background: rgba(26,111,255,0.06);
+            border: 1px solid rgba(26,111,255,0.15);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+        .price-card .amount {
+            font-size: 28px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+        .price-card .label {
+            font-size: 13px;
+            color: #6b7280;
+            margin-top: 4px;
+        }
+        .signature-section {
+            background: rgba(26,111,255,0.04);
+            border: 1px solid rgba(26,111,255,0.12);
+            border-radius: 12px;
+            padding: 32px;
+            margin-top: 32px;
+        }
+        .signature-section h2 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 24px;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .form-group.full { grid-column: 1 / -1; }
+        label {
+            font-size: 13px;
+            font-weight: 500;
+            color: #9ca3af;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="date"] {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 12px 14px;
+            font-size: 14px;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.2s;
+        }
+        input:focus {
+            outline: none;
+            border-color: #1a6fff;
+            box-shadow: 0 0 0 3px rgba(26,111,255,0.15);
+        }
+        .checkbox-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin: 24px 0;
+            padding: 16px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 8px;
+        }
+        .checkbox-row input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: #1a6fff;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        .checkbox-row label {
+            font-size: 14px;
+            color: #c9d1d9;
+            cursor: pointer;
+        }
+        .btn-submit {
+            background: linear-gradient(135deg, #1a6fff, #0d4fc7);
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            padding: 14px 32px;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+        .btn-submit:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 24px rgba(26,111,255,0.3);
+        }
+        .btn-submit:active { transform: translateY(0); }
+        .next-step {
+            text-align: center;
+            margin-top: 32px;
+            padding: 24px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .next-step p {
+            color: #6b7280;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+        .next-step a {
+            color: #1a6fff;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 15px;
+        }
+        .next-step a:hover { text-decoration: underline; }
+        .footer {
+            text-align: center;
+            padding: 32px 24px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: #4b5563;
+            font-size: 13px;
+        }
+        @media (max-width: 600px) {
+            .form-row { grid-template-columns: 1fr; }
+            .pricing-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 26px; }
+            .agreement-section { padding: 24px 20px; }
+            .signature-section { padding: 24px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="top-bar-inner">
+            <svg class="logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="32" height="32" rx="8" fill="url(#bolt-bg)"/>
+                <path d="M18.5 5L10 18h5.5l-2 9L22 14h-5.5l2-9z" fill="#fff" stroke="#fff" stroke-width="0.5" stroke-linejoin="round"/>
+                <defs>
+                    <linearGradient id="bolt-bg" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#1a6fff"/>
+                        <stop offset="1" stop-color="#0d4fc7"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+            <div class="logo-text">Velo <span>AI</span></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Service Agreement</h1>
+        <p class="subtitle">Velo AI LLC &mdash; AI Chatbot Service Agreement</p>
+
+        <div class="agreement-section">
+            <h2><span class="section-number">1</span> Parties</h2>
+            <p>This Service Agreement ("Agreement") is entered into between <strong style="color:#fff;">Velo AI LLC</strong>, a Florida limited liability company ("Provider"), and the undersigned client ("Client"), collectively referred to as the "Parties."</p>
+        </div>
+
+        <div class="agreement-section">
+            <h2><span class="section-number">2</span> Pricing &amp; Payment</h2>
+            <p>Client agrees to pay the following fees for the AI chatbot service:</p>
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <div class="amount">$497</div>
+                    <div class="label">One-time setup fee</div>
+                </div>
+                <div class="price-card">
+                    <div class="amount">$147<span style="font-size:16px;color:#6b7280;">/mo</span></div>
+                    <div class="label">Monthly recurring</div>
+                </div>
+            </div>
+            <p style="margin-top:16px;">This is a <strong style="color:#fff;">month-to-month</strong> agreement. Either party may cancel with <strong style="color:#fff;">30 days written notice</strong>. No long-term contracts or cancellation fees.</p>
+        </div>
+
+        <div class="agreement-section">
+            <h2><span class="section-number">3</span> What's Included</h2>
+            <ul class="included">
+                <li>Custom AI chatbot trained on your business</li>
+                <li>Embeddable website widget</li>
+                <li>Lead capture with email alerts</li>
+                <li>Monthly performance report</li>
+                <li>Unlimited chat sessions</li>
+                <li>5 business day setup</li>
+            </ul>
+        </div>
+
+        <div class="agreement-section">
+            <h2><span class="section-number">4</span> What's Not Included</h2>
+            <p style="margin-bottom:12px;">The following services are not included in the standard package but are available as add-ons:</p>
+            <ul class="excluded">
+                <li>Custom integrations</li>
+                <li>CRM syncing</li>
+                <li>Multilingual support</li>
+            </ul>
+        </div>
+
+        <div class="agreement-section">
+            <h2><span class="section-number">5</span> Term &amp; Termination</h2>
+            <p>This Agreement is effective upon execution and continues on a month-to-month basis. Either party may terminate this Agreement by providing 30 days written notice via email. Upon termination, the chatbot widget will be deactivated and Client's data will be available for export upon request for up to 30 days.</p>
+        </div>
+
+        <div class="agreement-section">
+            <h2><span class="section-number">6</span> Limitation of Liability</h2>
+            <p>Provider's total liability under this Agreement shall not exceed the total fees paid by Client in the preceding three (3) months. Provider is not liable for any indirect, incidental, or consequential damages. The AI chatbot is an assistive tool and does not replace professional advice.</p>
+        </div>
+
+        <form id="agreementForm" class="signature-section" onsubmit="return submitAgreement(event)">
+            <h2>Digital Signature</h2>
+            <p style="font-size:14px;color:#6b7280;margin-bottom:24px;">By signing below, you agree to the terms outlined in this Service Agreement.</p>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="client-name">Full Name</label>
+                    <input type="text" id="client-name" name="client_name" required placeholder="Jane Smith">
+                </div>
+                <div class="form-group">
+                    <label for="business-name">Business Name</label>
+                    <input type="text" id="business-name" name="business_name" required placeholder="Smith Dental">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="client-email">Email Address</label>
+                    <input type="email" id="client-email" name="client_email" required placeholder="jane@smithdental.com">
+                </div>
+                <div class="form-group">
+                    <label for="sign-date">Date</label>
+                    <input type="date" id="sign-date" name="sign_date" required>
+                </div>
+            </div>
+
+            <input type="hidden" name="_subject" value="New Velo AI Service Agreement Signed">
+
+            <div class="checkbox-row">
+                <input type="checkbox" id="agree" name="agreed_to_terms" value="yes" required>
+                <label for="agree">I have read and agree to the terms of this Service Agreement between myself and Velo AI LLC. I understand the pricing, deliverables, and cancellation policy outlined above.</label>
+            </div>
+
+            <button type="submit" class="btn-submit">Submit Agreement</button>
+        </form>
+
+        <div class="next-step">
+            <p>After signing, complete your intake form so we can build your chatbot.</p>
+            <a href="intake.html">Continue to Intake Form &rarr;</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        &copy; 2026 Velo AI LLC &middot; Orlando, FL &middot; gabe@getveloai.co &middot; (407) 773-0043
+    </div>
+
+    <script>
+        document.getElementById('sign-date').valueAsDate = new Date();
+
+        function submitAgreement(e) {
+            e.preventDefault();
+            var f = e.target;
+            if (!f.agreed_to_terms.checked) { return false; }
+            var name = f.client_name.value.trim();
+            var biz = f.business_name.value.trim();
+            var email = f.client_email.value.trim();
+            var date = f.sign_date.value;
+            var subject = 'New Velo AI Service Agreement Signed — ' + biz;
+            var body =
+                'Service Agreement signed via getveloai.co\n\n' +
+                'Full Name: ' + name + '\n' +
+                'Business Name: ' + biz + '\n' +
+                'Email: ' + email + '\n' +
+                'Date: ' + date + '\n' +
+                'Agreed to terms: Yes ($497 one-time setup / $147 per month, month-to-month)\n\n' +
+                '— Submitted from the Velo AI contract page. Please reply to confirm receipt.';
+            window.location.href = 'mailto:gabe@getveloai.co?subject=' +
+                encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+            setTimeout(function () { window.location.href = 'intake.html'; }, 1200);
+            return false;
+        }
+    </script>
+</body>
+</html>
