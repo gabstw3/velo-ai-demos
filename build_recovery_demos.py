@@ -3476,6 +3476,600 @@ PACHABIJAN_SUBS = _dental_subs("Pacha & Bijan Dental", "Dr. Pacha & Dr. Bijan",
 PACHABIJAN_CLEANUP = _dental_cleanup("Pacha & Bijan Dental", "the doctors")
 
 
+# ============ WAVE 13 — May 6 2026 (Kortix batch: dental + law ×2 + salon + restaurant ×2 + RE + medspa) ============
+
+# MJ Dental — Dr. Mitesh Jivan, DMD MPH, Mount Dora FL
+# UM biochem + NSU dental/MPH; cosmetic, implants, Invisalign, iTero; cozy family-centric; Lake County
+MJDENTAL_SUBS = _dental_subs(
+    "MJ Dental", "Dr. Mitesh Jivan, DMD, MPH", "Dr. Jivan", "Mitesh",
+    "Mount Dora, Florida", "Cosmetic · Implants · Invisalign · iTero",
+    pronoun_subj="he", pronoun_obj="him", pronoun_poss="his")
+MJDENTAL_SUBS += [
+    ("(407) 732-4570", "(352) 383-2959"),
+    ('<span class="value">4907 International Pkwy, Suite 1041</span>',
+     '<span class="value">Mount Dora, FL · Lake County</span>'),
+]
+MJDENTAL_CLEANUP = _dental_cleanup("MJ Dental", "Dr. Jivan")
+
+
+# Mazenko Law Firm — Todd Joseph Mazenko, Mount Dora FL
+# UF Law, FL Bar 2011; estate planning, wills, trusts, probate; TEDx + "Meet the Attorney" seminars
+MAZENKOLAW_SUBS = [
+    ("Lance A. Ragland, P.A. — After-Hours Intake | Powered by Velo AI",
+     "Mazenko Law Firm — After-Hours Intake | Powered by Velo AI"),
+    ("This is a live demo built by Velo AI for Lance A. Ragland, P.A.",
+     "This is a live demo built by Velo AI for Mazenko Law Firm."),
+    ("Winter Springs, Florida · Est. 2015",
+     "Mount Dora, Florida · Est. 2011 · Estate Planning"),
+    ('<h1 class="practice-name">Lance A. Ragland, P.A.</h1>',
+     '<h1 class="practice-name">Mazenko Law Firm</h1>'),
+    ('<p class="practice-doctor">Lance A. Ragland, Esq.</p>',
+     '<p class="practice-doctor">Todd Joseph Mazenko, Esq.</p>'),
+    ("Estate matters rarely surface during business hours. Lance is committed to being there for clients during life's most difficult transitions. You're never alone.",
+     "Estate planning matters rarely surface during business hours. Todd has hosted \"Meet the Attorney\" seminars in Mount Dora and given a TEDx talk on estate planning — he explains things clearly and is committed to being reachable. You're never alone."),
+    ("5750 Canton Cove<br>Winter Springs, FL 32708",
+     "Mount Dora, FL · Serving Lake County"),
+    ("(407) 960-6069", "(352) 565-7737"),
+    ("<strong>Ragland Intake</strong> · Available 24/7",
+     "<strong>Mazenko Law Intake</strong> · Available 24/7"),
+    ("Ragland Intake", "Mazenko Law Intake"),
+    ("A current client of Lance's? He'll be notified directly for urgent matters.",
+     "A current client of Todd's? He'll be notified directly for urgent matters."),
+    ("Good evening — you've reached the after-hours line for the Law Offices of Lance A. Ragland. Lance focuses entirely on estate planning, probate, and trust matters. He's unavailable right now, but I can take down what's on your mind and get him to reach back out.",
+     "Good evening — you've reached the after-hours line for Mazenko Law. Todd focuses on estate planning, wills, trusts, and probate for Lake County families. He's unavailable right now, but I can take down what's on your mind and get him to reach back out."),
+    ("Lance has guided families through probate for nearly thirty years",
+     "Todd has guided Lake County families through estate planning and probate since 2011"),
+    ("Lance opens his calendar Tuesday through Thursday for new probate matters and sets aside ninety minutes per consultation so nothing feels rushed.",
+     "Todd opens his calendar Tuesday through Thursday for new matters and sets aside time so nothing feels rushed — he's known for explaining every step in plain language."),
+    ("Lance has been doing wills, trusts, and estate plans exclusively since 2015, so this is exactly his bread and butter.",
+     "Todd has been doing wills, trusts, and estate plans since 2011, and his \"Meet the Attorney\" seminars in Mount Dora mean he's walked hundreds of Lake County families through this. Exactly his bread and butter."),
+    ('<div class="booking-icon">L</div>',
+     '<div class="booking-icon">M</div>'),
+    ('<span class="value">Lance A. Ragland, Esq.</span>',
+     '<span class="value">Todd Joseph Mazenko, Esq.</span>'),
+    ('<span class="value">5750 Canton Cove, Winter Springs</span>',
+     '<span class="value">Mount Dora, FL · Lake County</span>'),
+    ("Lance has been notified", "Todd has been notified"),
+    ("Lance will reach out", "Todd will reach out"),
+    ("welcome from Lance", "welcome from Todd"),
+    ("Lance ", "Todd "),
+    ("Lance's", "Todd's"),
+    ("Lance.", "Todd."),
+    ("Lance,", "Todd,"),
+    ("his office (Debbie)", "his office"),
+]
+MAZENKOLAW_CLEANUP = [
+    ("Lance", "Todd"),
+    ("Ragland", "Mazenko Law"),
+    ("ragland", "mazenkolaw"),
+]
+
+
+# Bauer & Associates Attorneys at Law — Jeffrey Boyd Bauer, DeLand FL
+# DeLand native, Ave Maria law, FL Bar 2021, firm est. 1992; business/RE/estate/probate; fixed-fee + credit cards
+BAUERLAW_SUBS = [
+    ("Latham Luna — After-Hours Intake | Powered by Velo AI",
+     "Bauer &amp; Associates — After-Hours Intake | Powered by Velo AI"),
+    ("This is a live demo built by Velo AI for Latham Luna",
+     "This is a live demo built by Velo AI for Bauer &amp; Associates"),
+    ("Downtown Orlando · Est. 1996",
+     "DeLand, Florida · Est. 1992 · Business &amp; Estate Law"),
+    ('<h1 class="practice-name">Latham Luna</h1>',
+     '<h1 class="practice-name">Bauer &amp; Associates</h1>'),
+    ('<p class="practice-doctor">Daniel Velasquez, Esq.</p>',
+     '<p class="practice-doctor">Jeffrey Boyd Bauer, Esq.</p>'),
+    ("Latham Luna is a downtown Orlando boutique with eleven practice areas — bankruptcy, construction, commercial litigation, hospitality, aviation. The firm's positioning is &quot;World-Class Counsel, Small-Town Service.&quot; Daniel is committed to being available when business actually moves, not just when the office is open.",
+     "Bauer &amp; Associates was established in DeLand in 1992. Jeffrey was born and raised here and has been practicing across business law, commercial real estate, estate planning, probate, and probate litigation since 2021. The firm offers fixed-fee services alongside hourly rates — no surprise bills — and accepts all major credit cards."),
+    ("111 N Magnolia Ave, Suite 1400<br>Orlando, FL 32801",
+     "DeLand, FL · Serving Volusia County"),
+    ("(407) 481-5800", "(386) 734-3313"),
+    ("<strong>Latham Luna Intake</strong> · Available 24/7",
+     "<strong>Bauer &amp; Associates Intake</strong> · Available 24/7"),
+    ("Latham Luna Intake", "Bauer &amp; Associates Intake"),
+    ("Good evening — you've reached the after-hours line for Latham Luna in downtown Orlando. The firm covers eleven practice areas; Daniel chairs the Aviation Department and is a Bankruptcy Partner. He's wrapped for the day, but I can take down what's going on and route it to him or another attorney depending on the matter.",
+     "Good evening — you've reached the after-hours line for Bauer &amp; Associates in DeLand. Jeffrey covers business law, commercial real estate, estate planning, probate, and probate litigation. He's wrapped for the day, but I can take down what's going on and get him to reach back out."),
+    ("Business disputes are core territory for Latham Luna — the firm's been doing this since 1996, with five attorneys in Florida Super Lawyers and six in Best Lawyers in America. Daniel handles bankruptcy specifically, and other partners cover commercial litigation, employment, and corporate matters. The two things that help the team move fast: what's the dispute, and whether there's a deadline anywhere in the next two weeks.",
+     "Business law is core territory for Bauer &amp; Associates — rooted in DeLand since 1992. Jeffrey handles business law, commercial real estate, and the full estate and probate side. Fixed-fee options are available so you know the cost upfront. Two things that help Jeffrey move fast: what's the matter, and whether there's a deadline anywhere in the next two weeks."),
+    ('<div class="booking-icon">L</div>',
+     '<div class="booking-icon">B</div>'),
+    ('<span class="value">111 N Magnolia Ave, Orlando</span>',
+     '<span class="value">DeLand, FL · Serving Volusia</span>'),
+    ("Daniel has been notified", "Jeffrey has been notified"),
+    ("Daniel will call", "Jeffrey will call"),
+    ("Daniel will reach out", "Jeffrey will reach out"),
+    ("Daniel ", "Jeffrey "),
+    ("Daniel's", "Jeffrey's"),
+    ("Daniel.", "Jeffrey."),
+    ("Daniel,", "Jeffrey,"),
+]
+BAUERLAW_CLEANUP = [
+    ("Latham Luna", "Bauer &amp; Associates"),
+    ("lathamluna", "bauerlaw"),
+    ("Daniel", "Jeffrey"),
+]
+
+
+# Bombshell Salon & Spa — Paola Gambini, Winter Garden FL
+# Historic downtown Winter Garden, full services, Vagaro booking, family-friendly
+BOMBSHELLSALON_SUBS = [
+    ("The Look Salon & Spa — Booking Concierge | Powered by Velo AI",
+     "Bombshell Salon &amp; Spa — Booking Concierge | Powered by Velo AI"),
+    ("This is a live demo built by Velo AI for The Look Salon & Spa.",
+     "This is a live demo built by Velo AI for Bombshell Salon &amp; Spa."),
+    ("Oviedo, Florida · Hair, Spa &amp; Skincare",
+     "Winter Garden, Florida · Historic Downtown"),
+    ('<h1 class="practice-name">The Look Salon &amp; Spa</h1>',
+     '<h1 class="practice-name">Bombshell Salon &amp; Spa</h1>'),
+    ('<p class="practice-doctor">17 Stylists · Award-Winning Team</p>',
+     '<p class="practice-doctor">Paola Gambini, Owner</p>'),
+    ("Seventeen stylists, 90+ services, and 4.9 stars across 1,100+ Google reviews. The Look handles hair (Hattori Hanzo trained, REZO Certified for curls), spa, skincare, and lashes (NovaLash certified) under one roof. The booking line never sleeps.",
+     "Bombshell is a full-service salon and spa in historic downtown Winter Garden — cuts, color, blowouts, updos, facials, and skincare. Paola and her team are family-friendly and book online through Vagaro."),
+    ("3635 Aloma Ave, Suite 1025<br>Oviedo, FL 32765",
+     "50 E Joiner St<br>Winter Garden, FL 34787"),
+    ("(407) 977-8481", "(407) 347-9950"),
+    ("<strong>The Look Concierge</strong> · Available 24/7",
+     "<strong>Bombshell Concierge</strong> · Available 24/7"),
+    ("The Look Concierge", "Bombshell Concierge"),
+    ("A regular at The Look? Your stylist will be notified directly for time-sensitive bookings.",
+     "A regular at Bombshell? Paola will be notified directly for time-sensitive bookings."),
+    ("Welcome to The Look. The salon is wrapped for the night, but I can hold appointments across all 17 stylists, quote services (we do 90+, from precision Hattori Hanzo cuts to REZO Certified curl work to NovaLash extensions), and answer most questions before you go to sleep.",
+     "Welcome to Bombshell Salon &amp; Spa in historic downtown Winter Garden. The salon is wrapped for the night, but I can hold appointments, quote services (cuts, color, blowouts, updos, facials, skincare), and answer most questions before you go to sleep."),
+    ('<div class="booking-icon">L</div>',
+     '<div class="booking-icon">B</div>'),
+    ('<span class="value">The Look Stylist</span>',
+     '<span class="value">Paola &amp; the Bombshell team</span>'),
+    ('<span class="value">151 Geneva Dr, Oviedo</span>',
+     '<span class="value">50 E Joiner St, Winter Garden</span>'),
+    ("The Look", "Bombshell"),
+]
+BOMBSHELLSALON_CLEANUP = [
+    ("The Look", "Bombshell"),
+    ("thelook", "bombshellsalon"),
+    ("Oviedo", "Winter Garden"),
+]
+
+
+# Rincón del Sabor — Keren Torres, DeLand FL
+# Family-owned Latin American; 2735 S Woodland Blvd DeLand; active Facebook
+RINCONDELSABOR_SUBS = [
+    ("Susana's Café — Reservations &amp; Concierge | Powered by Velo AI",
+     "Rincón del Sabor — Reservations &amp; Concierge | Powered by Velo AI"),
+    ("This is a live demo built by Velo AI for Susana's Café",
+     "This is a live demo built by Velo AI for Rincón del Sabor"),
+    ("Downtown Kissimmee · Best Breakfast 2024",
+     "DeLand, Florida · Authentic Latin American"),
+    ("<h1 class=\"practice-name\">Susana's Café</h1>",
+     '<h1 class="practice-name">Rincón del Sabor</h1>'),
+    ('<p class="practice-doctor">Susana, Owner</p>',
+     '<p class="practice-doctor">Keren Torres, Owner</p>'),
+    ("Susana's runs in a 100-year-old Craftsman house in downtown Kissimmee — Susana behind the counter, the only Costa Rican vandola brewing in Osceola County humming. The phone is the last thing she should be picking up during morning rush. The concierge captures large-party reservations, catering, and questions any time of day.",
+     "Rincón del Sabor is a family-owned Latin American restaurant at 2735 S Woodland Blvd in DeLand. Keren and her family keep the kitchen humming — the phone is the last thing she should be picking up during a busy lunch service. The concierge captures large-party reservations, catering, and menu questions any time of day."),
+    ("18 S Orlando Ave<br>Kissimmee, FL 34741",
+     "2735 S Woodland Blvd<br>DeLand, FL 32720"),
+    ("(407) 201-2627", "(386) 337-7986"),
+    ("<strong>Susana's Concierge</strong> · Available 24/7",
+     "<strong>Rincón del Sabor Concierge</strong> · Available 24/7"),
+    ("Susana's Concierge", "Rincón del Sabor Concierge"),
+    ("Large party or catering inquiry? Susana will be notified directly.",
+     "Large party or catering inquiry? Keren will be notified directly."),
+    ("Welcome to Susana's Café — winner of Best Breakfast in Orlando 2024. We're in a beautifully preserved Craftsman house at 18 S Orlando Ave. The morning rush keeps Susana behind the counter. I'm here to take reservations for larger parties, walk you through the Latin and American breakfast menus, the freshly ground Costa Rican coffee program, and any catering or event inquiries.",
+     "Welcome to Rincón del Sabor — family-owned Latin American dining at 2735 S Woodland Blvd in DeLand. The kitchen keeps Keren and her family busy. I'm here to take reservations for larger parties, walk you through the authentic Latin American menu, and handle any catering or event inquiries."),
+    ("Susana's seats parties up to about 12 inside and a few more on the dog-friendly patio.",
+     "Rincón del Sabor seats parties in a warm, family dining atmosphere."),
+    ("Mornings get busy fast — weekends especially. Let me check the books and get back to you. While I do that, can I get your first name, party size, and a phone number? If you're aiming for tomorrow within a few hours, please also call (407) 201-2627 directly — there are usually a few walk-in seats.",
+     "It gets busy — weekends especially. Let me check the books and get back to you. While I do that, can I get your first name, party size, and a phone number? If you're aiming for today, please also call (386) 337-7986 directly."),
+    ("Got it. Mid-week mornings are usually quieter than weekends. Tuesday or Wednesday around 9:30-10am has the most flexibility for parties of 6 or more.<br><br>What's your first name and party size? I'll have Susana confirm with you in the morning.",
+     "Got it. Mid-week lunches are usually quieter than weekends. Tuesday or Wednesday has the most flexibility for parties of 6 or more.<br><br>What's your first name and party size? I'll have Keren confirm with you in the morning."),
+    ("Susana caters Latin breakfast events, brunches, and workplace catering — empanadas (multiple varieties), tequeños, Cuban sandwiches, the freshly ground Costa Rican coffee setup. What kind of event?",
+     "Rincón del Sabor caters family events, company lunches, and gatherings — authentic Latin American dishes, rice and beans, platters, and traditional favorites. What kind of event?"),
+    ("Susana's catering ranges from breakfast platters for 10 people up to full breakfast/brunch service for 100+. Pricing usually lands $14-22 per person depending on the menu mix (Latin only, mixed Latin/American, with or without coffee service). Susana does a quick scoping call before quoting — that way the quote actually fits your event.",
+     "Rincón del Sabor catering ranges from platters for 10 people up to full service for 80+. Pricing depends on the menu mix and service style. Keren does a quick scoping call before quoting — that way the quote actually fits your event."),
+    ("Pickup is easiest by calling (407) 201-2627 during morning hours — Susana or someone behind the counter will take it directly.",
+     "Pickup is easiest by calling (386) 337-7986 during service hours — Keren or someone at the counter will take it directly."),
+    ("Of course — type your question. Hours, menu items, dietary stuff (vegetarian-friendly menu, gluten-free options), Costa Rican coffee questions (we use a vandola — only one in Osceola County), or anything specific to a dish — I can usually answer right now.",
+     "Of course — type your question. Hours, menu items, dietary accommodations, or anything specific about our Latin American dishes — I can usually answer right now."),
+    ('<div class="booking-icon">S</div>',
+     '<div class="booking-icon">R</div>'),
+    ('<span class="value">Susana</span>',
+     '<span class="value">Keren Torres</span>'),
+    ('<span class="value">18 S Orlando Ave, Kissimmee</span>',
+     '<span class="value">2735 S Woodland Blvd, DeLand</span>'),
+    ("Perfect. Here's the hold I'm creating for Susana:",
+     "Perfect. Here's the hold I'm creating for Keren:"),
+    ("You're all set, ${memory.name}. Susana will text you from <strong>(407) 201-2627</strong> tomorrow morning to confirm.",
+     "You're all set, ${memory.name}. Keren will text you from <strong>(386) 337-7986</strong> to confirm."),
+    ("No problem. Susana has tables Tuesday at 9:30 AM, Wednesday at 10:30 AM, or Saturday at 11 AM — which works best?",
+     "No problem. Rincón del Sabor has tables Tuesday at noon, Thursday at 1 PM, or Saturday at 12:30 PM — which works best?"),
+    ("Susana's", "Rincón del Sabor"),
+    ("Susana", "Keren"),
+]
+RINCONDELSABOR_CLEANUP = [
+    ("Susana's", "Rincón del Sabor"),
+    ("Susana", "Keren"),
+    ("susanas", "rincondelsabor"),
+    ("Kissimmee", "DeLand"),
+]
+
+
+# Beacon Restaurant — John & Toula Kotsonis, New Smyrna Beach FL
+# Family-owned 40 yrs, Greek-American, steps from beach on Flagler Ave
+# Breakfast & lunch daily 7am-3pm, closed Wednesday
+BEACONNSB_SUBS = [
+    ("Big John's Rockin' BBQ — Reservations & Catering Concierge | Powered by Velo AI",
+     "Beacon Restaurant — Reservations &amp; Concierge | Powered by Velo AI"),
+    ("This is a live demo built by Velo AI for Big John's Rockin' BBQ.",
+     "This is a live demo built by Velo AI for Beacon Restaurant."),
+    ('<h1 class="practice-name">Big John\'s Rockin\' BBQ</h1>',
+     '<h1 class="practice-name">Beacon Restaurant</h1>'),
+    ('<p class="practice-doctor">Big John, Owner</p>',
+     '<p class="practice-doctor">John &amp; Toula Kotsonis, Owners</p>'),
+    ("Big John's runs lakefront from breakfast through dinner — when the smoker's working and the dining room is full, catering calls and takeout orders get missed. This line catches them around the clock.",
+     "Beacon has been a New Smyrna Beach institution for 40 years — steps from the beach on Flagler Ave. John &amp; Toula run the dining room; when service is rolling, large-party and catering calls get missed. This line catches them any time."),
+    ("<strong>Big John's Concierge</strong> · Available 24/7",
+     "<strong>Beacon Concierge</strong> · Available 24/7"),
+    ("Big John's Concierge", "Beacon Concierge"),
+    ("Catering or large party? Big John will be notified directly for time-sensitive bookings.",
+     "Large party or catering inquiry? John will be notified directly."),
+    ("Welcome to Big John's. The smoker's working and the team's busy — I'm the after-hours line. I can take catering orders, hold tables for tomorrow, and answer questions about the ribs, brisket, or any of the smoked specialties.<br><br>What brings you here tonight?",
+     "Welcome to Beacon Restaurant — 40 years on Flagler Ave, steps from the beach in New Smyrna Beach. John &amp; Toula Kotsonis are Greek-American and they've been feeding NSB since the 1980s. I can hold tables (open daily 7am-3pm, closed Wednesday), answer menu questions, or handle catering inquiries.<br><br>What brings you here?"),
+    ("Catering is how Big John's started — Big John was smoking for the neighborhood and the church before he ever opened a storefront. We scale for almost any event. What kind?",
+     "Beacon caters breakfast and brunch events — John and Toula have been doing this 40 years so they scale easily for groups. What kind of event?"),
+    ("Most folks asking about ${txt} want to know: <em>\"How many people can you feed?\"</em> and <em>\"What's it going to cost?\"</em><br><br>Big John's catering runs from family trays for 10 up to full-service events for 200+. Pricing usually lands $16-28 per person depending on the protein mix (ribs, brisket, pulled pork) and service style. Big John does a free quick call to scope before quoting — that way the number is real.<br><br>Want me to hold a slot this week?",
+     "Most folks asking about ${txt} want to know: <em>\"What can you serve?\"</em> and <em>\"What will it cost?\"</em><br><br>Beacon caters breakfast and brunch events — eggs, home fries, pancakes, and the classic NSB diner spread. John does a quick call to scope before quoting. Want me to have him reach out this week?"),
+    ("Takeout orders are easiest by phone — call (833) 998-8701 during service.",
+     "Takeout is easiest by phone — call (386) 428-8332 during service hours (7am-3pm, closed Wednesday)."),
+    ("Perfect. Here's the hold I'm creating for the Big John's team:",
+     "Perfect. Here's the hold I'm creating for the Beacon team:"),
+    ("No problem. Big John's has tables available Thursday at 6 PM, Friday at 7:30 PM, or Saturday at 8 PM — which works best?",
+     "No problem. Beacon has tables Thursday at 9 AM, Friday at 10 AM, or Saturday at 8 AM — which works best?"),
+    ("Thursday at 6 PM, Friday at 7:30 PM, or Saturday at 8 PM",
+     "Thursday at 9 AM, Friday at 10 AM, or Saturday at 8 AM"),
+    ("(833) 998-8701", "(386) 428-8332"),
+    ('<span class="value">Big John Glover · Chief BBQ Smoker</span>',
+     '<span class="value">John &amp; Toula Kotsonis</span>'),
+    ("Big John's", "Beacon"),
+    ("Big John", "John"),
+]
+BEACONNSB_CLEANUP = [
+    ("Big John's", "Beacon"),
+    ("Big John", "John"),
+    ("bigjohn", "beaconnsb"),
+]
+
+
+# Chad A. Vaughan Real Estate — Chad Vaughan, St. Cloud FL
+# 150+ transactions, Sunbridge/Lake Nona corridor specialist, YouTube hyperlocal + weekly digest
+CHADVAUGHAN_SUBS = [
+    ("The Florida Property Shop — Lead Concierge | Powered by Velo AI",
+     "Chad A. Vaughan Real Estate — Lead Concierge | Powered by Velo AI"),
+    ("This is a live demo built by Velo AI for The Florida Property Shop.",
+     "This is a live demo built by Velo AI for Chad A. Vaughan Real Estate."),
+    ("Clermont, Florida · Boutique Waterfront Specialists",
+     "Saint Cloud, Florida · Sunbridge · Lake Nona Corridor"),
+    ('<h1 class="practice-name">The Florida Property Shop</h1>',
+     '<h1 class="practice-name">Chad A. Vaughan Real Estate</h1>'),
+    ('<p class="practice-doctor">Sarah Gholami · Broker / Owner</p>',
+     '<p class="practice-doctor">Chad A. Vaughan · REALTOR®, Real Broker</p>'),
+    ("1825 East Hwy 50, Suite 100<br>Clermont, FL 34711",
+     "Saint Cloud, FL 34769"),
+    ("(352) 536-3714", "(561) 635-7174"),
+    ("Clermont · Winter Springs · Oviedo · Deltona",
+     "Saint Cloud · Sunbridge · Lake Nona · Harmony"),
+    ("Great — Sarah and his team work Clermont, Winter Springs, Oviedo, and the surrounding Seminole-Volusia area pretty much every day, so you're in the right neighborhood for them.",
+     "Great — Chad works Saint Cloud, Sunbridge, Lake Nona, and the surrounding Osceola corridor every day. He's closed 150+ transactions in this specific market and publishes a weekly market digest on YouTube — hyperlocal intel, not generic advice."),
+    ('<div class="booking-icon">S</div>',
+     '<div class="booking-icon">C</div>'),
+    ('<span class="value">1825 East Hwy 50, Clermont</span>',
+     '<span class="value">Saint Cloud · Sunbridge · Lake Nona</span>'),
+    ("Sarah's office will text you a confirmation by 9 AM tomorrow.",
+     "Chad will text you a confirmation by 9 AM tomorrow."),
+    ("You're set, ${memory.name}. Sarah has been notified, and you'll get a confirmation text from <strong>(352) 536-3714</strong> tomorrow morning.<br><br>Have a good night — and welcome to the The Florida Property Shop network.",
+     "You're set, ${memory.name}. Chad has been notified, and you'll get a confirmation text from <strong>(561) 635-7174</strong> tomorrow morning.<br><br>Have a good night — and welcome."),
+    ("The Florida Property Shop", "Chad A. Vaughan Real Estate"),
+    ("Sarah", "Chad"),
+    ("Gholami", "Vaughan"),
+]
+CHADVAUGHAN_CLEANUP = [
+    ("The Florida Property Shop", "Chad A. Vaughan Real Estate"),
+    ("Sarah", "Chad"),
+    ("Gholami", "Vaughan"),
+    ("flpropertyshop", "chadvaughan"),
+    ("Clermont", "Saint Cloud"),
+]
+
+
+# Beauty Bar & Medspa — Glenna Rene Pick, ARNP, Clermont FL
+# TOP Aesthetic Injector East Coast, TOP Medical Spa, TOP Women Business Owner
+# Morpheus8, laser hair removal, medical weight loss, hormone optimization, IV hydration
+BEAUTYBARMEDSPA_SUBS = [
+    ("Fountain of You — Aesthetic &amp; Anti-Aging Concierge | Powered by Velo AI",
+     "Beauty Bar &amp; Medspa — Aesthetic Concierge | Powered by Velo AI"),
+    ("This is a live demo built by Velo AI for Fountain of You.",
+     "This is a live demo built by Velo AI for Beauty Bar &amp; Medspa."),
+    ("Melbourne, Florida · Anti-Aging &amp; Aesthetics · Est. 2007",
+     "Clermont, Florida · Award-Winning Medspa · ARNP-Led"),
+    ('<h1 class="practice-name">Fountain of You</h1>',
+     '<h1 class="practice-name">Beauty Bar &amp; Medspa</h1>'),
+    ('<p class="practice-doctor">Dr. Kim Zipper, MD — Founder &amp; Anti-Aging Physician</p>',
+     '<p class="practice-doctor">Glenna Rene Pick, ARNP — Founder &amp; Master Injector</p>'),
+    ("1472 N Harbor City Blvd<br>Melbourne, FL 32935",
+     "Clermont, FL · South Lake County"),
+    ("(321) 574-5376", "(321) 300-6433"),
+    ("Existing patient? Dr. Zipper or her team will be notified directly for time-sensitive care.",
+     "Existing patient? Glenna or her team will be notified directly for time-sensitive care."),
+    ("Welcome to Fountain of You — Brevard County's MD-led anti-aging center, founded by Dr. Kim Zipper in 2007. The team is wrapped for the night, but I can quote treatments, hold a consultation, walk you through the difference between Botox / fillers / Morpheus8, or discuss the wellness side — bioidentical hormones, peptides, weight optimization — before you head to bed.<br><br>What's bringing you in tonight?",
+     "Welcome to Beauty Bar &amp; Medspa — Clermont's award-winning ARNP-led medspa. Glenna Pick has earned TOP Aesthetic Injector East Coast, TOP Medical Spa, and TOP Women Business Owner. The team is wrapped for the night, but I can quote treatments, hold a consultation, walk you through Botox / fillers / Morpheus8 / laser hair removal / medical weight loss / hormone optimization — before you head to bed.<br><br>What's bringing you in tonight?"),
+    ("Lovely — Botox is one of the most-requested treatments here, and the philosophy at Fountain of You is \"enhance, not overdo.\" Dr. Zipper and her injectors dose conservatively for a refreshed look that doesn't read frozen.",
+     "Lovely — Botox is one of the most-requested treatments here. Glenna's approach is natural and refreshed — conservative dosing that doesn't read frozen. She's one of the East Coast's top-rated injectors."),
+    ("Filler is where artistry really matters — Fountain of You carries the full Juvederm and Restylane families, plus Radiesse, Sculptra, and Bellafill for longer-lasting collagen building. The right product depends on the area and the look you want.",
+     "Filler is where artistry really matters — Beauty Bar carries Juvederm, Restylane, and longer-lasting collagen builders. The right product depends on the area and the look you want."),
+    ("Dr. Zipper personally handles tear-trough cases",
+     "Glenna personally handles delicate tear-trough cases"),
+    ("at Fountain of You", "at Beauty Bar &amp; Medspa"),
+    ('<div class="booking-icon">F</div>',
+     '<div class="booking-icon">B</div>'),
+    ('<span class="value">Dr. Kim Zipper, MD or team</span>',
+     '<span class="value">Glenna Rene Pick, ARNP or team</span>'),
+    ('<span class="value">1472 N Harbor City Blvd, Melbourne</span>',
+     '<span class="value">Clermont, FL · South Lake</span>'),
+    ("Dr. Kim Zipper", "Glenna Pick, ARNP"),
+    ("Dr. Zipper", "Glenna"),
+    ("Fountain of You", "Beauty Bar &amp; Medspa"),
+    ("fountainofyou", "beautybarmedspa"),
+]
+BEAUTYBARMEDSPA_CLEANUP = [
+    ("Fountain of You", "Beauty Bar &amp; Medspa"),
+    ("fountainofyou", "beautybarmedspa"),
+    ("Dr. Zipper", "Glenna"),
+    ("Melbourne", "Clermont"),
+]
+
+
+# ============ WAVE 14 — May 7 2026 (Victorian Dental + Eli Curls + Terrie White + Premium Cuts + The Troff + Kathy Sheive) ============
+
+# Victorian Dental — Dr. Christopher Rae, DeLand FL
+# DeLand native + DeLand High IB + FSU (bio + classical history) + NSU dental
+# CEREC same-day crowns, multi-layer fillings, 6-month interest-free financing; Victoria Park community
+VICTORIANDENTAL_SUBS = _dental_subs(
+    "Victorian Dental", "Dr. Christopher Rae, DMD", "Dr. Rae", "Christopher",
+    "DeLand, Florida", "CEREC Same-Day Crowns · Victoria Park",
+    pronoun_subj="he", pronoun_obj="him", pronoun_poss="his")
+VICTORIANDENTAL_SUBS += [
+    ("(407) 732-4570", "(386) 624-7658"),
+    ('<span class="value">4907 International Pkwy, Suite 1041</span>',
+     '<span class="value">131 Victoria Commons Blvd, DeLand</span>'),
+    ("Great choice to reach out — both implants and Invisalign are major decisions, and Dr. Rae has built his practice around honest treatment planning. You'll get a clear answer on whether you're a candidate before anyone talks dollars.",
+     "Great choice to reach out — Dr. Rae can do CEREC same-day crowns and multi-layer tooth-colored fillings in-house, and he offers 6-month interest-free financing so the cost is never the reason you delay needed care. You'll get a real treatment plan before you commit to anything."),
+]
+VICTORIANDENTAL_CLEANUP = _dental_cleanup("Victorian Dental", "Dr. Rae")
+
+
+# Eli Curls Studio — Elie Lima, Clermont FL
+# Curly hair specialist + educator; coils, curly, wavy; solo-suite 500 Rob Roy Dr; Mon-Fri 9-5
+ELICURLS_SUBS = [
+    ("West & Kennedy Salon — After-Hours Booking Concierge | Powered by Velo AI",
+     "Eli Curls Studio — Booking Concierge | Powered by Velo AI"),
+    ("This is a live demo built by Velo AI for West & Kennedy.",
+     "This is a live demo built by Velo AI for Eli Curls Studio."),
+    ("Winter Park, Florida · Master Barber · Celebrity Grooming",
+     "Clermont, Florida · Curly Hair Specialist &amp; Educator"),
+    ('<h1 class="practice-name">West &amp; Kennedy</h1>',
+     '<h1 class="practice-name">Eli Curls Studio</h1>'),
+    ('<p class="practice-doctor">The West &amp; Kennedy Team</p>',
+     '<p class="practice-doctor">Elie Lima, Curly Hair Specialist</p>'),
+    ("West & Kennedy's stylists are committed to giving every client a seamless experience — from the first DM at 11pm to the final blowout. The booking line never sleeps.",
+     "Elie Lima is a curly hair specialist and educator focused on coils, curly, and wavy textures. The studio is a solo suite at 500 Rob Roy Drive in Clermont — open Monday through Friday 9am-5pm. The booking line never sleeps."),
+    ("<strong>West &amp; Kennedy Concierge</strong> · Available 24/7",
+     "<strong>Eli Curls Concierge</strong> · Available 24/7"),
+    ("West & Kennedy Concierge", "Eli Curls Concierge"),
+    ("A regular at West & Kennedy? Your stylist will be notified directly for time-sensitive bookings.",
+     "A regular at Eli Curls? Elie will be notified directly for time-sensitive bookings."),
+    ("Welcome to West & Kennedy. Your stylist's chair is empty for the night, but I'm the after-hours booking concierge — I can quote services, hold appointments, and answer most questions before you go to sleep.",
+     "Welcome to Eli Curls Studio — Clermont's curly hair specialist and educator. Elie is wrapped for the night, but I can hold appointments, answer questions about curl types (coils / curly / wavy), services, and pricing before you go to sleep."),
+    ('<div class="booking-icon">G</div>',
+     '<div class="booking-icon">E</div>'),
+    ('<span class="value">West &amp; Kennedy Stylist</span>',
+     '<span class="value">Elie Lima</span>'),
+    ("(321) 363-1233", "(469) 427-2338"),
+    ("West & Kennedy", "Eli Curls Studio"),
+    ("Reggie", "Elie"),
+]
+ELICURLS_CLEANUP = [
+    ("West & Kennedy", "Eli Curls Studio"),
+    ("westkennedy", "elicurls"),
+    ("Reggie", "Elie"),
+    ("Winter Park", "Clermont"),
+]
+
+
+# Terrie White Real Estate — Terrie White, DeLand FL
+# Top Producer West Volusia, $85M+ / 500+ transactions since 2005; #FloGoesHollywood brand
+TERRIEWHITE_SUBS = [
+    ("The Florida Property Shop — Lead Concierge | Powered by Velo AI",
+     "Terrie White Real Estate — Lead Concierge | Powered by Velo AI"),
+    ("This is a live demo built by Velo AI for The Florida Property Shop.",
+     "This is a live demo built by Velo AI for Terrie White Real Estate."),
+    ("Clermont, Florida · Boutique Waterfront Specialists",
+     "DeLand, Florida · Top Producer · West Volusia"),
+    ('<h1 class="practice-name">The Florida Property Shop</h1>',
+     '<h1 class="practice-name">Terrie White Real Estate</h1>'),
+    ('<p class="practice-doctor">Sarah Gholami · Broker / Owner</p>',
+     '<p class="practice-doctor">Terrie White · Top Producer, West Volusia</p>'),
+    ("1825 East Hwy 50, Suite 100<br>Clermont, FL 34711",
+     "DeLand, FL · Serving West Volusia &amp; Central Florida"),
+    ("(352) 536-3714", "(386) 956-9110"),
+    ("Clermont · Winter Springs · Oviedo · Deltona",
+     "DeLand · Deltona · Orange City · Volusia County"),
+    ("Great — Sarah and his team work Clermont, Winter Springs, Oviedo, and the surrounding Seminole-Volusia area pretty much every day, so you're in the right neighborhood for them.",
+     "Great — Terrie has closed $85M+ in sales and 500+ transactions across West Volusia since 2005. She's the go-to local expert for DeLand, Deltona, and the surrounding Volusia market."),
+    ('<div class="booking-icon">S</div>',
+     '<div class="booking-icon">T</div>'),
+    ('<span class="value">1825 East Hwy 50, Clermont</span>',
+     '<span class="value">DeLand, FL · West Volusia</span>'),
+    ("Sarah's office will text you a confirmation by 9 AM tomorrow.",
+     "Terrie will text you a confirmation by 9 AM tomorrow."),
+    ("You're set, ${memory.name}. Sarah has been notified, and you'll get a confirmation text from <strong>(352) 536-3714</strong> tomorrow morning.<br><br>Have a good night — and welcome to the The Florida Property Shop network.",
+     "You're set, ${memory.name}. Terrie has been notified, and you'll get a confirmation text from <strong>(386) 956-9110</strong> tomorrow morning.<br><br>Have a good night — and welcome."),
+    ("The Florida Property Shop", "Terrie White Real Estate"),
+    ("Sarah", "Terrie"),
+    ("Gholami", "White"),
+]
+TERRIEWHITE_CLEANUP = [
+    ("The Florida Property Shop", "Terrie White Real Estate"),
+    ("Sarah", "Terrie"),
+    ("Gholami", "White"),
+    ("flpropertyshop", "terriewhitere"),
+    ("Clermont", "DeLand"),
+]
+
+
+# Premium Cuts Barbers — Paul S. Tejeda Perez, Kissimmee FL
+# 100 Broadway downtown Kissimmee; 12+ yrs exp; 5-barber team; $30/$35/$50; Vagaro
+PREMIUMCUTS_SUBS = [
+    ("West & Kennedy Salon — After-Hours Booking Concierge | Powered by Velo AI",
+     "Premium Cuts Barbers — Booking Concierge | Powered by Velo AI"),
+    ("This is a live demo built by Velo AI for West & Kennedy.",
+     "This is a live demo built by Velo AI for Premium Cuts Barbers."),
+    ("Winter Park, Florida · Master Barber · Celebrity Grooming",
+     "Kissimmee, Florida · Downtown · 5-Barber Team"),
+    ('<h1 class="practice-name">West &amp; Kennedy</h1>',
+     '<h1 class="practice-name">Premium Cuts Barbers</h1>'),
+    ('<p class="practice-doctor">The West &amp; Kennedy Team</p>',
+     '<p class="practice-doctor">Paul Tejeda &amp; Team · 100 Broadway</p>'),
+    ("West & Kennedy's stylists are committed to giving every client a seamless experience — from the first DM at 11pm to the final blowout. The booking line never sleeps.",
+     "Premium Cuts has five experienced barbers (Paul, Federico, Yensen, Eleazar, and Fernando) at 100 Broadway in downtown Kissimmee. Walk-ins welcome, online booking through Vagaro. The booking line never sleeps."),
+    ("<strong>West &amp; Kennedy Concierge</strong> · Available 24/7",
+     "<strong>Premium Cuts Concierge</strong> · Available 24/7"),
+    ("West & Kennedy Concierge", "Premium Cuts Concierge"),
+    ("A regular at West & Kennedy? Your stylist will be notified directly for time-sensitive bookings.",
+     "A regular at Premium Cuts? Paul or the team will be notified directly for time-sensitive bookings."),
+    ("Welcome to West & Kennedy. Your stylist's chair is empty for the night, but I'm the after-hours booking concierge — I can quote services, hold appointments, and answer most questions before you go to sleep.",
+     "Welcome to Premium Cuts Barbers at 100 Broadway in downtown Kissimmee. The chairs are empty for the night, but I can hold appointments, quote services (basic cut $30 / advanced $35 / haircut+beard detail $50), and answer questions. Walk-ins are always welcome during hours."),
+    ('<div class="booking-icon">G</div>',
+     '<div class="booking-icon">P</div>'),
+    ('<span class="value">West &amp; Kennedy Stylist</span>',
+     '<span class="value">Paul &amp; the Premium Cuts team</span>'),
+    ("(321) 363-1233", "(407) 201-6762"),
+    ("West & Kennedy", "Premium Cuts Barbers"),
+    ("Reggie", "Paul"),
+]
+PREMIUMCUTS_CLEANUP = [
+    ("West & Kennedy", "Premium Cuts Barbers"),
+    ("westkennedy", "premiumcuts"),
+    ("Reggie", "Paul"),
+    ("Winter Park", "Kissimmee"),
+]
+
+
+# The Troff — R. Nelson, Eustis FL
+# Family-owned oyster bar since 1998; largest oyster bar in Lake County; 7 days/week
+# Record 10,000 lbs oysters/week; 3M+ lbs shucked total; 936 N Bay St Eustis
+THETROFF_SUBS = [
+    ("Big John's Rockin' BBQ — Reservations & Catering Concierge | Powered by Velo AI",
+     "The Troff — Reservations &amp; Concierge | Powered by Velo AI"),
+    ("This is a live demo built by Velo AI for Big John's Rockin' BBQ.",
+     "This is a live demo built by Velo AI for The Troff."),
+    ('<h1 class="practice-name">Big John\'s Rockin\' BBQ</h1>',
+     '<h1 class="practice-name">The Troff</h1>'),
+    ('<p class="practice-doctor">Big John, Owner</p>',
+     '<p class="practice-doctor">The Nelson Family · Est. 1998</p>'),
+    ("Big John's runs lakefront from breakfast through dinner — when the smoker's working and the dining room is full, catering calls and takeout orders get missed. This line catches them around the clock.",
+     "The Troff has been Lake County's oyster bar institution since 1998 — the largest oyster bar in Lake County, and among the largest in Florida. When the oyster bar is packed and the shuckers are working, reservations and catering calls get missed. This line catches them any time."),
+    ("<strong>Big John's Concierge</strong> · Available 24/7",
+     "<strong>The Troff Concierge</strong> · Available 24/7"),
+    ("Big John's Concierge", "The Troff Concierge"),
+    ("Catering or large party? Big John will be notified directly for time-sensitive bookings.",
+     "Large party or catering inquiry? The team will be notified directly."),
+    ("Welcome to Big John's. The smoker's working and the team's busy — I'm the after-hours line. I can take catering orders, hold tables for tomorrow, and answer questions about the ribs, brisket, or any of the smoked specialties.<br><br>What brings you here tonight?",
+     "Welcome to The Troff — Lake County's legendary oyster bar at 936 N Bay Street in Eustis, open since 1998. The shuckers have been opening oysters here for over 25 years. I can hold tables, answer menu questions (oysters, clams, shrimp, seafood), and handle catering inquiries.<br><br>What brings you here tonight?"),
+    ("Catering is how Big John's started — Big John was smoking for the neighborhood and the church before he ever opened a storefront. We scale for almost any event. What kind?",
+     "The Troff caters seafood events — oyster roasts, raw bars, clam bakes, and full seafood spreads. The family has been doing this since 1998. What kind of event?"),
+    ("Most folks asking about ${txt} want to know: <em>\"How many people can you feed?\"</em> and <em>\"What's it going to cost?\"</em><br><br>Big John's catering runs from family trays for 10 up to full-service events for 200+. Pricing usually lands $16-28 per person depending on the protein mix (ribs, brisket, pulled pork) and service style. Big John does a free quick call to scope before quoting — that way the number is real.<br><br>Want me to hold a slot this week?",
+     "Most folks asking about ${txt} want to know: <em>\"What's on the menu?\"</em> and <em>\"What will it cost?\"</em><br><br>The Troff specializes in oyster roasts and raw bar catering — dozens to hundreds of people. Pricing depends on menu and service style. The team does a quick call to scope the event before quoting. Want me to have them reach out?"),
+    ("Takeout orders are easiest by phone — call (833) 998-8701 during service.",
+     "Takeout and to-go orders are handled by phone during service hours — Mon-Tue 3pm-10pm, Wed-Thu 11:30am-10pm, Fri-Sat 11:30am-11pm, Sun 11:30am-9pm."),
+    ("Perfect. Here's the hold I'm creating for the Big John's team:",
+     "Perfect. Here's the hold I'm creating for The Troff team:"),
+    ("No problem. Big John's has tables available Thursday at 6 PM, Friday at 7:30 PM, or Saturday at 8 PM — which works best?",
+     "No problem. The Troff has tables available Thursday at 7 PM, Friday at 8 PM, or Saturday at 7:30 PM — which works best?"),
+    ("Thursday at 6 PM, Friday at 7:30 PM, or Saturday at 8 PM",
+     "Thursday at 7 PM, Friday at 8 PM, or Saturday at 7:30 PM"),
+    ("(833) 998-8701", "the restaurant"),
+    ('<span class="value">Big John Glover · Chief BBQ Smoker</span>',
+     '<span class="value">The Nelson Family · Est. 1998</span>'),
+    ("Big John's", "The Troff"),
+    ("Big John", "Nelson"),
+]
+THETROFF_CLEANUP = [
+    ("Big John's", "The Troff"),
+    ("Big John", "Nelson"),
+    ("bigjohn", "thetroff"),
+]
+
+
+# Kathy D. Sheive, P.A. — Kathy D. Sheive, Kissimmee FL
+# FL Bar #752509; family law, divorce, business law; 318 N John Young Pkwy Kissimmee
+KATHYSHEIVE_SUBS = [
+    ("Frank Family Law Practice — After-Hours Intake | Powered by Velo AI",
+     "Kathy D. Sheive, P.A. — After-Hours Intake | Powered by Velo AI"),
+    ("This is a live demo built by Velo AI for Frank Family Law Practice",
+     "This is a live demo built by Velo AI for Kathy D. Sheive, P.A."),
+    ("Altamonte Springs, Florida · Est. 2009",
+     "Kissimmee, Florida · Family Law &amp; Business"),
+    ('<h1 class="practice-name">Frank Family Law</h1>',
+     '<h1 class="practice-name">Kathy D. Sheive, P.A.</h1>'),
+    ('<p class="practice-doctor">Jennifer Frank, Esq.</p>',
+     '<p class="practice-doctor">Kathy D. Sheive, Esq.</p>'),
+    ("999 Douglas Ave, Suite 3309<br>Altamonte Springs, FL 32714",
+     "318 N John Young Pkwy, Suite 1<br>Kissimmee, FL 34741"),
+    ("(407) 629-2208", "(407) 944-4010"),
+    ("<strong>Frank Family Intake</strong> · Available 24/7",
+     "<strong>Sheive Law Intake</strong> · Available 24/7"),
+    ("Frank Intake", "Sheive Law Intake"),
+    ("I'm sorry you're dealing with this — custody crises usually mean someone you love is in a hard spot, and you're trying to protect them. Jennifer handles custody emergencies regularly.",
+     "I'm sorry you're dealing with this — custody crises usually mean someone you love is in a hard spot, and you're trying to protect them. Kathy handles custody emergencies regularly."),
+    ("Jennifer handles custody emergencies regularly. The two things that help her move fast: what's happening right now, and whether the kids are currently safe.",
+     "Kathy handles custody emergencies regularly. The two things that help her move fast: what's happening right now, and whether the kids are currently safe."),
+    ("Understood — Jennifer wants to hear from you tonight if there's an active violation.",
+     "Understood — Kathy wants to hear from you tonight if there's an active violation."),
+    ("I'm flagging this as priority and Jennifer will call you within the hour during business hours, or first thing in the morning if it's late tonight.",
+     "I'm flagging this as priority and Kathy will call you within the hour during business hours, or first thing in the morning if it's late tonight."),
+    ("Jennifer keeps confidential consultation slots Tuesday through Thursday for new family law matters. She's been practicing family law exclusively for over 15 years.",
+     "Kathy keeps confidential consultation slots Tuesday through Thursday for new family law matters. She's been a solo practitioner in Kissimmee handling family law, divorce, and business matters."),
+    ("That's a hard place to be — and reaching out now means you're trying to do this thoughtfully instead of in crisis. Jennifer has been practicing family law for over 15 years and her first goal in any consult is to give you an honest read on what your situation actually looks like.",
+     "That's a hard place to be — and reaching out now means you're trying to do this thoughtfully instead of in crisis. Kathy's first goal in any consult is to give you an honest read on what your situation actually looks like — no pressure, no jargon."),
+    ("Perfect. Let me hold ${timeMap[value]} for you. What's your first name so I can put it on Jennifer's calendar?",
+     "Perfect. Let me hold ${timeMap[value]} for you. What's your first name so I can put it on Kathy's calendar?"),
+    ("Of course — type your question. If it's something Jennifer needs to weigh in on personally (strategy, opposing counsel, complex custody), I'll route it to her and she'll get back to you in the morning.",
+     "Of course — type your question. If it's something Kathy needs to weigh in on personally (strategy, opposing counsel, complex custody or business matter), I'll route it to her and she'll get back to you in the morning."),
+    ("Thank you, ${memory.name}. What's the best phone number to reach you at? I want to make sure Jennifer has it before tomorrow.",
+     "Thank you, ${memory.name}. What's the best phone number to reach you at? I want to make sure Kathy has it before tomorrow."),
+    ("Thanks, ${memory.name}. What's your phone number? Jennifer's office will text a confirmation by 9 AM tomorrow.",
+     "Thanks, ${memory.name}. What's your phone number? Kathy's office will text a confirmation by 9 AM tomorrow."),
+    ("Thank you, ${memory.name}. What's the best callback number? Jennifer will call you in the morning.",
+     "Thank you, ${memory.name}. What's the best callback number? Kathy will call you in the morning."),
+    ("Thank you, ${memory.name}. I've flagged this as priority for Jennifer. Expect a call from <strong>(407) 629-2208</strong>",
+     "Thank you, ${memory.name}. I've flagged this as priority for Kathy. Expect a call from <strong>(407) 944-4010</strong>"),
+    ("You're set, ${memory.name}. Jennifer has been notified, and you'll receive a confirmation text from <strong>(407) 629-2208</strong>",
+     "You're set, ${memory.name}. Kathy has been notified, and you'll receive a confirmation text from <strong>(407) 944-4010</strong>"),
+    ('<div class="booking-icon">F</div>',
+     '<div class="booking-icon">K</div>'),
+    ('<span class="value">Jennifer Frank, Esq.</span>',
+     '<span class="value">Kathy D. Sheive, Esq.</span>'),
+    ("Jennifer Frank", "Kathy Sheive"),
+    ("Jennifer", "Kathy"),
+    ("Frank Family Law", "Kathy D. Sheive, P.A."),
+    ("Frank", "Sheive"),
+]
+KATHYSHEIVE_CLEANUP = [
+    ("Frank Family Law", "Kathy D. Sheive, P.A."),
+    ("Jennifer", "Kathy"),
+    ("Frank", "Sheive"),
+    ("frankfamilylaw", "kathysheive"),
+    ("Altamonte", "Kissimmee"),
+]
+
+
 JOBS = [
     ("klausmanlaw", "ragland.html", KLAUSMAN_SUBS, KLAUSMAN_CLEANUP),
     ("frankfamilylaw", "ragland.html", FRANK_SUBS, FRANK_CLEANUP),
@@ -3553,6 +4147,22 @@ JOBS = [
     ("nonaimplants", "wayside.html", NONAIMPLANTS_SUBS, NONAIMPLANTS_CLEANUP),
     ("esteem", "wayside.html", ESTEEM_SUBS, ESTEEM_CLEANUP),
     ("pachabijan", "wayside.html", PACHABIJAN_SUBS, PACHABIJAN_CLEANUP),
+    # ---- WAVE 14 — May 7 2026 ----
+    ("victoriandental", "wayside.html", VICTORIANDENTAL_SUBS, VICTORIANDENTAL_CLEANUP),
+    ("elicurls", "westkennedy.html", ELICURLS_SUBS, ELICURLS_CLEANUP),
+    ("terriewhitere", "flpropertyshop.html", TERRIEWHITE_SUBS, TERRIEWHITE_CLEANUP),
+    ("premiumcuts", "westkennedy.html", PREMIUMCUTS_SUBS, PREMIUMCUTS_CLEANUP),
+    ("thetroff", "bigjohn.html", THETROFF_SUBS, THETROFF_CLEANUP),
+    ("kathysheive", "frankfamilylaw.html", KATHYSHEIVE_SUBS, KATHYSHEIVE_CLEANUP),
+    # ---- WAVE 13 — May 6 2026 ----
+    ("mjdental", "wayside.html", MJDENTAL_SUBS, MJDENTAL_CLEANUP),
+    ("mazenkolaw", "ragland.html", MAZENKOLAW_SUBS, MAZENKOLAW_CLEANUP),
+    ("bauerlaw", "lathamluna.html", BAUERLAW_SUBS, BAUERLAW_CLEANUP),
+    ("bombshellsalon", "thelook.html", BOMBSHELLSALON_SUBS, BOMBSHELLSALON_CLEANUP),
+    ("rincondelsabor", "susanas.html", RINCONDELSABOR_SUBS, RINCONDELSABOR_CLEANUP),
+    ("beaconnsb", "bigjohn.html", BEACONNSB_SUBS, BEACONNSB_CLEANUP),
+    ("chadvaughan", "flpropertyshop.html", CHADVAUGHAN_SUBS, CHADVAUGHAN_CLEANUP),
+    ("beautybarmedspa", "fountainofyou.html", BEAUTYBARMEDSPA_SUBS, BEAUTYBARMEDSPA_CLEANUP),
 ]
 
 
