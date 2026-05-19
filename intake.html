@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Intake | Velo AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: #0a0d12;
+            color: #c9d1d9;
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+        .top-bar {
+            border-bottom: 1px solid rgba(26,111,255,0.15);
+            padding: 20px 0;
+            background: rgba(10,13,18,0.95);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .top-bar-inner {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .logo-icon { width: 32px; height: 32px; }
+        .logo-text {
+            font-size: 20px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+        }
+        .logo-text span { color: #1a6fff; }
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 48px 24px 80px;
+        }
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+        .subtitle {
+            color: #6b7280;
+            font-size: 15px;
+            margin-bottom: 40px;
+        }
+        .progress-bar {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 40px;
+        }
+        .progress-step {
+            flex: 1;
+            height: 4px;
+            border-radius: 2px;
+            background: rgba(255,255,255,0.08);
+        }
+        .progress-step.done { background: #1a6fff; }
+        .progress-step.active { background: linear-gradient(90deg, #1a6fff, rgba(26,111,255,0.3)); }
+        .form-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            padding: 32px;
+            margin-bottom: 24px;
+        }
+        .form-card h2 {
+            font-size: 17px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .card-icon {
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, #1a6fff, #0d4fc7);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .card-icon svg { width: 16px; height: 16px; }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 16px;
+        }
+        .form-group:last-child { margin-bottom: 0; }
+        .form-group.full { grid-column: 1 / -1; }
+        label {
+            font-size: 13px;
+            font-weight: 500;
+            color: #9ca3af;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="url"],
+        input[type="color"],
+        select,
+        textarea {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 12px 14px;
+            font-size: 14px;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.2s;
+            width: 100%;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #1a6fff;
+            box-shadow: 0 0 0 3px rgba(26,111,255,0.15);
+        }
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M3 4.5l3 3 3-3' stroke='%236b7280' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            padding-right: 36px;
+        }
+        select option {
+            background: #1a1d24;
+            color: #ffffff;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        .color-input-wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        input[type="color"] {
+            width: 48px;
+            height: 48px;
+            padding: 4px;
+            border-radius: 8px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .color-hint {
+            font-size: 13px;
+            color: #6b7280;
+        }
+        .btn-submit {
+            background: linear-gradient(135deg, #1a6fff, #0d4fc7);
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            padding: 14px 32px;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.15s, box-shadow 0.15s;
+            margin-top: 8px;
+        }
+        .btn-submit:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 24px rgba(26,111,255,0.3);
+        }
+        .btn-submit:active { transform: translateY(0); }
+        .footer {
+            text-align: center;
+            padding: 32px 24px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: #4b5563;
+            font-size: 13px;
+        }
+        @media (max-width: 600px) {
+            .form-row { grid-template-columns: 1fr; }
+            h1 { font-size: 26px; }
+            .form-card { padding: 24px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="top-bar-inner">
+            <svg class="logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="32" height="32" rx="8" fill="url(#bolt-bg)"/>
+                <path d="M18.5 5L10 18h5.5l-2 9L22 14h-5.5l2-9z" fill="#fff" stroke="#fff" stroke-width="0.5" stroke-linejoin="round"/>
+                <defs>
+                    <linearGradient id="bolt-bg" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#1a6fff"/>
+                        <stop offset="1" stop-color="#0d4fc7"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+            <div class="logo-text">Velo <span>AI</span></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="progress-bar">
+            <div class="progress-step done"></div>
+            <div class="progress-step active"></div>
+            <div class="progress-step"></div>
+        </div>
+
+        <h1>Client Intake Form</h1>
+        <p class="subtitle">Tell us about your business so we can build your perfect AI chatbot.</p>
+
+        <form id="intakeForm" onsubmit="return submitIntake(event)">
+
+            <div class="form-card">
+                <h2>
+                    <div class="card-icon">
+                        <svg viewBox="0 0 16 16" fill="none"><path d="M8 2a3 3 0 100 6 3 3 0 000-6zM3 12.5C3 10.567 5.239 9 8 9s5 1.567 5 3.5V14H3v-1.5z" fill="#fff"/></svg>
+                    </div>
+                    Business Information
+                </h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="business-name">Business Name *</label>
+                        <input type="text" id="business-name" name="business_name" required placeholder="Smith Dental">
+                    </div>
+                    <div class="form-group">
+                        <label for="industry">Industry *</label>
+                        <select id="industry" name="industry" required>
+                            <option value="" disabled selected>Select your industry</option>
+                            <option value="dental">Dental</option>
+                            <option value="law_firm">Law Firm</option>
+                            <option value="real_estate">Real Estate</option>
+                            <option value="restaurant">Restaurant</option>
+                            <option value="salon">Salon</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="location">Location / Address *</label>
+                        <input type="text" id="location" name="location" required placeholder="123 Main St, Orlando, FL 32801">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="(407) 555-1234">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="website">Website URL</label>
+                        <input type="url" id="website" name="website" placeholder="https://smithdental.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="hours">Business Hours *</label>
+                        <input type="text" id="hours" name="business_hours" required placeholder="Mon-Fri 9am-5pm, Sat 10am-2pm">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-card">
+                <h2>
+                    <div class="card-icon">
+                        <svg viewBox="0 0 16 16" fill="none"><path d="M4 3h8a1 1 0 011 1v8a1 1 0 01-1 1H4a1 1 0 01-1-1V4a1 1 0 011-1zm1 3v2h6V6H5zm0 4v1h4v-1H5z" fill="#fff"/></svg>
+                    </div>
+                    Services &amp; Details
+                </h2>
+                <div class="form-group">
+                    <label for="services">Services Offered *</label>
+                    <textarea id="services" name="services_offered" required placeholder="List the main services your business provides. For example: General dentistry, teeth whitening, Invisalign, dental implants, pediatric dentistry..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="payments">Insurance / Payment Information</label>
+                    <textarea id="payments" name="payment_info" placeholder="What insurance do you accept? What payment methods? For example: We accept most major insurance plans including Aetna, Cigna, Delta Dental. We also accept Visa, Mastercard, and CareCredit."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="notes">Anything else we should know?</label>
+                    <textarea id="notes" name="additional_notes" placeholder="Any special information, FAQs your customers commonly ask, seasonal hours, or anything you want the chatbot to know about your business..."></textarea>
+                </div>
+            </div>
+
+            <div class="form-card">
+                <h2>
+                    <div class="card-icon">
+                        <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5" stroke="#fff" stroke-width="1.5" fill="none"/><circle cx="8" cy="8" r="2" fill="#fff"/></svg>
+                    </div>
+                    Branding
+                </h2>
+                <div class="form-group">
+                    <label for="accent-color">Preferred Accent Color</label>
+                    <div class="color-input-wrap">
+                        <input type="color" id="accent-color" name="accent_color" value="#1a6fff">
+                        <span class="color-hint">Pick a color that matches your brand. We'll use this for the chatbot widget.</span>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-submit">Submit Intake Form</button>
+        </form>
+    </div>
+
+    <div class="footer">
+        &copy; 2026 Velo AI LLC &middot; Orlando, FL &middot; gabe@getveloai.co &middot; (407) 773-0043
+    </div>
+
+    <script>
+        function submitIntake(e) {
+            e.preventDefault();
+            var f = e.target;
+            function v(n) { return (f[n] && f[n].value ? f[n].value.trim() : ''); }
+            var biz = v('business_name');
+            var subject = 'New Velo AI Client Intake — ' + biz;
+            var body =
+                'New client intake submitted via getveloai.co\n\n' +
+                'Business Name: ' + biz + '\n' +
+                'Industry: ' + v('industry') + '\n' +
+                'Location: ' + v('location') + '\n' +
+                'Phone: ' + v('phone') + '\n' +
+                'Website: ' + v('website') + '\n' +
+                'Business Hours: ' + v('business_hours') + '\n\n' +
+                'Services Offered:\n' + v('services_offered') + '\n\n' +
+                'Insurance / Payment Info:\n' + v('payment_info') + '\n\n' +
+                'Additional Notes:\n' + v('additional_notes') + '\n\n' +
+                'Preferred Accent Color: ' + v('accent_color') + '\n\n' +
+                '— Submitted from the Velo AI intake form. Please reply to confirm receipt.';
+            window.location.href = 'mailto:gabe@getveloai.co?subject=' +
+                encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+            setTimeout(function () { window.location.href = 'thankyou.html'; }, 1200);
+            return false;
+        }
+    </script>
+</body>
+</html>
