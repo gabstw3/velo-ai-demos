@@ -243,6 +243,23 @@
             font-size: 15px;
         }
         .next-step a:hover { text-decoration: underline; }
+        .btn-pay {
+            display: inline-block;
+            background: linear-gradient(135deg, #16a34a, #15803d);
+            color: #ffffff !important;
+            text-decoration: none !important;
+            border-radius: 10px;
+            padding: 14px 32px;
+            font-size: 16px;
+            font-weight: 600;
+            margin-top: 8px;
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+        .btn-pay:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 24px rgba(22,163,74,0.3);
+            text-decoration: none !important;
+        }
         .footer {
             text-align: center;
             padding: 32px 24px;
@@ -369,7 +386,10 @@
         </form>
 
         <div class="next-step">
-            <p>After signing, complete your intake form so we can build your chatbot.</p>
+            <p style="color:#fff;font-size:16px;font-weight:600;margin-bottom:6px;">You're almost set — one last step.</p>
+            <p>Lock your build slot by paying your one-time setup fee. We begin within 5 business days of payment.</p>
+            <a href="https://buy.stripe.com/fZu4gzdI707e7VTenmbjW00" target="_blank" class="btn-pay">Pay setup fee — $497 &rarr;</a>
+            <p style="margin-top:20px;">Then complete your intake form so we can build your chatbot.</p>
             <a href="intake.html">Continue to Intake Form &rarr;</a>
         </div>
     </div>
@@ -400,7 +420,7 @@
                 '— Submitted from the Velo AI contract page. Please reply to confirm receipt.';
             window.location.href = 'mailto:gabe@getveloai.co?subject=' +
                 encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-            setTimeout(function () { window.location.href = 'intake.html'; }, 1200);
+            setTimeout(function () { window.location.href = 'https://buy.stripe.com/fZu4gzdI707e7VTenmbjW00'; }, 1200);
             return false;
         }
     </script>
