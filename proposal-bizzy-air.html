@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Velo AI — Proposal for Bizzy Air</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#f4efe6;--surface:#fff;--ink:#1a1f2c;--ink-soft:#4a536b;--ink-faint:#8a8f9e;--accent:#1a6fff;--accent-deep:#0a4fcc;--good:#16a766;--line:#e4dcc9;--shadow:0 12px 40px rgba(26,31,44,.10)}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Geist',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+  .wrap{max-width:720px;margin:0 auto;padding:48px 22px 80px}
+  .mark{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:12px}
+  h1{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(28px,5.5vw,40px);line-height:1.1;letter-spacing:-.01em;margin-bottom:8px}
+  .for{color:var(--ink-soft);font-size:16px;margin-bottom:34px}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:28px;box-shadow:var(--shadow);margin-bottom:20px}
+  h2{font-family:'Fraunces',serif;font-weight:600;font-size:20px;margin-bottom:14px}
+  ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+  li{padding-left:26px;position:relative;font-size:15px;color:var(--ink-soft)}
+  li::before{content:'✓';position:absolute;left:0;color:var(--good);font-weight:700}
+  .price-row{display:flex;gap:16px;flex-wrap:wrap;margin:6px 0 4px}
+  .price{flex:1;min-width:160px;border:1px solid var(--line);border-radius:12px;padding:18px;text-align:center}
+  .price .amt{font-family:'Fraunces',serif;font-weight:700;font-size:32px;color:var(--ink)}
+  .price .lbl{font-size:13px;color:var(--ink-faint);margin-top:2px}
+  .roi{background:linear-gradient(160deg,#11203a,#0a1730);color:#fff;border-radius:16px;padding:26px;text-align:center;margin-bottom:20px}
+  .roi .big{font-family:'Fraunces',serif;font-weight:700;font-size:40px;background:linear-gradient(135deg,#fff 30%,#ff8a66 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .roi p{color:#a9b6cc;font-size:14px;margin-top:6px}
+  .btn{display:block;text-align:center;background:var(--accent);color:#fff;text-decoration:none;padding:16px;border-radius:12px;font-weight:600;font-size:16px;margin-bottom:12px;transition:background .2s}
+  .btn:hover{background:var(--accent-deep)}
+  .btn.alt{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+  .guarantee{font-size:13px;color:var(--ink-soft);text-align:center;background:#fff;border:1px dashed var(--line);border-radius:12px;padding:16px;margin-bottom:20px}
+  .foot{text-align:center;font-size:13px;color:var(--ink-faint);margin-top:30px}
+  .foot a{color:var(--accent);text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="mark">Velo AI · Proposal</div>
+  <h1>A 24/7 dispatch concierge for Bizzy Air</h1>
+  <p class="for">Prepared for Jonathan Quiceno · month-to-month · live in 48 hours</p>
+
+  <div class="card">
+    <h2>What you get</h2>
+    <ul>
+      <li>A custom AI HVAC dispatch concierge — your services, service area, and voice</li>
+      <li>Answers after-hours, weekends, and overflow calls that ring out to voicemail today</li>
+      <li>Triages urgency (no-cool in the heat, kids/elderly/pets at home) and flags true emergencies to your on-call tech</li>
+      <li>Captures the job details + contact and holds a service window</li>
+      <li>Runs on your website widget, Google Business messages, or a forwarded SMS line</li>
+      <li>Live in 48 hours — I build it, you approve it before it touches a customer</li>
+    </ul>
+    <p style="margin-top:16px"><a href="https://gabstw3.github.io/velo-ai-demos/bizzyair.html" target="_blank" style="color:var(--accent);font-weight:600;text-decoration:none">→ Revisit your live demo</a></p>
+  </div>
+
+  <div class="roi">
+    <div class="big">~$2,400/mo</div>
+    <p>a conservative estimate of what Bizzy Air loses to after-hours and overflow calls that ring out — before counting the occasional system replacement that goes to whoever answers first</p>
+  </div>
+
+  <div class="card">
+    <h2>Investment</h2>
+    <div class="price-row">
+      <div class="price"><div class="amt">$497</div><div class="lbl">one-time setup</div></div>
+      <div class="price"><div class="amt">$147<span style="font-size:16px">/mo</span></div><div class="lbl">month-to-month</div></div>
+    </div>
+    <p style="font-size:14px;color:var(--ink-soft);margin-top:10px">No per-seat, per-minute, or per-call fees. Cancel anytime.</p>
+  </div>
+
+  <div class="guarantee">
+    <strong>Zero-risk:</strong> If it doesn't capture at least one new job in your first 30 days, your setup fee is refunded. Cancel the monthly anytime, no call required.
+  </div>
+
+  <a class="btn" href="https://buy.stripe.com/fZu4gzdI707e7VTenmbjW00" target="_blank">Start setup — $497 →</a>
+  <a class="btn alt" href="https://gabstw3.github.io/velo-ai-demos/intake.html" target="_blank">Or fill the 2-minute intake form first</a>
+
+  <div class="foot">
+    Questions? Just reply or call.<br>
+    <strong>Gabe Herrera — Velo AI</strong> · (407) 773-0043 · <a href="https://getveloai.co">getveloai.co</a> · Orlando, FL
+  </div>
+</div>
+</body>
+</html>
