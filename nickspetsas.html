@@ -172,7 +172,7 @@
   }
   async function handleChipClick(value,btn){
     disableChips(btn);
-    const labels={'auto':'Car or truck accident','injury':'Serious injury','wd':'Wrongful death','pi':'Another injury matter','question':'A general question','urgent-now':'Yes — immediate concern','urgent-soon':'A deadline is coming up','urgent-planning':'Just getting started','this-week':'This week','next-week':'Next week','flexible':'I'm flexible','done':'That works'};
+    const labels={'auto':'Car or truck accident','injury':'Serious injury','wd':'Wrongful death','pi':'Another injury matter','question':'A general question','urgent-now':'Yes — immediate concern','urgent-soon':'A deadline is coming up','urgent-planning':'Just getting started','this-week':'This week','next-week':'Next week','flexible':"I'm flexible",'done':'That works'};
     addUserMessage(labels[value]||value);
     await routeIntent(value);
   }
