@@ -172,7 +172,7 @@
   }
   async function handleChipClick(value,btn){
     disableChips(btn);
-    const labels={'business':'Business or partnership dispute','construction':'Construction litigation','contract':'Contract claim','civil':'Other civil litigation','question':'A general question','urgent-now':'Yes — immediate concern','urgent-soon':'A deadline is coming up','urgent-planning':'Just getting started','this-week':'This week','next-week':'Next week','flexible':'I'm flexible','done':'That works'};
+    const labels={'business':'Business or partnership dispute','construction':'Construction litigation','contract':'Contract claim','civil':'Other civil litigation','question':'A general question','urgent-now':'Yes — immediate concern','urgent-soon':'A deadline is coming up','urgent-planning':'Just getting started','this-week':'This week','next-week':'Next week','flexible':"I'm flexible",'done':'That works'};
     addUserMessage(labels[value]||value);
     await routeIntent(value);
   }
