@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mortgage Money Lending — 24/7 Client Intake | Powered by Velo AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f1f4ef; --bg-deep: #e0e6da; --ink: #15191f; --ink-soft: #46505e; --ink-faint: #7d8696;
+    --accent: #16624a; --accent-warm: #1f3352; --accent-glow: #6fa890; --line: #cdd7c9;
+    --bot-msg: #ffffff; --user-msg: #16624a; --user-msg-text: #ffffff;
+    --shadow-sm: 0 1px 3px rgba(21,25,31,0.06); --shadow-md: 0 4px 16px rgba(21,25,31,0.08); --shadow-lg: 0 12px 40px rgba(21,25,31,0.12);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body { font-family: 'Geist', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.5; overflow-x: hidden; background-image: radial-gradient(circle at 15% 20%, rgba(31,51,82,0.07) 0%, transparent 40%), radial-gradient(circle at 85% 80%, rgba(22,98,74,0.04) 0%, transparent 40%); }
+  .app { display: grid; grid-template-columns: 360px 1fr; min-height: 100vh; max-width: 1400px; margin: 0 auto; }
+  .practice-panel { background: linear-gradient(180deg, #16624a 0%, #0c3a2c 100%); color: #e6eee9; padding: 40px 32px; display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; overflow: hidden; }
+  .practice-panel::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(111,168,144,0.14) 0%, transparent 50%); animation: drift 22s ease-in-out infinite; }
+  @keyframes drift { 0%, 100% { transform: translate(0,0); } 50% { transform: translate(20%,10%); } }
+  .practice-content { position: relative; z-index: 1; }
+  .practice-mark { font-family: 'Fraunces', serif; font-weight: 500; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent-glow); margin-bottom: 12px; opacity: 0.95; }
+  .practice-name { font-family: 'Fraunces', serif; font-weight: 600; font-size: 32px; line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 6px; }
+  .practice-doctor { font-family: 'Fraunces', serif; font-weight: 400; font-style: italic; font-size: 15px; color: var(--accent-glow); margin-bottom: 32px; }
+  .promise-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(111,168,144,0.24); border-radius: 12px; padding: 20px; margin-bottom: 24px; backdrop-filter: blur(10px); }
+  .promise-card h4 { font-family: 'Geist', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-glow); margin-bottom: 8px; }
+  .promise-card p { font-size: 14px; line-height: 1.55; color: #dbe6e0; }
+  .practice-info { margin-top: auto; padding-top: 24px; border-top: 1px solid rgba(111,168,144,0.2); font-size: 13px; line-height: 1.7; color: #a9bdb3; }
+  .practice-info .row { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 8px; }
+  .practice-info .label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-glow); width: 56px; padding-top: 2px; flex-shrink: 0; }
+  .powered-by { margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(111,168,144,0.2); font-size: 11px; color: #87998f; letter-spacing: 0.05em; }
+  .powered-by strong { color: var(--accent-glow); font-weight: 600; letter-spacing: 0.1em; }
+  .chat-panel { background: var(--bg); display: flex; flex-direction: column; position: relative; }
+  .chat-header { padding: 20px 32px; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; background: rgba(241,244,239,0.85); backdrop-filter: blur(12px); z-index: 10; }
+  .chat-status { display: flex; align-items: center; gap: 10px; }
+  .status-dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; box-shadow: 0 0 0 4px rgba(74,222,128,0.15); animation: pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { box-shadow: 0 0 0 4px rgba(74,222,128,0.15); } 50% { box-shadow: 0 0 0 8px rgba(74,222,128,0.05); } }
+  .status-text { font-size: 13px; color: var(--ink-soft); font-weight: 500; }
+  .status-text strong { color: var(--ink); font-weight: 600; }
+  .chat-time { font-family: 'Fraunces', serif; font-size: 12px; color: var(--ink-faint); font-style: italic; }
+  .messages { flex: 1; padding: 32px; scroll-behavior: smooth; }
+  .msg-group { margin-bottom: 20px; animation: msgIn 0.4s cubic-bezier(0.2,0.8,0.2,1); }
+  @keyframes msgIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .msg { max-width: 78%; padding: 14px 18px; border-radius: 18px; font-size: 15px; line-height: 1.55; word-wrap: break-word; }
+  .msg-bot { background: var(--bot-msg); color: var(--ink); border-bottom-left-radius: 4px; box-shadow: var(--shadow-sm); border: 1px solid rgba(205,215,201,0.6); }
+  .msg-user { background: var(--user-msg); color: var(--user-msg-text); border-bottom-right-radius: 4px; margin-left: auto; }
+  .msg-meta { font-size: 10px; color: var(--ink-faint); margin-top: 6px; padding: 0 8px; letter-spacing: 0.05em; text-transform: uppercase; }
+  .msg-meta.user { text-align: right; }
+  .typing { display: flex; gap: 4px; padding: 16px 20px; background: var(--bot-msg); border-radius: 18px; border-bottom-left-radius: 4px; width: fit-content; box-shadow: var(--shadow-sm); border: 1px solid rgba(205,215,201,0.6); }
+  .typing span { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; opacity: 0.5; animation: typing 1.4s ease-in-out infinite; }
+  .typing span:nth-child(2) { animation-delay: 0.2s; } .typing span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes typing { 0%, 100% { transform: translateY(0); opacity: 0.4; } 50% { transform: translateY(-4px); opacity: 1; } }
+  .quick-replies { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; animation: msgIn 0.4s cubic-bezier(0.2,0.8,0.2,1) 0.2s both; }
+  .chip { background: transparent; border: 1px solid var(--accent); color: var(--accent); padding: 9px 16px; border-radius: 100px; font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s ease; }
+  .chip:hover { background: var(--accent); color: var(--bg); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+  .chip:disabled { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
+  .booking-card { background: linear-gradient(135deg, #ffffff 0%, #eef3ec 100%); border: 1px solid var(--line); border-radius: 16px; padding: 24px; margin-top: 12px; box-shadow: var(--shadow-md); animation: msgIn 0.5s cubic-bezier(0.2,0.8,0.2,1); max-width: 78%; }
+  .booking-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+  .booking-icon { width: 32px; height: 32px; background: var(--accent-warm); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #ffffff; font-family: 'Fraunces', serif; font-weight: 700; font-size: 16px; }
+  .booking-title { font-family: 'Fraunces', serif; font-weight: 600; font-size: 16px; color: var(--ink); }
+  .booking-detail { display: grid; grid-template-columns: 90px 1fr; gap: 12px; padding: 8px 0; font-size: 14px; }
+  .booking-detail .label { color: var(--ink-faint); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; padding-top: 2px; }
+  .booking-detail .value { color: var(--ink); font-weight: 500; }
+  .booking-confirm { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); display: flex; gap: 8px; }
+  .btn-primary { flex: 1; background: var(--accent); color: white; border: none; padding: 11px 20px; border-radius: 8px; font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+  .btn-primary:hover { background: #0c3a2c; transform: translateY(-1px); box-shadow: var(--shadow-md); }
+  .btn-secondary { background: transparent; color: var(--ink-soft); border: 1px solid var(--line); padding: 11px 20px; border-radius: 8px; font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s; }
+  .btn-secondary:hover { background: var(--bg-deep); }
+  .input-area { padding: 20px 32px 24px; border-top: 1px solid var(--line); background: rgba(241,244,239,0.85); backdrop-filter: blur(12px); }
+  .input-wrap { display: flex; gap: 10px; background: white; border: 1px solid var(--line); border-radius: 14px; padding: 6px 6px 6px 18px; transition: border-color 0.2s, box-shadow 0.2s; }
+  .input-wrap:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(22,98,74,0.08); }
+  .input-wrap input { flex: 1; border: none; outline: none; font-family: 'Geist', sans-serif; font-size: 15px; color: var(--ink); padding: 10px 0; background: transparent; }
+  .input-wrap input::placeholder { color: var(--ink-faint); }
+  .send-btn { background: var(--accent); color: white; border: none; width: 40px; height: 40px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; flex-shrink: 0; }
+  .send-btn:hover { background: #0c3a2c; transform: scale(1.05); }
+  .send-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+  .input-hint { font-size: 11px; color: var(--ink-faint); margin-top: 10px; text-align: center; letter-spacing: 0.05em; }
+  .demo-banner { position: fixed; top: 16px; right: 16px; background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 100px; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; z-index: 100; box-shadow: var(--shadow-lg); display: flex; align-items: center; gap: 8px; cursor: pointer; transition: transform 0.2s; }
+  .demo-banner:hover { transform: scale(1.03); }
+  .demo-banner .pulse-dot { width: 6px; height: 6px; background: var(--accent-glow); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
+  @media (max-width: 900px) {
+    html, body { height: auto; overflow: auto; -webkit-overflow-scrolling: touch; }
+    .app { grid-template-columns: 1fr; height: auto; min-height: 100vh; }
+    .practice-panel { padding: 20px 24px; position: static; height: auto; max-height: none; }
+    .practice-panel .promise-card, .practice-panel .practice-info, .practice-panel .powered-by { display: none; }
+    .practice-name { font-size: 24px; } .practice-doctor { font-size: 14px; margin-bottom: 0; }
+    .chat-panel { min-height: 80vh; }
+    .messages { padding: 20px; overflow-y: visible; flex: none; } .msg { max-width: 88%; }
+    .input-area { padding: 16px 20px 20px; position: sticky; bottom: 0; }
+    .demo-banner { top: 8px; right: 8px; padding: 8px 12px; font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner" onclick="alert('This is a live demo built by Velo AI for Mortgage Money Lending.\n\nFor deployment information, contact:\nGabe Herrera — Velo AI\nOrlando, FL · getveloai.co')">
+  <span class="pulse-dot"></span><span>Velo AI Demo</span>
+</div>
+
+<div class="app">
+  <aside class="practice-panel">
+    <div class="practice-content">
+      <div class="practice-mark">Winter Park · Mortgage Brokerage</div>
+      <h1 class="practice-name">Mortgage Money Lending</h1>
+      <p class="practice-doctor">“Transparency first — always.” — Reggie Gomez, Owner-Broker</p>
+      <div class="promise-card">
+        <h4>The Borrower Who Calls at 9 PM</h4>
+        <p>Rate questions and pre-approvals come up the moment someone falls for a house — nights, weekends, before they make an offer. When the office is closed, those borrowers call the next lender. This intake concierge answers 24/7, captures the need, and books the consultation.</p>
+      </div>
+    </div>
+    <div class="practice-info">
+      <div class="row"><div class="label">Office</div><div>Winter Park, FL</div></div>
+      <div class="row"><div class="label">Focus</div><div>Purchase · Refinance · Pre-Approval</div></div>
+      <div class="row"><div class="label">Phone</div><div>(407) 555-0124</div></div>
+    </div>
+    <div class="powered-by">Client intake powered by <strong>VELO AI</strong></div>
+  </aside>
+
+  <main class="chat-panel">
+    <header class="chat-header">
+      <div class="chat-status"><span class="status-dot"></span><span class="status-text"><strong>Mortgage Money Lending Intake</strong> · Available 24/7</span></div>
+      <span class="chat-time" id="chat-time">After hours · 9:08 PM</span>
+    </header>
+    <div class="messages" id="messages"></div>
+    <div class="input-area">
+      <div class="input-wrap">
+        <input type="text" id="user-input" placeholder="Type your message..." autocomplete="off" />
+        <button class="send-btn" onclick="handleUserSend()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+      <div class="input-hint">After-hours inquiries are flagged for Reggie's team. Time-sensitive matters get a priority callback.</div>
+    </div>
+  </main>
+</div>
+
+<script>
+  const messagesEl = document.getElementById('messages');
+  const inputEl = document.getElementById('user-input');
+  const memory = { name: null, issue: null, urgency: null, proposedTime: null, collecting: null, history: [] };
+
+  function addBotMessage(text, delay = 700, chips = null) {
+    return new Promise(res => {
+      const id = 't' + Date.now();
+      const t = document.createElement('div'); t.className = 'msg-group'; t.id = id;
+      t.innerHTML = '<div class="typing"><span></span><span></span><span></span></div>';
+      messagesEl.appendChild(t); messagesEl.scrollTop = messagesEl.scrollHeight;
+      setTimeout(() => {
+        document.getElementById(id)?.remove();
+        const g = document.createElement('div'); g.className = 'msg-group';
+        let h = `<div class="msg msg-bot">${text}</div><div class="msg-meta">Mortgage Money Lending Intake</div>`;
+        if (chips) { h += '<div class="quick-replies">'; chips.forEach(c => { h += `<button class="chip" onclick="handleChipClick('${c.value.replace(/'/g,"\\'")}',this)">${c.label}</button>`; }); h += '</div>'; }
+        g.innerHTML = h; messagesEl.appendChild(g); messagesEl.scrollTop = messagesEl.scrollHeight; res();
+      }, delay);
+    });
+  }
+
+  function addUserMessage(text) {
+    const g = document.createElement('div'); g.className = 'msg-group';
+    g.innerHTML = `<div class="msg msg-user" style="margin-left:auto;">${text}</div><div class="msg-meta user">You · just now</div>`;
+    messagesEl.appendChild(g); messagesEl.scrollTop = messagesEl.scrollHeight;
+    memory.history.push({ role: 'user', text });
+  }
+
+  function disableChips(btn) {
+    btn.parentElement.querySelectorAll('.chip').forEach(c => c.disabled = true);
+    btn.style.background = 'var(--accent)'; btn.style.color = 'var(--bg)';
+  }
+
+  function showBookingCard(matter, time) {
+    const g = document.createElement('div'); g.className = 'msg-group';
+    g.innerHTML = `<div class="booking-card">
+      <div class="booking-header"><div class="booking-icon">M</div><div class="booking-title">Consultation Hold Created</div></div>
+      <div class="booking-detail"><span class="label">Client</span><span class="value">${memory.name || 'New client'}</span></div>
+      <div class="booking-detail"><span class="label">Matter</span><span class="value">${matter}</span></div>
+      <div class="booking-detail"><span class="label">Proposed</span><span class="value">${time}</span></div>
+      <div class="booking-detail"><span class="label">With</span><span class="value">Mortgage Money Lending</span></div>
+      <div class="booking-detail"><span class="label">Office</span><span class="value">Winter Park · (407) 555-0124</span></div>
+      <div class="booking-confirm">
+        <button class="btn-primary" onclick="confirmBooking()">Confirm consult</button>
+        <button class="btn-secondary" onclick="proposeAlternative()">Different time</button>
+      </div></div>`;
+    messagesEl.appendChild(g); messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  async function startConversation() {
+    await addBotMessage(
+      `Thanks for reaching out to Mortgage Money Lending. Even after hours, I can take down what you need and get you in front of Reggie's team. What can we help you with?`,
+      400,
+      [
+        { label: '🏡 Home purchase loan', value: 'purchase' },
+        { label: '🔄 Refinance', value: 'refi' },
+        { label: '📈 Rate question', value: 'rate' },
+        { label: '✅ Pre-approval', value: 'preapp' },
+        { label: '❓ Something else', value: 'question' }
+      ]
+    );
+  }
+
+  async function handleChipClick(value, btn) {
+    disableChips(btn);
+    const labels = { 'purchase': "I need a loan to buy a home", 'refi': "I want to refinance", 'rate': "I have a question about rates", 'preapp': "I need a pre-approval", 'question': "I have another question", 'imm-urgent': "It's time-sensitive", 'imm-plan': "No rush, let's plan it", 'this-week': "This week", 'next-week': "Next week", 'flexible': "I'm flexible" };
+    addUserMessage(labels[value] || value);
+    await routeIntent(value);
+  }
+
+  async function routeIntent(value) {
+    if (value === 'purchase') {
+      memory.issue = 'purchase';
+      await addBotMessage(`Congratulations on the home search — we'll keep it straightforward and transparent. Are you under contract or making an offer soon, so we're racing a clock?`, 1200,
+        [{ label: '🔴 Yes — under contract / offering soon', value: 'imm-urgent' }, { label: '🟢 No rush, just getting ready', value: 'imm-plan' }]);
+      return;
+    }
+    if (value === 'refi') {
+      memory.issue = 'refi';
+      await addBotMessage(`Happy to look at a refinance with you — Reggie will show you the real numbers, no surprises. Are you trying to lock before rates move, or just exploring?`, 1200,
+        [{ label: '🔴 Want to lock soon', value: 'imm-urgent' }, { label: '🟢 Just exploring for now', value: 'imm-plan' }]);
+      return;
+    }
+    if (value === 'rate') {
+      memory.issue = 'rate';
+      await addBotMessage(`Good question — rates move daily and we believe in showing you exactly where you stand. Are you ready to lock something in soon, or gathering information?`, 1200,
+        [{ label: '🔴 Ready to lock soon', value: 'imm-urgent' }, { label: '🟢 Gathering information', value: 'imm-plan' }]);
+      return;
+    }
+    if (value === 'preapp') {
+      memory.issue = 'preapp';
+      await addBotMessage(`Smart move — a solid pre-approval makes your offer stronger. Do you need it fast for an offer you're about to make?`, 1300,
+        [{ label: '🔴 Yes — need it fast', value: 'imm-urgent' }, { label: '🟢 No, planning ahead', value: 'imm-plan' }]);
+      return;
+    }
+    if (value === 'question') {
+      memory.issue = 'question';
+      await addBotMessage(`Of course — go ahead and type your question and I'll make sure Reggie's team receives it and follows up.`, 900);
+      memory.collecting = 'free-question'; return;
+    }
+    if (value === 'imm-urgent') {
+      memory.urgency = 'severe';
+      await addBotMessage(`Understood — I'm flagging this as time-sensitive for Reggie's team right now. May I have your name and the best callback number? Someone will reach out as soon as possible.`, 1100);
+      memory.collecting = 'name-phone'; return;
+    }
+    if (value === 'imm-plan') {
+      memory.urgency = 'standard';
+      await addBotMessage(`Sounds good. Let's get you a loan consultation so the team can review your numbers properly. Would this week or next work better?`, 1000,
+        [{ label: '📅 This week', value: 'this-week' }, { label: '🗓️ Next week', value: 'next-week' }, { label: '🤝 I\'m flexible', value: 'flexible' }]);
+      return;
+    }
+    if (['this-week', 'next-week', 'flexible'].includes(value)) {
+      const t = { 'this-week': 'Thursday, 10:00 AM', 'next-week': 'Tuesday, 3:00 PM', 'flexible': 'Wednesday, 1:00 PM' };
+      memory.proposedTime = t[value];
+      await addBotMessage(`Let me hold ${t[value]} for a consultation. May I have your first name?`, 900);
+      memory.collecting = 'name-for-booking'; return;
+    }
+  }
+
+  async function handleUserSend() {
+    const text = inputEl.value.trim(); if (!text) return;
+    addUserMessage(text); inputEl.value = '';
+    if (['name-for-booking', 'name-phone'].includes(memory.collecting)) {
+      const n = text.split(/\s+/)[0].replace(/[^a-zA-Z]/g, '') || 'there';
+      memory.name = n.charAt(0).toUpperCase() + n.slice(1).toLowerCase();
+      const old = memory.collecting;
+      const r = { 'name-for-booking': `Thank you, ${memory.name}. And the best phone number? We'll confirm by text.`, 'name-phone': `Thank you, ${memory.name}. What's the best callback number?` };
+      await addBotMessage(r[old], 800); memory.collecting = 'phone'; return;
+    }
+    if (memory.collecting === 'phone') {
+      memory.phone = text; memory.collecting = null;
+      if (memory.proposedTime) {
+        const m = { 'purchase': 'Home purchase loan consultation', 'refi': 'Refinance consultation', 'rate': 'Rate / loan consultation', 'preapp': 'Pre-approval consultation', 'question': 'Loan consultation' };
+        await addBotMessage(`Thank you. Here's the consultation I'm holding for you:`, 800);
+        setTimeout(() => showBookingCard(m[memory.issue] || 'Loan consultation', memory.proposedTime), 1200);
+      } else if (memory.urgency === 'severe') {
+        await addBotMessage(`Thank you, ${memory.name}. Reggie's team has been notified and will call you back as a priority. We'll take good care of you.`, 1100);
+      } else {
+        await addBotMessage(`Thank you, ${memory.name}. The team will reach out to ${text} to confirm your consultation.<br><br>Anything else you'd like me to pass along?`, 1000);
+      }
+      return;
+    }
+    if (memory.collecting === 'free-question') {
+      memory.collecting = null;
+      await addBotMessage(`Logged for Reggie's team — they'll follow up. Would you like me to hold a loan consultation in the meantime?`, 1100,
+        [{ label: '✅ Yes, hold a consult', value: 'this-week' }, { label: 'Not yet, thanks', value: 'no-slot' }]);
+      return;
+    }
+    await addBotMessage(`Thank you. So I route it correctly — is this a home purchase loan, a refinance, a rate question, or something else?`, 900,
+      [{ label: '🏡 Purchase', value: 'purchase' }, { label: '🔄 Refinance', value: 'refi' }, { label: '📈 Rate', value: 'rate' }, { label: '❓ Something else', value: 'question' }]);
+  }
+
+  function confirmBooking() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) {
+      Object.assign(card.style, { transition: 'all 0.3s ease', background: 'linear-gradient(135deg,#16624a 0%,#0c3a2c 100%)', color: 'white' });
+      card.querySelector('.booking-title').style.color = 'white';
+      card.querySelector('.booking-icon').style.cssText = 'background:var(--accent-warm);color:#ffffff';
+      card.querySelectorAll('.label').forEach(el => el.style.color = 'rgba(255,255,255,0.6)');
+      card.querySelectorAll('.value').forEach(el => el.style.color = 'white');
+      card.querySelector('.booking-confirm').remove();
+    }
+    setTimeout(async () => { await addBotMessage(`You're all set, ${memory.name}. Your consultation is held and Reggie's team will confirm shortly. Thank you for reaching out.`, 700); }, 400);
+  }
+
+  function proposeAlternative() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) card.remove();
+    addBotMessage(`No problem — the next openings are Tuesday 9:00 AM, Wednesday 2:00 PM, or Friday 11:00 AM. Which works best?`, 600,
+      [{ label: '🌅 Tuesday 9:00 AM', value: 'this-week' }, { label: '🕒 Wednesday 2:00 PM', value: 'next-week' }, { label: '☀️ Friday 11:00 AM', value: 'flexible' }]);
+  }
+
+  inputEl.addEventListener('keydown', e => { if (e.key === 'Enter') handleUserSend(); });
+  setTimeout(startConversation, 600);
+</script>
+<script data-goatcounter="https://velo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
