@@ -1,0 +1,4 @@
+# Development / test dependencies for velo-ai-demos
+# Install with: pip install -r requirements-dev.txt
+pytest>=7.0
+dnspython>=2.0   # used by email_verify.resolve_mx (optional at runtime, required for full coverage)
