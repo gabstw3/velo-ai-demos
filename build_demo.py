@@ -175,17 +175,25 @@ def render(template_str: str, config: dict) -> str:
     return out
 
 
+def transform(template_str: str, config: dict) -> str:
+    """Apply every SIMPLE_SUBS replacement for a config and return the rendered
+    HTML. Pure — no file I/O, no printing — so it can be unit tested directly."""
+    out = template_str
+    for old, new_template in SIMPLE_SUBS:
+        out = out.replace(old, render(new_template, config))
+    return out
+
+
 def build(slug: str, config: dict) -> None:
     template = TEMPLATE.read_text()
-    out = template
-    for old, new_template in SIMPLE_SUBS:
-        new = render(new_template, config)
-        count = out.count(old)
+    # Diagnostics: each sub should match exactly once in the source template.
+    for old, _ in SIMPLE_SUBS:
+        count = template.count(old)
         if count == 0:
             print(f"  ! NOT FOUND: {old[:60]!r}")
         elif count > 1:
             print(f"  ! MULTIPLE ({count}) instances of: {old[:60]!r}")
-        out = out.replace(old, new)
+    out = transform(template, config)
     # Sanity: any @@ markers left means we missed a key
     leftovers = [line for line in out.split("\n") if "@@" in line]
     if leftovers:

@@ -110,23 +110,21 @@
   </div>
 </div>
 
+<script src="calc.js"></script>
 <script>
   const $=id=>document.getElementById(id);
   const fmt=n=>'$'+Math.round(n).toLocaleString('en-US');
   function calc(){
-    const inq=+$('inq').value, miss=+$('miss').value/100, close=+$('close').value/100, val=+$('val').value;
+    const inq=+$('inq').value, missPct=+$('miss').value, closePct=+$('close').value, val=+$('val').value;
     $('inqV').textContent=inq;
-    $('missV').textContent=$('miss').value+'%';
-    $('closeV').textContent=$('close').value+'%';
+    $('missV').textContent=missPct+'%';
+    $('closeV').textContent=closePct+'%';
     $('valV').textContent=fmt(val);
     // missed inquiries/month × the rate at which they'd have booked × value
-    const missedPerMonth=inq*4.33*miss;
-    const lostCustomers=missedPerMonth*close;
-    const monthly=lostCustomers*val;
+    const monthly=VeloCalc.lostRevenuePerMonth(inq,missPct,closePct,val);
     $('month').textContent=fmt(monthly);
     $('year').textContent=fmt(monthly*12);
-    const be=Math.max(1,Math.ceil(147/val));
-    $('breakeven').textContent=be;
+    $('breakeven').textContent=VeloCalc.breakevenCustomers(val);
   }
   ['inq','miss','close','val'].forEach(id=>$(id).addEventListener('input',calc));
   calc();
