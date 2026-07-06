@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Polley Wealth Management — After-Hours Client Concierge | Powered by Velo AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f5f0; --bg-deep: #ece8dd; --ink: #131b26; --ink-soft: #435061; --ink-faint: #8592a3;
+    --accent: #0f2c4d; --accent-warm: #c2a04a; --accent-glow: #e6d199; --line: #ddd6c4;
+    --bot-msg: #ffffff; --user-msg: #0f2c4d; --user-msg-text: #ffffff;
+    --shadow-sm: 0 1px 3px rgba(19,27,38,0.06); --shadow-md: 0 4px 16px rgba(19,27,38,0.08); --shadow-lg: 0 12px 40px rgba(19,27,38,0.12);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body { font-family: 'Geist', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.5; overflow-x: hidden; background-image: radial-gradient(circle at 15% 20%, rgba(194,160,74,0.07) 0%, transparent 40%), radial-gradient(circle at 85% 80%, rgba(15,44,77,0.05) 0%, transparent 40%); }
+  .app { display: grid; grid-template-columns: 360px 1fr; min-height: 100vh; max-width: 1400px; margin: 0 auto; }
+  .practice-panel { background: linear-gradient(180deg, #16304f 0%, #0b1a2c 100%); color: #eef1f5; padding: 40px 32px; display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; overflow: hidden; }
+  .practice-panel::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(194,160,74,0.13) 0%, transparent 50%); animation: drift 22s ease-in-out infinite; }
+  @keyframes drift { 0%, 100% { transform: translate(0,0); } 50% { transform: translate(20%,10%); } }
+  .practice-content { position: relative; z-index: 1; }
+  .practice-mark { font-family: 'Fraunces', serif; font-weight: 500; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent-warm); margin-bottom: 12px; opacity: 0.95; }
+  .practice-name { font-family: 'Fraunces', serif; font-weight: 600; font-size: 30px; line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 6px; }
+  .practice-doctor { font-family: 'Fraunces', serif; font-weight: 400; font-style: italic; font-size: 15px; color: var(--accent-glow); margin-bottom: 32px; }
+  .promise-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(230,209,153,0.18); border-radius: 12px; padding: 20px; margin-bottom: 24px; backdrop-filter: blur(10px); }
+  .promise-card h4 { font-family: 'Geist', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-warm); margin-bottom: 8px; }
+  .promise-card p { font-size: 14px; line-height: 1.55; color: #dde2e9; }
+  .practice-info { margin-top: auto; padding-top: 24px; border-top: 1px solid rgba(230,209,153,0.12); font-size: 13px; line-height: 1.7; color: #a8b2bf; }
+  .practice-info .row { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 8px; }
+  .practice-info .label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-warm); width: 56px; padding-top: 2px; flex-shrink: 0; }
+  .powered-by { margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(230,209,153,0.12); font-size: 11px; color: #8b96a4; letter-spacing: 0.05em; }
+  .powered-by strong { color: var(--accent-glow); font-weight: 600; letter-spacing: 0.1em; }
+  .chat-panel { background: var(--bg); display: flex; flex-direction: column; position: relative; }
+  .chat-header { padding: 20px 32px; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; background: rgba(247,245,240,0.85); backdrop-filter: blur(12px); z-index: 10; }
+  .chat-status { display: flex; align-items: center; gap: 10px; }
+  .status-dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; box-shadow: 0 0 0 4px rgba(74,222,128,0.15); animation: pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { box-shadow: 0 0 0 4px rgba(74,222,128,0.15); } 50% { box-shadow: 0 0 0 8px rgba(74,222,128,0.05); } }
+  .status-text { font-size: 13px; color: var(--ink-soft); font-weight: 500; }
+  .status-text strong { color: var(--ink); font-weight: 600; }
+  .chat-time { font-family: 'Fraunces', serif; font-size: 12px; color: var(--ink-faint); font-style: italic; }
+  .messages { flex: 1; padding: 32px; scroll-behavior: smooth; }
+  .msg-group { margin-bottom: 20px; animation: msgIn 0.4s cubic-bezier(0.2,0.8,0.2,1); }
+  @keyframes msgIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .msg { max-width: 78%; padding: 14px 18px; border-radius: 18px; font-size: 15px; line-height: 1.55; word-wrap: break-word; }
+  .msg-bot { background: var(--bot-msg); color: var(--ink); border-bottom-left-radius: 4px; box-shadow: var(--shadow-sm); border: 1px solid rgba(221,214,196,0.5); }
+  .msg-user { background: var(--user-msg); color: var(--user-msg-text); border-bottom-right-radius: 4px; margin-left: auto; }
+  .msg-meta { font-size: 10px; color: var(--ink-faint); margin-top: 6px; padding: 0 8px; letter-spacing: 0.05em; text-transform: uppercase; }
+  .msg-meta.user { text-align: right; }
+  .typing { display: flex; gap: 4px; padding: 16px 20px; background: var(--bot-msg); border-radius: 18px; border-bottom-left-radius: 4px; width: fit-content; box-shadow: var(--shadow-sm); border: 1px solid rgba(221,214,196,0.5); }
+  .typing span { width: 7px; height: 7px; background: var(--accent-warm); border-radius: 50%; opacity: 0.5; animation: typing 1.4s ease-in-out infinite; }
+  .typing span:nth-child(2) { animation-delay: 0.2s; } .typing span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes typing { 0%, 100% { transform: translateY(0); opacity: 0.4; } 50% { transform: translateY(-4px); opacity: 1; } }
+  .quick-replies { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; animation: msgIn 0.4s cubic-bezier(0.2,0.8,0.2,1) 0.2s both; }
+  .chip { background: transparent; border: 1px solid var(--accent); color: var(--accent); padding: 9px 16px; border-radius: 100px; font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s ease; }
+  .chip:hover { background: var(--accent); color: var(--bg); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+  .chip:disabled { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
+  .booking-card { background: linear-gradient(135deg, #ffffff 0%, #f5f0e2 100%); border: 1px solid var(--line); border-radius: 16px; padding: 24px; margin-top: 12px; box-shadow: var(--shadow-md); animation: msgIn 0.5s cubic-bezier(0.2,0.8,0.2,1); max-width: 78%; }
+  .booking-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+  .booking-icon { width: 32px; height: 32px; background: var(--accent-warm); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #0b1a2c; font-family: 'Fraunces', serif; font-weight: 700; font-size: 16px; }
+  .booking-title { font-family: 'Fraunces', serif; font-weight: 600; font-size: 16px; color: var(--ink); }
+  .booking-detail { display: grid; grid-template-columns: 90px 1fr; gap: 12px; padding: 8px 0; font-size: 14px; }
+  .booking-detail .label { color: var(--ink-faint); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; padding-top: 2px; }
+  .booking-detail .value { color: var(--ink); font-weight: 500; }
+  .booking-confirm { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); display: flex; gap: 8px; }
+  .btn-primary { flex: 1; background: var(--accent); color: white; border: none; padding: 11px 20px; border-radius: 8px; font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+  .btn-primary:hover { background: #0a1f38; transform: translateY(-1px); box-shadow: var(--shadow-md); }
+  .btn-secondary { background: transparent; color: var(--ink-soft); border: 1px solid var(--line); padding: 11px 20px; border-radius: 8px; font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s; }
+  .btn-secondary:hover { background: var(--bg-deep); }
+  .input-area { padding: 20px 32px 24px; border-top: 1px solid var(--line); background: rgba(247,245,240,0.85); backdrop-filter: blur(12px); }
+  .input-wrap { display: flex; gap: 10px; background: white; border: 1px solid var(--line); border-radius: 14px; padding: 6px 6px 6px 18px; transition: border-color 0.2s, box-shadow 0.2s; }
+  .input-wrap:focus-within { border-color: var(--accent-warm); box-shadow: 0 0 0 3px rgba(194,160,74,0.12); }
+  .input-wrap input { flex: 1; border: none; outline: none; font-family: 'Geist', sans-serif; font-size: 15px; color: var(--ink); padding: 10px 0; background: transparent; }
+  .input-wrap input::placeholder { color: var(--ink-faint); }
+  .send-btn { background: var(--accent); color: white; border: none; width: 40px; height: 40px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; flex-shrink: 0; }
+  .send-btn:hover { background: #0a1f38; transform: scale(1.05); }
+  .send-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+  .input-hint { font-size: 11px; color: var(--ink-faint); margin-top: 10px; text-align: center; letter-spacing: 0.05em; }
+  .demo-banner { position: fixed; top: 16px; right: 16px; background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 100px; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; z-index: 100; box-shadow: var(--shadow-lg); display: flex; align-items: center; gap: 8px; cursor: pointer; transition: transform 0.2s; }
+  .demo-banner:hover { transform: scale(1.03); }
+  .demo-banner .pulse-dot { width: 6px; height: 6px; background: var(--accent-warm); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
+  @media (max-width: 900px) {
+    html, body { height: auto; overflow: auto; -webkit-overflow-scrolling: touch; }
+    .app { grid-template-columns: 1fr; height: auto; min-height: 100vh; }
+    .practice-panel { padding: 20px 24px; position: static; height: auto; max-height: none; }
+    .practice-panel .promise-card, .practice-panel .practice-info, .practice-panel .powered-by { display: none; }
+    .practice-name { font-size: 24px; } .practice-doctor { font-size: 14px; margin-bottom: 0; }
+    .chat-panel { min-height: 80vh; }
+    .messages { padding: 20px; overflow-y: visible; flex: none; } .msg { max-width: 88%; }
+    .input-area { padding: 16px 20px 20px; position: sticky; bottom: 0; }
+    .demo-banner { top: 8px; right: 8px; padding: 8px 12px; font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner" onclick="alert('This is a live demo built by Velo AI for Polley Wealth Management.\n\nFor deployment information, contact:\nGabe Herrera — Velo AI\ngabe@getveloai.co')">
+  <span class="pulse-dot"></span><span>Velo AI Demo</span>
+</div>
+
+<div class="app">
+  <aside class="practice-panel">
+    <div class="practice-content">
+      <div class="practice-mark">Orlando · Private Wealth · RIA</div>
+      <h1 class="practice-name">Polley Wealth Management</h1>
+      <p class="practice-doctor">Private wealth management for successful professionals and business owners.</p>
+      <div class="promise-card">
+        <h4>The Inquiry That Arrives at 9 PM</h4>
+        <p>Successful professionals research advisors after their own workday ends. When that inquiry lands on a Sunday evening and reaches a contact form, it goes quiet. This concierge greets it in seconds, answers the basics, and books the introductory call directly onto the calendar. It never gives financial advice. It just makes sure the conversation happens.</p>
+      </div>
+    </div>
+    <div class="practice-info">
+      <div class="row"><div class="label">Office</div><div>250 N. Orange Ave., Suite 1116, Orlando</div></div>
+      <div class="row"><div class="label">Phone</div><div>407.337.1085</div></div>
+      <div class="row"><div class="label">Serving</div><div>Business Owners · Medical &amp; Legal Professionals · Athletes</div></div>
+    </div>
+    <div class="powered-by">Concierge powered by <strong>VELO AI</strong></div>
+  </aside>
+
+  <main class="chat-panel">
+    <header class="chat-header">
+      <div class="chat-status"><span class="status-dot"></span><span class="status-text"><strong>Polley Wealth Concierge</strong> · Available 24/7</span></div>
+      <span class="chat-time" id="chat-time">After hours · 9:12 PM</span>
+    </header>
+    <div class="messages" id="messages"></div>
+    <div class="input-area">
+      <div class="input-wrap">
+        <input type="text" id="user-input" placeholder="Type your message..." autocomplete="off" />
+        <button class="send-btn" onclick="handleUserSend()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+      <div class="input-hint">This concierge schedules conversations and takes messages. It does not provide investment advice.</div>
+    </div>
+  </main>
+</div>
+
+<script>
+  const messagesEl = document.getElementById('messages');
+  const inputEl = document.getElementById('user-input');
+  const memory = { name: null, issue: null, proposedTime: null, collecting: null, history: [] };
+
+  const now = new Date();
+  document.getElementById('chat-time').textContent = `After hours · ${now.getHours() < 8 || now.getHours() >= 17 ? '9:12 PM' : '7:02 AM'}`;
+
+  function addBotMessage(text, delay = 700, chips = null) {
+    return new Promise(res => {
+      const id = 't' + Date.now();
+      const t = document.createElement('div'); t.className = 'msg-group'; t.id = id;
+      t.innerHTML = '<div class="typing"><span></span><span></span><span></span></div>';
+      messagesEl.appendChild(t); messagesEl.scrollTop = messagesEl.scrollHeight;
+      setTimeout(() => {
+        document.getElementById(id)?.remove();
+        const g = document.createElement('div'); g.className = 'msg-group';
+        let h = `<div class="msg msg-bot">${text}</div><div class="msg-meta">Polley Wealth Concierge</div>`;
+        if (chips) { h += '<div class="quick-replies">'; chips.forEach(c => { h += `<button class="chip" onclick="handleChipClick('${c.value.replace(/'/g,"\\'")}',this)">${c.label}</button>`; }); h += '</div>'; }
+        g.innerHTML = h; messagesEl.appendChild(g); messagesEl.scrollTop = messagesEl.scrollHeight; res();
+      }, delay);
+    });
+  }
+
+  function addUserMessage(text) {
+    const g = document.createElement('div'); g.className = 'msg-group';
+    g.innerHTML = `<div class="msg msg-user" style="margin-left:auto;">${text}</div><div class="msg-meta user">You · just now</div>`;
+    messagesEl.appendChild(g); messagesEl.scrollTop = messagesEl.scrollHeight;
+    memory.history.push({ role: 'user', text });
+  }
+
+  function disableChips(btn) {
+    btn.parentElement.querySelectorAll('.chip').forEach(c => c.disabled = true);
+    btn.style.background = 'var(--accent)'; btn.style.color = 'var(--bg)';
+  }
+
+  function showBookingCard(matter, time) {
+    const g = document.createElement('div'); g.className = 'msg-group';
+    g.innerHTML = `<div class="booking-card">
+      <div class="booking-header"><div class="booking-icon">P</div><div class="booking-title">Introductory Call Hold Created</div></div>
+      <div class="booking-detail"><span class="label">Guest</span><span class="value">${memory.name || 'New inquiry'}</span></div>
+      <div class="booking-detail"><span class="label">Topic</span><span class="value">${matter}</span></div>
+      <div class="booking-detail"><span class="label">Proposed</span><span class="value">${time}</span></div>
+      <div class="booking-detail"><span class="label">With</span><span class="value">Greg Kite, Senior Wealth Advisor</span></div>
+      <div class="booking-detail"><span class="label">Format</span><span class="value">Phone or video, your preference</span></div>
+      <div class="booking-confirm">
+        <button class="btn-primary" onclick="confirmBooking()">Confirm call</button>
+        <button class="btn-secondary" onclick="proposeAlternative()">Different time</button>
+      </div></div>`;
+    messagesEl.appendChild(g); messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  async function startConversation() {
+    await addBotMessage(
+      `Good evening, and thank you for reaching out to Polley Wealth Management. The office is closed right now, but I can answer the basics and reserve time with an advisor so nothing waits until Monday. What brings you in?`,
+      400,
+      [
+        { label: '📅 Schedule an introductory call', value: 'intro' },
+        { label: '🏢 I own a business and want to talk planning', value: 'owner' },
+        { label: '💼 I recently changed jobs / sold a practice', value: 'transition' },
+        { label: '👤 I am a current client', value: 'client' },
+        { label: '❓ A general question', value: 'question' }
+      ]
+    );
+  }
+
+  async function handleChipClick(value, btn) {
+    disableChips(btn);
+    const labels = { 'intro': "I'd like to schedule an introductory call", 'owner': "I own a business and want to talk planning", 'transition': "I recently changed jobs / sold a practice", 'client': "I'm a current client", 'question': "I have a general question", 'this-week': "This week", 'next-week': "Next week", 'flexible': "I'm flexible" };
+    addUserMessage(labels[value] || value);
+    await routeIntent(value);
+  }
+
+  async function routeIntent(value) {
+    if (value === 'intro') {
+      memory.issue = 'intro';
+      await addBotMessage(`Happy to set that up. An introductory call is about 30 minutes with an advisor. No preparation needed, and nothing is pitched. Would this week or next work better?`, 1100,
+        [{ label: '📅 This week', value: 'this-week' }, { label: '📆 Next week', value: 'next-week' }, { label: "🤝 I'm flexible", value: 'flexible' }]);
+      return;
+    }
+    if (value === 'owner') {
+      memory.issue = 'owner';
+      await addBotMessage(`You're in the right place. Business owners are the core of the practice here, from exit planning to cash management to what happens after the sale. The right next step is a short call with an advisor. This week or next?`, 1200,
+        [{ label: '📅 This week', value: 'this-week' }, { label: '📆 Next week', value: 'next-week' }, { label: "🤝 I'm flexible", value: 'flexible' }]);
+      return;
+    }
+    if (value === 'transition') {
+      memory.issue = 'transition';
+      await addBotMessage(`Those windows matter, and some of the decisions are time-sensitive, so I'm glad you reached out tonight instead of waiting. Let's get you time with an advisor while your options are still open. This week or next?`, 1200,
+        [{ label: '📅 This week', value: 'this-week' }, { label: '📆 Next week', value: 'next-week' }, { label: "🤝 I'm flexible", value: 'flexible' }]);
+      return;
+    }
+    if (value === 'client') {
+      memory.issue = 'client';
+      await addBotMessage(`Of course. I can't discuss account details here, but I'll flag your message for the team first thing so you get a call back directly. May I have your first name?`, 1100);
+      memory.collecting = 'name-phone'; return;
+    }
+    if (['this-week', 'next-week', 'flexible'].includes(value)) {
+      const t = { 'this-week': 'Thursday, 10:00–10:30 AM', 'next-week': 'Tuesday, 2:00–2:30 PM', 'flexible': 'Wednesday, 11:00–11:30 AM' };
+      memory.proposedTime = t[value];
+      await addBotMessage(`Let me hold ${t[value]} with an advisor. May I have your first name?`, 900);
+      memory.collecting = 'name-for-booking'; return;
+    }
+    if (value === 'question') {
+      memory.issue = 'question';
+      await addBotMessage(`Go ahead and type your question. I'll log it for the team, and if it's something an advisor should answer directly, they'll follow up first thing.`, 900);
+      memory.collecting = 'free-question'; return;
+    }
+  }
+
+  async function handleUserSend() {
+    const text = inputEl.value.trim(); if (!text) return;
+    addUserMessage(text); inputEl.value = '';
+    if (['name', 'name-for-booking', 'name-phone'].includes(memory.collecting)) {
+      const n = text.split(/\s+/)[0].replace(/[^a-zA-Z]/g, '');
+      memory.name = n.charAt(0).toUpperCase() + n.slice(1).toLowerCase();
+      const old = memory.collecting;
+      const r = { 'name': `Thank you, ${memory.name}. What's the best phone number to reach you?`, 'name-for-booking': `Thanks, ${memory.name}. And the best phone number? You'll get a confirmation once it's on the calendar.`, 'name-phone': `Thank you, ${memory.name}. What's the best callback number?` };
+      await addBotMessage(r[old], 800); memory.collecting = 'phone'; return;
+    }
+    if (memory.collecting === 'phone') {
+      memory.phone = text; memory.collecting = null;
+      if (memory.proposedTime) {
+        const m = { 'intro': 'Introductory Call', 'owner': 'Business Owner Planning', 'transition': 'Transition Planning', 'question': 'Introductory Call' };
+        await addBotMessage(`Perfect. Here's the hold I'm placing on the calendar:`, 800);
+        setTimeout(() => showBookingCard(m[memory.issue] || 'Introductory Call', memory.proposedTime), 1200);
+      } else if (memory.issue === 'client') {
+        await addBotMessage(`Thank you, ${memory.name}. Your message is flagged for the team and you'll hear back directly from <strong>407.337.1085</strong> first thing. Anything else I can note for them?`, 1100);
+      } else {
+        await addBotMessage(`Thank you, ${memory.name}. The team will reach out to ${text} to confirm.<br><br>Anything else you'd like me to pass along?`, 1000);
+      }
+      return;
+    }
+    if (memory.collecting === 'free-question') {
+      memory.collecting = null;
+      await addBotMessage(`Noted for the team. Since the useful answers usually depend on your situation, would you like me to hold a short introductory call as well? It's the fastest way to a real answer.`, 1100,
+        [{ label: '✅ Yes, hold a call', value: 'this-week' }, { label: 'No thanks', value: 'no-slot' }]);
+      return;
+    }
+    await addBotMessage(`Thanks for that. So I point you the right way — are you looking to schedule time with an advisor, or do you have a question for the team?`, 900,
+      [{ label: '📅 Schedule a call', value: 'intro' }, { label: '❓ A question', value: 'question' }]);
+  }
+
+  function confirmBooking() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) {
+      Object.assign(card.style, { transition: 'all 0.3s ease', background: 'linear-gradient(135deg,#16304f 0%,#0b1a2c 100%)', color: 'white' });
+      card.querySelector('.booking-title').style.color = 'white';
+      card.querySelector('.booking-icon').style.cssText = 'background:var(--accent-warm);color:#0b1a2c';
+      card.querySelectorAll('.label').forEach(el => el.style.color = 'rgba(255,255,255,0.6)');
+      card.querySelectorAll('.value').forEach(el => el.style.color = 'white');
+      card.querySelector('.booking-confirm').remove();
+    }
+    setTimeout(async () => { await addBotMessage(`You're all set, ${memory.name}. Your call with Greg Kite is on the calendar and you'll receive a confirmation shortly. Enjoy the rest of your evening — the follow-through starts now.`, 700); }, 400);
+  }
+
+  function proposeAlternative() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) card.remove();
+    addBotMessage(`No problem. The next openings are Tuesday 9–9:30 AM, Wednesday 3–3:30 PM, or Friday 10–10:30 AM — which works best?`, 600,
+      [{ label: '🌅 Tuesday 9–9:30 AM', value: 'this-week' }, { label: '🕒 Wednesday 3–3:30 PM', value: 'next-week' }, { label: '☀️ Friday 10–10:30 AM', value: 'flexible' }]);
+  }
+
+  inputEl.addEventListener('keydown', e => { if (e.key === 'Enter') handleUserSend(); });
+  setTimeout(startConversation, 600);
+</script>
+<script data-goatcounter="https://velo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
