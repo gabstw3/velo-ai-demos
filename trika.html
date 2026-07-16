@@ -194,7 +194,7 @@
     const m = rodMatch();
     const is6x = memory.series !== 'x';
     const model = is6x ? m.model : m.alt + ' · classic cork handle';
-    const price = is6x ? '$299 <span style="color:var(--ink-faint);text-decoration:line-through;font-weight:400;">$349</span>' : '$149 <span style="color:var(--ink-faint);text-decoration:line-through;font-weight:400;">$179</span>';
+    const price = is6x ? '$299' : '$149';
     const g = document.createElement('div'); g.className = 'msg-group';
     g.innerHTML = `<div class="booking-card">
       <div class="booking-header"><div class="booking-icon">${triIcon}</div><div class="booking-title">Your Rod Match</div></div>
