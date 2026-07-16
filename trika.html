@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TRIKA Fishing — Rod Finder & Warranty Concierge | Powered by Velo AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f4f3f1; --bg-deep: #e9e7e3; --ink: #17181a; --ink-soft: #4a4d51; --ink-faint: #86898d;
+    --accent: #1c1e21; --accent-warm: #ee7522; --accent-glow: #ff9a4d; --line: #ddd9d3;
+    --bot-msg: #ffffff; --user-msg: #1c1e21; --user-msg-text: #ffffff;
+    --shadow-sm: 0 1px 3px rgba(23,24,26,0.06); --shadow-md: 0 4px 16px rgba(23,24,26,0.08); --shadow-lg: 0 12px 40px rgba(23,24,26,0.12);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body { font-family: 'Geist', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.5; overflow-x: hidden; background-image: radial-gradient(circle at 15% 20%, rgba(238,117,34,0.06) 0%, transparent 40%), radial-gradient(circle at 85% 80%, rgba(28,30,33,0.04) 0%, transparent 40%); }
+  .app { display: grid; grid-template-columns: 360px 1fr; min-height: 100vh; max-width: 1400px; margin: 0 auto; }
+  .practice-panel { background: linear-gradient(165deg, #232528 0%, #121316 100%); color: #e9e7e3; padding: 40px 32px; display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; overflow: hidden; }
+  .practice-panel::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(238,117,34,0.12) 0%, transparent 50%); animation: drift 22s ease-in-out infinite; }
+  @keyframes drift { 0%, 100% { transform: translate(0,0); } 50% { transform: translate(20%,10%); } }
+  .practice-content { position: relative; z-index: 1; }
+  .brand-tri { margin-bottom: 18px; }
+  .practice-mark { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent-warm); margin-bottom: 12px; opacity: 0.95; }
+  .practice-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 44px; line-height: 1; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px; }
+  .practice-doctor { font-size: 14px; color: var(--accent-glow); margin-bottom: 32px; letter-spacing: 0.02em; }
+  .promise-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(238,117,34,0.22); border-radius: 12px; padding: 20px; margin-bottom: 24px; backdrop-filter: blur(10px); }
+  .promise-card h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-warm); margin-bottom: 8px; }
+  .promise-card p { font-size: 14px; line-height: 1.55; color: #d8d5cf; }
+  .practice-info { margin-top: auto; padding-top: 24px; border-top: 1px solid rgba(238,117,34,0.15); font-size: 13px; line-height: 1.7; color: #a5a29c; }
+  .practice-info .row { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 8px; }
+  .practice-info .label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-warm); width: 56px; padding-top: 2px; flex-shrink: 0; }
+  .powered-by { margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(238,117,34,0.15); font-size: 11px; color: #8b887f; letter-spacing: 0.05em; }
+  .powered-by strong { color: var(--accent-glow); font-weight: 600; letter-spacing: 0.1em; }
+  .chat-panel { background: var(--bg); display: flex; flex-direction: column; position: relative; }
+  .chat-header { padding: 20px 32px; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; background: rgba(244,243,241,0.85); backdrop-filter: blur(12px); z-index: 10; }
+  .chat-status { display: flex; align-items: center; gap: 10px; }
+  .status-dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; box-shadow: 0 0 0 4px rgba(74,222,128,0.15); animation: pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { box-shadow: 0 0 0 4px rgba(74,222,128,0.15); } 50% { box-shadow: 0 0 0 8px rgba(74,222,128,0.05); } }
+  .status-text { font-size: 13px; color: var(--ink-soft); font-weight: 500; }
+  .status-text strong { color: var(--ink); font-weight: 600; }
+  .chat-time { font-size: 12px; color: var(--ink-faint); letter-spacing: 0.05em; }
+  .messages { flex: 1; padding: 32px; scroll-behavior: smooth; }
+  .msg-group { margin-bottom: 20px; animation: msgIn 0.4s cubic-bezier(0.2,0.8,0.2,1); }
+  @keyframes msgIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .msg { max-width: 78%; padding: 14px 18px; border-radius: 18px; font-size: 15px; line-height: 1.55; word-wrap: break-word; }
+  .msg-bot { background: var(--bot-msg); color: var(--ink); border-bottom-left-radius: 4px; box-shadow: var(--shadow-sm); border: 1px solid rgba(221,217,211,0.6); }
+  .msg-user { background: var(--user-msg); color: var(--user-msg-text); border-bottom-right-radius: 4px; margin-left: auto; }
+  .msg-meta { font-size: 10px; color: var(--ink-faint); margin-top: 6px; padding: 0 8px; letter-spacing: 0.05em; text-transform: uppercase; }
+  .msg-meta.user { text-align: right; }
+  .typing { display: flex; gap: 4px; padding: 16px 20px; background: var(--bot-msg); border-radius: 18px; border-bottom-left-radius: 4px; width: fit-content; box-shadow: var(--shadow-sm); border: 1px solid rgba(221,217,211,0.6); }
+  .typing span { width: 7px; height: 7px; background: var(--accent-warm); border-radius: 50%; opacity: 0.5; animation: typing 1.4s ease-in-out infinite; }
+  .typing span:nth-child(2) { animation-delay: 0.2s; } .typing span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes typing { 0%, 100% { transform: translateY(0); opacity: 0.4; } 50% { transform: translateY(-4px); opacity: 1; } }
+  .quick-replies { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; animation: msgIn 0.4s cubic-bezier(0.2,0.8,0.2,1) 0.2s both; }
+  .chip { background: transparent; border: 1px solid var(--accent); color: var(--accent); padding: 9px 16px; border-radius: 100px; font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s ease; }
+  .chip:hover { background: var(--accent); color: var(--bg); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+  .chip:disabled { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
+  .booking-card { background: linear-gradient(135deg, #ffffff 0%, #f8efe6 100%); border: 1px solid var(--line); border-radius: 16px; padding: 24px; margin-top: 12px; box-shadow: var(--shadow-md); animation: msgIn 0.5s cubic-bezier(0.2,0.8,0.2,1); max-width: 78%; }
+  .booking-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+  .booking-icon { width: 32px; height: 32px; background: var(--accent-warm); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .booking-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 18px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); }
+  .booking-detail { display: grid; grid-template-columns: 90px 1fr; gap: 12px; padding: 8px 0; font-size: 14px; }
+  .booking-detail .label { color: var(--ink-faint); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; padding-top: 2px; }
+  .booking-detail .value { color: var(--ink); font-weight: 500; }
+  .booking-confirm { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); display: flex; gap: 8px; }
+  .btn-primary { flex: 1; background: var(--accent-warm); color: #17181a; border: none; padding: 11px 20px; border-radius: 8px; font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+  .btn-primary:hover { background: #d9640f; transform: translateY(-1px); box-shadow: var(--shadow-md); }
+  .btn-secondary { background: transparent; color: var(--ink-soft); border: 1px solid var(--line); padding: 11px 20px; border-radius: 8px; font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s; }
+  .btn-secondary:hover { background: var(--bg-deep); }
+  .input-area { padding: 20px 32px 24px; border-top: 1px solid var(--line); background: rgba(244,243,241,0.85); backdrop-filter: blur(12px); }
+  .input-wrap { display: flex; gap: 10px; background: white; border: 1px solid var(--line); border-radius: 14px; padding: 6px 6px 6px 18px; transition: border-color 0.2s, box-shadow 0.2s; }
+  .input-wrap:focus-within { border-color: var(--accent-warm); box-shadow: 0 0 0 3px rgba(238,117,34,0.12); }
+  .input-wrap input { flex: 1; border: none; outline: none; font-family: 'Geist', sans-serif; font-size: 15px; color: var(--ink); padding: 10px 0; background: transparent; }
+  .input-wrap input::placeholder { color: var(--ink-faint); }
+  .send-btn { background: var(--accent); color: white; border: none; width: 40px; height: 40px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; flex-shrink: 0; }
+  .send-btn:hover { background: var(--accent-warm); transform: scale(1.05); }
+  .send-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+  .input-hint { font-size: 11px; color: var(--ink-faint); margin-top: 10px; text-align: center; letter-spacing: 0.05em; }
+  .demo-banner { position: fixed; top: 16px; right: 16px; background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 100px; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; z-index: 100; box-shadow: var(--shadow-lg); display: flex; align-items: center; gap: 8px; cursor: pointer; transition: transform 0.2s; }
+  .demo-banner:hover { transform: scale(1.03); }
+  .demo-banner .pulse-dot { width: 6px; height: 6px; background: var(--accent-warm); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
+  @media (max-width: 900px) {
+    html, body { height: auto; overflow: auto; -webkit-overflow-scrolling: touch; }
+    .app { grid-template-columns: 1fr; height: auto; min-height: 100vh; }
+    .practice-panel { padding: 20px 24px; position: static; height: auto; max-height: none; }
+    .practice-panel .promise-card, .practice-panel .practice-info, .practice-panel .powered-by { display: none; }
+    .brand-tri { display: none; }
+    .practice-name { font-size: 30px; } .practice-doctor { font-size: 13px; margin-bottom: 0; }
+    .chat-panel { min-height: 80vh; }
+    .messages { padding: 20px; overflow-y: visible; flex: none; } .msg { max-width: 88%; }
+    .input-area { padding: 16px 20px 20px; position: sticky; bottom: 0; }
+    .demo-banner { top: 8px; right: 8px; padding: 8px 12px; font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner" onclick="alert('This is a live demo built by Velo AI for TRIKA Fishing.\n\nFor deployment information, contact:\nGabe Herrera — Velo AI\nWinter Springs, FL')">
+  <span class="pulse-dot"></span><span>Velo AI Demo</span>
+</div>
+
+<div class="app">
+  <aside class="practice-panel">
+    <div class="practice-content">
+      <svg class="brand-tri" width="54" height="50" viewBox="0 0 108 96" fill="none" aria-hidden="true">
+        <polygon points="4,4 104,4 54,92" fill="#ee7522"/>
+        <line x1="54" y1="36" x2="4" y2="4" stroke="#121316" stroke-width="6"/>
+        <line x1="54" y1="36" x2="104" y2="4" stroke="#121316" stroke-width="6"/>
+        <line x1="54" y1="36" x2="54" y2="92" stroke="#121316" stroke-width="6"/>
+      </svg>
+      <div class="practice-mark">Superior, Wisconsin · Direct to Angler</div>
+      <h1 class="practice-name">Trika</h1>
+      <p class="practice-doctor">Lighter. Stronger. More sensitive. Built by the team behind Ravin.</p>
+      <div class="promise-card">
+        <h4>Feel Everything</h4>
+        <p>100% carbon fiber rods on TORAYCA&reg; HP blanks with Axial-Weave Technology — engineered to increase feedback and deliver an ultra-connected feel from lure to hand. Every rod backed by a 3-year warranty, sold direct so anglers keep the margin retail would take.</p>
+      </div>
+    </div>
+    <div class="practice-info">
+      <div class="row"><div class="label">HQ</div><div>1105 Tower Ave, Superior, WI 54880</div></div>
+      <div class="row"><div class="label">Phone</div><div>(715) 718-2801</div></div>
+      <div class="row"><div class="label">Lineup</div><div>6X Series Rods · X Series Rods · Ti Series Reels</div></div>
+      <div class="row"><div class="label">Promise</div><div>3-Year Warranty · One-time 50% accidental-breakage replacement</div></div>
+    </div>
+    <div class="powered-by">Concierge powered by <strong>VELO AI</strong></div>
+  </aside>
+
+  <main class="chat-panel">
+    <header class="chat-header">
+      <div class="chat-status"><span class="status-dot"></span><span class="status-text"><strong>TRIKA Concierge</strong> · Rod Finder, Warranty & Orders</span></div>
+      <span class="chat-time" id="chat-time">24/7 · trika.com</span>
+    </header>
+    <div class="messages" id="messages"></div>
+    <div class="input-area">
+      <div class="input-wrap">
+        <input type="text" id="user-input" placeholder="Type your message..." autocomplete="off" />
+        <button class="send-btn" onclick="handleUserSend()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+      <div class="input-hint">Every conversation is logged for the TRIKA crew in Superior — warranty claims and rod questions get a same-day follow-up.</div>
+    </div>
+  </main>
+</div>
+
+<script>
+  const messagesEl = document.getElementById('messages');
+  const inputEl = document.getElementById('user-input');
+  const memory = { name: null, email: null, intent: null, species: null, series: null, orderRef: null, collecting: null, history: [] };
+
+  function addBotMessage(text, delay = 700, chips = null) {
+    return new Promise(res => {
+      const id = 't' + Date.now();
+      const t = document.createElement('div'); t.className = 'msg-group'; t.id = id;
+      t.innerHTML = '<div class="typing"><span></span><span></span><span></span></div>';
+      messagesEl.appendChild(t); messagesEl.scrollTop = messagesEl.scrollHeight;
+      setTimeout(() => {
+        document.getElementById(id)?.remove();
+        const g = document.createElement('div'); g.className = 'msg-group';
+        let h = `<div class="msg msg-bot">${text}</div><div class="msg-meta">TRIKA Concierge</div>`;
+        if (chips) { h += '<div class="quick-replies">'; chips.forEach(c => { h += `<button class="chip" onclick="handleChipClick('${c.value.replace(/'/g,"\\'")}',this)">${c.label}</button>`; }); h += '</div>'; }
+        g.innerHTML = h; messagesEl.appendChild(g); messagesEl.scrollTop = messagesEl.scrollHeight; res();
+      }, delay);
+    });
+  }
+
+  function addUserMessage(text) {
+    const g = document.createElement('div'); g.className = 'msg-group';
+    g.innerHTML = `<div class="msg msg-user" style="margin-left:auto;">${text}</div><div class="msg-meta user">You · just now</div>`;
+    messagesEl.appendChild(g); messagesEl.scrollTop = messagesEl.scrollHeight;
+    memory.history.push({ role: 'user', text });
+  }
+
+  function disableChips(btn) {
+    btn.parentElement.querySelectorAll('.chip').forEach(c => c.disabled = true);
+    btn.style.background = 'var(--accent)'; btn.style.color = 'var(--bg)';
+  }
+
+  const triIcon = '<svg width="16" height="15" viewBox="0 0 108 96" fill="none"><polygon points="4,4 104,4 54,92" fill="#17181a"/><line x1="54" y1="36" x2="4" y2="4" stroke="#ee7522" stroke-width="8"/><line x1="54" y1="36" x2="104" y2="4" stroke="#ee7522" stroke-width="8"/><line x1="54" y1="36" x2="54" y2="92" stroke="#ee7522" stroke-width="8"/></svg>';
+
+  function rodMatch() {
+    const bySpecies = {
+      'bass': { model: '6X Casting · EkkoChamber&trade; handle', alt: 'X Series Casting', why: 'Power techniques, jigs, and moving baits' },
+      'walleye': { model: '6X Spinning · Fuji&reg; Ti Arawana tip', alt: 'X Series Spinning', why: 'Finesse presentations and light-bite detection' },
+      'multi': { model: '6X Spinning, Medium Fast', alt: 'X Series Spinning', why: 'The most versatile blank in the lineup' }
+    };
+    return bySpecies[memory.species] || bySpecies['multi'];
+  }
+
+  function showMatchCard() {
+    const m = rodMatch();
+    const is6x = memory.series !== 'x';
+    const model = is6x ? m.model : m.alt + ' · classic cork handle';
+    const price = is6x ? '$299 <span style="color:var(--ink-faint);text-decoration:line-through;font-weight:400;">$349</span>' : '$149 <span style="color:var(--ink-faint);text-decoration:line-through;font-weight:400;">$179</span>';
+    const g = document.createElement('div'); g.className = 'msg-group';
+    g.innerHTML = `<div class="booking-card">
+      <div class="booking-header"><div class="booking-icon">${triIcon}</div><div class="booking-title">Your Rod Match</div></div>
+      <div class="booking-detail"><span class="label">Angler</span><span class="value">${memory.name || 'New angler'}</span></div>
+      <div class="booking-detail"><span class="label">Rod</span><span class="value">${model}</span></div>
+      <div class="booking-detail"><span class="label">Why</span><span class="value">${m.why}</span></div>
+      <div class="booking-detail"><span class="label">Price</span><span class="value">${price}</span></div>
+      <div class="booking-detail"><span class="label">Backed by</span><span class="value">3-Year TRIKA Warranty</span></div>
+      <div class="booking-confirm">
+        <button class="btn-primary" onclick="confirmMatch()">Email me this match</button>
+        <button class="btn-secondary" onclick="adjustMatch()">Adjust pick</button>
+      </div></div>`;
+    messagesEl.appendChild(g); messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  function showClaimCard(type) {
+    const g = document.createElement('div'); g.className = 'msg-group';
+    g.innerHTML = `<div class="booking-card">
+      <div class="booking-header"><div class="booking-icon">${triIcon}</div><div class="booking-title">Warranty Claim Started</div></div>
+      <div class="booking-detail"><span class="label">Angler</span><span class="value">${memory.name || 'TRIKA owner'}</span></div>
+      <div class="booking-detail"><span class="label">Type</span><span class="value">${type}</span></div>
+      <div class="booking-detail"><span class="label">Coverage</span><span class="value">${type === 'Accidental breakage' ? 'One-time 50% replacement discount (within 3 years)' : '3-year warranty — defects in materials & workmanship'}</span></div>
+      <div class="booking-detail"><span class="label">Next step</span><span class="value">The Superior, WI crew reviews photos & confirms by email</span></div>
+      <div class="booking-confirm">
+        <button class="btn-primary" onclick="confirmClaim()">Submit claim</button>
+        <button class="btn-secondary" onclick="cancelClaim()">Hold on</button>
+      </div></div>`;
+    messagesEl.appendChild(g); messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  async function startConversation() {
+    await addBotMessage(
+      `Welcome to TRIKA. You just picked up the lightest, most sensitive rods in fishing — built in Superior, WI by the team behind Ravin crossbows. I can match you to the right rod, handle a warranty claim, or check on an order. What can I do for you?`,
+      400,
+      [
+        { label: '🎣 Help me pick a rod', value: 'find-rod' },
+        { label: '🛠️ Warranty or breakage', value: 'warranty' },
+        { label: '📦 Where is my order?', value: 'order' },
+        { label: '❓ Something else', value: 'question' }
+      ]
+    );
+  }
+
+  async function handleChipClick(value, btn) {
+    disableChips(btn);
+    const labels = { 'find-rod': 'Help me pick a rod', 'warranty': 'I have a warranty or breakage issue', 'order': 'Where is my order?', 'question': 'I have something else', 'bass': 'Mostly bass — casting techniques', 'walleye': 'Walleye and finesse fishing', 'multi': 'A little of everything', 'pick-6x': 'Set me up with the 6X', 'pick-x': 'The X Series sounds right', 'difference': 'What is the difference?', 'defect': 'Something failed on its own', 'accident': 'I broke it — my fault', 'notsure': 'Not sure what happened', 'yes-claim': 'Yes, start my claim', 'find-instead': 'Actually, help me pick a rod', 'no-thanks': 'No thanks, all set' };
+    addUserMessage(labels[value] || value);
+    await routeIntent(value);
+  }
+
+  async function routeIntent(value) {
+    if (value === 'find-rod') {
+      memory.intent = 'find-rod';
+      await addBotMessage(`Perfect. Every TRIKA blank is 100% carbon on TORAYCA&reg; HP carbon with our Axial-Weave — the difference is in how we spec them. What do you fish most?`, 1100,
+        [{ label: '🐟 Bass — jigs & casting', value: 'bass' }, { label: '🎯 Walleye & finesse', value: 'walleye' }, { label: '🌊 Multi-species', value: 'multi' }]);
+      return;
+    }
+    if (['bass', 'walleye', 'multi'].includes(value)) {
+      memory.species = value;
+      await addBotMessage(`Good news — that's exactly what the lineup was built around. Two ways to go: the flagship <strong>6X Series</strong> ($299) with the EkkoChamber&trade; carbon handle and Fuji&reg; Ti Arawana tip, or the <strong>X Series</strong> ($149) — same DNA, classic cork handle. Which way are you leaning?`, 1300,
+        [{ label: '⚡ 6X — the flagship', value: 'pick-6x' }, { label: '🌲 X Series — $149', value: 'pick-x' }, { label: '🤔 What is the difference?', value: 'difference' }]);
+      return;
+    }
+    if (value === 'difference') {
+      await addBotMessage(`The short version: the <strong>6X</strong> is the no-compromise build — hollow EkkoChamber&trade; handle that amplifies every tick, premium Fuji&reg; guide train, the lightest layup we make. The <strong>X Series</strong> keeps the carbon blank and the sensitivity story at $149 with a cork grip. If you fish light bites in deep water, the 6X earns its price fast.`, 1500,
+        [{ label: '⚡ Go with the 6X', value: 'pick-6x' }, { label: '🌲 X Series for me', value: 'pick-x' }]);
+      return;
+    }
+    if (['pick-6x', 'pick-x'].includes(value)) {
+      memory.series = value === 'pick-x' ? 'x' : '6x';
+      await addBotMessage(`Dialed. Let me build your match card. First — what's your first name?`, 900);
+      memory.collecting = 'name-for-match'; return;
+    }
+    if (value === 'warranty') {
+      memory.intent = 'warranty';
+      await addBotMessage(`Sorry to hear it — let's make it right. Every TRIKA rod carries a <strong>3-year warranty</strong> against defects, and even accidental breakage is covered by a one-time <strong>50% replacement discount</strong>. What happened?`, 1200,
+        [{ label: '🔧 It failed on its own', value: 'defect' }, { label: '💥 Car door / my fault', value: 'accident' }, { label: '❓ Honestly not sure', value: 'notsure' }]);
+      return;
+    }
+    if (['defect', 'accident', 'notsure'].includes(value)) {
+      memory.claimType = value === 'accident' ? 'Accidental breakage' : value === 'defect' ? 'Defect claim' : 'Inspection — cause TBD';
+      await addBotMessage(`Got it. I'll open the claim so the crew in Superior can review it — they're fast on these. What's your first name?`, 1000);
+      memory.collecting = 'name-for-claim'; return;
+    }
+    if (value === 'yes-claim') {
+      await addBotMessage(`On it. What's your first name?`, 800);
+      memory.collecting = 'name-for-claim'; return;
+    }
+    if (value === 'order') {
+      memory.intent = 'order';
+      await addBotMessage(`Happy to check. What's your order number — or the email you used at checkout?`, 900);
+      memory.collecting = 'order-ref'; return;
+    }
+    if (value === 'find-instead') { await routeIntent('find-rod'); return; }
+    if (value === 'no-thanks') {
+      await addBotMessage(`Tight lines! If anything comes up, the crew is at <strong>(715) 718-2801</strong> — or just come back here anytime.`, 800);
+      return;
+    }
+    if (value === 'question') {
+      memory.intent = 'question';
+      await addBotMessage(`Go ahead and type it — I'll log it for the TRIKA team and they'll follow up same-day. Rod specs, reels, ambassador program, anything.`, 900);
+      memory.collecting = 'free-question'; return;
+    }
+  }
+
+  async function handleUserSend() {
+    const text = inputEl.value.trim(); if (!text) return;
+    addUserMessage(text); inputEl.value = '';
+    if (['name-for-match', 'name-for-claim'].includes(memory.collecting)) {
+      const n = text.split(/\s+/)[0].replace(/[^a-zA-Z]/g, '');
+      memory.name = n.charAt(0).toUpperCase() + n.slice(1).toLowerCase();
+      const forMatch = memory.collecting === 'name-for-match';
+      memory.collecting = forMatch ? 'email-for-match' : 'email-for-claim';
+      await addBotMessage(forMatch ? `Thanks, ${memory.name}. And the best email? I'll send the match card there along with current availability.` : `Thanks, ${memory.name}. What's the best email for the claim? That's where the crew will send your prepaid instructions.`, 800);
+      return;
+    }
+    if (memory.collecting === 'email-for-match') {
+      memory.email = text; memory.collecting = null;
+      await addBotMessage(`Perfect. Here's what I'd put in your hands:`, 800);
+      setTimeout(() => showMatchCard(), 1200);
+      return;
+    }
+    if (memory.collecting === 'email-for-claim') {
+      memory.email = text; memory.collecting = null;
+      await addBotMessage(`Almost done — here's your claim summary:`, 800);
+      setTimeout(() => showClaimCard(memory.claimType || 'Warranty review'), 1200);
+      return;
+    }
+    if (memory.collecting === 'order-ref') {
+      memory.orderRef = text; memory.collecting = null;
+      await addBotMessage(`Found it — I've flagged <strong>${text}</strong> for the fulfillment team in Superior. You'll get a tracking update by email shortly. Anything else while I have you?`, 1200,
+        [{ label: '🎣 Help me pick a rod', value: 'find-rod' }, { label: '🛠️ Warranty question', value: 'warranty' }, { label: 'All set, thanks', value: 'no-thanks' }]);
+      return;
+    }
+    if (memory.collecting === 'free-question') {
+      memory.collecting = null;
+      await addBotMessage(`Logged for the TRIKA team — expect a same-day reply. While you're here, want me to match you to a rod? Takes about 30 seconds.`, 1100,
+        [{ label: '🎣 Sure, match me', value: 'find-rod' }, { label: 'No thanks', value: 'no-thanks' }]);
+      return;
+    }
+    await addBotMessage(`Thanks for that. So I point you the right way — are you picking out a rod, dealing with a warranty issue, or checking an order?`, 900,
+      [{ label: '🎣 Picking a rod', value: 'find-rod' }, { label: '🛠️ Warranty', value: 'warranty' }, { label: '📦 Order status', value: 'order' }]);
+  }
+
+  function paintCardDark(card) {
+    Object.assign(card.style, { transition: 'all 0.3s ease', background: 'linear-gradient(135deg,#232528 0%,#121316 100%)', color: 'white' });
+    card.querySelector('.booking-title').style.color = 'white';
+    card.querySelectorAll('.label').forEach(el => el.style.color = 'rgba(255,255,255,0.6)');
+    card.querySelectorAll('.value').forEach(el => el.style.color = 'white');
+    card.querySelector('.booking-confirm').remove();
+  }
+
+  function confirmMatch() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) paintCardDark(card);
+    setTimeout(async () => { await addBotMessage(`Done, ${memory.name} — your match is on its way to <strong>${memory.email}</strong> with a link to grab it at trika.com. Sold direct from Superior, WI, backed by the 3-year warranty. Feel everything out there. 🎣`, 700); }, 400);
+  }
+
+  function adjustMatch() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) card.remove();
+    addBotMessage(`No problem — let's re-spec it. What changed?`, 600,
+      [{ label: '🐟 Different species', value: 'find-rod' }, { label: '⚡ Switch to 6X', value: 'pick-6x' }, { label: '🌲 Switch to X Series', value: 'pick-x' }]);
+  }
+
+  function confirmClaim() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) paintCardDark(card);
+    setTimeout(async () => { await addBotMessage(`Claim submitted, ${memory.name}. The crew will email <strong>${memory.email}</strong> with photo instructions and next steps — most claims get a response the same business day. If it's faster, call <strong>(715) 718-2801</strong> and reference this chat.`, 700); }, 400);
+  }
+
+  function cancelClaim() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) card.remove();
+    addBotMessage(`No rush — the claim details are saved. Want me to submit it, or is there something else?`, 600,
+      [{ label: '✅ Submit the claim', value: 'yes-claim' }, { label: '🎣 Help me pick a rod', value: 'find-instead' }]);
+  }
+
+  inputEl.addEventListener('keydown', e => { if (e.key === 'Enter') handleUserSend(); });
+  setTimeout(startConversation, 600);
+</script>
+<script data-goatcounter="https://velo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
