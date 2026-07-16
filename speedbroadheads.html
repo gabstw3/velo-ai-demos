@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SPEED Broadheads — Setup Finder & Guarantee Concierge | Powered by Velo AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f4f3f1; --bg-deep: #e9e7e3; --ink: #17181a; --ink-soft: #4a4d51; --ink-faint: #86898d;
+    --accent: #1c1e21; --accent-warm: #e0242f; --accent-glow: #ff5a66; --line: #ddd9d3;
+    --bot-msg: #ffffff; --user-msg: #1c1e21; --user-msg-text: #ffffff;
+    --shadow-sm: 0 1px 3px rgba(23,24,26,0.06); --shadow-md: 0 4px 16px rgba(23,24,26,0.08); --shadow-lg: 0 12px 40px rgba(23,24,26,0.12);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body { font-family: 'Geist', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.5; overflow-x: hidden; background-image: radial-gradient(circle at 15% 20%, rgba(224,36,47,0.06) 0%, transparent 40%), radial-gradient(circle at 85% 80%, rgba(28,30,33,0.04) 0%, transparent 40%); }
+  .app { display: grid; grid-template-columns: 360px 1fr; min-height: 100vh; max-width: 1400px; margin: 0 auto; }
+  .brand-panel { background: linear-gradient(165deg, #232528 0%, #121316 100%); color: #e9e7e3; padding: 40px 32px; display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; overflow: hidden; }
+  .brand-panel::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(224,36,47,0.14) 0%, transparent 50%); animation: drift 22s ease-in-out infinite; }
+  @keyframes drift { 0%, 100% { transform: translate(0,0); } 50% { transform: translate(20%,10%); } }
+  .brand-content { position: relative; z-index: 1; }
+  .brand-icon { margin-bottom: 18px; }
+  .brand-mark { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent-warm); margin-bottom: 12px; opacity: 0.95; }
+  .brand-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 44px; line-height: 1; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px; }
+  .brand-tagline { font-size: 14px; color: var(--accent-glow); margin-bottom: 32px; letter-spacing: 0.02em; }
+  .promise-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(224,36,47,0.24); border-radius: 12px; padding: 20px; margin-bottom: 24px; backdrop-filter: blur(10px); }
+  .promise-card h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-warm); margin-bottom: 8px; }
+  .promise-card p { font-size: 14px; line-height: 1.55; color: #d8d5cf; }
+  .brand-info { margin-top: auto; padding-top: 24px; border-top: 1px solid rgba(224,36,47,0.15); font-size: 13px; line-height: 1.7; color: #a5a29c; }
+  .brand-info .row { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 8px; }
+  .brand-info .label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-warm); width: 56px; padding-top: 2px; flex-shrink: 0; }
+  .powered-by { margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(224,36,47,0.15); font-size: 11px; color: #8b887f; letter-spacing: 0.05em; }
+  .powered-by strong { color: var(--accent-glow); font-weight: 600; letter-spacing: 0.1em; }
+  .chat-panel { background: var(--bg); display: flex; flex-direction: column; position: relative; }
+  .chat-header { padding: 20px 32px; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; background: rgba(244,243,241,0.85); backdrop-filter: blur(12px); z-index: 10; }
+  .chat-status { display: flex; align-items: center; gap: 10px; }
+  .status-dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; box-shadow: 0 0 0 4px rgba(74,222,128,0.15); animation: pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { box-shadow: 0 0 0 4px rgba(74,222,128,0.15); } 50% { box-shadow: 0 0 0 8px rgba(74,222,128,0.05); } }
+  .status-text { font-size: 13px; color: var(--ink-soft); font-weight: 500; }
+  .status-text strong { color: var(--ink); font-weight: 600; }
+  .chat-time { font-size: 12px; color: var(--ink-faint); letter-spacing: 0.05em; }
+  .messages { flex: 1; padding: 32px; scroll-behavior: smooth; }
+  .msg-group { margin-bottom: 20px; animation: msgIn 0.4s cubic-bezier(0.2,0.8,0.2,1); }
+  @keyframes msgIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .msg { max-width: 78%; padding: 14px 18px; border-radius: 18px; font-size: 15px; line-height: 1.55; word-wrap: break-word; }
+  .msg-bot { background: var(--bot-msg); color: var(--ink); border-bottom-left-radius: 4px; box-shadow: var(--shadow-sm); border: 1px solid rgba(221,217,211,0.6); }
+  .msg-user { background: var(--user-msg); color: var(--user-msg-text); border-bottom-right-radius: 4px; margin-left: auto; }
+  .msg-meta { font-size: 10px; color: var(--ink-faint); margin-top: 6px; padding: 0 8px; letter-spacing: 0.05em; text-transform: uppercase; }
+  .msg-meta.user { text-align: right; }
+  .typing { display: flex; gap: 4px; padding: 16px 20px; background: var(--bot-msg); border-radius: 18px; border-bottom-left-radius: 4px; width: fit-content; box-shadow: var(--shadow-sm); border: 1px solid rgba(221,217,211,0.6); }
+  .typing span { width: 7px; height: 7px; background: var(--accent-warm); border-radius: 50%; opacity: 0.5; animation: typing 1.4s ease-in-out infinite; }
+  .typing span:nth-child(2) { animation-delay: 0.2s; } .typing span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes typing { 0%, 100% { transform: translateY(0); opacity: 0.4; } 50% { transform: translateY(-4px); opacity: 1; } }
+  .quick-replies { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; animation: msgIn 0.4s cubic-bezier(0.2,0.8,0.2,1) 0.2s both; }
+  .chip { background: transparent; border: 1px solid var(--accent); color: var(--accent); padding: 9px 16px; border-radius: 100px; font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s ease; }
+  .chip:hover { background: var(--accent); color: var(--bg); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+  .chip:disabled { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
+  .booking-card { background: linear-gradient(135deg, #ffffff 0%, #faeceb 100%); border: 1px solid var(--line); border-radius: 16px; padding: 24px; margin-top: 12px; box-shadow: var(--shadow-md); animation: msgIn 0.5s cubic-bezier(0.2,0.8,0.2,1); max-width: 78%; }
+  .booking-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+  .booking-icon { width: 32px; height: 32px; background: var(--accent-warm); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .booking-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 18px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); }
+  .booking-detail { display: grid; grid-template-columns: 90px 1fr; gap: 12px; padding: 8px 0; font-size: 14px; }
+  .booking-detail .label { color: var(--ink-faint); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; padding-top: 2px; }
+  .booking-detail .value { color: var(--ink); font-weight: 500; }
+  .stock-flag { display: inline-block; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 8px; border-radius: 4px; font-weight: 600; margin-left: 6px; }
+  .stock-in { background: rgba(74,222,128,0.16); color: #15803d; }
+  .stock-out { background: rgba(224,36,47,0.12); color: #b91c1c; }
+  .booking-confirm { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); display: flex; gap: 8px; }
+  .btn-primary { flex: 1; background: var(--accent-warm); color: #ffffff; border: none; padding: 11px 20px; border-radius: 8px; font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+  .btn-primary:hover { background: #b91c26; transform: translateY(-1px); box-shadow: var(--shadow-md); }
+  .btn-secondary { background: transparent; color: var(--ink-soft); border: 1px solid var(--line); padding: 11px 20px; border-radius: 8px; font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s; }
+  .btn-secondary:hover { background: var(--bg-deep); }
+  .input-area { padding: 20px 32px 24px; border-top: 1px solid var(--line); background: rgba(244,243,241,0.85); backdrop-filter: blur(12px); }
+  .input-wrap { display: flex; gap: 10px; background: white; border: 1px solid var(--line); border-radius: 14px; padding: 6px 6px 6px 18px; transition: border-color 0.2s, box-shadow 0.2s; }
+  .input-wrap:focus-within { border-color: var(--accent-warm); box-shadow: 0 0 0 3px rgba(224,36,47,0.12); }
+  .input-wrap input { flex: 1; border: none; outline: none; font-family: 'Geist', sans-serif; font-size: 15px; color: var(--ink); padding: 10px 0; background: transparent; }
+  .input-wrap input::placeholder { color: var(--ink-faint); }
+  .send-btn { background: var(--accent); color: white; border: none; width: 40px; height: 40px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; flex-shrink: 0; }
+  .send-btn:hover { background: var(--accent-warm); transform: scale(1.05); }
+  .input-hint { font-size: 11px; color: var(--ink-faint); margin-top: 10px; text-align: center; letter-spacing: 0.05em; }
+  .demo-banner { position: fixed; top: 16px; right: 16px; background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 100px; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; z-index: 100; box-shadow: var(--shadow-lg); display: flex; align-items: center; gap: 8px; cursor: pointer; transition: transform 0.2s; }
+  .demo-banner:hover { transform: scale(1.03); }
+  .demo-banner .pulse-dot { width: 6px; height: 6px; background: var(--accent-warm); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
+  @media (max-width: 900px) {
+    html, body { height: auto; overflow: auto; -webkit-overflow-scrolling: touch; }
+    .app { grid-template-columns: 1fr; height: auto; min-height: 100vh; }
+    .brand-panel { padding: 20px 24px; position: static; height: auto; max-height: none; }
+    .brand-panel .promise-card, .brand-panel .brand-info, .brand-panel .powered-by { display: none; }
+    .brand-icon { display: none; }
+    .brand-name { font-size: 30px; } .brand-tagline { font-size: 13px; margin-bottom: 0; }
+    .chat-panel { min-height: 80vh; }
+    .messages { padding: 20px; overflow-y: visible; flex: none; } .msg { max-width: 88%; }
+    .input-area { padding: 16px 20px 20px; position: sticky; bottom: 0; }
+    .demo-banner { top: 8px; right: 8px; padding: 8px 12px; font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner" onclick="alert('This is a live demo built by Velo AI for SPEED Broadheads.\n\nFor deployment information, contact:\nGabe Herrera — Velo AI\nWinter Springs, FL')">
+  <span class="pulse-dot"></span><span>Velo AI Demo</span>
+</div>
+
+<div class="app">
+  <aside class="brand-panel">
+    <div class="brand-content">
+      <svg class="brand-icon" width="44" height="58" viewBox="0 0 44 58" fill="none" aria-hidden="true">
+        <polygon points="22,2 38,32 22,24 6,32" fill="#e0242f"/>
+        <rect x="19" y="22" width="6" height="34" fill="#e0242f"/>
+        <line x1="22" y1="10" x2="22" y2="24" stroke="#121316" stroke-width="2.5"/>
+      </svg>
+      <div class="brand-mark">Superior, Wisconsin · Direct to Hunter</div>
+      <h1 class="brand-name">Speed</h1>
+      <p class="brand-tagline">Piston Lock Technology. Field point accuracy, with blades that stay shut until they shouldn't.</p>
+      <div class="promise-card">
+        <h4>Piston Lock</h4>
+        <p>A precision micro piston that <em>dynamically tightens with increased velocity</em> — the faster the arrow flies, the harder it locks. No blade deployment in flight, from 200+ fps vertical bows to 500+ fps crossbows. Only 1.5 pounds of force to open on impact. Backed by a 100% satisfaction guarantee.</p>
+      </div>
+    </div>
+    <div class="brand-info">
+      <div class="row"><div class="label">HQ</div><div>1101 Tower Ave, Superior, WI 54880</div></div>
+      <div class="row"><div class="label">Phone</div><div>(715) 718-3511</div></div>
+      <div class="row"><div class="label">Lineup</div><div>Crosscut 100 · Titanium 100 · Crossbow Titanium 100 · Crossbow Steel 125</div></div>
+      <div class="row"><div class="label">Promise</div><div>100% Satisfaction Guarantee · Full retail refund</div></div>
+    </div>
+    <div class="powered-by">Concierge powered by <strong>VELO AI</strong></div>
+  </aside>
+
+  <main class="chat-panel">
+    <header class="chat-header">
+      <div class="chat-status"><span class="status-dot"></span><span class="status-text"><strong>SPEED Concierge</strong> · Setup Finder, Guarantee & Orders</span></div>
+      <span class="chat-time" id="chat-time">24/7 · speedbroadheads.com</span>
+    </header>
+    <div class="messages" id="messages"></div>
+    <div class="input-area">
+      <div class="input-wrap">
+        <input type="text" id="user-input" placeholder="Type your message..." autocomplete="off" />
+        <button class="send-btn" onclick="handleUserSend()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+      <div class="input-hint">Every conversation is logged for the SPEED crew in Superior — guarantee claims and setup questions get a same-day follow-up.</div>
+    </div>
+  </main>
+</div>
+
+<script>
+  const messagesEl = document.getElementById('messages');
+  const inputEl = document.getElementById('user-input');
+  const memory = { name: null, email: null, intent: null, bow: null, pick: null, orderRef: null, collecting: null, waitlist: null, history: [] };
+
+  const PRODUCTS = {
+    'crosscut':  { name: 'Crosscut 100 · 3-pack',           why: '.38" cross-cut blades, 7068-aluminum ferrule', price: '$99', stock: 'in',  bow: 'vertical' },
+    'ti':        { name: 'Titanium 100 · 3-pack',           why: 'Grade 5 titanium ferrule, chisel tip',         price: '$99', stock: 'in',  bow: 'vertical' },
+    'xb-ti':     { name: 'Crossbow Titanium 100 · 3-pack',  why: 'Grade 5 titanium, 11/32" crossbow base',       price: '$99', stock: 'in',  bow: 'crossbow' },
+    'xb-steel':  { name: 'Crossbow Steel 125 · 3-pack',     why: '125 grain stainless steel, 11/32" base',       price: '$99', stock: 'out', bow: 'crossbow' }
+  };
+
+  function addBotMessage(text, delay = 700, chips = null) {
+    return new Promise(res => {
+      const id = 't' + Date.now();
+      const t = document.createElement('div'); t.className = 'msg-group'; t.id = id;
+      t.innerHTML = '<div class="typing"><span></span><span></span><span></span></div>';
+      messagesEl.appendChild(t); messagesEl.scrollTop = messagesEl.scrollHeight;
+      setTimeout(() => {
+        document.getElementById(id)?.remove();
+        const g = document.createElement('div'); g.className = 'msg-group';
+        let h = `<div class="msg msg-bot">${text}</div><div class="msg-meta">SPEED Concierge</div>`;
+        if (chips) { h += '<div class="quick-replies">'; chips.forEach(c => { h += `<button class="chip" onclick="handleChipClick('${c.value.replace(/'/g,"\\'")}',this)">${c.label}</button>`; }); h += '</div>'; }
+        g.innerHTML = h; messagesEl.appendChild(g); messagesEl.scrollTop = messagesEl.scrollHeight; res();
+      }, delay);
+    });
+  }
+
+  function addUserMessage(text) {
+    const g = document.createElement('div'); g.className = 'msg-group';
+    g.innerHTML = `<div class="msg msg-user" style="margin-left:auto;">${text}</div><div class="msg-meta user">You · just now</div>`;
+    messagesEl.appendChild(g); messagesEl.scrollTop = messagesEl.scrollHeight;
+    memory.history.push({ role: 'user', text });
+  }
+
+  function disableChips(btn) {
+    btn.parentElement.querySelectorAll('.chip').forEach(c => c.disabled = true);
+    btn.style.background = 'var(--accent)'; btn.style.color = 'var(--bg)';
+  }
+
+  const headIcon = '<svg width="16" height="20" viewBox="0 0 44 58" fill="none"><polygon points="22,2 38,32 22,24 6,32" fill="#ffffff"/><rect x="19" y="22" width="6" height="34" fill="#ffffff"/></svg>';
+
+  function showMatchCard(key) {
+    const p = PRODUCTS[key];
+    const flag = p.stock === 'in'
+      ? '<span class="stock-flag stock-in">In stock</span>'
+      : '<span class="stock-flag stock-out">Sold out</span>';
+    const actions = p.stock === 'in'
+      ? `<button class="btn-primary" onclick="confirmMatch()">Email me this setup</button>
+         <button class="btn-secondary" onclick="adjustMatch()">Adjust pick</button>`
+      : `<button class="btn-primary" onclick="goAlternate()">Show me the in-stock option</button>
+         <button class="btn-secondary" onclick="joinWaitlist()">Tell me when it's back</button>`;
+    const g = document.createElement('div'); g.className = 'msg-group';
+    g.innerHTML = `<div class="booking-card">
+      <div class="booking-header"><div class="booking-icon">${headIcon}</div><div class="booking-title">Your Setup Match</div></div>
+      <div class="booking-detail"><span class="label">Hunter</span><span class="value">${memory.name || 'New hunter'}</span></div>
+      <div class="booking-detail"><span class="label">Head</span><span class="value">${p.name}${flag}</span></div>
+      <div class="booking-detail"><span class="label">Why</span><span class="value">${p.why}</span></div>
+      <div class="booking-detail"><span class="label">Holds at</span><span class="value">${p.bow === 'crossbow' ? 'Piston Lock rated past 500 fps' : 'Piston Lock rated from 200+ fps'}</span></div>
+      <div class="booking-detail"><span class="label">Price</span><span class="value">${p.price}</span></div>
+      <div class="booking-detail"><span class="label">Backed by</span><span class="value">100% Satisfaction Guarantee</span></div>
+      <div class="booking-confirm">${actions}</div></div>`;
+    messagesEl.appendChild(g); messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  function showClaimCard(type) {
+    const g = document.createElement('div'); g.className = 'msg-group';
+    g.innerHTML = `<div class="booking-card">
+      <div class="booking-header"><div class="booking-icon">${headIcon}</div><div class="booking-title">Guarantee Claim Started</div></div>
+      <div class="booking-detail"><span class="label">Hunter</span><span class="value">${memory.name || 'SPEED owner'}</span></div>
+      <div class="booking-detail"><span class="label">Issue</span><span class="value">${type}</span></div>
+      <div class="booking-detail"><span class="label">Coverage</span><span class="value">100% Satisfaction Guarantee — full retail refund if it didn't do what we said</span></div>
+      <div class="booking-detail"><span class="label">Next step</span><span class="value">The Superior, WI crew reviews and confirms by email</span></div>
+      <div class="booking-confirm">
+        <button class="btn-primary" onclick="confirmClaim()">Submit claim</button>
+        <button class="btn-secondary" onclick="cancelClaim()">Hold on</button>
+      </div></div>`;
+    messagesEl.appendChild(g); messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  async function startConversation() {
+    await addBotMessage(
+      `Welcome to SPEED. Piston Lock broadheads, built in Superior, WI by the team behind Ravin. Field point accuracy, and blades that will not open in flight. I can match you to the right head for your setup, handle the satisfaction guarantee, or check an order. What do you need?`,
+      400,
+      [
+        { label: '🎯 Match me to a head', value: 'find-head' },
+        { label: '🛡️ Guarantee or an issue', value: 'guarantee' },
+        { label: '📦 Where is my order?', value: 'order' },
+        { label: '❓ Something else', value: 'question' }
+      ]
+    );
+  }
+
+  async function handleChipClick(value, btn) {
+    disableChips(btn);
+    const labels = { 'find-head': 'Match me to a head', 'guarantee': 'I have a guarantee issue', 'order': 'Where is my order?', 'question': 'I have something else', 'vertical': 'Vertical / compound bow', 'crossbow': 'Crossbow', 'pick-crosscut': 'Crosscut 100 — cross-cut blade', 'pick-ti': 'Titanium 100 — titanium ferrule', 'pick-xb-ti': 'Crossbow Titanium 100', 'pick-xb-steel': 'Crossbow Steel 125', 'difference': 'What is the difference?', 'flight': 'It opened in flight', 'durability': 'It bent or broke', 'accuracy': 'It is not flying true', 'other-issue': 'Something else', 'yes-claim': 'Yes, start my claim', 'find-instead': 'Actually, match me to a head', 'no-thanks': 'No thanks, all set', 'single': 'Just one, not a 3-pack' };
+    addUserMessage(labels[value] || value);
+    await routeIntent(value);
+  }
+
+  async function routeIntent(value) {
+    if (value === 'find-head') {
+      memory.intent = 'find-head';
+      await addBotMessage(`Easy. Piston Lock is rated from 200+ fps all the way past 500 fps, so the build changes with the platform. What are you shooting?`, 1000,
+        [{ label: '🏹 Vertical / compound', value: 'vertical' }, { label: '⚡ Crossbow', value: 'crossbow' }]);
+      return;
+    }
+    if (value === 'vertical') {
+      memory.bow = 'vertical';
+      await addBotMessage(`Good. Two builds for vertical setups, both 100 grain, both $99 for a 3-pack: the <strong>Crosscut 100</strong> with .38" cross-cut blades on a 7068-aluminum ferrule, or the <strong>Titanium 100</strong> with a Grade 5 titanium ferrule and chisel tip. Which sounds like your setup?`, 1300,
+        [{ label: '🔪 Crosscut 100', value: 'pick-crosscut' }, { label: '💎 Titanium 100', value: 'pick-ti' }, { label: '🤔 What is the difference?', value: 'difference' }]);
+      return;
+    }
+    if (value === 'crossbow') {
+      memory.bow = 'crossbow';
+      await addBotMessage(`Crossbow it is — that is where Piston Lock earns its keep, since it tightens harder the faster the bolt flies. Both are 11/32" base, $99 for a 3-pack: <strong>Crossbow Titanium 100</strong> (Grade 5 titanium) or <strong>Crossbow Steel 125</strong> (125 grain stainless). Which one?`, 1300,
+        [{ label: '💎 Crossbow Titanium 100', value: 'pick-xb-ti' }, { label: '🔩 Crossbow Steel 125', value: 'pick-xb-steel' }]);
+      return;
+    }
+    if (value === 'difference') {
+      await addBotMessage(`Short version: the <strong>Crosscut 100</strong> uses a .38" cross-cut blade on a 7068-aluminum ferrule — more cutting surface, lighter ferrule. The <strong>Titanium 100</strong> runs a Grade 5 titanium ferrule with a chisel tip — that is the one you want if you are punching bone or shooting heavy. Same Piston Lock, same 100 grain, same $99.`, 1500,
+        [{ label: '🔪 Crosscut for me', value: 'pick-crosscut' }, { label: '💎 Titanium for me', value: 'pick-ti' }]);
+      return;
+    }
+    if (['pick-crosscut', 'pick-ti', 'pick-xb-ti', 'pick-xb-steel'].includes(value)) {
+      memory.pick = value.replace('pick-', '');
+      const p = PRODUCTS[memory.pick];
+      if (p.stock === 'out') {
+        await addBotMessage(`Straight with you — the <strong>Crossbow Steel 125</strong> is sold out right now. I am not going to let you sit on a dead page for it. Here is where that leaves you:`, 1200);
+        setTimeout(() => showMatchCard(memory.pick), 1500);
+        return;
+      }
+      await addBotMessage(`Dialed. Let me build your setup card. First — what's your first name?`, 900);
+      memory.collecting = 'name-for-match'; return;
+    }
+    if (value === 'guarantee') {
+      memory.intent = 'guarantee';
+      await addBotMessage(`Let's make it right. Every SPEED head carries a <strong>100% satisfaction guarantee</strong> — if it didn't do what we said it would, you get a full retail refund. What happened?`, 1200,
+        [{ label: '💨 Opened in flight', value: 'flight' }, { label: '🔧 Bent or broke', value: 'durability' }, { label: '🎯 Not flying true', value: 'accuracy' }, { label: '❓ Something else', value: 'other-issue' }]);
+      return;
+    }
+    if (['flight', 'durability', 'accuracy', 'other-issue'].includes(value)) {
+      memory.claimType = value === 'flight' ? 'Blade deployed in flight' : value === 'durability' ? 'Bent or broken head' : value === 'accuracy' ? 'Accuracy / flight issue' : 'Other — crew review';
+      await addBotMessage(`Got it, and that is exactly what the guarantee is for. I'll open it so the crew in Superior can review — they are fast on these. What's your first name?`, 1100);
+      memory.collecting = 'name-for-claim'; return;
+    }
+    if (value === 'yes-claim') { await addBotMessage(`On it. What's your first name?`, 800); memory.collecting = 'name-for-claim'; return; }
+    if (value === 'order') {
+      memory.intent = 'order';
+      await addBotMessage(`Happy to check. What's your order number — or the email you used at checkout?`, 900);
+      memory.collecting = 'order-ref'; return;
+    }
+    if (value === 'single') {
+      await addBotMessage(`No problem — single packs run <strong>$39</strong> instead of $99 for the 3-pack. Same head, same guarantee. Want me to send that instead?`, 1000,
+        [{ label: '✅ Send the single pack', value: 'find-instead' }, { label: 'All set, thanks', value: 'no-thanks' }]);
+      return;
+    }
+    if (value === 'find-instead') { await routeIntent('find-head'); return; }
+    if (value === 'no-thanks') {
+      await addBotMessage(`Shoot straight out there. If anything comes up, the crew is at <strong>(715) 718-3511</strong> — or come back here anytime.`, 800);
+      return;
+    }
+    if (value === 'question') {
+      memory.intent = 'question';
+      await addBotMessage(`Go ahead and type it — I'll log it for the SPEED team and they'll follow up same-day. Grain weight, inserts, crossbow fitment, anything.`, 900);
+      memory.collecting = 'free-question'; return;
+    }
+  }
+
+  async function handleUserSend() {
+    const text = inputEl.value.trim(); if (!text) return;
+    addUserMessage(text); inputEl.value = '';
+    if (['name-for-match', 'name-for-claim', 'name-for-waitlist'].includes(memory.collecting)) {
+      const n = text.split(/\s+/)[0].replace(/[^a-zA-Z]/g, '');
+      memory.name = n.charAt(0).toUpperCase() + n.slice(1).toLowerCase();
+      const mode = memory.collecting;
+      memory.collecting = mode === 'name-for-match' ? 'email-for-match' : mode === 'name-for-claim' ? 'email-for-claim' : 'email-for-waitlist';
+      const ask = mode === 'name-for-match'
+        ? `Thanks, ${memory.name}. And the best email? I'll send the setup card there with current availability.`
+        : mode === 'name-for-claim'
+        ? `Thanks, ${memory.name}. What's the best email for the claim? That's where the crew will send next steps.`
+        : `Thanks, ${memory.name}. What email should I hit the second the Steel 125 is back in stock?`;
+      await addBotMessage(ask, 800);
+      return;
+    }
+    if (memory.collecting === 'email-for-match') {
+      memory.email = text; memory.collecting = null;
+      await addBotMessage(`Perfect. Here's what I'd put in your quiver:`, 800);
+      setTimeout(() => showMatchCard(memory.pick), 1200);
+      return;
+    }
+    if (memory.collecting === 'email-for-claim') {
+      memory.email = text; memory.collecting = null;
+      await addBotMessage(`Almost done — here's your claim summary:`, 800);
+      setTimeout(() => showClaimCard(memory.claimType || 'Guarantee review'), 1200);
+      return;
+    }
+    if (memory.collecting === 'email-for-waitlist') {
+      memory.email = text; memory.collecting = null;
+      await addBotMessage(`Done, ${memory.name}. You're first in line — I'll email <strong>${memory.email}</strong> the moment the Crossbow Steel 125 is back, before it hits the general list. In the meantime the <strong>Crossbow Titanium 100</strong> is in stock at $99 if you don't want to wait.`, 1000,
+        [{ label: '💎 Show me the Titanium', value: 'pick-xb-ti' }, { label: 'I\'ll wait, thanks', value: 'no-thanks' }]);
+      return;
+    }
+    if (memory.collecting === 'order-ref') {
+      memory.orderRef = text; memory.collecting = null;
+      await addBotMessage(`Found it — I've flagged <strong>${text}</strong> for the fulfillment team in Superior. You'll get a tracking update by email shortly. Anything else while I have you?`, 1200,
+        [{ label: '🎯 Match me to a head', value: 'find-head' }, { label: '🛡️ Guarantee question', value: 'guarantee' }, { label: 'All set, thanks', value: 'no-thanks' }]);
+      return;
+    }
+    if (memory.collecting === 'free-question') {
+      memory.collecting = null;
+      await addBotMessage(`Logged for the SPEED team — expect a same-day reply. While you're here, want me to match you to a head? Takes about 30 seconds.`, 1100,
+        [{ label: '🎯 Sure, match me', value: 'find-head' }, { label: 'No thanks', value: 'no-thanks' }]);
+      return;
+    }
+    await addBotMessage(`Thanks for that. So I point you the right way — are you picking out a head, dealing with a guarantee issue, or checking an order?`, 900,
+      [{ label: '🎯 Picking a head', value: 'find-head' }, { label: '🛡️ Guarantee', value: 'guarantee' }, { label: '📦 Order status', value: 'order' }]);
+  }
+
+  function paintCardDark(card) {
+    Object.assign(card.style, { transition: 'all 0.3s ease', background: 'linear-gradient(135deg,#232528 0%,#121316 100%)', color: 'white' });
+    card.querySelector('.booking-title').style.color = 'white';
+    card.querySelectorAll('.label').forEach(el => el.style.color = 'rgba(255,255,255,0.6)');
+    card.querySelectorAll('.value').forEach(el => el.style.color = 'white');
+    card.querySelector('.booking-confirm')?.remove();
+  }
+
+  function confirmMatch() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) paintCardDark(card);
+    setTimeout(async () => { await addBotMessage(`Done, ${memory.name} — your setup is on its way to <strong>${memory.email}</strong> with a link to grab it at speedbroadheads.com. Built in Superior, WI, backed by the 100% satisfaction guarantee. Shoot straight. 🎯`, 700); }, 400);
+  }
+
+  function adjustMatch() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) card.remove();
+    addBotMessage(`No problem — let's re-spec it. What changed?`, 600,
+      [{ label: '🏹 Different bow', value: 'find-head' }, { label: '📦 Just one, not a 3-pack', value: 'single' }]);
+  }
+
+  async function goAlternate() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) card.remove();
+    addUserMessage('Show me the in-stock option');
+    memory.pick = 'xb-ti';
+    await addBotMessage(`Smart. The <strong>Crossbow Titanium 100</strong> is in stock, same $99, same 11/32" base — Grade 5 titanium ferrule instead of stainless, 100 grain instead of 125. Most crossbow shooters won't feel the 25 grains. What's your first name?`, 1200);
+    memory.collecting = 'name-for-match';
+  }
+
+  async function joinWaitlist() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) card.remove();
+    addUserMessage("Tell me when it's back");
+    await addBotMessage(`You got it — I'll flag you the second it lands. What's your first name?`, 900);
+    memory.collecting = 'name-for-waitlist';
+  }
+
+  function confirmClaim() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) paintCardDark(card);
+    setTimeout(async () => { await addBotMessage(`Claim submitted, ${memory.name}. The crew will email <strong>${memory.email}</strong> with next steps — most get a response the same business day. If it's faster, call <strong>(715) 718-3511</strong> and reference this chat.`, 700); }, 400);
+  }
+
+  function cancelClaim() {
+    const card = messagesEl.querySelector('.booking-card');
+    if (card) card.remove();
+    addBotMessage(`No rush — the claim details are saved. Want me to submit it, or is there something else?`, 600,
+      [{ label: '✅ Submit the claim', value: 'yes-claim' }, { label: '🎯 Match me to a head', value: 'find-instead' }]);
+  }
+
+  inputEl.addEventListener('keydown', e => { if (e.key === 'Enter') handleUserSend(); });
+  setTimeout(startConversation, 600);
+</script>
+<script data-goatcounter="https://velo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
