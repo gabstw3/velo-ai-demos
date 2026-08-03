@@ -249,14 +249,36 @@
 
   async function vStart(){
     await vBot(`Hi, welcome to VocalPoint. I'm the assistant for Derek and the team — always on, so nothing waits until morning. I can point you to the right service, scope a project, or book a strategy call. What brings you in?`, 500,
-      [{l:'🧭 Scope a project',v:'scope'},{l:'📅 Book time with Derek',v:'book'},{l:'🛰️ Explore a service',v:'explore'},{l:'🤝 Referral / partner',v:'partner'}]);
+      [{l:'▶️ Watch it work',v:'auto'},{l:'🧭 Scope a project',v:'scope'},{l:'📅 Book time with Derek',v:'book'},{l:'🛰️ Explore a service',v:'explore'},{l:'🤝 Referral / partner',v:'partner'}]);
   }
 
   async function vChip(v, btn){ vDisable(btn);
+    if(v==='auto'){ await autoDemo(); return; }
     const L={scope:'I want to scope a project',book:'Book time with Derek',explore:'Explore a service',partner:'Referral / partner',
       ai:SVC.ai,cyber:SVC.cyber,uc:SVC.uc,cloud:SVC.cloud,dc:SVC.dc,net:SVC.net,
       'book-now':'Yes, book the call','not-now':'Not right now'};
     vUser(L[v]||v); await vRoute(v);
+  }
+
+  async function autoDemo(){
+    const pause = ms => new Promise(r=>setTimeout(r,ms));
+    await pause(500);
+    vUser("Hi, we're opening a second office and our phones can't keep up. Can you help?");
+    await vBot(`Absolutely, that's right in our wheelhouse. VocalPoint is vendor-neutral across UC and Contact Center, so you get best-fit options, not one rep's product. Quick context so Derek walks in prepared: how many people, and what's driving the move?`, 1300);
+    await pause(850);
+    vUser("About 40 people across two locations, and call volume is slipping through the cracks.");
+    await vBot(`Got it. That's a clean fit for a VocalPoint assessment. Let me get you 20 minutes with Derek to scope it. What's your first name?`, 1300);
+    await pause(850);
+    vUser("Marcus");
+    await vBot(`Thanks, Marcus. What company are you with?`, 950);
+    await pause(850);
+    vUser("Delta Logistics");
+    await vBot(`Got it. And the best email for the calendar invite and Derek's pre-call notes?`, 950);
+    await pause(850);
+    vUser("marcus@deltalogistics.com");
+    vMem.name="Marcus"; vMem.company="Delta Logistics"; vMem.focus="UC & Contact Center";
+    await vBot(`Perfect. Here's what I'll put on Derek's calendar:`, 950);
+    setTimeout(vShowCard, 1100);
   }
 
   async function vRoute(v){
