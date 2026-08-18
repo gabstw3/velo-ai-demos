@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Your Dental Practice — Bilingual 24/7 Intake | Powered by Velo AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f7fc; --bg-deep: #e8edf7; --ink: #080b10; --ink-soft: #3a4656; --ink-faint: #6b7fa0;
+    --accent: #1a6fff; --accent-dark: #1458d4; --accent-warm: #00d4aa; --accent-glow: #7ce8d2; --line: #dbe3f0;
+    --bot-msg: #ffffff; --user-msg: #1a6fff; --user-msg-text: #ffffff;
+    --shadow-sm: 0 1px 3px rgba(8,11,16,0.06); --shadow-md: 0 4px 16px rgba(8,11,16,0.08); --shadow-lg: 0 12px 40px rgba(8,11,16,0.12);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body { font-family: 'Geist', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.5; overflow-x: hidden; background-image: radial-gradient(circle at 15% 20%, rgba(0,212,170,0.06) 0%, transparent 40%), radial-gradient(circle at 85% 80%, rgba(26,111,255,0.05) 0%, transparent 40%); }
+  .app { display: grid; grid-template-columns: 360px 1fr; min-height: 100vh; max-width: 1400px; margin: 0 auto; }
+  .practice-panel { background: linear-gradient(180deg, #1458d4 0%, #0b2a66 100%); color: #eaf1ff; padding: 40px 32px; display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; overflow: hidden; }
+  .practice-panel::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(0,212,170,0.12) 0%, transparent 50%); animation: drift 22s ease-in-out infinite; }
+  @keyframes drift { 0%, 100% { transform: translate(0,0); } 50% { transform: translate(20%,10%); } }
+  .practice-content { position: relative; z-index: 1; }
+  .practice-mark { font-family: 'Fraunces', serif; font-weight: 500; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent-warm); margin-bottom: 12px; opacity: 0.95; }
+  .practice-name { font-family: 'Fraunces', serif; font-weight: 600; font-size: 32px; line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 6px; }
+  .practice-doctor { font-family: 'Fraunces', serif; font-weight: 400; font-style: italic; font-size: 15px; color: var(--accent-glow); margin-bottom: 32px; }
+  .promise-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(124,232,210,0.18); border-radius: 12px; padding: 20px; margin-bottom: 24px; backdrop-filter: blur(10px); }
+  .promise-card h4 { font-family: 'Geist', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-warm); margin-bottom: 8px; }
+  .promise-card p { font-size: 14px; line-height: 1.55; color: #d5e2fb; }
+  .practice-info { margin-top: auto; padding-top: 24px; border-top: 1px solid rgba(124,232,210,0.12); font-size: 13px; line-height: 1.7; color: #a9bde4; }
+  .practice-info .row { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 8px; }
+  .practice-info .label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-warm); width: 56px; padding-top: 2px; flex-shrink: 0; }
+  .powered-by { margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(124,232,210,0.12); font-size: 11px; color: #8ca3d4; letter-spacing: 0.05em; }
+  .powered-by strong { color: var(--accent-glow); font-weight: 600; letter-spacing: 0.1em; }
+  .chat-panel { background: var(--bg); display: flex; flex-direction: column; position: relative; }
+  .chat-header { padding: 20px 32px; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; background: rgba(245,247,252,0.85); backdrop-filter: blur(12px); z-index: 10; }
+  .chat-status { display: flex; align-items: center; gap: 10px; }
+  .status-dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; box-shadow: 0 0 0 4px rgba(74,222,128,0.15); animation: pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { box-shadow: 0 0 0 4px rgba(74,222,128,0.15); } 50% { box-shadow: 0 0 0 8px rgba(74,222,128,0.05); } }
+  .status-text { font-size: 13px; color: var(--ink-soft); font-weight: 500; }
+  .status-text strong { color: var(--ink); font-weight: 600; }
+  .chat-time { font-family: 'Fraunces', serif; font-size: 12px; color: var(--ink-faint); font-style: italic; }
+  .messages { flex: 1; padding: 32px; scroll-behavior: smooth; }
+  .msg-group { margin-bottom: 20px; animation: msgIn 0.4s cubic-bezier(0.2,0.8,0.2,1); }
+  @keyframes msgIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .msg { max-width: 78%; padding: 14px 18px; border-radius: 18px; font-size: 15px; line-height: 1.55; word-wrap: break-word; }
+  .msg-bot { background: var(--bot-msg); color: var(--ink); border-bottom-left-radius: 4px; box-shadow: var(--shadow-sm); border: 1px solid rgba(219,227,240,0.7); }
+  .msg-user { background: var(--user-msg); color: var(--user-msg-text); border-bottom-right-radius: 4px; margin-left: auto; }
+  .msg-meta { font-size: 10px; color: var(--ink-faint); margin-top: 6px; padding: 0 8px; letter-spacing: 0.05em; text-transform: uppercase; }
+  .msg-meta.user { text-align: right; }
+  .typing { display: flex; gap: 4px; padding: 16px 20px; background: var(--bot-msg); border-radius: 18px; border-bottom-left-radius: 4px; width: fit-content; box-shadow: var(--shadow-sm); border: 1px solid rgba(219,227,240,0.7); }
+  .typing span { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; opacity: 0.5; animation: typing 1.4s ease-in-out infinite; }
+  .typing span:nth-child(2) { animation-delay: 0.2s; } .typing span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes typing { 0%, 100% { transform: translateY(0); opacity: 0.4; } 50% { transform: translateY(-4px); opacity: 1; } }
+  .quick-replies { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; animation: msgIn 0.4s cubic-bezier(0.2,0.8,0.2,1) 0.2s both; }
+  .chip { background: transparent; border: 1px solid var(--accent); color: var(--accent); padding: 9px 16px; border-radius: 100px; font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s ease; }
+  .chip:hover { background: var(--accent); color: #ffffff; transform: translateY(-1px); box-shadow: var(--shadow-md); }
+  .chip:disabled { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
+  .booking-card { background: linear-gradient(135deg, #ffffff 0%, #eef7f4 100%); border: 1px solid var(--line); border-radius: 16px; padding: 24px; margin-top: 12px; box-shadow: var(--shadow-md); animation: msgIn 0.5s cubic-bezier(0.2,0.8,0.2,1); max-width: 78%; }
+  .booking-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+  .booking-icon { width: 32px; height: 32px; background: var(--accent-warm); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #063329; font-family: 'Fraunces', serif; font-weight: 700; font-size: 16px; }
+  .booking-title { font-family: 'Fraunces', serif; font-weight: 600; font-size: 16px; color: var(--ink); }
+  .booking-detail { display: grid; grid-template-columns: 90px 1fr; gap: 12px; padding: 8px 0; font-size: 14px; }
+  .booking-detail .label { color: var(--ink-faint); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; padding-top: 2px; }
+  .booking-detail .value { color: var(--ink); font-weight: 500; }
+  .booking-confirm { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); display: flex; gap: 8px; }
+  .btn-primary { flex: 1; background: var(--accent); color: white; border: none; padding: 11px 20px; border-radius: 8px; font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+  .btn-primary:hover { background: var(--accent-dark); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+  .btn-secondary { background: transparent; color: var(--ink-soft); border: 1px solid var(--line); padding: 11px 20px; border-radius: 8px; font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s; }
+  .btn-secondary:hover { background: var(--bg-deep); }
+  .input-area { padding: 20px 32px 24px; border-top: 1px solid var(--line); background: rgba(245,247,252,0.85); backdrop-filter: blur(12px); }
+  .input-wrap { display: flex; gap: 10px; background: white; border: 1px solid var(--line); border-radius: 14px; padding: 6px 6px 6px 18px; transition: border-color 0.2s, box-shadow 0.2s; }
+  .input-wrap:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(26,111,255,0.08); }
+  .input-wrap input { flex: 1; border: none; outline: none; font-family: 'Geist', sans-serif; font-size: 15px; color: var(--ink); padding: 10px 0; background: transparent; }
+  .input-wrap input::placeholder { color: var(--ink-faint); }
+  .send-btn { background: var(--accent); color: white; border: none; width: 40px; height: 40px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; flex-shrink: 0; }
+  .send-btn:hover { background: var(--accent-dark); transform: scale(1.05); }
+  .send-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+  .input-hint { font-size: 11px; color: var(--ink-faint); margin-top: 10px; text-align: center; letter-spacing: 0.05em; }
+  .demo-banner { position: fixed; top: 16px; right: 16px; background: var(--ink); color: #ffffff; padding: 10px 16px; border-radius: 100px; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; z-index: 100; box-shadow: var(--shadow-lg); display: flex; align-items: center; gap: 8px; cursor: pointer; transition: transform 0.2s; }
+  .demo-banner:hover { transform: scale(1.03); }
+  .demo-banner .pulse-dot { width: 6px; height: 6px; background: var(--accent-warm); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
+  @media (max-width: 900px) {
+    html, body { height: auto; overflow: auto; -webkit-overflow-scrolling: touch; }
+    .app { grid-template-columns: 1fr; height: auto; min-height: 100vh; }
+    .practice-panel { padding: 20px 24px; position: static; height: auto; max-height: none; }
+    .practice-panel .promise-card, .practice-panel .practice-info, .practice-panel .powered-by { display: none; }
+    .practice-name { font-size: 24px; } .practice-doctor { font-size: 14px; margin-bottom: 0; }
+    .chat-panel { min-height: 80vh; }
+    .messages { padding: 20px; overflow-y: visible; flex: none; } .msg { max-width: 88%; }
+    .input-area { padding: 16px 20px 20px; position: sticky; bottom: 0; }
+    .demo-banner { top: 8px; right: 8px; padding: 8px 12px; font-size: 10px; }
+  }
+</style>
+<style>
+  .lang-toggle { display:flex; gap:0; border:1px solid var(--line); border-radius:100px; overflow:hidden; background:#fff; }
+  .lang-toggle button { border:none; background:transparent; font-family:'Geist',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-faint); padding:7px 14px; cursor:pointer; transition:all 0.2s; }
+  .lang-toggle button.active { background:var(--accent); color:#fff; }
+  .lang-toggle button:not(.active):hover { background:var(--bg-deep); color:var(--ink); }
+  .chat-header { gap:16px; flex-wrap:wrap; }
+  .practice-info .label { width:78px; }
+  @media (max-width:900px){ .lang-toggle button { padding:6px 11px; font-size:10px; } }
+</style>
+</head>
+<body>
+
+<div class="demo-banner" onclick="showBannerNote()">
+  <span class="pulse-dot"></span><span id="banner-label">Velo AI Demo</span>
+</div>
+
+<div class="app">
+  <aside class="practice-panel">
+    <div class="practice-content">
+      <div class="practice-mark" id="p-mark"></div>
+      <h1 class="practice-name" id="p-name"></h1>
+      <p class="practice-doctor" id="p-doctor"></p>
+      <div class="promise-card">
+        <h4 id="p-promise-h"></h4>
+        <p id="p-promise-p"></p>
+      </div>
+    </div>
+    <div class="practice-info">
+      <div class="row"><div class="label" id="l-area"></div><div id="v-area"></div></div>
+      <div class="row"><div class="label" id="l-phone"></div><div id="v-phone"></div></div>
+      <div class="row"><div class="label" id="l-care"></div><div id="v-care"></div></div>
+    </div>
+    <div class="powered-by" id="p-powered"></div>
+  </aside>
+
+  <main class="chat-panel">
+    <header class="chat-header">
+      <div class="chat-status"><span class="status-dot"></span><span class="status-text" id="status-text"></span></div>
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+        <button id="btn-es" onclick="setLang('es')">ES</button>
+      </div>
+      <span class="chat-time" id="chat-time"></span>
+    </header>
+    <div class="messages" id="messages"></div>
+    <div class="input-area">
+      <div class="input-wrap">
+        <input type="text" id="user-input" autocomplete="off" />
+        <button class="send-btn" onclick="handleUserSend()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+      <div class="input-hint" id="input-hint"></div>
+    </div>
+  </main>
+</div>
+
+<script>
+const S = {
+  en: {
+    docTitle: 'Your Dental Practice — Bilingual 24/7 Intake | Powered by Velo AI',
+    mark: 'Orlando · Central Florida · Bilingual 24/7 Dental Intake',
+    name: 'Your Dental Practice',
+    doctor: 'This is what your after-hours new-patient intake could look like — in English and Spanish.',
+    promiseH: 'Every New Patient Answered — In Their Language',
+    promiseP: 'A cracked tooth at 9pm does not leave a voicemail — and a Spanish-speaking patient who reaches an English-only recording calls the next practice on the list. This intake agent answers 24/7 in both languages, triages emergencies to your on-call doctor, handles insurance and cost questions, and books new patients straight onto your schedule.',
+    lblArea: 'Area', valArea: 'Greater Orlando · Seminole · Osceola · Lake',
+    lblPhone: 'Phone', valPhone: '(407) 555-0142 · demo line',
+    lblCare: 'Care', valCare: 'New Patients · Cleanings · Emergencies · Cosmetic',
+    powered: 'Bilingual intake powered by <strong>VELO AI</strong> · Live in 48 hours',
+    statusText: '<strong>After-Hours Front Desk</strong> · English &amp; Español · 24/7',
+    timeLate: 'After hours · 9:48 PM', timeEarly: 'After hours · 6:32 AM',
+    placeholder: 'Type your message...',
+    hint: 'After-hours messages are flagged to your team. Dental emergencies get a fast callback.',
+    bannerLabel: 'Velo AI Demo',
+    bannerNote: 'This is a live demo built by Velo AI.\n\nThe same agent answers in English and Spanish — switch languages with the EN / ES toggle and watch it pick up where it left off.\n\nImagine this on YOUR practice phone and website, answering, triaging, and booking new patients 24/7.\n\nGabe Herrera — Velo AI\nWinter Springs, FL\ngabe@getveloai.co',
+    botMeta: 'After-Hours Front Desk',
+    userMeta: 'You · just now',
+    switched: 'Switched to English — I keep the same conversation, nothing is lost. How can I help?',
+    greeting: "Thanks for calling — you've reached the after-hours line, but you're not talking to a voicemail. I can get an emergency to the doctor on call, book a new-patient visit, or answer an insurance question right now. What's going on?<br><br><em>¿Prefiere español? Toque <strong>ES</strong> arriba y seguimos en español.</em>",
+    chips: {
+      emergency: '🚨 Dental emergency — pain or broken tooth',
+      estimate: '🦷 New patient — cleaning &amp; exam',
+      insurance: '💳 Insurance &amp; cost question',
+      message: '✉️ Leave a message for the office',
+      'urgent-now': '🔴 Severe pain, swelling, or bleeding',
+      'urgent-soon': '🟡 It hurts, but I can manage tonight',
+      'urgent-planning': '🟢 Sensitive on and off',
+      'ins-have': '💳 I have insurance',
+      'ins-none': '🙅 No insurance',
+      'ins-cost': '💵 What does a first visit cost?',
+      'this-week': '📅 This week', 'next-week': '📆 Next week', flexible: "🤝 I'm flexible",
+      'no-slot': 'No thanks', 'yes-hold': '✅ Yes, hold an appointment',
+      alt1: '🌅 Tuesday 8:00 AM', alt2: '🕒 Wednesday 2:00 PM', alt3: '☀️ Friday 9:30 AM'
+    },
+    said: {
+      emergency: 'Dental emergency — pain or a broken tooth',
+      estimate: "I'm a new patient — cleaning and exam",
+      insurance: 'I have an insurance and cost question',
+      message: "I'd like to leave a message for the office",
+      'urgent-now': 'Severe pain, swelling, or bleeding',
+      'urgent-soon': 'It hurts, but I can manage tonight',
+      'urgent-planning': "It's sensitive on and off",
+      'ins-have': 'I have insurance', 'ins-none': "I don't have insurance",
+      'ins-cost': 'What does a first visit cost?',
+      'this-week': 'This week', 'next-week': 'Next week', flexible: "I'm flexible",
+      'no-slot': 'No thanks', 'yes-hold': 'Yes, hold an appointment'
+    },
+    r: {
+      emergency: "I'm sorry — tooth pain at this hour is miserable. Dental emergencies go straight to the doctor on call, even now. So I route it right: which sounds closest?",
+      estimate: 'Welcome — happy to get you in. New-patient exams, cleanings, and X-rays all book right here, no waiting for the office to open in the morning. Would this week or next work better?',
+      insurance: "Happy to help — this is the question that usually keeps people from booking, so let's get it out of the way. Which fits you?",
+      insHave: 'Most PPO plans are accepted, and the office verifies your exact benefits before the visit so there are no surprises at checkout. I can hold a new-patient appointment now and have the team confirm your coverage in the morning. This week or next?',
+      insNone: "That's not a problem at all — there's a new-patient option for folks without insurance that covers the exam, X-rays, and a cleaning at a flat rate, plus payment plans for anything further. Want me to hold a spot while we're talking?",
+      insCost: 'A new-patient visit is typically the exam, X-rays, and a cleaning, quoted up front before anything is done. If treatment is recommended you would get a written estimate first — nothing is a surprise. Want me to hold a spot?',
+      urgentNow: "Understood — I'm flagging this as an urgent case for the doctor on call right now. In the meantime, rinse with warm salt water and use a cold compress on the outside of your cheek. May I have your first name and the best callback number?",
+      urgentSoon: "Understood — let's get you seen before it gets worse. Would this week or next work better?",
+      hold: t => `Let me hold ${t} with the doctor. May I have your first name?`,
+      noSlot: 'No problem — your message is logged and the office will follow up in the morning. Have a good night!',
+      message: "Of course — type your message and I'll log it for the office. They'll see it first thing in the morning, tagged with your callback info so nothing slips.",
+      askPhone: n => `Thank you, ${n}. What's the best phone number to reach you?`,
+      askPhoneBooking: n => `Thanks, ${n}. And the best phone number? We'll text a confirmation once it's locked.`,
+      askCallback: n => `Thank you, ${n}. What's the best callback number?`,
+      holdIntro: "Perfect. Here's the hold I'm putting on the schedule:",
+      severeDone: n => `Thank you, ${n}. The doctor on call has been notified and you're at the top of the list. Expect a call from <strong>(407) 555-0142</strong> shortly.`,
+      confirmSoon: (n, p) => `Thank you, ${n}. The team will reach out to ${p} to confirm your appointment.<br><br>Anything else you'd like me to pass along?`,
+      logged: "Logged for the office — they'll follow up first thing in the morning. Would you like me to also hold an appointment while you're here?",
+      fallback: 'Thanks for that. So I route it to the right place — is this a dental emergency, a new-patient booking, an insurance question, or a message for the office?',
+      booked: n => `You're all set, ${n}. You're on the schedule and you'll get a confirmation from <strong>(407) 555-0142</strong>. This entire conversation happened after hours, in the language you called in — no missed call, no lost patient.`,
+      alt: 'No problem. The next openings are Tuesday 8:00 AM, Wednesday 2:00 PM, or Friday 9:30 AM — which works best?'
+    },
+    card: {
+      title: 'Appointment Hold Created', patient: 'Patient', reason: 'Reason', proposed: 'Proposed',
+      withDr: 'With', office: 'Office', newPatient: 'New patient',
+      drVal: 'Your next available doctor', officeVal: 'Greater Orlando · 24/7 bilingual intake',
+      confirm: 'Confirm appointment', different: 'Different time',
+      matters: { emergency: 'Emergency Dental Visit', estimate: 'New Patient Exam & Cleaning', insurance: 'New Patient Exam & Cleaning', message: 'Dental Appointment', default: 'Service Visit' },
+      times: { 'this-week': 'Thursday, 9:00 AM', 'next-week': 'Tuesday, 1:30 PM', flexible: 'Wednesday, 10:00 AM' }
+    }
+  },
+  es: {
+    docTitle: 'Su Consultorio Dental — Recepción Bilingüe 24/7 | Velo AI',
+    mark: 'Orlando · Florida Central · Recepción Dental Bilingüe 24/7',
+    name: 'Su Consultorio Dental',
+    doctor: 'Así se vería la recepción de pacientes nuevos fuera de horario — en inglés y en español.',
+    promiseH: 'Cada Paciente Nuevo Atendido — En Su Idioma',
+    promiseP: 'Un diente fracturado a las 9 de la noche no deja mensaje de voz, y un paciente hispanohablante que escucha una grabación solo en inglés llama al siguiente consultorio de la lista. Este asistente contesta 24/7 en ambos idiomas, canaliza las emergencias al doctor de turno, responde preguntas de seguro y costo, y agenda pacientes nuevos directamente en su calendario.',
+    lblArea: 'Zona', valArea: 'Área de Orlando · Seminole · Osceola · Lake',
+    lblPhone: 'Teléfono', valPhone: '(407) 555-0142 · línea de demostración',
+    lblCare: 'Servicios', valCare: 'Pacientes Nuevos · Limpiezas · Emergencias · Estética',
+    powered: 'Recepción bilingüe con <strong>VELO AI</strong> · Activo en 48 horas',
+    statusText: '<strong>Recepción Fuera de Horario</strong> · English &amp; Español · 24/7',
+    timeLate: 'Fuera de horario · 9:48 PM', timeEarly: 'Fuera de horario · 6:32 AM',
+    placeholder: 'Escriba su mensaje...',
+    hint: 'Los mensajes fuera de horario se marcan para su equipo. Las emergencias dentales reciben una llamada rápida.',
+    bannerLabel: 'Demostración Velo AI',
+    bannerNote: 'Esta es una demostración creada por Velo AI.\n\nEl mismo asistente contesta en inglés y en español — cambie de idioma con el botón EN / ES y verá que retoma la conversación donde quedó.\n\nImagine esto en el teléfono y el sitio web de SU consultorio, contestando, clasificando y agendando pacientes nuevos 24/7.\n\nGabe Herrera — Velo AI\nWinter Springs, FL\ngabe@getveloai.co',
+    botMeta: 'Recepción Fuera de Horario',
+    userMeta: 'Usted · ahora mismo',
+    switched: 'Cambiamos al español — mantengo la misma conversación, no se pierde nada. ¿En qué le puedo ayudar?',
+    greeting: 'Gracias por llamar — está en la línea de fuera de horario, pero no está hablando con una grabación. Puedo comunicar una emergencia al doctor de turno, agendar una cita de paciente nuevo, o responder una pregunta de seguro ahora mismo. ¿Qué se le ofrece?',
+    chips: {
+      emergency: '🚨 Emergencia dental — dolor o diente roto',
+      estimate: '🦷 Paciente nuevo — limpieza y examen',
+      insurance: '💳 Pregunta de seguro y costo',
+      message: '✉️ Dejar un mensaje para la oficina',
+      'urgent-now': '🔴 Dolor fuerte, hinchazón o sangrado',
+      'urgent-soon': '🟡 Me duele, pero aguanto esta noche',
+      'urgent-planning': '🟢 Sensibilidad de vez en cuando',
+      'ins-have': '💳 Tengo seguro',
+      'ins-none': '🙅 No tengo seguro',
+      'ins-cost': '💵 ¿Cuánto cuesta la primera visita?',
+      'this-week': '📅 Esta semana', 'next-week': '📆 La próxima semana', flexible: '🤝 Soy flexible',
+      'no-slot': 'No, gracias', 'yes-hold': '✅ Sí, apárteme una cita',
+      alt1: '🌅 Martes 8:00 AM', alt2: '🕒 Miércoles 2:00 PM', alt3: '☀️ Viernes 9:30 AM'
+    },
+    said: {
+      emergency: 'Emergencia dental — dolor o un diente roto',
+      estimate: 'Soy paciente nuevo — limpieza y examen',
+      insurance: 'Tengo una pregunta de seguro y costo',
+      message: 'Quisiera dejar un mensaje para la oficina',
+      'urgent-now': 'Dolor fuerte, hinchazón o sangrado',
+      'urgent-soon': 'Me duele, pero aguanto esta noche',
+      'urgent-planning': 'Tengo sensibilidad de vez en cuando',
+      'ins-have': 'Tengo seguro', 'ins-none': 'No tengo seguro',
+      'ins-cost': '¿Cuánto cuesta la primera visita?',
+      'this-week': 'Esta semana', 'next-week': 'La próxima semana', flexible: 'Soy flexible',
+      'no-slot': 'No, gracias', 'yes-hold': 'Sí, apárteme una cita'
+    },
+    r: {
+      emergency: 'Lo siento — el dolor de muela a esta hora es horrible. Las emergencias dentales pasan directo al doctor de turno, incluso ahora. Para canalizarlo bien: ¿cuál se parece más a su caso?',
+      estimate: 'Bienvenido — con gusto le consigo una cita. Los exámenes de paciente nuevo, las limpiezas y las radiografías se agendan aquí mismo, sin esperar a que abra la oficina mañana. ¿Le sirve mejor esta semana o la próxima?',
+      insurance: 'Con mucho gusto — esta es la pregunta que normalmente detiene a la gente, así que resolvámosla. ¿Cuál es su caso?',
+      insHave: 'Se aceptan la mayoría de los planes PPO, y la oficina verifica sus beneficios exactos antes de la visita para que no haya sorpresas al pagar. Puedo apartarle una cita de paciente nuevo ahora y el equipo confirma su cobertura en la mañana. ¿Esta semana o la próxima?',
+      insNone: 'No hay ningún problema — existe una opción para pacientes nuevos sin seguro que incluye el examen, las radiografías y la limpieza a precio fijo, además de planes de pago para cualquier tratamiento adicional. ¿Le aparto un espacio mientras hablamos?',
+      insCost: 'La visita de paciente nuevo normalmente incluye el examen, las radiografías y la limpieza, cotizada por adelantado antes de hacer cualquier cosa. Si se recomienda tratamiento, usted recibiría un presupuesto por escrito primero — nada es sorpresa. ¿Le aparto un espacio?',
+      urgentNow: 'Entendido — estoy marcando esto como caso urgente para el doctor de turno ahora mismo. Mientras tanto, haga buches con agua tibia con sal y póngase una compresa fría por fuera del cachete. ¿Me regala su nombre y el mejor número para devolverle la llamada?',
+      urgentSoon: 'Entendido — vamos a atenderlo antes de que empeore. ¿Le sirve mejor esta semana o la próxima?',
+      hold: t => `Le aparto ${t} con el doctor. ¿Me regala su nombre?`,
+      noSlot: 'Sin problema — su mensaje queda registrado y la oficina le da seguimiento en la mañana. ¡Que pase buena noche!',
+      message: 'Claro que sí — escriba su mensaje y lo registro para la oficina. Lo verán a primera hora de la mañana, con sus datos de contacto para que nada se pierda.',
+      askPhone: n => `Gracias, ${n}. ¿Cuál es el mejor número para comunicarme con usted?`,
+      askPhoneBooking: n => `Gracias, ${n}. ¿Y el mejor número de teléfono? Le enviamos la confirmación por texto en cuanto quede.`,
+      askCallback: n => `Gracias, ${n}. ¿Cuál es el mejor número para devolverle la llamada?`,
+      holdIntro: 'Perfecto. Este es el espacio que estoy apartando en el calendario:',
+      severeDone: n => `Gracias, ${n}. El doctor de turno ya fue notificado y usted está de primero en la lista. Espere una llamada del <strong>(407) 555-0142</strong> en breve.`,
+      confirmSoon: (n, p) => `Gracias, ${n}. El equipo se comunicará al ${p} para confirmar su cita.<br><br>¿Algo más que quiera que les pase?`,
+      logged: 'Registrado para la oficina — le dan seguimiento a primera hora de la mañana. ¿Quiere que también le aparte una cita ya que está aquí?',
+      fallback: 'Gracias por eso. Para canalizarlo al lugar correcto — ¿se trata de una emergencia dental, una cita de paciente nuevo, una pregunta de seguro, o un mensaje para la oficina?',
+      booked: n => `Todo listo, ${n}. Ya quedó en el calendario y recibirá una confirmación del <strong>(407) 555-0142</strong>. Toda esta conversación ocurrió fuera de horario, en el idioma en que usted llamó — ni una llamada perdida, ni un paciente perdido.`,
+      alt: 'Sin problema. Los próximos espacios son martes 8:00 AM, miércoles 2:00 PM, o viernes 9:30 AM — ¿cuál le sirve mejor?'
+    },
+    card: {
+      title: 'Cita Apartada', patient: 'Paciente', reason: 'Motivo', proposed: 'Propuesta',
+      withDr: 'Con', office: 'Oficina', newPatient: 'Paciente nuevo',
+      drVal: 'El próximo doctor disponible', officeVal: 'Área de Orlando · recepción bilingüe 24/7',
+      confirm: 'Confirmar cita', different: 'Otro horario',
+      matters: { emergency: 'Visita Dental de Emergencia', estimate: 'Examen y Limpieza de Paciente Nuevo', insurance: 'Examen y Limpieza de Paciente Nuevo', message: 'Cita Dental', default: 'Visita de Servicio' },
+      times: { 'this-week': 'jueves, 9:00 AM', 'next-week': 'martes, 1:30 PM', flexible: 'miércoles, 10:00 AM' }
+    }
+  }
+};
+
+let lang = 'en';
+const t = () => S[lang];
+
+const messagesEl = document.getElementById('messages');
+const inputEl = document.getElementById('user-input');
+const memory = { name: null, issue: null, urgency: null, proposedTime: null, proposedKey: null, collecting: null };
+
+function showBannerNote() { alert(t().bannerNote); }
+
+function paintStatic() {
+  const s = t();
+  document.title = s.docTitle;
+  document.documentElement.lang = lang;
+  document.getElementById('banner-label').textContent = s.bannerLabel;
+  document.getElementById('p-mark').textContent = s.mark;
+  document.getElementById('p-name').textContent = s.name;
+  document.getElementById('p-doctor').textContent = s.doctor;
+  document.getElementById('p-promise-h').textContent = s.promiseH;
+  document.getElementById('p-promise-p').textContent = s.promiseP;
+  document.getElementById('l-area').textContent = s.lblArea;
+  document.getElementById('v-area').textContent = s.valArea;
+  document.getElementById('l-phone').textContent = s.lblPhone;
+  document.getElementById('v-phone').textContent = s.valPhone;
+  document.getElementById('l-care').textContent = s.lblCare;
+  document.getElementById('v-care').textContent = s.valCare;
+  document.getElementById('p-powered').innerHTML = s.powered;
+  document.getElementById('status-text').innerHTML = s.statusText;
+  inputEl.placeholder = s.placeholder;
+  document.getElementById('input-hint').textContent = s.hint;
+  const h = new Date().getHours();
+  document.getElementById('chat-time').textContent = (h < 8 || h >= 17) ? s.timeLate : s.timeEarly;
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+}
+
+async function setLang(next) {
+  if (next === lang) return;
+  lang = next;
+  paintStatic();
+  // Retire stale chips from the previous language so only the live prompt is clickable.
+  messagesEl.querySelectorAll('.chip').forEach(c => c.disabled = true);
+  // Same conversation, new language — re-offer the last open question.
+  await addBotMessage(t().switched, 600, memory.collecting ? null : mainChips());
+}
+
+function mainChips() {
+  const c = t().chips;
+  return [
+    { label: c.emergency, value: 'emergency' },
+    { label: c.estimate, value: 'estimate' },
+    { label: c.insurance, value: 'insurance' },
+    { label: c.message, value: 'message' }
+  ];
+}
+
+function addBotMessage(text, delay = 700, chips = null) {
+  return new Promise(res => {
+    const id = 't' + Date.now() + Math.floor(Math.random() * 1000);
+    const w = document.createElement('div'); w.className = 'msg-group'; w.id = id;
+    w.innerHTML = '<div class="typing"><span></span><span></span><span></span></div>';
+    messagesEl.appendChild(w); messagesEl.scrollTop = messagesEl.scrollHeight;
+    setTimeout(() => {
+      document.getElementById(id)?.remove();
+      const g = document.createElement('div'); g.className = 'msg-group';
+      let h = `<div class="msg msg-bot">${text}</div><div class="msg-meta">${t().botMeta}</div>`;
+      if (chips) {
+        h += '<div class="quick-replies">';
+        chips.forEach(c => { h += `<button class="chip" onclick="handleChipClick('${c.value}',this)">${c.label}</button>`; });
+        h += '</div>';
+      }
+      g.innerHTML = h; messagesEl.appendChild(g); messagesEl.scrollTop = messagesEl.scrollHeight; res();
+    }, delay);
+  });
+}
+
+function addUserMessage(text) {
+  const g = document.createElement('div'); g.className = 'msg-group';
+  g.innerHTML = `<div class="msg msg-user" style="margin-left:auto;">${text}</div><div class="msg-meta user">${t().userMeta}</div>`;
+  messagesEl.appendChild(g); messagesEl.scrollTop = messagesEl.scrollHeight;
+}
+
+function disableChips(btn) {
+  btn.parentElement.querySelectorAll('.chip').forEach(c => c.disabled = true);
+  btn.style.background = 'var(--accent)'; btn.style.color = '#ffffff';
+}
+
+function scheduleChips() {
+  const c = t().chips;
+  return [
+    { label: c['this-week'], value: 'this-week' },
+    { label: c['next-week'], value: 'next-week' },
+    { label: c.flexible, value: 'flexible' }
+  ];
+}
+
+function showBookingCard(matterKey, timeKey) {
+  const c = t().card;
+  const matter = c.matters[matterKey] || c.matters.default;
+  const time = c.times[timeKey] || timeKey;
+  const g = document.createElement('div'); g.className = 'msg-group';
+  g.innerHTML = `<div class="booking-card">
+    <div class="booking-header"><div class="booking-icon">V</div><div class="booking-title">${c.title}</div></div>
+    <div class="booking-detail"><span class="label">${c.patient}</span><span class="value">${memory.name || c.newPatient}</span></div>
+    <div class="booking-detail"><span class="label">${c.reason}</span><span class="value">${matter}</span></div>
+    <div class="booking-detail"><span class="label">${c.proposed}</span><span class="value">${time}</span></div>
+    <div class="booking-detail"><span class="label">${c.withDr}</span><span class="value">${c.drVal}</span></div>
+    <div class="booking-detail"><span class="label">${c.office}</span><span class="value">${c.officeVal}</span></div>
+    <div class="booking-confirm">
+      <button class="btn-primary" onclick="confirmBooking()">${c.confirm}</button>
+      <button class="btn-secondary" onclick="proposeAlternative()">${c.different}</button>
+    </div></div>`;
+  messagesEl.appendChild(g); messagesEl.scrollTop = messagesEl.scrollHeight;
+}
+
+async function startConversation() {
+  await addBotMessage(t().greeting, 400, mainChips());
+}
+
+async function handleChipClick(value, btn) {
+  disableChips(btn);
+  addUserMessage(t().said[value] || value);
+  await routeIntent(value);
+}
+
+async function routeIntent(value) {
+  const s = t(), c = s.chips, r = s.r;
+  if (value === 'emergency') {
+    memory.issue = 'emergency';
+    await addBotMessage(r.emergency, 1200, [
+      { label: c['urgent-now'], value: 'urgent-now' },
+      { label: c['urgent-soon'], value: 'urgent-soon' },
+      { label: c['urgent-planning'], value: 'urgent-planning' }
+    ]);
+    return;
+  }
+  if (value === 'estimate') { memory.issue = 'estimate'; await addBotMessage(r.estimate, 1100, scheduleChips()); return; }
+  if (value === 'insurance') {
+    memory.issue = 'insurance';
+    await addBotMessage(r.insurance, 1200, [
+      { label: c['ins-have'], value: 'ins-have' },
+      { label: c['ins-none'], value: 'ins-none' },
+      { label: c['ins-cost'], value: 'ins-cost' }
+    ]);
+    return;
+  }
+  if (value === 'ins-have') { await addBotMessage(r.insHave, 1200, scheduleChips()); return; }
+  if (value === 'ins-none') { await addBotMessage(r.insNone, 1200, scheduleChips()); return; }
+  if (value === 'ins-cost') { await addBotMessage(r.insCost, 1200, scheduleChips()); return; }
+  if (value === 'urgent-now') {
+    memory.urgency = 'severe';
+    await addBotMessage(r.urgentNow, 1100);
+    memory.collecting = 'name-phone'; return;
+  }
+  if (value === 'urgent-soon' || value === 'urgent-planning') {
+    memory.urgency = value;
+    await addBotMessage(r.urgentSoon, 1000, scheduleChips()); return;
+  }
+  if (['this-week', 'next-week', 'flexible'].includes(value)) {
+    memory.proposedKey = value;
+    memory.proposedTime = s.card.times[value];
+    await addBotMessage(r.hold(s.card.times[value]), 900);
+    memory.collecting = 'name-for-booking'; return;
+  }
+  if (value === 'yes-hold') { memory.proposedKey = 'this-week'; memory.proposedTime = s.card.times['this-week']; await addBotMessage(r.hold(s.card.times['this-week']), 900); memory.collecting = 'name-for-booking'; return; }
+  if (value === 'no-slot') { await addBotMessage(r.noSlot, 800); return; }
+  if (value === 'message') { memory.issue = 'message'; await addBotMessage(r.message, 900); memory.collecting = 'free-question'; return; }
+}
+
+async function handleUserSend() {
+  const text = inputEl.value.trim(); if (!text) return;
+  addUserMessage(text); inputEl.value = '';
+  const r = t().r;
+  if (['name', 'name-for-booking', 'name-phone'].includes(memory.collecting)) {
+    const n = text.split(/\s+/)[0].replace(/[^a-zA-ZÀ-ÿ]/g, '');
+    memory.name = n.charAt(0).toUpperCase() + n.slice(1).toLowerCase();
+    const fn = { 'name': r.askPhone, 'name-for-booking': r.askPhoneBooking, 'name-phone': r.askCallback }[memory.collecting];
+    await addBotMessage(fn(memory.name), 800); memory.collecting = 'phone'; return;
+  }
+  if (memory.collecting === 'phone') {
+    memory.phone = text; memory.collecting = null;
+    if (memory.proposedKey) {
+      await addBotMessage(r.holdIntro, 800);
+      setTimeout(() => showBookingCard(memory.issue, memory.proposedKey), 1200);
+    } else if (memory.urgency === 'severe') {
+      await addBotMessage(r.severeDone(memory.name), 1100);
+    } else {
+      await addBotMessage(r.confirmSoon(memory.name, text), 1000);
+    }
+    return;
+  }
+  if (memory.collecting === 'free-question') {
+    memory.collecting = null;
+    await addBotMessage(r.logged, 1100, [
+      { label: t().chips['yes-hold'], value: 'yes-hold' },
+      { label: t().chips['no-slot'], value: 'no-slot' }
+    ]);
+    return;
+  }
+  await addBotMessage(r.fallback, 900, mainChips());
+}
+
+function confirmBooking() {
+  const card = messagesEl.querySelector('.booking-card');
+  if (card) {
+    Object.assign(card.style, { transition: 'all 0.3s ease', background: 'linear-gradient(135deg,#1458d4 0%,#0b2a66 100%)', color: 'white' });
+    card.querySelector('.booking-title').style.color = 'white';
+    card.querySelector('.booking-icon').style.cssText = 'background:var(--accent-warm);color:#063329';
+    card.querySelectorAll('.label').forEach(el => el.style.color = 'rgba(255,255,255,0.6)');
+    card.querySelectorAll('.value').forEach(el => el.style.color = 'white');
+    card.querySelector('.booking-confirm').remove();
+  }
+  setTimeout(() => addBotMessage(t().r.booked(memory.name), 700), 400);
+}
+
+function proposeAlternative() {
+  const card = messagesEl.querySelector('.booking-card');
+  if (card) card.remove();
+  memory.proposedKey = null;
+  const c = t().chips;
+  addBotMessage(t().r.alt, 600, [
+    { label: c.alt1, value: 'this-week' },
+    { label: c.alt2, value: 'next-week' },
+    { label: c.alt3, value: 'flexible' }
+  ]);
+}
+
+inputEl.addEventListener('keydown', e => { if (e.key === 'Enter') handleUserSend(); });
+paintStatic();
+setTimeout(startConversation, 600);
+</script>
+<script data-goatcounter="https://velo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
