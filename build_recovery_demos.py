@@ -30,6 +30,20 @@ def apply_subs(text: str, subs: list) -> str:
     return text
 
 
+def transform(text: str, subs: list, final_cleanup: list = None) -> str:
+    """Apply prospect subs (then optional cleanup) and return the result.
+    Pure — no file I/O, no printing — so it can be unit tested directly."""
+    text = apply_subs(text, subs)
+    if final_cleanup:
+        text = apply_subs(text, final_cleanup)
+    return text
+
+
+# Maps a base template to the source brand name that must NOT survive into the
+# generated demo. Used both by build()'s leak report and by the test suite.
+SOURCE_BRAND = {"ragland.html": "Lance", "homelis.html": "Warren", "wayside.html": "Onyski"}
+
+
 # ============================================================================
 # PROSPECT CONFIGS — full per-prospect substitution maps
 # Each config includes (a) the base template to use and (b) a list of (old, new) pairs
@@ -344,14 +358,11 @@ SUNBRIGHT_SUBS = [
 def build(slug: str, base: str, subs: list, final_cleanup: list = None):
     base_path = ROOT / base
     out_path = ROOT / f"{slug}.html"
-    text = base_path.read_text()
-    text = apply_subs(text, subs)
-    if final_cleanup:
-        text = apply_subs(text, final_cleanup)
+    text = transform(base_path.read_text(), subs, final_cleanup)
     out_path.write_text(text)
 
     # Sanity check
-    source_brand = {"ragland.html": "Lance", "homelis.html": "Warren", "wayside.html": "Onyski"}.get(base, "")
+    source_brand = SOURCE_BRAND.get(base, "")
     leaks = text.count(source_brand) if source_brand else 0
     print(f"  Wrote {out_path.name} ({len(text)} bytes, {leaks} '{source_brand}' leaks)")
     return out_path
