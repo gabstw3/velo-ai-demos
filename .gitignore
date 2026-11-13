@@ -1,0 +1,4 @@
+# Prospect data lives in the private velo-ai repo, never here: this repo is public.
+*.csv
+.env
+.env.*
